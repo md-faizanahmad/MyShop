@@ -1,0 +1,81 @@
+{
+  "title": "Privacy Policy",
+  "intro": "Your privacy is important to us. This Privacy Policy explains how MyAZStore collects, uses, and protects your personal information when you browse or make purchases on our website.",
+  "sections": [
+    {
+      "heading": "1. Information We Collect",
+      "content": [
+        "We collect only the information that is necessary to process orders, improve user experience, and provide support.",
+        "This may include:",
+        "- Name, phone number, email address and shipping address",
+        "- Order details, transactional data and payment confirmation",
+        "- Device information such as browser type, IP address, and cookies",
+        "- Login cookies to maintain your user session securely"
+      ]
+    },
+    {
+      "heading": "2. How We Use Your Information",
+      "content": [
+        "We use your personal data to:",
+        "- Process and deliver your orders",
+        "- Provide order updates and customer support",
+        "- Improve website performance and user experience",
+        "- Prevent fraudulent activities and ensure account security"
+      ]
+    },
+    {
+      "heading": "3. Data Sharing & Third Parties",
+      "content": [
+        "We do not sell your data. We only share required information with trusted third-party services such as:",
+        "- Payment gateways (for secure transactions)",
+        "- Courier and logistics partners (for shipping)",
+        "- Analytics tools (to improve performance)",
+        "These partners follow industry-standard data protection norms."
+      ]
+    },
+    {
+      "heading": "4. Cookies & Tracking",
+      "content": [
+        "We use cookies to:",
+        "- Keep you logged in safely",
+        "- Remember items in your cart",
+        "- Improve site performance and personalisation",
+        "You may disable cookies in your browser, but some features may stop working."
+      ]
+    },
+    {
+      "heading": "5. Data Protection & Security",
+      "content": [
+        "We follow strict security measures to protect your personal information.",
+        "All sensitive data is encrypted and stored securely.",
+        "Access to personal data is restricted to authorized personnel only."
+      ]
+    },
+    {
+      "heading": "6. Your Rights",
+      "content": [
+        "You can request to:",
+        "- View the personal data we hold",
+        "- Update incorrect information",
+        "- Delete your account",
+        "- Opt-out of marketing communications",
+        "To exercise these rights, contact us using the details below."
+      ]
+    },
+    {
+      "heading": "7. Changes to This Policy",
+      "content": [
+        "We may update this Privacy Policy as needed.",
+        "Updates will be posted on this page with the latest effective date."
+      ]
+    },
+    {
+      "heading": "8. Contact Information",
+      "content": [
+        "For privacy-related queries, contact us:",
+        "Email: support@myazstore.shop",
+        "Phone: +91 7563092029"
+      ]
+    }
+  ]
+}

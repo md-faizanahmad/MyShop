@@ -1,0 +1,51 @@
+{
+  "title": "About Us",
+  "intro": [
+    "MyAZStore is an online shopping platform built with a simple mission — to offer quality products at fair prices with a smooth, transparent, and customer-friendly shopping experience.",
+    "We combine reliable service, secure checkout, and responsive support to ensure every order feels easy and trustworthy."
+  ],
+  "sections": [
+    {
+      "heading": "Our Mission",
+      "content": [
+        "To make online shopping simple, affordable, and accessible for everyone.",
+        "We focus on delivering value without compromising product quality or customer support."
+      ]
+    },
+    {
+      "heading": "What We Offer",
+      "content": [
+        "A curated selection of products across multiple categories.",
+        "Transparent pricing with no hidden fees.",
+        "Fast shipping across India with real-time order tracking.",
+        "Easy returns and responsive customer support."
+      ]
+    },
+    {
+      "heading": "Why Shop With Us?",
+      "content": [
+        "Trusted checkout and secure payment options.",
+        "Carefully packed orders with a focus on product safety.",
+        "Personalized customer support available through email, phone, and WhatsApp.",
+        "Constant effort to improve quality, service, and overall shopping experience."
+      ]
+    },
+    {
+      "heading": "Our Commitment",
+      "content": [
+        "Every decision we make is centered around customer satisfaction.",
+        "We listen, adapt, and continuously improve based on customer feedback.",
+        "Your trust means everything to us, and we strive to earn it with each order."
+      ]
+    },
+    {
+      "heading": "Contact Us",
+      "content": [
+        "Have questions or feedback? We’re here to help.",
+        "Email: support@myazstore.shop",
+        "Phone: +91 7563092029",
+        "WhatsApp: +91 7563092029"
+      ]
+    }
+  ]
+}

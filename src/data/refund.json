@@ -1,0 +1,64 @@
+{
+  "title": "Cancellation & Refund Policy",
+  "intro": "This page explains our order cancellation, returns, and refund process. We aim for a fast and fair resolution for all valid requests.",
+  "sections": [
+    {
+      "heading": "1. Order Cancellation",
+      "content": [
+        "You may cancel an order before it is shipped. Once an item has been dispatched, cancellation is not possible through the website.",
+        "To request a cancellation, contact our support team with your order ID as soon as possible."
+      ]
+    },
+    {
+      "heading": "2. Returns & Eligibility",
+      "content": [
+        "Return requests must be submitted within 7 days of delivery, unless the product page states otherwise.",
+        "Items must be unused, in original condition, and returned with all tags and packaging.",
+        "Certain products (perishable goods, personalized items, intimate apparel) may not be eligible for return — check the product page for exceptions."
+      ]
+    },
+    {
+      "heading": "3. Refund Processing",
+      "content": [
+        "Once we receive and inspect the returned item, eligible refunds will be processed within 5–7 business days.",
+        "Refunds will be issued to the original payment method. The time taken for the refund to reflect in your account depends on the payment provider or bank."
+      ]
+    },
+    {
+      "heading": "4. Exchange & Replacement",
+      "content": [
+        "If you received a defective or incorrect item, we will arrange an exchange or replacement at no extra cost where possible.",
+        "Contact support within 48 hours of delivery and provide photos and order details to speed up the process."
+      ]
+    },
+    {
+      "heading": "5. Return Shipping & Charges",
+      "content": [
+        "Return shipping costs are borne by the customer unless the return is due to our error (wrong/defective item).",
+        "If we authorize a return pickup, we will provide instructions on packaging and drop-off."
+      ]
+    },
+    {
+      "heading": "6. Non-Refundable Items & Fees",
+      "content": [
+        "Shipping fees and convenience charges are non-refundable unless the return is due to our error.",
+        "Products returned in a condition that prevents resale (used, damaged, missing parts) may be refused or subject to a restocking fee."
+      ]
+    },
+    {
+      "heading": "7. How to Initiate a Return",
+      "content": [
+        "Contact our support team with order ID, reason for return, and photos (if applicable).",
+        "Support will verify eligibility and provide an RMA/return label and instructions where applicable."
+      ]
+    },
+    {
+      "heading": "8. Contact for Refunds & Cancellations",
+      "content": [
+        "For cancellations, returns, or refund queries, contact:",
+        "Email: support@myazstore.shop",
+        "Phone: +91 7563092029"
+      ]
+    }
+  ]
+}

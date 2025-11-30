@@ -1,0 +1,65 @@
+{
+  "title": "Shipping Policy",
+  "intro": "This Shipping Policy explains how MyAZStore processes, dispatches, and delivers your orders. By placing an order, you agree to the conditions outlined below.",
+  "sections": [
+    {
+      "heading": "1. Order Processing Time",
+      "content": [
+        "All orders are processed within 1–2 business days.",
+        "Orders placed on weekends or holidays will be processed on the next working day."
+      ]
+    },
+    {
+      "heading": "2. Estimated Delivery Time",
+      "content": [
+        "Delivery timelines depend on your location and the courier partner assigned.",
+        "Most orders are delivered within 3–7 business days after dispatch.",
+        "Remote or rural locations may take additional time."
+      ]
+    },
+    {
+      "heading": "3. Shipping Charges",
+      "content": [
+        "Shipping fees, if applicable, will be displayed at checkout before payment.",
+        "We may offer free shipping during promotions or on minimum order amounts."
+      ]
+    },
+    {
+      "heading": "4. Order Tracking",
+      "content": [
+        "Once your order has been shipped, you will receive a tracking ID via email or SMS.",
+        "Tracking updates depend on the courier’s scanning frequency and regional availability."
+      ]
+    },
+    {
+      "heading": "5. Delayed or Failed Delivery",
+      "content": [
+        "Delays may occur due to weather, courier workload, strikes, or other unforeseen factors.",
+        "If a package cannot be delivered due to an incorrect address, incomplete information, or repeated failed delivery attempts, it may be returned to us.",
+        "In such cases, re-shipping charges may apply."
+      ]
+    },
+    {
+      "heading": "6. Damaged or Missing Items",
+      "content": [
+        "If you receive a damaged package or missing items, notify us within 48 hours of delivery.",
+        "Provide clear photos and order details so we can resolve the issue quickly."
+      ]
+    },
+    {
+      "heading": "7. International Shipping",
+      "content": [
+        "Currently, we only deliver within India.",
+        "International shipping is not available at this time."
+      ]
+    },
+    {
+      "heading": "8. Contact Information",
+      "content": [
+        "For shipping-related questions, contact us:",
+        "Email: support@myazstore.shop",
+        "Phone: +91 7563092029"
+      ]
+    }
+  ]
+}
