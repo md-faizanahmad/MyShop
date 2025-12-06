@@ -21,7 +21,7 @@ export default function ReviewForm({ productId, slug }: Props) {
 
   const mutation = useMutation({
     mutationFn: async (): Promise<Review> => {
-      const res = await axios.post(`${API}/api/products/${productId}/review`, {
+      const res = await axios.post(`${API}/v1/products/${productId}/review`, {
         rating,
         comment,
       });

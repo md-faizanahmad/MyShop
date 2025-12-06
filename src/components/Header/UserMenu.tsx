@@ -1,7 +1,17 @@
 // src/components/UserMenu.tsx
 import { useEffect, useRef, useState, type JSX } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { User, Heart, Package, LogOut, Pin, ChevronDown } from "lucide-react";
+import {
+  User,
+  Heart,
+  Package,
+  LogOut,
+  Pin,
+  ChevronDown,
+  LogInIcon,
+  UserPlus,
+  UserPen,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -39,11 +49,7 @@ export default function UserMenu() {
 
   const handleLogout = async () => {
     try {
-      await axios.post(
-        `${API}/api/users/logout`,
-        {},
-        { withCredentials: true }
-      );
+      await axios.post(`${API}/v1/users/logout`, {}, { withCredentials: true });
     } catch (err) {
       console.error("Logout error:", err);
     }
@@ -60,14 +66,14 @@ export default function UserMenu() {
         ref={buttonRef}
         onClick={() => setOpen(!open)}
         whileTap={{ scale: 0.95 }}
-        className="flex items-center gap-2 px-3 py-2 rounded-full text-black font-medium hover:shadow-md transition"
+        className="flex items-center gap-2 px-3 py-2 rounded-full text-black font-medium  transition"
       >
         <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center font-bold">
           {isLoggedIn ? (
             user?.name?.[0]?.toUpperCase()
           ) : (
             <span>
-              <User size={18} />
+              <UserPlus size={18} />
             </span>
           )}
         </div>
@@ -84,7 +90,7 @@ export default function UserMenu() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 z-50"
+            className="absolute right-0 top-full mt-2 w-47 bg-white rounded-xl shadow-xl border border-gray-200 z-50"
           >
             {isLoggedIn ? (
               <div className="py-1">
@@ -121,9 +127,16 @@ export default function UserMenu() {
               </div>
             ) : (
               <div className="py-1">
-                <Item to="/login" label="Login" />
-                <Item to="/signup" label="Create Account" />
-                <Item to="/login-otp" label="Login with Otp" />
+                <Item
+                  to="/login"
+                  label="Login"
+                  icon={<LogInIcon size={16} />}
+                />
+                <Item
+                  to="/signup"
+                  label="Create Account"
+                  icon={<UserPen size={16} />}
+                />
               </div>
             )}
           </motion.div>
@@ -152,7 +165,7 @@ function Item({
           ${
             primary
               ? "bg-blue-600 text-white font-semibold"
-              : "hover:bg-gray-100"
+              : "hover:bg-gray-100 "
           }`}
       >
         {icon && <span>{icon}</span>}

@@ -29,7 +29,7 @@ export default function AddAddressModal({ open, onClose, onAdded }: Props) {
     e.preventDefault();
 
     try {
-      await axios.post(`${API}/api/addresses/add`, form, {
+      await axios.post(`${API}/v1/addresses/add`, form, {
         withCredentials: true,
       });
 

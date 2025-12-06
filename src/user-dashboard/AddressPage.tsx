@@ -22,7 +22,7 @@
 //       const { data } = await axios.get<{
 //         success: boolean;
 //         addresses: Address[];
-//       }>(`${API}/api/addresses`, { withCredentials: true });
+//       }>(`${API}/v1/addresses`, { withCredentials: true });
 
 //       if (data.success) setAddresses(data.addresses);
 //     } catch {
@@ -38,7 +38,7 @@
 
 //   async function deleteAddress(id: string) {
 //     try {
-//       await axios.delete(`${API}/api/addresses/${id}`, {
+//       await axios.delete(`${API}/v1/addresses/${id}`, {
 //         withCredentials: true,
 //       });
 //       toast.success("Address removed");
@@ -51,7 +51,7 @@
 //   async function setDefault(id: string) {
 //     try {
 //       const { data } = await axios.put(
-//         `${API}/api/addresses/default/${id}`,
+//         `${API}/v1/addresses/default/${id}`,
 //         {},
 //         { withCredentials: true }
 //       );
@@ -204,7 +204,7 @@ export default function AddressesPage() {
       const { data } = await axios.get<{
         success: boolean;
         addresses: Address[];
-      }>(`${API}/api/addresses`, { withCredentials: true });
+      }>(`${API}/v1/addresses`, { withCredentials: true });
       setAddresses(data.addresses || []);
     } catch {
       toast.error("Failed to load addresses");
@@ -219,7 +219,7 @@ export default function AddressesPage() {
 
   const deleteAddress = async (id: string) => {
     try {
-      await axios.delete(`${API}/api/addresses/${id}`, {
+      await axios.delete(`${API}/v1/addresses/${id}`, {
         withCredentials: true,
       });
       toast.success("Address removed");
@@ -232,7 +232,7 @@ export default function AddressesPage() {
   const setDefault = async (id: string) => {
     try {
       await axios.put(
-        `${API}/api/addresses/default/${id}`,
+        `${API}/v1/addresses/default/${id}`,
         {},
         { withCredentials: true }
       );

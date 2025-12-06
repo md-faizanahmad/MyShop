@@ -1,4 +1,3 @@
-// src/components/layout/Header.tsx
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Search, Menu, X } from "lucide-react";
@@ -20,86 +19,105 @@ export default function Header() {
     setSearchOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+  }, [mobileMenuOpen]);
+
   return (
     <>
-      {/* MAIN HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg shadow-lg border-b border-sky-100">
+      {/* FIXED HEADER */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg shadow-md border-b border-sky-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            {/* LEFT: Logo */}
-            <div className="flex items-center">
-              <Brand />
-            </div>
+            <Brand />
 
-            {/* CENTER: Desktop Navbar */}
+            {/* Desktop Navbar */}
             <div className="hidden lg:block flex-1 max-w-3xl mx-8">
               <Navbar />
             </div>
 
-            {/* RIGHT: Icons + User */}
-            <div className="flex items-center gap-3">
-              {/* Search Icon */}
+            {/* Right side */}
+            <div className="flex items-center gap-0">
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2.5 hover:bg-sky-50 rounded-full transition"
+                className="p-2 hover:bg-sky-50 rounded-full"
               >
                 <Search size={22} className="text-gray-700" />
               </button>
 
-              {/* Wishlist & Cart (Desktop) */}
-              <div className="hidden md:flex items-center gap-3">
+              <div className="hidden md:flex gap-3">
                 <WishlistIcon />
                 <CartIcon />
               </div>
 
-              {/* User Menu (Desktop) */}
-              <div className="hidden md:block">
-                <UserMenu />
-              </div>
+              {/* User Menu stays in header always */}
+              <UserMenu />
 
               {/* Mobile Menu Toggle */}
               <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2.5 hover:bg-sky-50 rounded-full transition"
+                onClick={() => setMobileMenuOpen(true)}
+                className="lg:hidden p-2 hover:bg-sky-50 rounded-full"
               >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                <Menu size={24} />
               </button>
             </div>
           </div>
         </div>
+      </header>
 
-        {/* MOBILE BOTTOM BAR + MENU */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
+      {/* MOBILE SIDEBAR */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Overlay */}
             <motion.div
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-sky-200 shadow-2xl z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black z-40"
+            />
+
+            {/* Sidebar */}
+            <motion.aside
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", stiffness: 120, damping: 18 }}
+              className="fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-2xl shadow-gray-300 flex flex-col"
             >
-              {/* Mobile Navbar - Vertical */}
-              <div className="py-4 px-6 space-y-3 bg-linear-to-b from-sky-50 to-white">
-                <Navbar onLinkClick={() => setMobileMenuOpen(false)} />
+              <div className="flex items-center justify-between px-4 py-4 shadow-2xl shadow-gray-300">
+                <Brand />
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full"
+                >
+                  <X size={24} />
+                </button>
               </div>
 
-              {/* Mobile Bottom Icons */}
-              <div className="flex justify-around items-center py-3 border-t border-sky-100">
+              {/* Scrollable nav only */}
+              <div className="flex-1 overflow-y-auto px-4 py-6">
+                {/* IMPORTANT: make Navbar flat vertical, no hover */}
+                <Navbar mobile onClose={() => setMobileMenuOpen(false)} />
+              </div>
+
+              {/* Fixed bottom icons (keep your exact design/shadow) */}
+              <div className="fixed bottom-0 w-72 bg-gray-300 items-center shadow-blue-900 shadow-2xl p-4 flex justify-around">
                 <WishlistIcon />
                 <CartIcon />
-                <UserMenu />
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* SEARCH OVERLAY */}
       <AnimatePresence>
         {searchOpen && <SearchBar onClose={() => setSearchOpen(false)} />}
       </AnimatePresence>
 
-      {/* SPACER FOR FIXED HEADER */}
-      <div className="h-16 lg:h-20" />
+      <div className="h-16" />
     </>
   );
 }

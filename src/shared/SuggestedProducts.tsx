@@ -24,7 +24,7 @@ export default function SuggestedProducts({
       if (!categoryId) return [] as PublicProduct[];
 
       // fetch all products then filter
-      const res = await axios.get(`${API}/api/products`);
+      const res = await axios.get(`${API}/v1/products`);
       const products = res.data.products as PublicProduct[];
 
       return products.filter((p) => p.category?._id === categoryId);

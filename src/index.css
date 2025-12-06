@@ -10,8 +10,8 @@ body {
   line-height: 1.5;
   font-weight: 400;
 
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -80,6 +80,3 @@ button {
 }
 
 /* Brand */
-.brand_text {
-  font-family: "Tangerine", serif;
-}

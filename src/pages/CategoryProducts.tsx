@@ -37,7 +37,7 @@ export default function CategoryProducts() {
   } = useQuery<PublicProduct[]>({
     queryKey: ["category-products", slug],
     queryFn: async () => {
-      const res = await axios.get(`${API}/api/products/category/${slug}`);
+      const res = await axios.get(`${API}/v1/products/category/${slug}`);
       return res.data.products || [];
     },
     enabled: !!slug,

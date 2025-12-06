@@ -1,126 +1,172 @@
 import { Link } from "react-router-dom";
-// import facebookImg from "../assets/facebook.svg";
-import { ChartAreaIcon, Facebook, Instagram, Twitter } from "lucide-react";
-export default function Footer() {
-  return (
-    <footer className="bg-gray-900 text-gray-300 pt-10 pb-6 mt-10">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-8">
-        {/* BRAND */}
-        <div>
-          <h3 className="text-xl font-bold text-white">MyAZStore</h3>
-          <p className="text-gray-400 mt-2 text-sm leading-relaxed">
-            Your trusted online marketplace. Quality products, fast delivery,
-            and a smooth shopping experience.
-          </p>
+import Brand from "../shared/Brand";
 
-          {/* SOCIAL ICONS */}
-          <div className="flex items-center gap-4 mt-4">
-            <a href="#" className="hover:text-white transition text-gray-400">
-              <Facebook size={20} className="text-blue-400" />
-              {/* <img src={facebookImg} /> */}
-            </a>
-            <a href="#" className="hover:text-white transition text-gray-400">
-              <Instagram size={20} className="text-pink-300" />
-            </a>
-            <a href="#" className="hover:text-white transition text-gray-400">
-              <Twitter size={20} className="text-blue-400" />
-            </a>
-            <a href="#" className="hover:text-white transition text-gray-400">
-              <ChartAreaIcon size={20} className="text-green-600" />
-            </a>
+// ------------------ CONFIG ARRAYS ------------------
+
+// Footer link sections (short, maintainable, fully mappable)
+const footerSections = [
+  {
+    title: "Shop",
+    links: [
+      { label: "All Products", to: "/products" },
+      { label: "Browse Categories", to: "/categories" },
+      { label: "Deals & Offers", to: "/deals" },
+      { label: "New Arrivals", to: "/new-arrivals" },
+    ],
+  },
+  {
+    title: "Help",
+    links: [
+      { label: "Contact Us", to: "/contact-us" },
+      { label: "Shipping & Delivery", to: "/shipping-policy" },
+      { label: "Returns & Refunds", to: "/cancellations-refunds" },
+      { label: "FAQs", to: "/faq" },
+    ],
+  },
+  {
+    title: "Policies",
+    links: [
+      { label: "Privacy Policy", to: "/privacy-policy" },
+      { label: "Terms & Conditions", to: "/terms-condition" },
+      { label: "Cancellation Policy", to: "/cancellations-refunds" },
+      { label: "Shipping Policy", to: "/shipping-policy" },
+    ],
+  },
+];
+
+// Payment methods with icon URLs (Wiki links you picked)
+const paymentIcons = [
+  {
+    name: "Amazon Pay",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Amazon_Pay_logo.svg/640px-Amazon_Pay_logo.svg.png",
+  },
+  {
+    name: "Google Pay",
+    src: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg",
+  },
+  {
+    name: "UPI",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/UPI_logo.svg/640px-UPI_logo.svg.png",
+  },
+  {
+    name: "Visa",
+    src: "https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png",
+  },
+  {
+    name: "MasterCard",
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg",
+  },
+  {
+    name: "NetBanking",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Netbanking.svg/640px-Netbanking.svg.png",
+  },
+];
+
+// ------------------ COMPONENT ------------------
+
+export default function Footer() {
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="bg-gray-900 text-gray-300 mt-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6">
+        {/* ---------- TOP: BRAND (LEFT) + ABOUT (RIGHT) ---------- */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8 border-b border-gray-800 pb-6">
+          {/* Brand logo (no animation in footer) */}
+          <div className="flex items-center">
+            <Brand noAnimation size={52} />
+          </div>
+
+          {/* Short about text */}
+          <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
+            MyAZStore is your trusted online marketplace for everyday essentials
+            and unique finds. We focus on quality products, fair pricing, and a
+            smooth, reliable shopping experience across India.
+          </p>
+        </div>
+
+        {/* ---------- MIDDLE: LINK SECTIONS (ALL LINKS) ---------- */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 py-6 border-b border-gray-800">
+          {footerSections.map((section) => (
+            <FooterColumn
+              key={section.title}
+              title={section.title}
+              links={section.links}
+            />
+          ))}
+        </div>
+
+        {/* ---------- BOTTOM: COPYRIGHT (LEFT) + PAYMENTS (RIGHT) ---------- */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
+          {/* Left: copyright */}
+          <div className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
+            &copy; {year}{" "}
+            <a
+              href="https://mdfaizanahmad.vercel.app"
+              target="_blank"
+              rel="noreferrer"
+              className="text-gray-300 hover:text-white font-medium hover:underline"
+            >
+              mdfaizanahmad
+            </a>{" "}
+            — All rights reserved.
+          </div>
+
+          {/* Right: payment icons */}
+          <div className="flex flex-col sm:items-end gap-1">
+            <p className="text-[11px] uppercase tracking-wide text-gray-500 text-center sm:text-right">
+              We Accept
+            </p>
+
+            {/* Icon row – aligned, no extra bg, good spacing */}
+            <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3">
+              {paymentIcons.map((p) => (
+                <div
+                  key={p.name}
+                  className="flex items-center justify-center h-6 sm:h-7"
+                >
+                  <img
+                    src={p.src}
+                    alt={p.name}
+                    loading="lazy"
+                    className="h-full w-auto object-contain bg-transparent"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* QUICK LINKS */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-3">Quick Links</h4>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link
-                to="/"
-                className="hover:text-white transition text-gray-400"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about-us" className="hover:text-white transition">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/search"
-                className="hover:text-white transition text-gray-400"
-              >
-                Search
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact-us"
-                className="hover:text-white transition text-gray-400"
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* LEGAL */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-3">
-            Our Policies
-          </h4>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link
-                to="/privacy-policy"
-                className="hover:text-white transition text-gray-400"
-              >
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/terms-condition"
-                className="hover:text-white transition text-gray-400"
-              >
-                Terms & Conditions
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/shipping-policy"
-                className="hover:text-white transition text-gray-400"
-              >
-                Shipping Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/cancellations-refunds"
-                className="hover:text-white transition text-gray-400"
-              >
-                Cancellation & Refund
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      {/* COPYRIGHT */}
-      <div className="text-center text-gray-400 text-sm mt-10 border-t border-gray-700 pt-4">
-        &copy; {new Date().getFullYear()}{" "}
-        <a
-          href="https://mdfaizanahmad.vercel.app"
-          target="_blank"
-          className="text-white font-medium hover:underline"
-        >
-          mdfaizanahmad
-        </a>{" "}
-        — All rights reserved.
       </div>
     </footer>
+  );
+}
+
+// ------------------ REUSABLE COLUMN COMPONENT ------------------
+
+function FooterColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; to: string }[];
+}) {
+  return (
+    <div>
+      <h4 className="text-sm font-semibold text-white tracking-wide mb-3 uppercase">
+        {title}
+      </h4>
+      <ul className="space-y-2 text-sm">
+        {links.map((link) => (
+          <li key={link.to}>
+            <Link
+              to={link.to}
+              className="text-gray-400 hover:text-white transition"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

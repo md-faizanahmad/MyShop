@@ -21,7 +21,7 @@
 //   } = useQuery<Order>({
 //     queryKey: ["order-details", orderId],
 //     queryFn: async () => {
-//       const res = await axios.get(`${API}/api/orders/${orderId}`, {
+//       const res = await axios.get(`${API}/v1/orders/${orderId}`, {
 //         withCredentials: true,
 //       });
 //       console.log(res);
@@ -54,7 +54,7 @@
 
 //     try {
 //       await axios.put(
-//         `${API}/api/orders/cancel/${order._id}`,
+//         `${API}/v1/orders/cancel/${order._id}`,
 //         {},
 //         { withCredentials: true }
 //       );
@@ -120,7 +120,7 @@
 //         </p>
 
 //         <a
-//           href={`${API}/api/orders/invoice/${order._id}`}
+//           href={`${API}/v1/orders/invoice/${order._id}`}
 //           className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
 //         >
 //           Download Invoice (PDF)
@@ -192,7 +192,7 @@ export default function OrderDetails() {
   } = useQuery<Order>({
     queryKey: ["order-details", orderId],
     queryFn: async () => {
-      const res = await axios.get(`${API}/api/orders/${orderId}`, {
+      const res = await axios.get(`${API}/v1/orders/${orderId}`, {
         withCredentials: true,
       });
       return res.data.order as Order;
@@ -211,7 +211,7 @@ export default function OrderDetails() {
 
     try {
       await axios.put(
-        `${API}/api/orders/cancel/${order?._id}`,
+        `${API}/v1/orders/cancel/${order?._id}`,
         {},
         { withCredentials: true }
       );
@@ -246,7 +246,7 @@ export default function OrderDetails() {
 
       {/* Actions */}
       <OrderActions
-        invoiceUrl={`${API}/api/orders/invoice/${order._id}`}
+        invoiceUrl={`${API}/v1/orders/invoice/${order._id}`}
         cancel={cancelOrder}
         disabled={!canCancel}
       />

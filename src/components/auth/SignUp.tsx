@@ -88,7 +88,7 @@ export default function SignUp() {
 
     setSendingOtp(true);
     try {
-      const res = await axios.post(`${API}/api/users/send-otp`, {
+      const res = await axios.post(`${API}/v1/users/send-otp`, {
         email,
         purpose: "signup",
       });
@@ -119,7 +119,7 @@ export default function SignUp() {
     setVerifyingOtp(true);
 
     try {
-      const res = await axios.post(`${API}/api/users/verify-otp`, {
+      const res = await axios.post(`${API}/v1/users/verify-otp`, {
         email,
         otp,
         purpose: "signup",
@@ -146,7 +146,7 @@ export default function SignUp() {
   // -----------------------
   const mutation = useMutation({
     mutationFn: async (data: SignupInput) => {
-      const res = await axios.post(`${API}/api/users/signup`, {
+      const res = await axios.post(`${API}/v1/users/signup`, {
         ...data,
         otpToken, // IMPORTANT 🔥
       });

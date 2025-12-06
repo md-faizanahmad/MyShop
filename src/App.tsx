@@ -199,7 +199,7 @@ import NotFound from "./NotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { useAuthCheck } from "./hooks/useAuthCheck";
 import LoginWithOTP from "./components/auth/LoginWithOTP";
-// import TestModeBanner from "./components/TestModeBanner";
+import TestModeBanner from "./components/TestModeBanner";
 
 // ------------------ MAIN APP CONTENT ------------------
 function AppContent() {
@@ -214,7 +214,7 @@ function AppContent() {
   console.log(safeUser);
   return (
     <>
-      {/* <TestModeBanner /> */}
+      <TestModeBanner />
       {/* Header with Search, Navbar, Cart, etc. */}
       <Header />
       <Outlet />
@@ -232,6 +232,11 @@ function AppContent() {
               path="/category/:categorySlug/:productSlug"
               element={<ProductDetails />}
             />
+            {/* SUBCATEGORY PRODUCTS (new) */}
+            {/* <Route
+              path="/category/:categorySlug/:subSlug"
+              element={<SubcategoryProducts />}
+            /> */}
 
             <Route path="/search" element={<SearchResults />} />
             <Route path="/order-success" element={<OrderSuccess />} />

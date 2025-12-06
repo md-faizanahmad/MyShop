@@ -46,7 +46,7 @@
 
 //     async function load() {
 //       try {
-//         const res = await axios.get(`${API}/api/addresses`, {
+//         const res = await axios.get(`${API}/v1/addresses`, {
 //           withCredentials: true,
 //         });
 
@@ -88,14 +88,14 @@
 //     try {
 //       // 1️⃣ Save address into checkout session
 //       await axios.post(
-//         `${API}/api/checkout/address`,
+//         `${API}/v1/checkout/address`,
 //         { addressId: selectedAddress },
 //         { withCredentials: true }
 //       );
 
 //       // 2️⃣ Save items + total into checkout session
 //       await axios.post(
-//         `${API}/api/checkout/session`,
+//         `${API}/v1/checkout/session`,
 //         {
 //           items: cartItems.map((i) => ({
 //             product: i.product._id,
@@ -370,7 +370,7 @@ export default function Checkout() {
 
     async function load() {
       try {
-        const res = await axios.get(`${API}/api/addresses`, {
+        const res = await axios.get(`${API}/v1/addresses`, {
           withCredentials: true,
         });
 
@@ -409,7 +409,7 @@ export default function Checkout() {
     try {
       // 1️⃣ Save FULL checkout session via cookie
       await axios.post(
-        `${API}/api/checkout/session`,
+        `${API}/v1/checkout/session`,
         {
           addressId: selectedAddress,
           items: cartItems.map((i) => ({

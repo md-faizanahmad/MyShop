@@ -16,7 +16,7 @@
 //       const wishlistRes = await axios.get<{
 //         success: boolean;
 //         products: { _id: string }[];
-//       }>(`${API}/api/wishlist`, { withCredentials: true });
+//       }>(`${API}/v1/wishlist`, { withCredentials: true });
 
 //       if (wishlistRes.data.success) {
 //         setWishlistIds(wishlistRes.data.products.map((p) => p._id));
@@ -31,7 +31,7 @@
 //       const cartRes = await axios.get<{
 //         success: boolean;
 //         items: { product: string; qty: number }[];
-//       }>(`${API}/api/cart`, { withCredentials: true });
+//       }>(`${API}/v1/cart`, { withCredentials: true });
 
 //       if (cartRes.data.success) {
 //         const total = cartRes.data.items.reduce(
@@ -53,7 +53,7 @@
 
 //   async function addToWishlist(productId: string) {
 //     await axios.post(
-//       `${API}/api/wishlist/add/${productId}`,
+//       `${API}/v1/wishlist/add/${productId}`,
 //       {},
 //       { withCredentials: true }
 //     );
@@ -63,7 +63,7 @@
 //   }
 
 //   async function removeFromWishlist(productId: string) {
-//     await axios.delete(`${API}/api/wishlist/remove/${productId}`, {
+//     await axios.delete(`${API}/v1/wishlist/remove/${productId}`, {
 //       withCredentials: true,
 //     });
 //     setWishlistIds((prev) => prev.filter((id) => id !== productId));
@@ -71,7 +71,7 @@
 
 //   async function addToCart(productId: string, qty = 1) {
 //     await axios.post(
-//       `${API}/api/cart/add`,
+//       `${API}/v1/cart/add`,
 //       { productId, qty },
 //       { withCredentials: true }
 //     );
@@ -109,7 +109,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   async function refreshStore() {
     // Wishlist
     try {
-      const res = await axios.get(`${API}/api/wishlist`, {
+      const res = await axios.get(`${API}/v1/wishlist`, {
         withCredentials: true,
       });
 
@@ -124,7 +124,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
     // Cart
     try {
-      const res = await axios.get(`${API}/api/cart`, {
+      const res = await axios.get(`${API}/v1/cart`, {
         withCredentials: true,
       });
 
@@ -149,7 +149,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   /** Wishlist Actions */
   async function addToWishlist(productId: string) {
     await axios.post(
-      `${API}/api/wishlist/add/${productId}`,
+      `${API}/v1/wishlist/add/${productId}`,
       {},
       { withCredentials: true }
     );
@@ -159,7 +159,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }
 
   async function removeFromWishlist(productId: string) {
-    await axios.delete(`${API}/api/wishlist/remove/${productId}`, {
+    await axios.delete(`${API}/v1/wishlist/remove/${productId}`, {
       withCredentials: true,
     });
     setWishlistIds((prev) => prev.filter((id) => id !== productId));
@@ -168,7 +168,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   /** Cart Action */
   async function addToCart(productId: string, qty = 1) {
     await axios.post(
-      `${API}/api/cart/add`,
+      `${API}/v1/cart/add`,
       { productId, qty },
       { withCredentials: true }
     );

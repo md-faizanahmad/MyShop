@@ -21,7 +21,7 @@
 //     try {
 //       setLoading(true);
 //       const { data } = await axios.get<{ success: boolean; items: CartItem[] }>(
-//         `${API}/api/cart`,
+//         `${API}/v1/cart`,
 //         { withCredentials: true }
 //       );
 //       setItems(data.items ?? []);
@@ -53,7 +53,7 @@
 //     toast.success("Item removed");
 
 //     try {
-//       await axios.delete(`${API}/api/cart/remove/${productId}`, {
+//       await axios.delete(`${API}/v1/cart/remove/${productId}`, {
 //         withCredentials: true,
 //       });
 //       refreshStore();
@@ -115,7 +115,7 @@
 //     try {
 //       setLoading(true);
 //       const { data } = await axios.get<{ success: boolean; items: any[] }>(
-//         `${API}/api/cart`,
+//         `${API}/v1/cart`,
 //         { withCredentials: true }
 //       );
 
@@ -151,7 +151,7 @@
 //     toast.success("Removed from cart");
 
 //     try {
-//       await axios.delete(`${API}/api/cart/remove/${productId}`, {
+//       await axios.delete(`${API}/v1/cart/remove/${productId}`, {
 //         withCredentials: true,
 //       });
 //       refreshStore?.();
@@ -218,7 +218,7 @@
 //   const updateMutation = useMutation({
 //     mutationFn: ({ productId, qty }: { productId: string; qty: number }) =>
 //       axios.put(
-//         `${API}/api/cart/update`,
+//         `${API}/v1/cart/update`,
 //         { productId, qty },
 //         { withCredentials: true }
 //       ),
@@ -226,7 +226,7 @@
 
 //   const removeMutation = useMutation({
 //     mutationFn: (productId: string) =>
-//       axios.delete(`${API}/api/cart/remove`, {
+//       axios.delete(`${API}/v1/cart/remove`, {
 //         data: { productId },
 //         withCredentials: true,
 //       }),

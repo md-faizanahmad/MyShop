@@ -38,7 +38,7 @@ export default function AddToCartButton({
   const mutation = useMutation({
     mutationFn: () =>
       axios.post(
-        `${API}/api/cart/add`,
+        `${API}/v1/cart/add`,
         { productId: product._id, quantity },
         { withCredentials: true }
       ),

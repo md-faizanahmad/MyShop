@@ -60,7 +60,7 @@ export default function EditAddressModal({
     e.preventDefault();
 
     try {
-      await axios.put(`${API}/api/addresses/update/${address._id}`, form, {
+      await axios.put(`${API}/v1/addresses/update/${address._id}`, form, {
         withCredentials: true,
       });
 

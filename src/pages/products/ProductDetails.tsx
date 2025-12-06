@@ -32,7 +32,7 @@ export default function ProductDetails() {
   } = useQuery<PublicProduct>({
     queryKey: ["product", productSlug],
     queryFn: async () => {
-      const res = await axios.get(`${API}/api/products/slug/${productSlug}`);
+      const res = await axios.get(`${API}/v1/products/slug/${productSlug}`);
       return res.data.product;
     },
     enabled: !!productSlug,

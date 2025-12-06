@@ -16,7 +16,7 @@
 //   async function loadCart() {
 //     try {
 //       const { data } = await axios.get<{ success: boolean; items: CartItem[] }>(
-//         `${API}/api/cart`,
+//         `${API}/v1/cart`,
 //         { withCredentials: true }
 //       );
 
@@ -38,7 +38,7 @@
 
 //     try {
 //       await axios.put(
-//         `${API}/api/cart/update`,
+//         `${API}/v1/cart/update`,
 //         { productId, qty },
 //         { withCredentials: true }
 //       );
@@ -60,7 +60,7 @@
 //   // -------------------------
 //   async function removeItem(productId: string) {
 //     try {
-//       await axios.delete(`${API}/api/cart/remove/${productId}`, {
+//       await axios.delete(`${API}/v1/cart/remove/${productId}`, {
 //         withCredentials: true,
 //       });
 
@@ -214,7 +214,7 @@ export default function Cart() {
     try {
       setLoading(true);
       const { data } = await axios.get<{ success: boolean; items: CartItem[] }>(
-        `${API}/api/cart`,
+        `${API}/v1/cart`,
         { withCredentials: true }
       );
       setItems(data.items ?? []);
@@ -241,7 +241,7 @@ export default function Cart() {
 
     try {
       await axios.put(
-        `${API}/api/cart/update`,
+        `${API}/v1/cart/update`,
         { productId, qty: newQty },
         { withCredentials: true }
       );
@@ -258,7 +258,7 @@ export default function Cart() {
     toast.success("Removed from cart");
 
     try {
-      await axios.delete(`${API}/api/cart/remove/${productId}`, {
+      await axios.delete(`${API}/v1/cart/remove/${productId}`, {
         withCredentials: true,
       });
       refreshStore();

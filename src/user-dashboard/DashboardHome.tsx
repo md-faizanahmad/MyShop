@@ -15,7 +15,7 @@ export default function DashboardHome() {
   useEffect(() => {
     async function loadStats() {
       try {
-        await axios.get(`${API}/api/users/me`, {
+        await axios.get(`${API}/v1/users/me`, {
           withCredentials: true,
         });
 

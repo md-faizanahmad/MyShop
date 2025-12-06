@@ -51,7 +51,7 @@ export default function Contact() {
     try {
       // try server endpoint if available
       await axios.post(
-        `${API}/api/contact`,
+        `${API}/v1/contact`,
         {
           name: form.name.trim(),
           email: form.email.trim(),

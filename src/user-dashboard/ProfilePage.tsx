@@ -141,7 +141,7 @@ export default function ProfilePage() {
     queryKey: ["my-orders"],
     queryFn: async () => {
       const res = await axios.get<{ orders: Order[] }>(
-        `${API_URL}/api/orders/my-orders`
+        `${API_URL}/v1/orders/my-orders`
       );
       return res.data.orders;
     },
@@ -156,7 +156,7 @@ export default function ProfilePage() {
     queryKey: ["my-addresses"],
     queryFn: async () => {
       const res = await axios.get<{ addresses: Address[] }>(
-        `${API_URL}/api/addresses`
+        `${API_URL}/v1/addresses`
       );
       return res.data.addresses;
     },

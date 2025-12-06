@@ -53,7 +53,7 @@ export default function Login() {
 
     try {
       await axios.post(
-        `${API}/api/users/login`,
+        `${API}/v1/users/login`,
         { email, password },
         { withCredentials: true }
       );
@@ -84,7 +84,7 @@ export default function Login() {
     setOtpLoading(true);
     try {
       await axios.post(
-        `${API}/api/users/send-otp`,
+        `${API}/v1/users/send-otp`,
         { email, purpose: "login" },
         { withCredentials: true }
       );
@@ -113,7 +113,7 @@ export default function Login() {
     setVerifyLoading(true);
     try {
       await axios.post(
-        `${API}/api/users/verify-otp`,
+        `${API}/v1/users/verify-otp`,
         { email, otp, purpose: "login" },
         { withCredentials: true }
       );

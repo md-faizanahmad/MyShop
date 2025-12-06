@@ -12,7 +12,7 @@
 
 //   async function loadOrders() {
 //     try {
-//       const { data } = await axios.get(`${API}/api/orders/my-orders`, {
+//       const { data } = await axios.get(`${API}/v1/orders/my-orders`, {
 //         withCredentials: true,
 //       });
 

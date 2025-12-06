@@ -58,7 +58,7 @@ export default function GoogleLoginButton() {
   async function handleGoogleResponse(response: CredentialResponse) {
     try {
       const { data } = await axios.post(
-        `${API}/api/users/google-login`,
+        `${API}/v1/users/google-login`,
         { credential: response.credential },
         { withCredentials: true }
       );

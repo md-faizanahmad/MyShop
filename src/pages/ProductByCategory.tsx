@@ -15,7 +15,7 @@ export default function ProductsByCategory() {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `${API}/api/products?category=${category}`
+          `${API}/v1/products?category=${category}`
         );
         setProducts(data.products || []);
       } catch (err) {

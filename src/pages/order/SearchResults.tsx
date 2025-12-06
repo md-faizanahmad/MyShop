@@ -26,9 +26,9 @@ export default function SearchResults() {
     queryKey: ["search", q],
     queryFn: async () => {
       if (!q) return [];
-      // ← CHANGE THIS LINE: Use /api/products instead of /api/products/search
+      // ← CHANGE THIS LINE: Use /v1/products instead of /v1/products/search
       const res = await axios.get<{ products: PublicProduct[] }>(
-        `${API}/api/products`,
+        `${API}/v1/products`,
         {
           params: { q, limit: 50 }, // Your getProducts handles 'q' for category search
         }

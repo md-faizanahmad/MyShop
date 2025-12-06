@@ -19,7 +19,7 @@
 //   // Fetch /me to load authenticated user
 //   const refreshUser = async () => {
 //     try {
-//       const { data } = await axios.get(`${API}/api/users/me`, {
+//       const { data } = await axios.get(`${API}/v1/users/me`, {
 //         withCredentials: true,
 //       });
 
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   /** Load /me user session */
   const refreshUser = async () => {
     try {
-      const { data } = await axios.get(`${API}/api/users/me`, {
+      const { data } = await axios.get(`${API}/v1/users/me`, {
         withCredentials: true,
       });
 

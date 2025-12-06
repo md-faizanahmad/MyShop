@@ -20,7 +20,7 @@ export default function DashboardLayout() {
   const { refreshUser } = useAuth();
 
   async function handleLogout() {
-    await axios.post(`${API}/api/users/logout`, {}, { withCredentials: true });
+    await axios.post(`${API}/v1/users/logout`, {}, { withCredentials: true });
     await refreshUser();
     navigate("/login");
   }

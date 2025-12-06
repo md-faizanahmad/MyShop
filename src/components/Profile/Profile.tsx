@@ -17,7 +17,7 @@ export default function Profile() {
   }, [user, navigate]);
 
   async function handleLogout() {
-    await axios.post(`${API}/api/users/logout`, {}, { withCredentials: true });
+    await axios.post(`${API}/v1/users/logout`, {}, { withCredentials: true });
     await refreshUser();
     window.location.href = "/login";
   }

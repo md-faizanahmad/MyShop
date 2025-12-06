@@ -13,7 +13,7 @@
 // //     const debouncedUpdate = useDebouncedCallback((qty: number) => {
 // //       axios
 // //         .put(
-// //           `${API}/api/cart/update`,
+// //           `${API}/v1/cart/update`,
 // //           { productId: item.product._id, qty },
 // //           { withCredentials: true }
 // //         )
@@ -134,7 +134,7 @@
 //   return useDebouncedCallback((qty: number) => {
 //     axios
 //       .put(
-//         `${API}/api/cart/update`,
+//         `${API}/v1/cart/update`,
 //         { productId, qty },
 //         { withCredentials: true }
 //       )
@@ -319,7 +319,7 @@ const useUpdateQuantity = (
   return useDebouncedCallback((qty: number) => {
     axios
       .put(
-        `${API}/api/cart/update`,
+        `${API}/v1/cart/update`,
         { productId, qty },
         { withCredentials: true }
       )

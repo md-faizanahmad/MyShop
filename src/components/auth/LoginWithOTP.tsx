@@ -42,7 +42,7 @@ export default function LoginWithOTP() {
 
     try {
       await axios.post(
-        `${API}/api/auth/login/send-otp`,
+        `${API}/v1/auth/login/send-otp`,
         { email },
         { withCredentials: true }
       );
@@ -70,7 +70,7 @@ export default function LoginWithOTP() {
     setLoading(true);
     try {
       await axios.post(
-        `${API}/api/auth/login/verify-otp`,
+        `${API}/v1/auth/login/verify-otp`,
         { email, otp },
         { withCredentials: true }
       );
