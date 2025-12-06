@@ -10,7 +10,7 @@ export default function NotFound() {
         <Lottie animationData={animationData} loop={true} />
       </div> */}
       <h1 className="text-3xl font-bold mt-4">Page not found</h1>
-      <p>lease Refresh Your Page 💻 or Check Your Internet 🛜</p>
+      <p>please Refresh Your Page 💻 or Check Your Internet 🛜</p>
       <Link to="/">Home</Link>
     </div>
   );
