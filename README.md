@@ -34,21 +34,21 @@ Update this to match your actual stack.
 **Frontend**
 - React (with hooks)
 - React Router
-- State management: Context / Redux / Zustand (whatever you use)
-- UI: Tailwind CSS / MUI / custom CSS
-- Axios / Fetch for API calls
+- State management:  Zustand 
+- UI: Tailwind CSS 
+- Axios
 
 **Backend**
 - Node.js
 - Express.js
-- MongoDB + Mongoose (or your DB of choice)
+- MongoDB + Mongoose 
 - JWT-based authentication (access + refresh tokens if used)
-- Cloud storage for images (e.g. Cloudinary / local upload – update accordingly)
+- Cloud storage for images ( Cloudinary )
 
 **Dev & Tools**
-- TypeScript / JavaScript (edit this)
-- Vite / CRA / Next.js (edit this)
-- ESLint + Prettier (if configured)
+- TypeScript (edit this)
+- Vite 
+- ESLint 
 - Git & GitHub
 
 ---
