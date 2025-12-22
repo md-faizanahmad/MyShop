@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml+ico+icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#550077" />
   <meta name="description" content="MyAZ_Store shopping platform" />
@@ -15,19 +15,45 @@
   <meta property="og:title" content="AZ-Store - Online Shopping App">
   <meta property="og:description" content="Shop electronics, fashion, and more with fast delivery.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://myazstore.shop/">
+  <meta rel="preconnect" property="og:url" content="https://myazstore.shop/" crossorigin>
   <meta property="og:image" content="./pwa-512x512.png">
   <meta property="og:site_name" content="az-store ecommerce website ">
   <meta property="twitter:card" content="az-store ecommerce website">
   <meta property="twitter:description" content="Twitter link preview description">
-  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap"
+    rel="stylesheet"> -->
+  <link rel="preconnect" href="https://api.myazstore.shop" crossorigin />
+  <link rel="apple-touch-icon" href="./src/assets/logo.png" />
+  <script async defer src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script async defer src="https://accounts.google.com/gsi/client"></script>
+  <!-- Razorpay Loader Helper -->
+  <script>
+    window.loadRazorpay = function () {
+      return new Promise(function (resolve, reject) {
+        if (window.Razorpay) {
+          resolve();
+          return;
+        }
 
-  <link rel="apple-touch-icon" href="./src//assets/logo.png" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.async = true;
 
-  <title>MyAZ_Store</title>
+        script.onload = function () {
+          resolve();
+        };
+
+        script.onerror = function () {
+          reject(new Error("Failed to load Razorpay SDK"));
+        };
+
+        document.body.appendChild(script);
+      });
+    };
+  </script>
+
+
+  <title>MyAZ-Store</title>
 </head>
 
 <body>

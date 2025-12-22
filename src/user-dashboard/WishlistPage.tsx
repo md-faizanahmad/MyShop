@@ -1,142 +1,128 @@
-// pages/WishlistPage.tsx
 import { Link } from "react-router-dom";
-import { ShoppingBag, Trash2, X, Heart } from "lucide-react";
+import { Trash2, X, ShoppingCart } from "lucide-react";
 import toast from "react-hot-toast";
-import { useWishlistStore } from "../store/WishlistStore";
-import { useCartStore } from "../store/CartStore";
+
+import { useWishlistStore } from "../store/useWishlistStore";
+import { useCartStore } from "../store/useCartStore";
 import WishlistEmpty from "../shared/WishlistEmpty";
 
 export default function WishlistPage() {
-  const { items, remove, clearWishlist } = useWishlistStore();
-  const { addItem, items: cartItems } = useCartStore();
+  /* -----------------------------
+     Stores
+  ----------------------------- */
+  const items = useWishlistStore((s) => s.items);
+  const loading = useWishlistStore((s) => s.loading);
+  const remove = useWishlistStore((s) => s.remove);
+  const clear = useWishlistStore((s) => s.clear);
 
-  const isInCart = (productId: string) =>
-    cartItems.some((item) => item.product._id === productId);
+  const cartItems = useCartStore((s) => s.items);
+  const addToCart = useCartStore((s) => s.addItem);
 
-  const handleClearWishlist = () => {
-    clearWishlist();
-    toast.success("Wishlist cleared");
-  };
+  /* -----------------------------
+     Derived helpers
+  ----------------------------- */
+  const isInCart = (productId: string): boolean =>
+    cartItems.some((i) => i.product._id === productId);
 
+  /* -----------------------------
+     Loading state (FIX)
+  ----------------------------- */
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-500">
+        Loading wishlist…
+      </div>
+    );
+  }
+
+  /* -----------------------------
+     Empty state (REAL empty)
+  ----------------------------- */
   if (items.length === 0) {
     return <WishlistEmpty />;
   }
 
+  /* -----------------------------
+     Render
+  ----------------------------- */
   return (
-    <div className="min-h-screen bg-linear-to-br from-sky-50 to-blue-50 pt-16 pb-20 px-3">
+    <div className="min-h-screen bg-sky-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-black bg-linear-to-r from-sky-600 to-blue-700 bg-clip-text text-transparent">
-            My Wishlist
-          </h1>
-          <p className="text-base text-gray-600 mt-2 font-medium">
-            {items.length} {items.length === 1 ? "item" : "items"} saved
-          </p>
-        </div>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">My Wishlist ({items.length})</h1>
 
-        {/* Clear All Button */}
-        <div className="flex justify-center mb-8">
           <button
-            onClick={handleClearWishlist}
-            className="flex items-center gap-2.5 bg-linear-to-r from-red-500 to-pink-600 text-white px-7 py-3.5 rounded-2xl font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            onClick={() => {
+              void clear();
+              toast.success("Wishlist cleared");
+            }}
+            className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-xl"
           >
-            <Trash2 className="w-5 h-5" />
+            <Trash2 size={18} />
             Clear All
           </button>
         </div>
 
-        {/* Compact Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 md:gap-5">
-          {items.map((product) => (
-            <div
-              key={product._id}
-              className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-sky-100/80"
-              onDoubleClick={() => {
-                remove(product._id);
-                toast.success("Removed from wishlist");
-              }}
-            >
-              {/* Image Container */}
-              <Link
-                to={`/product/${product._id}`}
-                className="block aspect-square relative overflow-hidden"
+        {/* Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {items.map((item) => {
+            const p = item.product;
+
+            return (
+              <div
+                key={item.productId}
+                className="bg-white rounded-xl shadow border overflow-hidden"
               >
-                <img
-                  src={product.imageUrl || "/placeholder.jpg"}
-                  alt={product.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-
-                {/* Dark overlay + Double-tap hint */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
-                  <span className="text-white text-xs font-bold tracking-wider opacity-80">
-                    Double-tap to remove
-                  </span>
-                </div>
-
-                {/* Filled Heart Badge (Saved) */}
-                <div className="absolute top-3 right-3">
-                  <div className="w-9 h-9 bg-white/95 backdrop-blur rounded-full flex items-center justify-center shadow-lg">
-                    <Heart
-                      className="w-5 h-5 text-red-500"
-                      fill="currentColor"
-                    />
-                  </div>
-                </div>
-              </Link>
-
-              {/* Compact Info */}
-              <div className="p-3 space-y-1.5">
-                <Link to={`/product/${product._id}`}>
-                  <h3 className="text-xs font-semibold text-gray-900 line-clamp-2 leading-tight hover:text-sky-600 transition">
-                    {product.name}
-                  </h3>
+                <Link to={`/category/${p.category.slug}/product/${p.slug}`}>
+                  <img
+                    src={p.imageUrl}
+                    alt={p.name}
+                    className="aspect-square object-cover"
+                  />
                 </Link>
 
-                <p className="text-sm font-bold bg-linear-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
-                  ₹{product.price?.toLocaleString("en-IN") || "N/A"}
-                </p>
+                <div className="p-3 space-y-2">
+                  <h3 className="text-sm font-semibold line-clamp-2">
+                    {p.name}
+                  </h3>
 
-                {/* Action Buttons */}
-                <div className="flex gap-2 pt-1">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      addItem({ product, qty: 1 });
-                      toast.success("Added to cart");
-                    }}
-                    className={`flex-1 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md ${
-                      isInCart(product._id)
-                        ? "bg-green-100 text-green-700 border border-green-300"
-                        : "bg-linear-to-r from-sky-500 to-blue-600 text-white hover:shadow-lg"
-                    }`}
-                  >
-                    {isInCart(product._id) ? (
-                      "Added"
-                    ) : (
-                      <>
-                        <ShoppingBag className="w-3.5 h-3.5" />
-                        Add
-                      </>
-                    )}
-                  </button>
+                  <p className="font-bold text-sky-600">
+                    ₹{p.price.toLocaleString("en-IN")}
+                  </p>
 
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      remove(product._id);
-                      toast.success("Removed");
-                    }}
-                    className="p-2.5 bg-red-50 text-red-500 rounded-xl hover:bg-red-100 transition shadow-md"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        if (!isInCart(p._id)) {
+                          addToCart(p, 1);
+                          toast.success("Added to cart");
+                        }
+                      }}
+                      className={`flex-1 py-2 text-xs font-bold rounded-lg ${
+                        isInCart(p._id)
+                          ? "bg-green-100 text-green-700"
+                          : "bg-sky-600 text-white"
+                      }`}
+                    >
+                      <ShoppingCart size={14} className="inline mr-1" />
+                      {isInCart(p._id) ? "Added" : "Add"}
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        void remove(item.productId);
+                        toast.success("Removed");
+                      }}
+                      className="p-2 bg-red-50 text-red-600 rounded-lg"
+                    >
+                      <X size={14} />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

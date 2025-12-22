@@ -1,11 +1,15 @@
+// src/pages/product/ProductDetails.tsx
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 
 import type { PublicProduct } from "../../types/product";
-import { useStore } from "../../context/useStore";
+import { useCartStore } from "../../store/useCartStore";
+import { useWishlistStore } from "../../store/useWishlistStore";
+
 import ProductDetailsSkeleton from "../../skeleton/ProductDetailsSkeleton";
 import ImageGallery from "./ImageGallery";
 import ProductHighlights from "./ProductHighlights";
@@ -20,11 +24,27 @@ import ProductDescription from "./ProductDescription";
 const API = import.meta.env.VITE_API_URL;
 
 export default function ProductDetails() {
-  const { productSlug } = useParams<{ productSlug: string }>();
-  const { addToWishlist, removeFromWishlist, wishlistIds, addToCart } =
-    useStore();
+  const { categorySlug, productSlug } = useParams<{
+    categorySlug: string;
+    productSlug: string;
+  }>();
 
   const navigate = useNavigate();
+
+  /* -----------------------------
+     Stores
+  ----------------------------- */
+  const cartItems = useCartStore((s) => s.items);
+  const addToCart = useCartStore((s) => s.addItem);
+  const removeFromCart = useCartStore((s) => s.removeItem);
+
+  const wishlistItems = useWishlistStore((s) => s.items);
+  const addWish = useWishlistStore((s) => s.add);
+  const removeWish = useWishlistStore((s) => s.remove);
+
+  /* -----------------------------
+     Data fetch
+  ----------------------------- */
   const {
     data: product,
     isLoading,
@@ -40,21 +60,50 @@ export default function ProductDetails() {
 
   if (isLoading) return <ProductDetailsSkeleton />;
 
-  if (error || !product)
+  if (error || !product) {
     return (
       <div className="min-h-screen flex items-center justify-center text-2xl text-gray-600">
         Product Not Found
       </div>
     );
+  }
 
-  const isWishlisted = wishlistIds.includes(product._id);
+  /* -----------------------------
+     Derived state
+  ----------------------------- */
+  const isWishlisted = wishlistItems.some((w) => w.productId === product._id);
 
-  const toggleWish = () => {
-    if (isWishlisted) removeFromWishlist(product._id);
-    else addToWishlist(product._id);
+  const isInCart = cartItems.some((i) => i.product._id === product._id);
+
+  /* -----------------------------
+     Handlers
+  ----------------------------- */
+  const toggleWishlist = () => {
+    if (isWishlisted) {
+      removeWish(product._id);
+      toast.success("Removed from wishlist");
+    } else {
+      addWish(product);
+      toast.success("Added to wishlist");
+    }
   };
 
-  const addCart = () => addToCart(product._id, 1);
+  const toggleCart = () => {
+    if (isInCart) {
+      removeFromCart(product._id);
+      toast.success("Removed from cart");
+    } else {
+      addToCart(product, 1);
+      toast.success("Added to cart");
+    }
+  };
+
+  const galleryImages: string[] = [
+    product.imageUrl,
+    ...(product.images || []).map((img) =>
+      typeof img === "string" ? img : img?.url
+    ),
+  ].filter(Boolean) as string[];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -70,6 +119,17 @@ export default function ProductDetails() {
             Home
           </a>
           <span>/</span>
+          {categorySlug && (
+            <>
+              <a
+                href={`/category/${categorySlug}`}
+                className="hover:text-blue-600"
+              >
+                {product.category?.name ?? categorySlug}
+              </a>
+              <span>/</span>
+            </>
+          )}
           <span className="text-gray-900 font-medium">{product.name}</span>
         </motion.div>
 
@@ -80,7 +140,9 @@ export default function ProductDetails() {
             <ImageGallery
               name={product.name}
               stock={product.stock}
-              images={product.images ?? []}
+              images={galleryImages}
+              isWishlisted={isWishlisted}
+              onWishlistToggle={toggleWishlist}
             />
             <ProductHighlights highlights={product.highlights ?? []} />
           </div>
@@ -88,6 +150,7 @@ export default function ProductDetails() {
           {/* Right */}
           <div className="flex flex-col gap-6">
             <ProductDescription description={product.description ?? ""} />
+
             <PriceCard
               price={product.price}
               discountedPrice={product.discountPrice}
@@ -95,11 +158,9 @@ export default function ProductDetails() {
             />
 
             <ActionButtons
-              productId={product._id}
               stock={product.stock}
-              isWishlisted={isWishlisted}
-              onWishlistToggle={toggleWish}
-              onAddToCart={addCart}
+              isInCart={isInCart}
+              onCartToggle={toggleCart}
               onBuyNow={() => navigate(`/checkout?quickbuy=${product._id}`)}
             />
 

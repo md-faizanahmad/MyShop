@@ -15,7 +15,7 @@ export default function LoadingScreen() {
   useEffect(() => {
     const interval = setInterval(() => {
       setQuoteIndex((prev) => (prev + 1) % quotes.length);
-    }, 1800);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);

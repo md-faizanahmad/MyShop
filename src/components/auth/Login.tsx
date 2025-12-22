@@ -1,285 +1,164 @@
-// src/components/auth/Login.tsx
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+// src/pages/auth/Login.tsx
+import { useState, useEffect, type FormEvent, type ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { motion, AnimatePresence } from "framer-motion";
-import { useAuth } from "../../context/Auth";
+import LoginForm from "./LoginForm";
+import { useAuthStore } from "../../store/useAuthStore";
 
-const API = import.meta.env.VITE_API_URL;
+const API_BASE = import.meta.env.VITE_API_URL as string;
 
 export default function Login() {
   const navigate = useNavigate();
-  const { refreshUser } = useAuth();
 
-  // Basic state
+  // Zustand actions
+  const loginWithPassword = useAuthStore((s) => s.loginWithPassword);
+  const loginWithOtp = useAuthStore((s) => s.loginWithOtp);
+
+  // UI state
   const [email, setEmail] = useState("");
-
-  // Password login
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  // OTP login
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const [resendTimer, setResendTimer] = useState(0);
 
-  // Loading
   const [loading, setLoading] = useState(false);
   const [otpLoading, setOtpLoading] = useState(false);
   const [verifyLoading, setVerifyLoading] = useState(false);
 
-  // Error message
   const [error, setError] = useState("");
 
-  // -------------------------------
-  // TIMER FOR RESEND OTP
-  // -------------------------------
+  // ----------------------------
+  // OTP RESEND TIMER
+  // ----------------------------
   useEffect(() => {
     if (!otpSent || resendTimer === 0) return;
-    const t = setInterval(() => {
+
+    const timer = setInterval(() => {
       setResendTimer((s) => (s > 0 ? s - 1 : 0));
     }, 1000);
-    return () => clearInterval(t);
+
+    return () => clearInterval(timer);
   }, [otpSent, resendTimer]);
 
-  // -------------------------------------
+  // ----------------------------
   // LOGIN WITH PASSWORD
-  // -------------------------------------
-  const handlePasswordLogin = async (e: React.FormEvent) => {
+  // ----------------------------
+  const handlePasswordLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!email || !password) return;
+
     setLoading(true);
     setError("");
 
     try {
-      await axios.post(
-        `${API}/v1/users/login`,
-        { email, password },
-        { withCredentials: true }
-      );
-
-      toast.success("Logged in!");
-      await refreshUser();
-
+      await loginWithPassword({ email, password });
+      toast.success("Logged in successfully");
       navigate("/", { replace: true });
-    } catch (err: any) {
-      const msg =
-        axios.isAxiosError(err) && err.response?.data?.message
-          ? err.response.data.message
-          : "Invalid email or password";
-
-      setError(msg);
-      toast.error(msg);
+    } catch {
+      setError("Invalid email or password");
+      toast.error("Invalid email or password");
     } finally {
       setLoading(false);
     }
   };
 
-  // -------------------------------------
-  // SEND OTP FOR LOGIN
-  // -------------------------------------
+  // ----------------------------
+  // SEND OTP (API ONLY)
+  // ----------------------------
   const handleSendOtp = async () => {
-    if (!email) return toast.error("Enter your email first");
+    if (!email) {
+      toast.error("Enter your email first");
+      return;
+    }
 
     setOtpLoading(true);
+    setError("");
+
     try {
-      await axios.post(
-        `${API}/v1/users/send-otp`,
-        { email, purpose: "login" },
-        { withCredentials: true }
-      );
+      const res = await fetch(`${API_BASE}/v1/users/send-otp`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          purpose: "login",
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("OTP_SEND_FAILED");
+      }
 
       toast.success("OTP sent to your email");
       setOtpSent(true);
-      setResendTimer(30); // 30-sec timer
-    } catch (err: any) {
-      const msg =
-        axios.isAxiosError(err) && err.response?.data?.message
-          ? err.response.data.message
-          : "Unable to send OTP";
-
-      toast.error(msg);
+      setResendTimer(30);
+    } catch {
+      toast.error("Unable to send OTP");
     } finally {
       setOtpLoading(false);
     }
   };
 
-  // -------------------------------------
+  // ----------------------------
   // VERIFY OTP (LOGIN)
-  // -------------------------------------
+  // ----------------------------
   const handleVerifyOtp = async () => {
-    if (!otp) return toast.error("Enter OTP");
+    if (!otp) {
+      toast.error("Enter OTP");
+      return;
+    }
 
     setVerifyLoading(true);
+    setError("");
+
     try {
-      await axios.post(
-        `${API}/v1/users/verify-otp`,
-        { email, otp, purpose: "login" },
-        { withCredentials: true }
-      );
-
-      toast.success("Logged in!");
-      await refreshUser();
+      await loginWithOtp({ email, otp });
+      toast.success("Logged in successfully");
       navigate("/", { replace: true });
-    } catch (err: any) {
-      const msg =
-        axios.isAxiosError(err) && err.response?.data?.message
-          ? err.response.data.message
-          : "Invalid OTP";
-
-      toast.error(msg);
+    } catch {
+      setError("Invalid OTP");
+      toast.error("Invalid OTP");
     } finally {
       setVerifyLoading(false);
     }
   };
 
+  // ----------------------------
+  // Input handlers
+  // ----------------------------
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setEmail(e.target.value);
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setPassword(e.target.value);
+
+  const handleOtpChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setOtp(e.target.value);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-10">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white w-full max-w-md p-8 rounded-xl shadow-lg"
-      >
-        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
-          Login
-        </h2>
-
-        {/* ERROR BOX */}
-        <AnimatePresence>
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="text-red-600 text-sm text-center mb-4 bg-red-50 py-2 px-4 rounded"
-            >
-              {error}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* EMAIL FIELD */}
-        <div className="mb-5">
-          <label className="block text-sm font-medium text-gray-700">
-            Email Address
-          </label>
-          <input
-            type="email"
-            required
-            className="mt-1 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={loading || otpLoading || verifyLoading}
-          />
-        </div>
-
-        {/* PASSWORD LOGIN */}
-        <form onSubmit={handlePasswordLogin} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                required
-                className="mt-1 w-full px-4 py-3 border rounded-lg pr-12 focus:ring-2 focus:ring-blue-500"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={loading}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword((s) => !s)}
-                className="absolute right-3 top-4 text-gray-500"
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 transition"
-          >
-            {loading ? "Logging in..." : "Login with Password"}
-          </button>
-        </form>
-
-        {/* OR DIVIDER */}
-        <div className="my-6 flex items-center">
-          <div className="flex-1 h-px bg-gray-300" />
-          <span className="px-4 text-gray-500 text-sm">OR</span>
-          <div className="flex-1 h-px bg-gray-300" />
-        </div>
-
-        {/* LOGIN WITH OTP */}
-        {!otpSent ? (
-          <>
-            <button
-              onClick={handleSendOtp}
-              disabled={otpLoading || !email}
-              className="w-full bg-gray-900 text-white font-medium py-3 rounded-lg hover:bg-black transition disabled:opacity-50"
-            >
-              {otpLoading ? "Sending OTP..." : "Login with OTP"}
-            </button>
-          </>
-        ) : (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Enter OTP
-              </label>
-              <input
-                type="text"
-                className="mt-1 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="123456"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                maxLength={6}
-              />
-            </div>
-
-            <button
-              onClick={handleVerifyOtp}
-              disabled={verifyLoading}
-              className="w-full bg-green-600 text-white font-medium py-3 rounded-lg hover:bg-green-700 transition"
-            >
-              {verifyLoading ? "Verifying..." : "Verify OTP"}
-            </button>
-
-            <div className="text-center text-sm">
-              {resendTimer > 0 ? (
-                <p className="text-gray-500">
-                  Resend OTP in <b>{resendTimer}s</b>
-                </p>
-              ) : (
-                <button
-                  className="text-blue-600 font-semibold"
-                  onClick={handleSendOtp}
-                >
-                  Resend OTP
-                </button>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* FOOTER */}
-        <p className="text-center text-sm text-gray-600 mt-6">
-          Don't have an account?{" "}
-          <Link
-            to="/signup"
-            className="text-blue-600 font-semibold hover:underline"
-          >
-            Sign up
-          </Link>
-        </p>
-      </motion.div>
-    </div>
+    <LoginForm
+      email={email}
+      password={password}
+      otp={otp}
+      showPassword={showPassword}
+      otpSent={otpSent}
+      resendTimer={resendTimer}
+      loading={loading}
+      otpLoading={otpLoading}
+      verifyLoading={verifyLoading}
+      error={error}
+      onEmailChange={handleEmailChange}
+      onPasswordChange={handlePasswordChange}
+      onOtpChange={handleOtpChange}
+      onSubmitPassword={handlePasswordLogin}
+      onSendOtp={handleSendOtp}
+      onVerifyOtp={handleVerifyOtp}
+      toggleShowPassword={() => setShowPassword((prev) => !prev)}
+    />
   );
 }

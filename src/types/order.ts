@@ -1,3 +1,5 @@
+// // src/types/order.ts
+
 // export interface OrderItem {
 //   product: {
 //     _id: string;
@@ -9,21 +11,14 @@
 //   price: number;
 // }
 
-// export interface Order {
-//   _id: string;
-//   user: string;
-//   items: OrderItem[];
-//   totalAmount: number;
-//   status: string;
-//   paymentStatus: string;
-//   paymentInfo: {
-//     orderId: string;
-//     paymentId: string;
-//   };
-//   createdAt: string;
-// }
-// src/types/order.ts
-// src/types/order.ts
+// export type OrderStatus =
+//   | "placed"
+//   | "processing"
+//   | "shipping"
+//   | "delivered"
+//   | "cancelled";
+
+// export type PaymentStatus = "Paid" | "Unpaid";
 
 // export interface ShippingAddress {
 //   fullName: string;
@@ -35,13 +30,24 @@
 //   landmark?: string;
 // }
 
-// export interface PopulatedProduct {
+// export interface Order {
 //   _id: string;
-//   name: string;
-//   price: number;
-//   imageUrl: string;
+//   user: string; // userId
+//   items: OrderItem[];
+//   totalAmount: number;
+//   status: OrderStatus;
+//   paymentStatus: PaymentStatus;
+//   paymentInfo: {
+//     orderId: string;
+//     paymentId: string;
+//   };
+//   shippingAddress: ShippingAddress;
+//   createdAt: string;
+//   updatedAt?: string;
 // }
-// export interface OrderItem {
+// src/types/order.ts
+
+// export interface OrderItemPopulated {
 //   product: {
 //     _id: string;
 //     name: string;
@@ -51,44 +57,95 @@
 //   qty: number;
 //   price: number;
 // }
+
+// export interface OrderItemFlat {
+//   productId: string;
+//   productName: string;
+//   productImage: string;
+//   qty: number;
+//   price: number;
+// }
+
+// export type OrderItem = OrderItemPopulated | OrderItemFlat;
+
 // export type OrderStatus =
-//   | "Placed"
-//   | "Confirmed"
-//   | "Shipped"
-//   | "Out for Delivery"
-//   | "Delivered"
-//   | "Cancelled";
+//   | "placed"
+//   | "processing"
+//   | "shipping"
+//   | "delivered"
+//   | "cancelled";
+
+// export type PaymentStatus = "Paid" | "Unpaid";
+
+// export interface ShippingAddress {
+//   fullName: string;
+//   phone: string;
+//   street: string;
+//   city: string;
+//   state: string;
+//   pincode: string;
+//   landmark?: string;
+// }
 
 // export interface Order {
 //   _id: string;
 //   user: string;
 //   items: OrderItem[];
-//   shippingAddress: ShippingAddress;
 //   totalAmount: number;
 //   status: OrderStatus;
-//   paymentStatus: string;
+//   paymentStatus: PaymentStatus;
 //   paymentInfo: {
-//     orderId?: string;
-//     paymentId?: string;
+//     orderId: string;
+//     paymentId: string;
 //   };
+//   shippingAddress: ShippingAddress;
 //   createdAt: string;
 //   updatedAt?: string;
 // }
 
-//////////////// from old chat
+//// update after order details pag
 // src/types/order.ts
 
-export interface OrderItem {
-  product: {
-    _id: string;
-    name: string;
-    price: number;
-    imageUrl: string;
-  };
+/* ---------------------------------
+   PRODUCT (minimal)
+---------------------------------- */
+export interface OrderProduct {
+  _id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+}
+
+/* ---------------------------------
+   ORDER ITEM - POPULATED
+   (used in OrderDetails page)
+---------------------------------- */
+export interface OrderItemPopulated {
+  product: OrderProduct;
   qty: number;
   price: number;
 }
 
+/* ---------------------------------
+   ORDER ITEM - FLAT
+   (used in admin / list APIs)
+---------------------------------- */
+export interface OrderItemFlat {
+  productId: string;
+  productName: string;
+  productImage: string;
+  qty: number;
+  price: number;
+}
+
+/* ---------------------------------
+   UNION (API reality)
+---------------------------------- */
+export type OrderItem = OrderItemPopulated | OrderItemFlat;
+
+/* ---------------------------------
+   OTHER TYPES
+---------------------------------- */
 export type OrderStatus =
   | "placed"
   | "processing"
@@ -110,7 +167,7 @@ export interface ShippingAddress {
 
 export interface Order {
   _id: string;
-  user: string; // userId
+  user: string;
   items: OrderItem[];
   totalAmount: number;
   status: OrderStatus;
@@ -118,8 +175,16 @@ export interface Order {
   paymentInfo: {
     orderId: string;
     paymentId: string;
+    signature?: string; // ✅ ADD THIS (optional, safe)
   };
   shippingAddress: ShippingAddress;
   createdAt: string;
   updatedAt?: string;
+}
+export interface PaginatedOrdersResponse {
+  orders: Order[];
+  page: number;
+  limit: number;
+  totalCount: number;
+  hasMore: boolean;
 }

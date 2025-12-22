@@ -262,40 +262,8 @@ export default function SearchBar({ onClose }: { onClose: () => void }) {
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
           ref={searchRef}
           onClick={(e) => e.stopPropagation()}
-          className="absolute top-4 left-1/2 -translate-x-1/2 w-full max-w-3xl"
+          className="absolute top-4 left-1/2 -translate-x-1/2 w-90 md:w-full max-w-3xl"
         >
-          {/* Search Input */}
-          {/* <form onSubmit={handleSubmit} className="relative">
-            <div className="flex items-center gap-4 px-6 py-5 backdrop-blur-sm bg-blue-700 shadow-2xl rounded-3xl">
-              <Search size={26} className="text-white shrink-0" />
-              <input
-                ref={inputRef}
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search for products..."
-                className="flex-1  bg-transparent text-white placeholder-white/70 text-lg font-medium focus:outline-none"
-              />
-              {query && (
-                // clear btn for search
-                <button
-                  type="button"
-                  onClick={() => setQuery("")}
-                  className="p-2 hover:bg-white/20 rounded-full transition"
-                >
-                  <KeyboardIcon size={22} className="text-white " />
-                </button>
-              )}
-              <button
-                type="button"
-                onClick={onClose}
-                className="p-2 hover:bg-white/20 rounded-full transition"
-              >
-                <X size={26} className="text-white" />
-              </button>
-            </div>
-          </form> */}
-
           <form onSubmit={handleSubmit} className="relative">
             <div className="flex items-center gap-4 px-6 py-5 bg-slate-100 border border-slate-200 shadow-xl rounded-3xl">
               <Search size={26} className="text-slate-600 shrink-0" />

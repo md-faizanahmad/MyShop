@@ -1,67 +1,71 @@
-// src/components/product/ActionButtons.tsx
-import { motion } from "framer-motion";
-import { ShoppingCart, Heart, Zap } from "lucide-react";
+// src/pages/product/ActionButtons.tsx
+import { ShoppingCart, Zap } from "lucide-react";
 
 interface Props {
-  productId: string;
   stock: number;
-  isWishlisted: boolean;
-  onWishlistToggle: () => void;
-  onAddToCart: () => void;
-  onBuyNow: () => void; // New
+
+  isInCart: boolean;
+
+  onCartToggle: () => void;
+  onBuyNow: () => void;
 }
 
 export default function ActionButtons({
   stock,
-  isWishlisted,
-  onWishlistToggle,
-  onAddToCart,
+
+  isInCart,
+
+  onCartToggle,
   onBuyNow,
 }: Props) {
-  const isOutOfStock = stock === 0;
+  const outOfStock = stock <= 0;
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 mt-3">
-      {/* BUY NOW */}
-      <motion.button
-        whileTap={{ scale: 0.95 }}
-        onClick={onBuyNow}
-        disabled={isOutOfStock}
-        className="flex-1 flex items-center justify-center gap-3 bg-linear-to-r from-orange-500 to-red-600 
-          text-white py-5 rounded-2xl font-bold text-lg shadow-lg 
-          hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition"
-      >
-        <Zap size={26} className="animate-pulse" />
-        Buy Now
-      </motion.button>
+    <div className="flex flex-col gap-3 mt-6">
+      {/* Primary Action Row - Cart + Buy Now (Flipkart/Amazon style) */}
+      <div className="grid grid-cols-2 gap-3">
+        {/* Add to Cart / Remove - Largest & most prominent */}
+        <button
+          onClick={onCartToggle}
+          disabled={outOfStock}
+          className={`relative flex items-center justify-center gap-3 py-4 rounded-2xl font-semibold text-lg transition-all duration-200 shadow-lg
+            ${
+              outOfStock
+                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                : isInCart
+                ? "bg-red-600 text-white hover:bg-red-700"
+                : "bg-blue-600 text-white hover:bg-blue-700"
+            }`}
+        >
+          <ShoppingCart size={24} />
+          {isInCart ? "Remove" : "Add to Cart"}
+        </button>
 
-      {/* ADD TO CART */}
-      <motion.button
-        whileTap={{ scale: 0.95 }}
-        onClick={onAddToCart}
-        disabled={isOutOfStock}
-        className="flex-1 flex items-center justify-center gap-3 bg-blue-600 text-white 
-          py-5 rounded-2xl font-bold text-lg shadow-lg hover:bg-blue-700 
-          disabled:opacity-50 disabled:cursor-not-allowed transition"
-      >
-        <ShoppingCart size={26} />
-        Add to Cart
-      </motion.button>
+        {/* Buy Now - Equal size, high urgency color */}
+        <button
+          onClick={onBuyNow}
+          disabled={outOfStock}
+          className={`flex items-center justify-center gap-3 py-4 rounded-2xl font-semibold text-lg transition-all duration-200 shadow-lg
+            ${
+              outOfStock
+                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                : "bg-blue-400 text-white hover:bg-blue-500"
+            }`}
+        >
+          <Zap size={24} />
+          Buy Now
+        </button>
+      </div>
 
-      {/* WISHLIST */}
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        onClick={onWishlistToggle}
-        className={`px-10 py-5 rounded-2xl font-bold text-lg shadow-lg transition-all 
-          flex items-center gap-3 ${
-            isWishlisted
-              ? "bg-red-500 text-white hover:bg-red-600"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-          }`}
-      >
-        <Heart size={26} fill={isWishlisted ? "currentColor" : "none"} />
-        {isWishlisted ? "Wishlisted" : "Wishlist"}
-      </motion.button>
+      {/* Wishlist - Removed full button since heart is now on image */}
+      {/* Optional: Keep a subtle text link if needed for accessibility/discoverability */}
+
+      {/* Out of Stock Message */}
+      {outOfStock && (
+        <p className="text-center text-red-600 font-semibold text-lg mt-4">
+          Out of Stock
+        </p>
+      )}
     </div>
   );
 }

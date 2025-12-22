@@ -25,7 +25,7 @@ export default function OrderActions({
         href={invoiceUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition"
+        className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-linear-to-r from-blue-300 to-sky-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition"
       >
         <Download size={22} />
         Download Invoice

@@ -1,338 +1,209 @@
-// import axios from "axios";
-
-// import axios from "axios";
-
-// const API = import.meta.env.VITE_API_URL;
-
-// interface RazorpayOrder {
-//   id: string;
-//   amount: number;
-//   currency: string;
-// }
-
-// interface RazorpayHandlerResponse {
-//   razorpay_payment_id: string;
-//   razorpay_order_id: string;
-//   razorpay_signature: string;
-// }
-
-// interface RazorpayOptions {
-//   key: string;
-//   amount: number;
-//   currency: string;
-//   name: string;
-//   description: string;
-//   order_id: string;
-//   handler: (response: RazorpayHandlerResponse) => void;
-//   prefill?: {
-//     name?: string;
-//     email?: string;
-//     contact?: string;
-//   };
-//   theme?: {
-//     color?: string;
-//   };
-// }
-
-// declare global {
-//   interface Window {
-//     Razorpay: new (options: RazorpayOptions) => {
-//       open: () => void;
-//     };
-//   }
-// }
-
-// export async function startPayment(amount: number) {
-//   try {
-//     // 1. Create Order
-//     const { data } = await axios.post<{
-//       success: boolean;
-//       order: RazorpayOrder;
-//     }>(
-//       `${API}/api/payment/create-order`,
-//       { amount },
-//       { withCredentials: true }
-//     );
-
-//     if (!data.success) throw new Error("Order failed");
-
-//     const order = data.order;
-
-//     // 2. Razorpay Options
-//     const options: RazorpayOptions = {
-//       key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-//       amount: order.amount,
-//       currency: order.currency,
-//       name: "MyAZStore",
-//       description: "Order Payment",
-//       order_id: order.id,
-
-//       handler(response) {
-//         console.log("Payment Success:", response);
-//         alert("Payment Successful!");
-//         window.location.href = "/dashboard/orders";
-//       },
-
-//       prefill: {
-//         name: "MyAZStore User",
-//         email: "user@example.com",
-//       },
-
-//       theme: { color: "#2563eb" },
-//     };
-
-//     // 3. Open Razorpay Popup
-//     const razor = new window.Razorpay(options);
-//     razor.open();
-//   } catch (err) {
-//     console.error(err);
-//     alert("Payment failed. Try again.");
-//   }
-// }
-///////////////////////new upadated---------------import axios from "axios";
-
 // src/lib/payment.ts
-// import axios from "axios";
-
-// const API = import.meta.env.VITE_API_URL;
-
-// interface RazorpayOrder {
-//   id: string;
-//   amount: number;
-//   currency: string;
-// }
-
-// interface RazorpayHandlerResponse {
-//   razorpay_payment_id: string;
-//   razorpay_order_id: string;
-//   razorpay_signature: string;
-// }
-
-// interface RazorpayOptions {
-//   key: string;
-//   amount: number;
-//   currency: string;
-//   name: string;
-//   description: string;
-//   order_id: string;
-//   handler: (response: RazorpayHandlerResponse) => void;
-//   prefill?: {
-//     name?: string;
-//     email?: string;
-//     contact?: string;
-//   };
-//   theme?: {
-//     color?: string;
-//   };
-// }
-
-// declare global {
-//   interface Window {
-//     Razorpay: new (options: RazorpayOptions) => {
-//       open: () => void;
-//     };
-//   }
-// }
-
-// /**
-//  * amount: final total
-//  * addressId: selected address to attach to order
-//  */
-// export async function startPayment(amount: number, addressId: string) {
-//   try {
-//     // 1. Create order
-//     const { data } = await axios.post<{
-//       success: boolean;
-//       order: RazorpayOrder;
-//     }>(
-//       `${API}/api/payment/create-order`,
-//       { amount },
-//       { withCredentials: true }
-//     );
-
-//     if (!data.success) throw new Error("Order creation failed");
-
-//     const order = data.order;
-
-//     // 2. Razorpay options
-//     const options: RazorpayOptions = {
-//       key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-//       amount: order.amount,
-//       currency: order.currency,
-//       name: "MyAZStore",
-//       description: "Order Payment",
-//       order_id: order.id,
-
-//       async handler(response) {
-//         try {
-//           const verifyRes = await axios.post<{
-//             success: boolean;
-//             orderId?: string;
-//           }>(
-//             `${API}/api/payment/verify-payment`,
-//             {
-//               razorpay_order_id: response.razorpay_order_id,
-//               razorpay_payment_id: response.razorpay_payment_id,
-//               razorpay_signature: response.razorpay_signature,
-//               addressId,
-//             },
-//             { withCredentials: true }
-//           );
-
-//           if (verifyRes.data.success) {
-//             window.location.href = "/order-success";
-//           } else {
-//             alert("Payment verification failed.");
-//           }
-//         } catch {
-//           alert("Payment verification failed.");
-//         }
-//       },
-
-//       prefill: {
-//         name: "MyAZStore User",
-//         email: "myazstore@shop.com",
-//       },
-
-//       theme: { color: "#2563eb" },
-//     };
-
-//     const razor = new window.Razorpay(options);
-//     razor.open();
-//   } catch (err) {
-//     console.error(err);
-//     alert("Payment failed. Try again.");
-//   }
-// }
-////////////////////////////// Update 25--11
-// import axios from "axios";
-
-// const API = import.meta.env.VITE_API_URL;
-
-// interface RazorpayOrder {
-//   id: string;
-//   amount: number;
-//   currency: string;
-// }
-
-// interface VerifyResponse {
-//   success: boolean;
-// }
-
-// declare global {
-//   interface Window {
-//     Razorpay: any;
-//   }
-// }
-
-// export async function startPayment(): Promise<void> {
-//   // 1️⃣ Create Razorpay order
-//   const createRes = await axios.post<{
-//     success: boolean;
-//     order: RazorpayOrder;
-//   }>(`${API}/api/payment/create-order`, {}, { withCredentials: true });
-
-//   if (!createRes.data.success) throw new Error("Order creation failed");
-
-//   const order = createRes.data.order;
-
-//   // 2️⃣ Open Razorpay popup
-//   const options = {
-//     key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-//     amount: order.amount,
-//     currency: order.currency,
-//     name: "MyAZStore",
-//     description: "Order Payment",
-//     order_id: order.id,
-
-//     handler: async (response: {
-//       razorpay_order_id: string;
-//       razorpay_payment_id: string;
-//       razorpay_signature: string;
-//     }) => {
-//       const verifyRes = await axios.post<VerifyResponse>(
-//         `${API}/api/payment/verify-payment`,
-//         response,
-//         { withCredentials: true }
-//       );
-
-//       if (verifyRes.data.success) {
-//         window.location.href = "/order-success";
-//       }
-//     },
-
-//     theme: { color: "#2563eb" },
-//   };
-
-//   const razor = new window.Razorpay(options);
-//   razor.open();
-// }
-
-////////////////////////////////26--11 updated
-
-// lib/payment.ts
 import axios from "axios";
+import toast from "react-hot-toast";
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL as string;
 
-interface RazorpayOrder {
+export interface RazorpayOrder {
   id: string;
-  amount: number;
+  amount: number; // smallest currency unit (e.g., paise)
   currency: string;
 }
 
-interface VerifyResponse {
+export interface CreateOrderResp {
+  success: true;
+  key: string;
+  order: RazorpayOrder;
+  meta?: {
+    name?: string;
+    description?: string;
+    prefill?: { name?: string; email?: string; contact?: string };
+    themeColor?: string;
+    image?: string;
+    redirect?: string;
+  };
+}
+
+export interface VerifyResponse {
   success: boolean;
-  orderId: string;
+  orderId?: string;
+  redirect?: string;
 }
 
 declare global {
   interface Window {
-    Razorpay: new (options: unknown) => {
-      open: () => void;
-    };
+    loadRazorpay?: () => Promise<void>;
+    Razorpay?: RazorpayConstructor;
   }
 }
 
-export async function startPayment(): Promise<void> {
-  // Create Razorpay order
-  const { data } = await axios.post<{ success: boolean; order: RazorpayOrder }>(
-    `${API}/api/payment/create-order`,
-    {},
-    { withCredentials: true }
-  );
+export interface RazorpayHandlerPayload {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
 
-  if (!data.success) throw new Error("Order creation failed");
-
-  const order = data.order;
-
-  const options = {
-    key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-    amount: order.amount,
-    currency: order.currency,
-    name: "MyAZStore",
-    description: "Order Payment",
-    order_id: order.id,
-
-    handler: async (response: {
-      razorpay_order_id: string;
-      razorpay_payment_id: string;
-      razorpay_signature: string;
-    }) => {
-      const verifyRes = await axios.post<VerifyResponse>(
-        `${API}/api/payment/verify-payment`,
-        response,
-        { withCredentials: true }
-      );
-
-      if (verifyRes.data.success) {
-        window.location.href = `/order-success?orderId=${verifyRes.data.orderId}`;
-      }
-    },
-
-    theme: { color: "#2563eb" },
+export interface RazorpayOptions {
+  key: string;
+  order_id: string;
+  amount: number;
+  currency: string;
+  name?: string;
+  description?: string;
+  image?: string;
+  prefill?: { name?: string; email?: string; contact?: string };
+  theme?: { color?: string };
+  handler: (response: RazorpayHandlerPayload) => void | Promise<void>;
+  modal?: {
+    ondismiss?: () => void;
   };
+}
 
-  const razorpay = new window.Razorpay(options);
-  razorpay.open();
+export interface RazorpayInstance {
+  open: () => void;
+}
+
+export interface RazorpayConstructor {
+  new (opts: RazorpayOptions): RazorpayInstance;
+}
+
+/**
+ * startPayment
+ * - Loads Razorpay script via window.loadRazorpay()
+ * - Calls server to create order (expects CreateOrderResp)
+ * - Opens checkout and resolves only after server verification succeeds
+ *
+ * Throws on any failure / user cancel / timeout.
+ */
+export async function startPayment(
+  timeoutMs = 2 * 60 * 1000
+): Promise<VerifyResponse> {
+  if (typeof window === "undefined")
+    throw new Error("startPayment must run in browser");
+
+  if (!window.loadRazorpay) {
+    const msg =
+      "window.loadRazorpay helper not found. Add loader helper to index.html.";
+    console.error(msg);
+    toast.error("Payment initialization failed.");
+    throw new Error(msg);
+  }
+
+  try {
+    await window.loadRazorpay();
+  } catch (err) {
+    console.error("Failed to load Razorpay script", err);
+    toast.error("Unable to load payment gateway. Try again.");
+    throw err;
+  }
+
+  if (!window.Razorpay) {
+    const msg = "Razorpay object not available after loading script.";
+    console.error(msg);
+    toast.error("Payment initialization failed.");
+    throw new Error(msg);
+  }
+
+  // Create order on server (server should create Razorpay order and return key+order)
+  let createResp: CreateOrderResp;
+  try {
+    const res = await axios.post<CreateOrderResp>(
+      `${API}/v1/payment/create-order`,
+      {},
+      { withCredentials: true }
+    );
+    createResp = res.data;
+  } catch (err) {
+    console.error("Failed to create order on server", err);
+    toast.error("Failed to create payment order. Try again.");
+    throw err;
+  }
+
+  if (!createResp?.success || !createResp.order || !createResp.key) {
+    console.error("Invalid create-order response", createResp);
+    toast.error("Payment initialization failed.");
+    throw new Error("Invalid order response from server");
+  }
+
+  const { order, key, meta } = createResp;
+
+  return new Promise<VerifyResponse>((resolve, reject) => {
+    let settled = false;
+
+    const settleResolve = (val: VerifyResponse) => {
+      if (settled) return;
+      settled = true;
+      resolve(val);
+    };
+
+    const settleReject = (err: unknown) => {
+      if (settled) return;
+      settled = true;
+      reject(err);
+    };
+
+    const timeout = setTimeout(() => {
+      settleReject(new Error("Payment timed out"));
+      toast.error("Payment timed out. Try again.");
+    }, timeoutMs);
+
+    const options: RazorpayOptions = {
+      key,
+      order_id: order.id,
+      amount: order.amount,
+      currency: order.currency,
+      name: meta?.name ?? "MyAZ Store",
+      description: meta?.description ?? "Order Payment",
+      image: meta?.image ?? "/pwa-512x512.png",
+      prefill: meta?.prefill,
+      theme: { color: meta?.themeColor ?? "#2563eb" },
+
+      handler: async (payload: RazorpayHandlerPayload) => {
+        try {
+          const verifyRes = await axios.post<VerifyResponse>(
+            `${API}/v1/payment/verify-payment`,
+            payload,
+            {
+              withCredentials: true,
+            }
+          );
+
+          clearTimeout(timeout);
+
+          if (verifyRes.data?.success) {
+            toast.success("Payment successful");
+            settleResolve(verifyRes.data);
+          } else {
+            console.error("Verification failed", verifyRes.data);
+            toast.error("Payment verification failed. Contact support.");
+            settleReject(new Error("Verification failed"));
+          }
+        } catch (err) {
+          clearTimeout(timeout);
+          console.error("Verification request failed", err);
+          toast.error("Payment verification failed. Try again later.");
+          settleReject(err);
+        }
+      },
+
+      modal: {
+        ondismiss: () => {
+          clearTimeout(timeout);
+          toast("Payment cancelled", { icon: "⚠️" });
+          settleReject(new Error("Payment cancelled by user"));
+        },
+      },
+    };
+
+    try {
+      const Rz = window.Razorpay as RazorpayConstructor;
+      const rzp = new Rz(options);
+      rzp.open();
+    } catch (err) {
+      clearTimeout(timeout);
+      console.error("Failed to open Razorpay checkout", err);
+      toast.error("Unable to open payment window. Try again.");
+      settleReject(err);
+    }
+  });
 }

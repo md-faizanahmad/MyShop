@@ -1,14 +1,22 @@
 // src/components/product/ImageGallery.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ZoomIn, Package, AlertCircle, CheckCircle2 } from "lucide-react";
+import {
+  ZoomIn,
+  Package,
+  AlertCircle,
+  CheckCircle2,
+  Heart,
+} from "lucide-react";
 
 interface ImageGalleryProps {
-  images: string[]; // Main + thumbnails
+  images: string[]; // Main + thumbnails (URLs)
   name: string;
   stock: number;
   isNew?: boolean;
   has360View?: boolean;
+  isWishlisted?: boolean; // New prop
+  onWishlistToggle?: () => void; // New prop
 }
 
 export default function ImageGallery({
@@ -17,6 +25,8 @@ export default function ImageGallery({
   stock,
   isNew = false,
   has360View = false,
+  isWishlisted = false,
+  onWishlistToggle = () => {},
 }: ImageGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
@@ -56,9 +66,9 @@ export default function ImageGallery({
 
           {/* Zoom Indicator */}
           {isZoomed && (
-            <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
               <ZoomIn size={18} />
-              Click to zoom
+              Tap to zoom out
             </div>
           )}
 
@@ -75,6 +85,27 @@ export default function ImageGallery({
               </span>
             )}
           </div>
+
+          {/* Wishlist Heart Icon - Top Right (Flipkart/Amazon style) */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent triggering zoom
+              onWishlistToggle();
+            }}
+            className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-lg transition-all hover:scale-110 hover:bg-white"
+            aria-label={
+              isWishlisted ? "Remove from wishlist" : "Add to wishlist"
+            }
+          >
+            <Heart
+              size={24}
+              className={`transition-all ${
+                isWishlisted
+                  ? "fill-red-500 text-red-500 scale-110"
+                  : "text-gray-700"
+              }`}
+            />
+          </button>
 
           {/* Stock Overlay */}
           {isOutOfStock && (

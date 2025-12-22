@@ -1,78 +1,11 @@
-// export interface PublicProduct {
-//   _id: string;
-//   name: string;
-//   slug: string;
-//   price: number;
-//   discountPrice?: number;
-//   offers?: string[];
-
-//   imageUrl: string;
-//   images?: string[];
-
-//   description?: string;
-//   stock?: number;
-
-//   category: {
-//     _id: string;
-//     name: string;
-//     slug: string;
-//   };
-
-//   highlights?: string[];
-//   specifications?: Record<string, string>;
-
-//   rating?: {
-//     average: number;
-//     count: number;
-//   };
-
-//   reviews?: any[];
-// }
-// export interface Review {
-//   _id: string;
-//   user: string;
-//   name: string;
-//   rating: number;
-//   comment: string;
-//   verified: boolean;
-//   createdAt: string;
-//   updatedAt: string;
-// }
-
-// export interface PublicProduct {
-//   _id: string;
-//   name: string;
-//   slug: string;
-
-//   price: number;
-//   discountPrice?: number;
-//   offers?: string[];
-
-//   imageUrl: string;
-//   images?: string[];
-
-//   description?: string;
-//   stock?: number;
-
-//   highlights?: string[];
-//   specifications?: Record<string, string>;
-
-//   category: {
-//     _id: string;
-//     name: string;
-//     slug: string;
-//   };
-
-//   rating?: {
-//     average: number;
-//     count: number;
-//   };
-
-//   reviews?: Review[];
-// }
 export interface ReviewUser {
   _id: string;
   name: string;
+}
+export interface CartItem {
+  productId: string;
+  qty: number;
+  product: PublicProduct; // REQUIRED
 }
 
 export interface Review {
@@ -81,6 +14,11 @@ export interface Review {
   rating: number;
   comment: string;
   createdAt: string;
+}
+
+export interface ProductImage {
+  url: string;
+  publicId: string;
 }
 
 export interface PublicProduct {
@@ -96,7 +34,7 @@ export interface PublicProduct {
   stock: number;
 
   imageUrl: string;
-  images?: string[];
+  images?: ProductImage[]; // ✅ FIXED
 
   offers?: string[];
   highlights?: string[];

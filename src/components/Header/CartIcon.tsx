@@ -2,26 +2,31 @@
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
-import { useCartStore } from "../../store/CartStore";
-import { useAuthStore } from "../../store/AuthStore";
+import { useCartStore } from "../../store/useCartStore";
 
 export default function CartIcon() {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-  const totalItems = useCartStore((state) =>
-    isLoggedIn ? state.getTotalItems() : 0
+  /* -----------------------------
+     Store
+  ----------------------------- */
+  const totalItems = useCartStore((s) =>
+    s.items.reduce((sum, i) => sum + i.qty, 0)
   );
+  const loading = useCartStore((s) => s.loading);
 
-  if (!isLoggedIn) {
+  /* -----------------------------
+     During hydration, don't lie
+  ----------------------------- */
+  if (loading) {
     return (
       <Link to="/cart" className="relative" aria-label="Cart">
-        <ShoppingCart
-          size={24}
-          className="text-gray-700 hover:text-gray-900 transition"
-        />
+        <ShoppingCart size={18} className="text-gray-400 animate-pulse" />
       </Link>
     );
   }
 
+  /* -----------------------------
+     Render
+  ----------------------------- */
   return (
     <Link to="/cart" className="relative" aria-label="Cart">
       <ShoppingCart

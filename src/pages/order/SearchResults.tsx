@@ -80,9 +80,16 @@ export default function SearchResults() {
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
             Search Results for
           </h1>
-          <p className="text-2xl sm:text-3xl font-bold text-blue-600 mt-2">
+          {/* {q} this carry query of search input */}
+          <p
+            className="
+    text-2xl sm:text-3xl font-bold text-blue-600 mt-2
+    break-all whitespace-normal max-w-full
+  "
+          >
             "{q}"
           </p>
+
           <p className="text-gray-600 mt-3">
             {isLoading
               ? "Searching..."
