@@ -39,6 +39,7 @@ export default function EditAddressModal({
     pincode: "",
     landmark: "",
   });
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (address) {
@@ -58,7 +59,9 @@ export default function EditAddressModal({
 
   async function updateAddress(e: React.FormEvent) {
     e.preventDefault();
+    if (saving) return;
 
+    setSaving(true);
     try {
       await axios.put(`${API}/v1/addresses/update/${address._id}`, form, {
         withCredentials: true,
@@ -69,6 +72,8 @@ export default function EditAddressModal({
       onClose();
     } catch {
       toast.error("Update failed");
+    } finally {
+      setSaving(false);
     }
   }
 
@@ -159,9 +164,10 @@ export default function EditAddressModal({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+              disabled={saving}
+              className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Save Changes
+              {saving ? "Saving changes..." : "Save Changes"}
             </button>
           </div>
         </form>
