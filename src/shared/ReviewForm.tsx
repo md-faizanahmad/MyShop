@@ -6,6 +6,8 @@ import { AxiosError } from "axios";
 
 import type { Review } from "../types/product";
 import apiClient from "../lib/axios";
+import { useAuthStore } from "../store/useAuthStore";
+import { Link } from "react-router-dom";
 
 interface Props {
   productId: string;
@@ -19,7 +21,7 @@ interface ApiError {
 export default function ReviewForm({ productId, slug }: Props) {
   const [rating, setRating] = useState<number>(5);
   const [comment, setComment] = useState<string>("");
-
+  const { status } = useAuthStore();
   const qc = useQueryClient();
 
   const mutation = useMutation<Review, AxiosError<ApiError>, void>({
@@ -54,7 +56,25 @@ export default function ReviewForm({ productId, slug }: Props) {
 
     mutation.mutate();
   };
+  /* =========================
+     GUEST VIEW
+  ========================= */
+  if (status !== "authenticated") {
+    return (
+      <div className="w-full m-auto max-w-lg rounded-xl  p-4 sm:p-5 text-center">
+        <p className="text-sm text-gray-700">
+          Please log in to write a review.
+        </p>
 
+        <Link
+          to="/login"
+          className="mt-3 inline-block rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white"
+        >
+          Login to review
+        </Link>
+      </div>
+    );
+  }
   return (
     <form
       onSubmit={handleSubmit}

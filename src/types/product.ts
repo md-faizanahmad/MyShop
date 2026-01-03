@@ -1,13 +1,12 @@
-export interface ReviewUser {
-  _id: string;
-  name: string;
-}
 export interface CartItem {
   productId: string;
   qty: number;
   product: PublicProduct; // REQUIRED
 }
-
+export interface ReviewUser {
+  _id: string;
+  name: string;
+}
 export interface Review {
   _id: string;
   user: ReviewUser;

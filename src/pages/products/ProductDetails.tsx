@@ -176,11 +176,13 @@ export default function ProductDetails() {
             Customer Reviews
           </h2>
 
-          <ReviewForm productId={product._id} slug={product.slug} />
-
           <div className="mt-8">
-            <ReviewList reviews={product.reviews ?? []} />
+            <ReviewList
+              productId={product._id}
+              reviews={product.reviews ?? []}
+            />
           </div>
+          <ReviewForm productId={product._id} slug={product.slug} />
         </section>
 
         {/* Suggested */}

@@ -31,7 +31,7 @@ export default function Reviews({
         <div className="lg:col-span-2 space-y-4">
           {canPost && <ReviewForm productId={productId} />}
           <div>
-            <ReviewList reviews={reviews} />
+            <ReviewList productId={productId} reviews={reviews} />
           </div>
         </div>
       </div>

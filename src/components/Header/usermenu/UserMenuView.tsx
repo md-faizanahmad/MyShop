@@ -58,6 +58,7 @@ export default function UserMenuView({
       >
         <div className="  flex items-center justify-center font-bold">
           {isLoggedIn ? (
+            // <h2 className=" text-2xl text-red-800">{firstLetter}</h2>
             <h2 className=" text-2xl text-red-800">{firstLetter}</h2>
           ) : (
             <UserPlus size={18} />
