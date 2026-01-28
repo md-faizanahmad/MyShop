@@ -1,5 +1,11 @@
-
 User-agent: *
 Allow: /
+
+Disallow: /login
+Disallow: /signup
+Disallow: /profile
+Disallow: /cart
+Disallow: /checkout
+Disallow: /orders
 
 Sitemap: https://myazstore.shop/sitemap.xml

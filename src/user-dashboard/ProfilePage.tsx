@@ -4,10 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import DashboardSkeleton from "../shared/DashboardSkeleton";
-import ProfilePageView from "./ProfilePageView";
+import ProfilePageView from "./Profile/ProfilePageView";
 
 import type { Order } from "../types/order";
 import type { Address } from "../types/address";
+// import ProfileAddresses from "./Profile/ProfileAddresses";
 
 const API_URL = import.meta.env.VITE_API_URL as string;
 
@@ -22,7 +23,7 @@ export default function ProfilePage() {
     queryFn: async () => {
       const res = await axios.get<{ orders: Order[] }>(
         `${API_URL}/v1/orders/my-orders`,
-        { withCredentials: true }
+        { withCredentials: true },
       );
       return res.data.orders;
     },
@@ -38,7 +39,7 @@ export default function ProfilePage() {
     queryFn: async () => {
       const res = await axios.get<{ addresses: Address[] }>(
         `${API_URL}/v1/addresses`,
-        { withCredentials: true }
+        { withCredentials: true },
       );
       return res.data.addresses;
     },
@@ -66,19 +67,24 @@ export default function ProfilePage() {
     ? ordersQuery.data
     : [];
 
-  const addresses: Address[] = Array.isArray(addressesQuery.data)
-    ? addressesQuery.data
-    : [];
+  // const addresses: Address[] = Array.isArray(addressesQuery.data)
+  //   ? addressesQuery.data
+  //   : [];
 
   return (
-    <ProfilePageView
-      user={user}
-      orders={orders}
-      addresses={addresses}
-      ordersLoading={ordersQuery.isFetching}
-      addressesLoading={addressesQuery.isFetching}
-      ordersError={ordersQuery.isError}
-      addressesError={addressesQuery.isError}
-    />
+    <div className="p-4">
+      <ProfilePageView
+        user={user}
+        orders={orders}
+        ordersLoading={ordersQuery.isFetching}
+        ordersError={ordersQuery.isError}
+      />
+      {/* <ProfileAddresses
+        addressesLoading={addressesQuery.isFetching}
+        addresses={addresses}
+        addressesError={addressesQuery.isError}
+      /> */}
+      {/* <ProfileAddresses /> */}
+    </div>
   );
 }
