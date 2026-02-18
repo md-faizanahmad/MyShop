@@ -10,6 +10,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import type { Address } from "../../types/address";
+import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL as string;
 
@@ -41,9 +42,14 @@ export default function ProfileAddresses() {
           </p>
         </div>
 
-        <button className="flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm shadow-blue-200">
-          <Plus size={14} strokeWidth={3} />
-          ADD NEW
+        <button className="flex  items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm shadow-blue-200">
+          <Link
+            to="/addresses"
+            className="flex items-center text-white hover:text-white"
+          >
+            <Plus size={14} strokeWidth={3} />
+            ADD NEW
+          </Link>
         </button>
       </div>
 

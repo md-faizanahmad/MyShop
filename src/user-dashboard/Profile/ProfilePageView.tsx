@@ -9,13 +9,14 @@ import {
   Package,
   MapPin,
   ChevronRight,
-  Key,
+  // Key,
 } from "lucide-react";
 import type { Order } from "../../types/order";
 import ProfileRecentOrders from "../ProfileRecentOrders";
 import { useState } from "react";
 import ProfileEditModal from "./EditProfileModal";
 import ProfileAddresses from "./ProfileAddresses";
+import { Link } from "react-router-dom";
 
 interface Props {
   user: { name?: string; email?: string; phone?: string };
@@ -106,9 +107,9 @@ export default function ProfilePageView({
                   >
                     <Edit3 size={16} /> Edit Profile
                   </button>
-                  <button className="flex items-center justify-center gap-2 w-full text-gray-600 py-2.5 rounded-xl font-semibold text-sm hover:bg-gray-50 transition-colors">
+                  {/* <button className="flex items-center justify-center gap-2 w-full text-gray-600 py-2.5 rounded-xl font-semibold text-sm hover:bg-gray-50 transition-colors">
                     <Key size={16} /> Security Settings
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -120,15 +121,18 @@ export default function ProfilePageView({
                   icon: <Package size={18} />,
                   label: "My Orders",
                   count: orders.length,
+                  to: "/orders",
                 },
                 {
                   icon: <MapPin size={18} />,
                   label: "Saved Addresses",
                   count: null,
+                  to: "/addresses",
                 },
-              ].map((link, idx) => (
-                <button
-                  key={idx}
+              ].map((link) => (
+                <Link
+                  to={link.to}
+                  key={link.to}
                   className="w-full flex items-center justify-between p-3 hover:bg-gray-50 rounded-xl transition-all group"
                 >
                   <div className="flex items-center gap-3">
@@ -147,7 +151,7 @@ export default function ProfilePageView({
                     )}
                     <ChevronRight size={16} className="text-gray-300" />
                   </div>
-                </button>
+                </Link>
               ))}
             </div>
           </div>

@@ -236,11 +236,11 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
             {/* MAIN HEADLINE */}
             <h1
               id="hero-heading"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight"
+              className="text-3xl sm:text-2xl md:text-5xl lg:text-6xl font-black leading-tight"
             >
               {hero.headline}
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-blue-400 to-amber-100 animate-gradient-x">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-red-400 via-blue-400 to-amber-100 animate-gradient-x">
                 {hero.gradientHeadline}
               </span>
             </h1>

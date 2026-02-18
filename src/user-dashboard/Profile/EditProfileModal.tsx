@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import EditableField from "./EditableField";
 import OtpVerifyModal from "./OtpVerifyModal";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const API = import.meta.env.VITE_API_URL as string;
 
@@ -25,8 +26,11 @@ export default function ProfileEditModal({ user, onClose }: Props) {
   const phoneChanged = phone !== user.phone;
 
   const changedCount = [nameChanged, emailChanged, phoneChanged].filter(
-    Boolean
+    Boolean,
   ).length;
+
+  // adding to immedity update profile details
+  const restoreSession = useAuthStore((s) => s.restoreSession);
 
   /* =====================
      SAVE HANDLERS
@@ -37,8 +41,11 @@ export default function ProfileEditModal({ user, onClose }: Props) {
     await axios.patch(
       `${API}/v1/users/me`,
       { name },
-      { withCredentials: true }
+      { withCredentials: true },
     );
+
+    // new added for update it after edit profile
+    restoreSession();
     toast.success("Name updated");
     setSaving(false);
   }
@@ -48,7 +55,7 @@ export default function ProfileEditModal({ user, onClose }: Props) {
     await axios.post(
       `${API}/v1/users/me/contact/request-otp`,
       type === "email" ? { email } : { phone },
-      { withCredentials: true }
+      { withCredentials: true },
     );
     setOtpTarget(type);
     setOtpOpen(true);
@@ -73,9 +80,13 @@ export default function ProfileEditModal({ user, onClose }: Props) {
       // 2️⃣ Apply the pending change (email OR phone)
       await axios.post(
         `${API}/v1/users/me/contact/confirm`,
+
         { purpose },
-        { withCredentials: true }
+        { withCredentials: true },
       );
+
+      // new added for update it after edit profile
+      restoreSession();
 
       toast.success("Profile updated");
       setOtpOpen(false);

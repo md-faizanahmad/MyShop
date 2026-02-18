@@ -36,7 +36,7 @@ export default function Navbar({ mobile = false, onClose }: NavbarProps) {
     queryKey: ["public-categories-with-subs"],
     queryFn: async () => {
       const res = await axios.get<{ categories: Category[] }>(
-        `${API_URL}/v1/categories?withSubs=true`
+        `${API_URL}/v1/categories?withSubs=true`,
       );
       return res.data.categories ?? [];
     },
@@ -192,7 +192,7 @@ export default function Navbar({ mobile = false, onClose }: NavbarProps) {
 
               {(() => {
                 const activeCatObj = categories.find(
-                  (c) => c._id === activeCategory
+                  (c) => c._id === activeCategory,
                 );
                 if (!activeCatObj) return null;
 

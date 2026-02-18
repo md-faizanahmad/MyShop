@@ -30,7 +30,7 @@ export default function PriceCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
+      className="bg-white   border border-gray-100 overflow-hidden"
     >
       {/* Top Offer Banner */}
       <div className="bg-linear-to-r from-orange-500 to-red-600 text-white px-4 py-2.5 text-center font-bold text-sm flex items-center justify-center gap-2">

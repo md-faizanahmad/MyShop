@@ -67,10 +67,6 @@ export default function ProfilePage() {
     ? ordersQuery.data
     : [];
 
-  // const addresses: Address[] = Array.isArray(addressesQuery.data)
-  //   ? addressesQuery.data
-  //   : [];
-
   return (
     <div className="p-4">
       <ProfilePageView
@@ -79,11 +75,7 @@ export default function ProfilePage() {
         ordersLoading={ordersQuery.isFetching}
         ordersError={ordersQuery.isError}
       />
-      {/* <ProfileAddresses
-        addressesLoading={addressesQuery.isFetching}
-        addresses={addresses}
-        addressesError={addressesQuery.isError}
-      /> */}
+
       {/* <ProfileAddresses /> */}
     </div>
   );

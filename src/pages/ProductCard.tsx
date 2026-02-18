@@ -165,7 +165,7 @@ export default function ProductCard({ product }: Props) {
 
   const discountPercent = hasDiscount
     ? Math.round(
-        ((product.price - product.discountPrice!) / product.price) * 100
+        ((product.price - product.discountPrice!) / product.price) * 100,
       )
     : 0;
 
@@ -291,8 +291,8 @@ export default function ProductCard({ product }: Props) {
       isStock
         ? "bg-gray-200 text-gray-500 cursor-not-allowed"
         : isInCart
-        ? "bg-red-100 text-red-700 hover:bg-red-200"
-        : "bg-sky-600 text-white hover:bg-sky-700"
+          ? "bg-red-100 text-red-700 hover:bg-red-200"
+          : "bg-sky-600 text-white hover:bg-sky-700"
     }`}
       >
         {isInCart ? (
