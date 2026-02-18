@@ -1,161 +1,215 @@
-<h1 align="center">🛒 MyAZStore – Production-Ready E-Commerce Platform</h1>
+<h1 align="center" style="color:#0f172a;">
+🛒 MyAZStore – Modern Production-Ready E-Commerce Platform
+</h1>
+
+<p align="center" style="color:#475569; font-size:16px;">
+Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation
+</p>
 
 <p align="center">
-Mobile-first, full-stack e-commerce application with secure authentication, OTP verification, Razorpay payment integration, automated email notifications, and invoice generation.
+<b>🔗 Live Demo:</b> <i> myazstore.shop </i>
 </p>
 
 <hr/>
 
-<h2>📌 Project Overview</h2>
+<h2 style="color:#0f172a;">📌 Project Overview</h2>
 
 <p>
-MyAZStore is a complete shopping platform where customers can browse products, securely authenticate, manage wishlist and cart, place orders using Razorpay (demo), and receive automated email notifications including invoices and order status updates.
+MyAZStore is a complete full-stack e-commerce platform designed with a real production mindset. 
+Users can browse products, securely authenticate using password + OTP verification, manage wishlist and cart, complete Razorpay payments, and receive automated order notifications with invoices.
 </p>
 
 <p>
-This project demonstrates real-world authentication handling, payment verification, email automation, and stable mobile-first UI architecture.
+This is not just a UI project — it includes authentication logic, payment verification, email automation, and full order lifecycle handling.
 </p>
 
 <hr/>
 
-<h2>🖥 Desktop Experience</h2>
+<h2 align="center" style="color:#0f172a;">🖥 Desktop Experience</h2>
 
-<h3>🔹 Desktop Header & Navigation</h3>
-<p>Clean navigation structure with authentication state handling and cart access.</p>
-<img src="your-desktop-header.png" alt="Desktop Header Screenshot" width="100%"/>
+<h3 style="color:#1e293b;">🔹 Header & Navigation</h3>
+<p>Authentication-aware navigation with cart & account state handling.</p>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771411785/myazstore-header_mrodnd.png" width="100%" />
+</p>
 
-<h3>🔹 Product Listing Page</h3>
-<p>Category-based product browsing with responsive grid layout and pricing details.</p>
-<img src="your-desktop-product.png" alt="Desktop Product Listing Screenshot" width="100%"/>
+<h3 style="color:#1e293b;">🔹 Product Listing</h3>
+<p>Structured product grid with pricing, stock handling, and responsive layout.</p>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771411922/myazstore-products_luktwx.png" width="100%" />
+</p>
 
-<h3>🔹 Footer Section</h3>
-<p>Structured footer with navigation, policies, and contact information.</p>
-<img src="your-desktop-footer.png" alt="Desktop Footer Screenshot" width="100%"/>
+<h3 style="color:#1e293b;">🔹 User Profile Dashboard</h3>
+<p>Profile management with OTP verification for sensitive updates.</p>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771411921/myazstore-profile_ljeubt.png" width="100%" />
+</p>
 
-<hr/>
+<h3 style="color:#1e293b;">🔹 My Orders Page</h3>
+<p>Complete order history with status tracking.</p>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771411837/myazstore-myorder_vijv7t.png" width="100%" />
+</p>
 
-<h2>📱 Mobile-First Design</h2>
+<h3 style="color:#1e293b;">🔹 Wishlist</h3>
+<p>Persistent wishlist with quick access to saved products.</p>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771411923/myazstore-wishlist_cqjlb9.png" width="100%" />
+</p>
 
-<h3>🔹 Mobile Header</h3>
-<p>Optimized mobile navigation with intuitive user access and cart visibility.</p>
-<img src="your-mobile-header.png" alt="Mobile Header Screenshot" width="300"/>
-
-<h3>🔹 Product Detail Page (Mobile)</h3>
-<p>Focused layout for price visibility, stock status, and action buttons.</p>
-<img src="your-mobile-product.png" alt="Mobile Product Screenshot" width="300"/>
-
-<hr/>
-
-<h2>👤 User Account Management</h2>
-
-<h3>🔹 User Profile Dashboard</h3>
-<p>Users can update profile details with OTP verification for sensitive changes.</p>
-<img src="your-profile-page.png" alt="User Profile Screenshot" width="100%"/>
-
-<h3>🔹 Wishlist Page</h3>
-<p>Persistent wishlist for saved products.</p>
-<img src="your-wishlist-page.png" alt="Wishlist Screenshot" width="100%"/>
-
-<h3>🔹 Cart Page</h3>
-<p>Quantity management, price calculation, and checkout access.</p>
-<img src="your-cart-page.png" alt="Cart Screenshot" width="100%"/>
+<h3 style="color:#1e293b;">🔹 Footer</h3>
+<p>Structured footer with navigation, policies, and information.</p>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771411785/myazstore-footer_enyatr.png" width="100%" />
+</p>
 
 <hr/>
 
-<h2>📦 Order Management</h2>
+<h2 align="center" style="color:#0f172a;">📱 Mobile-First Design</h2>
 
-<h3>🔹 My Orders Page</h3>
-<p>Customers can track order history and view detailed order information.</p>
-<img src="your-order-page.png" alt="Order Page Screenshot" width="100%"/>
+<p align="center" style="color:#475569;">
+Designed primarily for mobile users with optimized layout hierarchy and action placement.
+</p>
 
-<h3>🔹 Order Status Email Notification</h3>
-<p>Automated email sent to customer whenever order status changes.</p>
-<img src="your-email-notification.png" alt="Order Email Screenshot" width="100%"/>
+<h3 style="color:#1e293b;">🔹 Mobile Header</h3>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771413275/Screenshot_20260218-164015_ciouem.png" width="300" />
+</p>
 
-<hr/>
+<h3 style="color:#1e293b;">🔹 Mobile Product Page</h3>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771413275/Screenshot_20260218-164238_mhwka2.png" width="300" />
+</p>
 
-<h2>🧾 Invoice System</h2>
+<h3 style="color:#1e293b;">🔹 Mobile Profile</h3>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771413274/Screenshot_20260218-164251_xm2bmj.png" width="300" />
+</p>
 
-<h3>🔹 Designed Invoice Layout</h3>
-<p>Custom-designed invoice generated and sent via email after successful order placement.</p>
-<img src="your-invoice-screenshot.png" alt="Invoice Screenshot" width="100%"/>
+<h3 style="color:#1e293b;">🔹 Mobile My Orders</h3>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771413274/Screenshot_20260218-164306_lqbkeo.png" width="300" />
+</p>
 
-<hr/>
+<h3 style="color:#1e293b;">🔹 Address Management</h3>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771413273/Screenshot_20260218-164325_by8lvu.png" width="300" />
+</p>
 
-<h2>🔐 Authentication & Security Features</h2>
-
-<ul>
-  <li>Signup with Email Verification</li>
-  <li>Login with Password + OTP</li>
-  <li>JWT-based secure authentication</li>
-  <li>Profile updates protected by OTP verification</li>
-  <li>Protected order access</li>
-  <li>Payment verification before order confirmation</li>
-</ul>
-
-<hr/>
-
-<h2>💳 Payment Integration</h2>
-
-<ul>
-  <li>Razorpay Demo Integration</li>
-  <li>Payment verification before order creation</li>
-  <li>Secure checkout workflow</li>
-</ul>
+<h3 style="color:#1e293b;">🔹 Mobile Footer</h3>
+<p align="center">
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771413274/Screenshot_20260218-164216_ozgf6x.png" width="300" />
+</p>
 
 <hr/>
 
-<h2>📧 Email Automation</h2>
-
-<ul>
-  <li>Signup Email Verification</li>
-  <li>OTP Emails</li>
-  <li>Order Confirmation Email</li>
-  <li>Invoice Attachment</li>
-  <li>Order Status Update Emails</li>
-</ul>
-
-<hr/>
-
-<h2>🧱 Tech Stack</h2>
-
-<h3>Frontend</h3>
-<ul>
-  <li>React.js (Hooks)</li>
-  <li>React Router</li>
-  <li>Zustand (State Management)</li>
-  <li>Tailwind CSS (Mobile-First)</li>
-  <li>Axios</li>
-</ul>
-
-<h3>Backend</h3>
-<ul>
-  <li>Node.js</li>
-  <li>Express.js</li>
-  <li>MongoDB + Mongoose</li>
-  <li>JWT Authentication</li>
-  <li>Razorpay Integration</li>
-  <li>Email Service (OTP + Transactional Emails)</li>
-</ul>
-
-<hr/>
-
-<h2>⚙️ Current Status</h2>
+<h2 align="center" style="color:#0f172a;">🧾 Invoice System</h2>
 
 <p>
-✔ Core functionality stable  
-🔄 Ongoing testing, validation, and UX improvements  
+Invoices are dynamically generated after successful Razorpay payment verification.
+Customers receive a PDF invoice automatically via email.
 </p>
-
-<hr/>
-
-<h2>👨‍💻 Developer</h2>
-
-<p><b>Md Faizan Ahmad</b></p>
-<p>Frontend-Focused Full-Stack Developer</p>
-
-<hr/>
 
 <p align="center">
-Built with production mindset. Structured for scalability. Designed for real users.
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1771413460/myazstore-invoice_nlpxnn.png" width="100%" />
+</p>
+
+<p align="center">
+🔗 <a href="https://res.cloudinary.com/dyefyrszz/image/upload/v1771411933/Invoice-699599266e29f0e50a668065_fka7cc.pdf" target="_blank">
+View Full Invoice PDF
+</a>
+</p>
+
+<hr/>
+
+<h2 style="color:#0f172a;">🔐 Security & Authentication</h2>
+
+<ul>
+<li>Email verification on signup</li>
+<li>Password + OTP login flow</li>
+<li>JWT-based protected routes</li>
+<li>OTP verification for profile updates</li>
+<li>Order access restricted to owner</li>
+<li>Payment verification before order confirmation</li>
+</ul>
+
+<hr/>
+
+<h2 style="color:#0f172a;">💳 Payment Integration</h2>
+
+<ul>
+<li>Razorpay Demo Integration</li>
+<li>Secure checkout flow</li>
+<li>Order created only after payment verification</li>
+</ul>
+
+<hr/>
+
+<h2 style="color:#0f172a;">📧 Email Automation</h2>
+
+<ul>
+<li>Signup email verification</li>
+<li>OTP emails</li>
+<li>Order confirmation email</li>
+<li>Invoice attachment</li>
+<li>Status update notifications</li>
+</ul>
+
+<hr/>
+
+<h2 style="color:#0f172a;">🧱 Tech Stack</h2>
+
+<b>Frontend</b>
+<ul>
+<li>React.js</li>
+<li>React Router</li>
+<li>Zustand</li>
+<li>Tailwind CSS (Mobile-First)</li>
+<li>Axios</li>
+</ul>
+
+<b>Backend</b>
+<ul>
+<li>Node.js</li>
+<li>Express.js</li>
+<li>MongoDB + Mongoose</li>
+<li>JWT Authentication</li>
+<li>Razorpay API</li>
+<li>Email Service (OTP + Transactional Emails)</li>
+</ul>
+
+<hr/>
+
+<h2 style="color:#0f172a;">⚙ Customization & Deployment</h2>
+
+<p>
+This platform can be customized for:
+</p>
+
+<ul>
+<li>Single Vendor Stores</li>
+<li>Multi-Vendor Marketplace</li>
+<li>Custom Payment Gateway</li>
+<li>Inventory Management Integration</li>
+<li>Admin Dashboard Extensions</li>
+</ul>
+
+<p>
+Design, branding, features, and business logic can be tailored based on client requirements.
+</p>
+
+<hr/>
+
+<h2 align="center" style="color:#0f172a;">👨‍💻 Developer</h2>
+
+<p align="center">
+<b>Md Faizan Ahmad</b><br/>
+Frontend-Focused Full-Stack Developer<br/>
+Production-Oriented Architecture & Scalable UI Systems
+</p>
+
+<hr/>
+
+<p align="center" style="color:#64748b;">
+Built with real-world business logic. Structured for scalability. Designed for performance.
 </p>
