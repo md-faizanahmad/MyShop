@@ -1,7 +1,7 @@
 <h1 align="center">🛒 MyAZStore – Production-Ready E-Commerce Platform</h1>
 
 <p align="center">
-Modern, mobile-first, full-stack shopping platform with secure authentication, OTP verification, Razorpay payment integration, automated email notifications, and real-world order lifecycle management.
+Mobile-first, full-stack e-commerce application with secure authentication, OTP verification, Razorpay payment integration, automated email notifications, and invoice generation.
 </p>
 
 <hr/>
@@ -9,102 +9,111 @@ Modern, mobile-first, full-stack shopping platform with secure authentication, O
 <h2>📌 Project Overview</h2>
 
 <p>
-MyAZStore is a fully functional e-commerce web application built for real users — not just a UI demo.
-Customers can browse products, securely authenticate using password + OTP, manage wishlist and cart, place orders using Razorpay (demo), and receive automated invoice emails and order status updates.
+MyAZStore is a complete shopping platform where customers can browse products, securely authenticate, manage wishlist and cart, place orders using Razorpay (demo), and receive automated email notifications including invoices and order status updates.
 </p>
 
 <p>
-This project demonstrates production-level architecture, authentication flow handling, payment integration, email automation, and mobile-first responsive design.
+This project demonstrates real-world authentication handling, payment verification, email automation, and stable mobile-first UI architecture.
 </p>
 
 <hr/>
 
-<h2>🎯 Business Value</h2>
+<h2>🖥 Desktop Experience</h2>
+
+<h3>🔹 Desktop Header & Navigation</h3>
+<p>Clean navigation structure with authentication state handling and cart access.</p>
+<img src="your-desktop-header.png" alt="Desktop Header Screenshot" width="100%"/>
+
+<h3>🔹 Product Listing Page</h3>
+<p>Category-based product browsing with responsive grid layout and pricing details.</p>
+<img src="your-desktop-product.png" alt="Desktop Product Listing Screenshot" width="100%"/>
+
+<h3>🔹 Footer Section</h3>
+<p>Structured footer with navigation, policies, and contact information.</p>
+<img src="your-desktop-footer.png" alt="Desktop Footer Screenshot" width="100%"/>
+
+<hr/>
+
+<h2>📱 Mobile-First Design</h2>
+
+<h3>🔹 Mobile Header</h3>
+<p>Optimized mobile navigation with intuitive user access and cart visibility.</p>
+<img src="your-mobile-header.png" alt="Mobile Header Screenshot" width="300"/>
+
+<h3>🔹 Product Detail Page (Mobile)</h3>
+<p>Focused layout for price visibility, stock status, and action buttons.</p>
+<img src="your-mobile-product.png" alt="Mobile Product Screenshot" width="300"/>
+
+<hr/>
+
+<h2>👤 User Account Management</h2>
+
+<h3>🔹 User Profile Dashboard</h3>
+<p>Users can update profile details with OTP verification for sensitive changes.</p>
+<img src="your-profile-page.png" alt="User Profile Screenshot" width="100%"/>
+
+<h3>🔹 Wishlist Page</h3>
+<p>Persistent wishlist for saved products.</p>
+<img src="your-wishlist-page.png" alt="Wishlist Screenshot" width="100%"/>
+
+<h3>🔹 Cart Page</h3>
+<p>Quantity management, price calculation, and checkout access.</p>
+<img src="your-cart-page.png" alt="Cart Screenshot" width="100%"/>
+
+<hr/>
+
+<h2>📦 Order Management</h2>
+
+<h3>🔹 My Orders Page</h3>
+<p>Customers can track order history and view detailed order information.</p>
+<img src="your-order-page.png" alt="Order Page Screenshot" width="100%"/>
+
+<h3>🔹 Order Status Email Notification</h3>
+<p>Automated email sent to customer whenever order status changes.</p>
+<img src="your-email-notification.png" alt="Order Email Screenshot" width="100%"/>
+
+<hr/>
+
+<h2>🧾 Invoice System</h2>
+
+<h3>🔹 Designed Invoice Layout</h3>
+<p>Custom-designed invoice generated and sent via email after successful order placement.</p>
+<img src="your-invoice-screenshot.png" alt="Invoice Screenshot" width="100%"/>
+
+<hr/>
+
+<h2>🔐 Authentication & Security Features</h2>
 
 <ul>
-  <li>Secure multi-layer authentication (Password + OTP verification)</li>
-  <li>Email-based verification & automated transactional emails</li>
-  <li>Real checkout flow with Razorpay integration</li>
-  <li>Invoice generation and email delivery</li>
-  <li>Complete order lifecycle tracking</li>
-  <li>Mobile-first UI optimized for real users</li>
+  <li>Signup with Email Verification</li>
+  <li>Login with Password + OTP</li>
+  <li>JWT-based secure authentication</li>
+  <li>Profile updates protected by OTP verification</li>
+  <li>Protected order access</li>
+  <li>Payment verification before order confirmation</li>
 </ul>
 
 <hr/>
 
-<h2>🚀 Core Features</h2>
+<h2>💳 Payment Integration</h2>
 
-<h3>👤 Customer Authentication</h3>
 <ul>
-  <li>Signup with email verification</li>
-  <li>Login with password + OTP validation</li>
-  <li>Secure JWT-based authentication</li>
-  <li>Profile update with OTP verification</li>
-</ul>
-
-<h3>🛍️ Shopping Experience</h3>
-<ul>
-  <li>Browse products (category, search supported)</li>
-  <li>Product detail page with pricing & stock</li>
-  <li>Add to Wishlist</li>
-  <li>Add to Cart & quantity management</li>
-  <li>Persistent cart handling</li>
-</ul>
-
-<h3>💳 Checkout & Payments</h3>
-<ul>
-  <li>Razorpay Demo Payment Integration</li>
-  <li>Order creation after payment verification</li>
-  <li>Secure order confirmation flow</li>
-</ul>
-
-<h3>📦 Order Management</h3>
-<ul>
-  <li>Customer can view My Orders</li>
-  <li>Order status tracking</li>
-  <li>Email notifications on every order status change</li>
-  <li>Invoice generation & email delivery</li>
-</ul>
-
-<h3>📧 Email Automation</h3>
-<ul>
-  <li>Order confirmation email</li>
-  <li>Invoice attachment</li>
-  <li>Status update emails (Processing, Shipped, Delivered, etc.)</li>
+  <li>Razorpay Demo Integration</li>
+  <li>Payment verification before order creation</li>
+  <li>Secure checkout workflow</li>
 </ul>
 
 <hr/>
 
-<h2>📱 Mobile-First Architecture</h2>
+<h2>📧 Email Automation</h2>
 
 <ul>
-  <li>Designed primarily for mobile users</li>
-  <li>Optimized layout hierarchy</li>
-  <li>Clean UX for checkout flow</li>
-  <li>Stable responsive behavior across devices</li>
+  <li>Signup Email Verification</li>
+  <li>OTP Emails</li>
+  <li>Order Confirmation Email</li>
+  <li>Invoice Attachment</li>
+  <li>Order Status Update Emails</li>
 </ul>
-
-<hr/>
-
-<h2>🖼️ Screenshots</h2>
-
-<h3>🖥 Desktop Views</h3>
-<ul>
-  <li>Desktop Header</li>
-  <li>Product Listing Page</li>
-  <li>Footer Section</li>
-</ul>
-
-<h3>📱 Mobile Views</h3>
-<ul>
-  <li>Mobile Header Navigation</li>
-  <li>Product Detail Page</li>
-  <li>User Profile Dashboard</li>
-  <li>Order History Page</li>
-  <li>Invoice Design Preview</li>
-</ul>
-
-<p><i>(Screenshots attached separately in repository)</i></p>
 
 <hr/>
 
@@ -112,11 +121,11 @@ This project demonstrates production-level architecture, authentication flow han
 
 <h3>Frontend</h3>
 <ul>
-  <li>React.js (Hooks Architecture)</li>
+  <li>React.js (Hooks)</li>
   <li>React Router</li>
   <li>Zustand (State Management)</li>
-  <li>Tailwind CSS (Mobile-First UI)</li>
-  <li>Axios (API Communication)</li>
+  <li>Tailwind CSS (Mobile-First)</li>
+  <li>Axios</li>
 </ul>
 
 <h3>Backend</h3>
@@ -126,26 +135,7 @@ This project demonstrates production-level architecture, authentication flow han
   <li>MongoDB + Mongoose</li>
   <li>JWT Authentication</li>
   <li>Razorpay Integration</li>
-  <li>Email Service (Order + OTP Handling)</li>
-</ul>
-
-<h3>Dev Tools</h3>
-<ul>
-  <li>Vite</li>
-  <li>ESLint</li>
-  <li>Git & GitHub</li>
-</ul>
-
-<hr/>
-
-<h2>🔐 Security Highlights</h2>
-
-<ul>
-  <li>OTP-based sensitive updates</li>
-  <li>Email verification on registration</li>
-  <li>Protected routes</li>
-  <li>Order access restricted to owner</li>
-  <li>Payment verification before order confirmation</li>
+  <li>Email Service (OTP + Transactional Emails)</li>
 </ul>
 
 <hr/>
@@ -153,35 +143,19 @@ This project demonstrates production-level architecture, authentication flow han
 <h2>⚙️ Current Status</h2>
 
 <p>
-✔ Stable core functionality  
-🔄 Continuous improvements in Testing, Validation, and UI/UX refinement  
+✔ Core functionality stable  
+🔄 Ongoing testing, validation, and UX improvements  
 </p>
 
 <hr/>
 
-<h2>👨‍💻 Why This Project Matters (For Clients & Recruiters)</h2>
+<h2>👨‍💻 Developer</h2>
 
-<ul>
-  <li>Not just UI — complete business logic implemented</li>
-  <li>Real authentication & payment flow</li>
-  <li>Production-style order lifecycle management</li>
-  <li>Email automation & invoice system</li>
-  <li>Mobile-first performance-focused approach</li>
-</ul>
-
-<hr/>
-
-<h2>📬 Contact</h2>
-
-<p>
-If you’re evaluating this project for hiring or business collaboration, this application demonstrates real-world full-stack implementation beyond tutorial-level code.
-</p>
-
-<p><b>Developer:</b> Md Faizan Ahmad</p>
-<p><b>Role:</b> Full-Stack Developer (Frontend-Focused)</p>
+<p><b>Md Faizan Ahmad</b></p>
+<p>Frontend-Focused Full-Stack Developer</p>
 
 <hr/>
 
 <p align="center">
-Built for real users. Designed for scalability. Structured for production.
+Built with production mindset. Structured for scalability. Designed for real users.
 </p>
