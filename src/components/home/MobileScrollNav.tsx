@@ -24,10 +24,7 @@ export default function MobileCategoryScroll() {
     return (
       <div className="lg:hidden flex gap-6 px-4 py-4 overflow-hidden bg-white">
         {[1, 2, 3, 4, 5].map((i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center gap-2 flex-shrink-0"
-          >
+          <div key={i} className="flex flex-col items-center gap-2 shrink-0">
             <div className="w-16 h-16 bg-gray-100 rounded-full animate-pulse" />
             <div className="h-3 w-12 bg-gray-100 rounded animate-pulse" />
           </div>
@@ -46,7 +43,7 @@ export default function MobileCategoryScroll() {
             <Link
               key={cat._id}
               to={`/category/${cat.slug}`}
-              className="flex flex-col items-center gap-2 flex-shrink-0 transition-transform active:scale-90"
+              className="flex flex-col items-center gap-2 shrink-0 transition-transform active:scale-90"
             >
               {/* Image Container */}
               <div

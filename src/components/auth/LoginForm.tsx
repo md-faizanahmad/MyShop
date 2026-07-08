@@ -52,7 +52,7 @@ export default function LoginForm({
   const isGlobalDisabled = loading || otpLoading || verifyLoading;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-50 to-sky-100 px-4 sm:px-6 lg:px-8 py-10">
+    <div className="min-h-screen flex items-center justify-center  px-4 sm:px-6 lg:px-8 py-10">
       <motion.div
         initial={{ opacity: 0, y: 22 }}
         animate={{ opacity: 1, y: 0 }}
