@@ -33,13 +33,13 @@ export default function TextField({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-xs font-medium text-neutral-600 dark:text-neutral-400 tracking-wide">
+      <label className="text-xs font-medium text-neutral-600  tracking-wide">
         {label}
       </label>
 
       <div className="relative flex items-center">
         {hasIcon && (
-          <span className="absolute left-3 text-neutral-400 dark:text-neutral-500 pointer-events-none">
+          <span className="absolute left-3 text-neutral-400  pointer-events-none">
             {icon}
           </span>
         )}
@@ -54,7 +54,7 @@ export default function TextField({
           autoComplete={autoComplete}
           inputMode={inputMode}
           maxLength={maxLength}
-          className={`w-full bg-neutral-50 text-sm text-neutral-900 border border-neutral-200 px-3 py-2 transition-colors placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:bg-white dark:bg-neutral-900/50 dark:text-neutral-50 dark:border-neutral-800 dark:focus:border-neutral-100 dark:focus:bg-neutral-900 ${
+          className={`w-full bg-neutral-50 text-sm text-neutral-900 border border-neutral-200 px-3 py-2 transition-colors placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:bg-white  ${
             hasIcon ? "pl-9" : ""
           } ${className}`}
         />

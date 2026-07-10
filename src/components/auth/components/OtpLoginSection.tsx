@@ -31,7 +31,7 @@ export default function OtpLoginSection({
         type="button"
         onClick={onSendOtp}
         disabled={otpLoading || !email}
-        className="flex w-full items-center justify-center gap-2 border border-neutral-200 bg-white py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-50 disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:bg-neutral-800"
+        className="flex w-full items-center justify-center gap-2 border border-neutral-200 bg-white py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-50 disabled:opacity-50 "
       >
         <KeyRound size={14} className={otpLoading ? "animate-pulse" : ""} />
         <span>{otpLoading ? "Sending OTP" : "Login with OTP"}</span>
@@ -40,7 +40,7 @@ export default function OtpLoginSection({
   }
 
   return (
-    <div className="space-y-4 pt-2 border-t border-neutral-100 dark:border-neutral-800">
+    <div className="space-y-4 pt-2 border-t border-neutral-100 d">
       <TextField
         label="Security Verification Code"
         value={otp}
@@ -55,7 +55,7 @@ export default function OtpLoginSection({
         type="button"
         onClick={onVerifyOtp}
         disabled={verifyLoading}
-        className="w-full bg-neutral-900 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:bg-neutral-200 disabled:text-neutral-400 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200 dark:disabled:bg-neutral-800 dark:disabled:text-neutral-600"
+        className="w-full bg-neutral-900 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:bg-neutral-200 disabled:text-neutral-400 "
       >
         {verifyLoading ? "Verifying..." : "Confirm Verification Code"}
       </button>

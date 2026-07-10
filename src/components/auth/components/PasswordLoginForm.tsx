@@ -31,7 +31,7 @@ export default function PasswordLoginForm({
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-neutral-900 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:bg-neutral-200 disabled:text-neutral-400 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200 dark:disabled:bg-neutral-800 dark:disabled:text-neutral-600"
+        className="w-full bg-neutral-900 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:bg-neutral-200 disabled:text-neutral-400 "
       >
         {loading ? "Authenticating..." : "Continue with Password"}
       </button>
