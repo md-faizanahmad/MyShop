@@ -34,7 +34,7 @@ export default function OtpLoginSection({
         className="flex w-full items-center justify-center gap-2 border border-neutral-200 bg-white py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-50 disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:bg-neutral-800"
       >
         <KeyRound size={14} className={otpLoading ? "animate-pulse" : ""} />
-        <span>{otpLoading ? "Generating Token..." : "Request Secure OTP"}</span>
+        <span>{otpLoading ? "Sending OTP" : "Login with OTP"}</span>
       </button>
     );
   }
