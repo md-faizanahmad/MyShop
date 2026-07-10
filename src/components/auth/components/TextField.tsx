@@ -1,5 +1,3 @@
-// src/features/auth/components/TextField.tsx
-
 import type { ChangeEvent, ReactNode } from "react";
 
 interface TextFieldProps {
@@ -34,14 +32,16 @@ export default function TextField({
   const hasIcon = Boolean(icon);
 
   return (
-    <div>
-      <label className="mb-1 block text-sm font-medium text-gray-700">
+    <div className="flex flex-col gap-1.5">
+      <label className="text-xs font-medium text-neutral-600 dark:text-neutral-400 tracking-wide">
         {label}
       </label>
 
-      <div className="relative">
+      <div className="relative flex items-center">
         {hasIcon && (
-          <span className="absolute left-3 top-2.5 text-gray-400">{icon}</span>
+          <span className="absolute left-3 text-neutral-400 dark:text-neutral-500 pointer-events-none">
+            {icon}
+          </span>
         )}
 
         <input
@@ -54,8 +54,8 @@ export default function TextField({
           autoComplete={autoComplete}
           inputMode={inputMode}
           maxLength={maxLength}
-          className={`w-full rounded-lg border border-gray-300 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500 ${
-            hasIcon ? "pl-10 pr-3.5" : "px-4"
+          className={`w-full bg-neutral-50 text-sm text-neutral-900 border border-neutral-200 px-3 py-2 transition-colors placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 focus:bg-white dark:bg-neutral-900/50 dark:text-neutral-50 dark:border-neutral-800 dark:focus:border-neutral-100 dark:focus:bg-neutral-900 ${
+            hasIcon ? "pl-9" : ""
           } ${className}`}
         />
       </div>

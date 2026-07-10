@@ -1,20 +1,14 @@
-// src/features/auth/components/OtpLoginSection.tsx
-
 import type { ChangeEvent } from "react";
 import { KeyRound } from "lucide-react";
-
 import TextField from "./TextField";
 
 interface OtpLoginSectionProps {
   email: string;
   otp: string;
-
   otpSent: boolean;
   resendTimer: number;
-
   otpLoading: boolean;
   verifyLoading: boolean;
-
   onOtpChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSendOtp: () => void;
   onVerifyOtp: () => void;
@@ -37,49 +31,50 @@ export default function OtpLoginSection({
         type="button"
         onClick={onSendOtp}
         disabled={otpLoading || !email}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 py-3 font-medium text-white transition-colors hover:bg-black disabled:opacity-60"
+        className="flex w-full items-center justify-center gap-2 border border-neutral-200 bg-white py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-50 disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:bg-neutral-800"
       >
-        <KeyRound size={18} className={otpLoading ? "animate-pulse" : ""} />
-
-        {otpLoading ? "Sending OTP..." : "Login with OTP"}
+        <KeyRound size={14} className={otpLoading ? "animate-pulse" : ""} />
+        <span>{otpLoading ? "Generating Token..." : "Request Secure OTP"}</span>
       </button>
     );
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 pt-2 border-t border-neutral-100 dark:border-neutral-800">
       <TextField
-        label="Enter OTP"
+        label="Security Verification Code"
         value={otp}
         onChange={onOtpChange}
-        placeholder="******"
+        placeholder="••••••"
         maxLength={6}
         inputMode="numeric"
-        className="text-center tracking-[0.35em]"
+        className="text-center tracking-[0.4em] font-mono text-base"
       />
 
       <button
         type="button"
         onClick={onVerifyOtp}
         disabled={verifyLoading}
-        className="w-full rounded-lg bg-green-600 py-3 text-white transition-colors hover:bg-green-700 disabled:bg-gray-400"
+        className="w-full bg-neutral-900 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:bg-neutral-200 disabled:text-neutral-400 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200 dark:disabled:bg-neutral-800 dark:disabled:text-neutral-600"
       >
-        {verifyLoading ? "Verifying..." : "Verify OTP"}
+        {verifyLoading ? "Verifying..." : "Confirm Verification Code"}
       </button>
 
-      <div className="text-center text-sm">
+      <div className="text-center text-xs">
         {resendTimer > 0 ? (
-          <p className="text-gray-500">
-            Resend OTP in{" "}
-            <span className="font-semibold text-gray-700">{resendTimer}s</span>
+          <p className="text-neutral-400">
+            Resend operational window locks for{" "}
+            <span className="font-mono font-medium text-neutral-600 dark:text-neutral-300">
+              {resendTimer}s
+            </span>
           </p>
         ) : (
           <button
             type="button"
             onClick={onSendOtp}
-            className="font-semibold text-sky-600 hover:underline"
+            className="text-neutral-600 font-medium hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors underline underline-offset-4"
           >
-            Resend OTP
+            Request alternative token
           </button>
         )}
       </div>

@@ -1,5 +1,3 @@
-// src/features/auth/components/AuthCard.tsx
-
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 
@@ -9,12 +7,12 @@ interface AuthCardProps {
 
 export default function AuthCard({ children }: AuthCardProps) {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-neutral-50 px-4 py-12 antialiased dark:bg-neutral-950">
       <motion.div
-        initial={{ opacity: 0, y: 22 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="w-full max-w-md rounded-2xl border border-sky-50 bg-white px-5 py-6 shadow-xl sm:max-w-lg sm:px-8 sm:py-8"
+        initial={{ opacity: 0, scale: 0.99 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2, ease: "easeInOut" }}
+        className="w-full max-w-[400px] border border-neutral-200 bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.05)] dark:border-neutral-800 dark:bg-neutral-900"
       >
         {children}
       </motion.div>
