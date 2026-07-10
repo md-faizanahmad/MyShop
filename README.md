@@ -1,5 +1,5 @@
 <h1 align="center" style="color:#0f172a;">
-🛒 MyAZStore – Modern Production-Ready E-Commerce Platform
+🛒 MyAZStore – E-Commerce Platform
 </h1>
 
 <p align="center" style="color:#475569; font-size:16px;">
