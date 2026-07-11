@@ -193,14 +193,14 @@ export default function PriceCard({
           <div className="flex items-start gap-2 text-xs text-zinc-600">
             <CheckCircle2
               size={13}
-              className="text-emerald-700 mt-0.5 flex-shrink-0"
+              className="text-emerald-700 mt-0.5 shrink-0"
             />
             <span>Extra ₹500 instant bank discount applicable at checkout</span>
           </div>
           <div className="flex items-start gap-2 text-xs text-zinc-600">
             <CheckCircle2
               size={13}
-              className="text-emerald-700 mt-0.5 flex-shrink-0"
+              className="text-emerald-700 mt-0.5 shrink-0"
             />
             <span>No Cost EMI options available for this selection</span>
           </div>

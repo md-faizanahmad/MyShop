@@ -101,7 +101,7 @@ export default function ProductDetails() {
   const galleryImages: string[] = [
     product.imageUrl,
     ...(product.images || []).map((img) =>
-      typeof img === "string" ? img : img?.url
+      typeof img === "string" ? img : img?.url,
     ),
   ].filter(Boolean) as string[];
 
@@ -149,8 +149,6 @@ export default function ProductDetails() {
 
           {/* Right */}
           <div className="flex flex-col gap-6">
-            <ProductDescription description={product.description ?? ""} />
-
             <PriceCard
               price={product.price}
               discountedPrice={product.discountPrice}
@@ -167,6 +165,7 @@ export default function ProductDetails() {
             <ProductSpecifications
               specifications={product.specifications ?? {}}
             />
+            <ProductDescription description={product.description ?? ""} />
           </div>
         </div>
 
