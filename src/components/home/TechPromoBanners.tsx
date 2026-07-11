@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Laptop, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
 
-// These would normally come from your API fetch
 const products = [
   {
     name: "Nothing 3a",
@@ -12,7 +11,7 @@ const products = [
       "https://res.cloudinary.com/daqb5wglu/image/upload/q_auto,f_auto,w_auto,dpr_auto/v1765303201/MyStore/products/file_sys9qq.png",
     theme: "from-zinc-900 to-zinc-800",
     accent: "text-blue-400",
-    icon: <Smartphone size={16} />,
+    icon: <Smartphone size={12} />,
   },
   {
     name: "Mac Atlas",
@@ -22,64 +21,67 @@ const products = [
       "https://res.cloudinary.com/daqb5wglu/image/upload/q_auto,f_auto,w_auto,dpr_auto/v1765302805/MyStore/products/file_micrrn.jpg",
     theme: "from-blue-950 to-zinc-950",
     accent: "text-emerald-400",
-    icon: <Laptop size={16} />,
+    icon: <Laptop size={12} />,
   },
 ];
 
 export default function TechPromoBanners() {
   return (
-    <section className="py-12 px-6 bg-white">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+    <section className="py-12 px-4  antialiased cursor-pointer">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
         {products.map((product, index) => (
           <motion.div
             key={product.slug}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.99 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.6 }}
-            className={`group relative h-[450px] sm:h-[550px] overflow-hidden rounded-[3rem] bg-linear-to-br ${product.theme} shadow-2xl shadow-zinc-200`}
+            transition={{ delay: index * 0.05, duration: 0.3 }}
+            className="group flex flex-col justify-between bg-white p-5 transition-colors hover:border-neutral-300"
           >
-            {/* PRODUCT IMAGE - Deep Scale Effect */}
-            <div className="absolute inset-0 p-12 sm:p-14 flex items-center justify-center">
-              <img
-                src={product.imageUrl}
-                alt={product.name}
-                className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-2 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-              />
-            </div>
-
-            {/* OVERLAYS */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent transition-opacity group-hover:opacity-90" />
-
-            {/* CONTENT */}
-            <div className="absolute inset-0 p-10 flex flex-col justify-end">
-              <div className={`flex items-center gap-2 mb-3 ${product.accent}`}>
+            {/* TOP BAR: TECHNICAL SPEC METADATA */}
+            <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
+              <div className="flex items-center gap-1.5 text-neutral-400">
                 {product.icon}
-                <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+                <span className="text-[10px] font-mono tracking-wider uppercase font-medium">
                   {product.category}
                 </span>
               </div>
+              <span className="text-[10px] font-mono text-neutral-300">
+                0{index + 1}
+              </span>
+            </div>
 
-              <h3 className="text-4xl sm:text-5xl font-black text-white tracking-tighter mb-4 leading-none">
-                {product.name}
-              </h3>
+            {/* MID SECTION: CONTROLLED IMAGE FRAME */}
+            <div className="my-6 aspect-video w-full overflow-hidden bg-neutral-50 flex items-center justify-center p-6 border border-neutral-100">
+              <img
+                src={product.imageUrl}
+                alt={product.name}
+                className="max-h-full mix-blend-darken max-w-full object-contain filter contrast-[1.02] transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+
+            {/* BOTTOM SECTION: NAVIGATION & DETAILS */}
+            <div className="flex items-end justify-between gap-4 pt-2">
+              <div className="flex flex-col gap-0.5">
+                <h3 className="text-base font-semibold tracking-tight text-neutral-900">
+                  {product.name}
+                </h3>
+                <p className="text-xs text-neutral-400">
+                  Premium hardware specifications.
+                </p>
+              </div>
 
               <Link
                 to={`/category/${product.category}/product/${product.slug}`}
-                className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all hover:bg-white hover:text-black active:scale-95 w-fit"
+                className="inline-flex h-8 items-center gap-2 bg-neutral-900 px-3 text-xs font-medium text-white transition-colors hover:bg-neutral-800 "
               >
-                Learn More
+                <span>View Details</span>
                 <ArrowRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-1"
+                  size={12}
+                  className="transition-transform group-hover:translate-x-0.5"
                 />
               </Link>
             </div>
-
-            {/* DECORATIVE AMBIENT GLOW */}
-            <div
-              className={`absolute -top-24 -right-24 w-64 h-64 blur-[100px] opacity-20 rounded-full bg-white transition-opacity group-hover:opacity-40`}
-            />
           </motion.div>
         ))}
       </div>
