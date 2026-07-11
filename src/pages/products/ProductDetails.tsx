@@ -20,6 +20,7 @@ import ReviewForm from "../../shared/ReviewForm";
 import ReviewList from "../../shared/ReviewList";
 import SuggestedProducts from "../../shared/SuggestedProducts";
 import ProductDescription from "./ProductDescription";
+import ProductName from "./ProductName";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -149,6 +150,7 @@ export default function ProductDetails() {
 
           {/* Right */}
           <div className="flex flex-col gap-6">
+            <ProductName name={product.name} />
             <PriceCard
               price={product.price}
               discountedPrice={product.discountPrice}
