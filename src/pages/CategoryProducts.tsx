@@ -320,7 +320,7 @@ export default function CategoryProducts() {
   return (
     <div className="min-h-screen ">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-40 bg-white shadow-sm">
+      <div className="sticky top-0 z-40 bg-white ">
         <div className="container mx-auto px-4 pt-3 pb-2 flex flex-col gap-3">
           {/* Title + Sort */}
           <div className="flex items-center justify-between gap-3">
@@ -332,7 +332,7 @@ export default function CategoryProducts() {
             </h2>
 
             {/* Sort Dropdown */}
-            <div className="relative">
+            <div className="relative ">
               <button
                 onClick={() => setIsSortOpen(!isSortOpen)}
                 className="flex items-center gap-2 px-4 py-2.5  rounded-lg text-sm font-medium"
@@ -353,7 +353,7 @@ export default function CategoryProducts() {
                     className="fixed inset-0 z-10"
                     onClick={() => setIsSortOpen(false)}
                   />
-                  <div className="absolute right-0 mt-1 w-48 bg-white border border-zinc-200 shadow-sm z-20 antialiased">
+                  <div className="absolute right-0 mt-1 w-48  border border-zinc-200 shadow-sm z-20 antialiased">
                     {sortOptions.map((option) => (
                       <button
                         key={option.value}
@@ -384,7 +384,7 @@ export default function CategoryProducts() {
           {/* Subcategory Nav (only if main category has subs) */}
           {activeCategory?.subcategories &&
             activeCategory.subcategories.length > 0 && (
-              <div className="flex gap-3 overflow-x-auto pb-2 ">
+              <div className="flex gap-3  overflow-x-auto pb-2 ">
                 {/* All tab -> main category */}
                 <Link
                   to={`/category/${activeCategory.slug}`}
@@ -408,13 +408,17 @@ export default function CategoryProducts() {
                     <Link
                       key={sub._id}
                       to={`/category/${activeCategory.slug}/sub/${sub.slug}`}
-                      className={`px-3 py-1.5 text-sm rounded-full border whitespace-nowrap ${
+                      className={`px-3 py-2 text-xs font-medium transition-all whitespace-nowrap border-b-2 flex items-center gap-1.5 ${
                         active
-                          ? "bg-blue-600 text-white border-blue-600"
-                          : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
+                          ? "border-red-700 text-zinc-900 font-bold"
+                          : "border-transparent text-zinc-500 hover:text-zinc-900 hover:border-zinc-200"
                       }`}
                     >
-                      {sub.name}
+                      <span>{sub.name}</span>
+
+                      {active && (
+                        <span className="w-1 h-1 bg-red-700 rounded-full" />
+                      )}
                     </Link>
                   );
                 })}
@@ -427,7 +431,7 @@ export default function CategoryProducts() {
       <div className="container mx-auto px-4 py-6 pb-20 md:pb-6">
         {sortedProducts.length === 0 ? (
           <div className="text-center py-24">
-            <div className="bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32 mx-auto mb-6" />
+            <div className=" border-2 border-dashed rounded-xl w-32 h-32 mx-auto mb-6" />
             <p className="text-xl font-medium text-gray-700">
               No products found
             </p>
