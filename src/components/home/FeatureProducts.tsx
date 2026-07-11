@@ -9,18 +9,18 @@ function FeatureProducts() {
   const featuredProducts = data?.featuredProducts ?? [];
 
   return (
-    <section className="py-12 sm:py-20 bg-white">
+    <section className="py-12 sm:py-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* --- HEADER SECTION --- */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-2">
-            <span className="text-[11px] font-black uppercase tracking-[0.3em] text-blue-600">
+            <span className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-400">
               Curated Selection
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight">
               Featured Products
             </h2>
-            <div className="h-1 w-12 bg-blue-600 rounded-full" />
+            <div className="h-1 w-12 bg-blue-400 rounded-full" />
           </div>
 
           <Link
