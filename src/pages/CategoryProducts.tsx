@@ -388,13 +388,18 @@ export default function CategoryProducts() {
                 {/* All tab -> main category */}
                 <Link
                   to={`/category/${activeCategory.slug}`}
-                  className={`px-3 py-1.5 text-sm rounded-full  whitespace-nowrap ${
+                  className={`px-3 py-2 text-xs font-medium transition-all whitespace-nowrap border-b-2 flex items-center gap-1.5 ${
                     !subSlug
-                      ? "bg-blue-600 text-white border-blue-600"
-                      : "bg-white text-gray-700 border-gray-200"
+                      ? "border-red-700 text-zinc-900 font-bold"
+                      : "border-transparent text-zinc-500 hover:text-zinc-900 hover:border-zinc-200"
                   }`}
                 >
-                  All
+                  <span>All Items</span>
+
+                  {/* Subtle indicator dot matching the premium store look */}
+                  {!subSlug && (
+                    <span className="w-1 h-1 bg-red-700 rounded-full" />
+                  )}
                 </Link>
 
                 {activeCategory.subcategories.map((sub) => {
