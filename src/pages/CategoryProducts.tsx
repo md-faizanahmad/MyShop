@@ -232,7 +232,7 @@ export default function CategoryProducts() {
     queryKey: ["category-products", slugForProducts],
     queryFn: async () => {
       const res = await axios.get(
-        `${API}/v1/products/category/${slugForProducts}`
+        `${API}/v1/products/category/${slugForProducts}`,
       );
       return res.data.products || [];
     },
@@ -248,7 +248,7 @@ export default function CategoryProducts() {
     queryKey: ["categories-with-subs"],
     queryFn: async () => {
       const res = await axios.get<{ categories: Category[] }>(
-        `${API}/v1/categories?withSubs=true`
+        `${API}/v1/categories?withSubs=true`,
       );
       return res.data.categories || [];
     },
@@ -318,7 +318,7 @@ export default function CategoryProducts() {
 
   // -------------------------------- RENDER --------------------------------
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       {/* Sticky Header */}
       <div className="sticky top-0 z-40 bg-white shadow-sm">
         <div className="container mx-auto px-4 pt-3 pb-2 flex flex-col gap-3">
@@ -335,7 +335,7 @@ export default function CategoryProducts() {
             <div className="relative">
               <button
                 onClick={() => setIsSortOpen(!isSortOpen)}
-                className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 rounded-lg text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2.5  rounded-lg text-sm font-medium"
               >
                 <SlidersHorizontal className="w-4 h-4" />
                 <span className="hidden sm:inline">Sort by:</span>
@@ -353,7 +353,7 @@ export default function CategoryProducts() {
                     className="fixed inset-0 z-10"
                     onClick={() => setIsSortOpen(false)}
                   />
-                  <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-xl z-20 overflow-hidden">
+                  <div className="absolute right-0 mt-1 w-48 bg-white border border-zinc-200 shadow-sm z-20 antialiased">
                     {sortOptions.map((option) => (
                       <button
                         key={option.value}
@@ -361,13 +361,18 @@ export default function CategoryProducts() {
                           setSortBy(option.value);
                           setIsSortOpen(false);
                         }}
-                        className={`w-full text-left px-5 py-3 text-sm hover:bg-gray-100 ${
+                        className={`w-full text-left px-3 py-2 text-xs transition-colors hover:bg-zinc-50 flex items-center justify-between ${
                           sortBy === option.value
-                            ? "bg-gray-100 font-medium"
-                            : ""
+                            ? "bg-zinc-50 font-bold text-zinc-900"
+                            : "text-zinc-600"
                         }`}
                       >
-                        {option.label}
+                        <span>{option.label}</span>
+
+                        {/* Subtle indicator for the selected filter state */}
+                        {sortBy === option.value && (
+                          <span className="w-1 h-1 bg-emerald-700 rounded-full" />
+                        )}
                       </button>
                     ))}
                   </div>
@@ -379,11 +384,11 @@ export default function CategoryProducts() {
           {/* Subcategory Nav (only if main category has subs) */}
           {activeCategory?.subcategories &&
             activeCategory.subcategories.length > 0 && (
-              <div className="flex gap-3 overflow-x-auto pb-2 border-b border-gray-200">
+              <div className="flex gap-3 overflow-x-auto pb-2 ">
                 {/* All tab -> main category */}
                 <Link
                   to={`/category/${activeCategory.slug}`}
-                  className={`px-3 py-1.5 text-sm rounded-full border whitespace-nowrap ${
+                  className={`px-3 py-1.5 text-sm rounded-full  whitespace-nowrap ${
                     !subSlug
                       ? "bg-blue-600 text-white border-blue-600"
                       : "bg-white text-gray-700 border-gray-200"

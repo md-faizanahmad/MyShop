@@ -81,7 +81,7 @@ export default function CategoryQuickLinks({
     return (
       <section className="py-8 lg:py-12">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="h-4 w-40 bg-zinc-100 rounded-full mb-8 animate-pulse" />
+          <div className="h-4 w-40  rounded-full mb-8 animate-pulse" />
           <div className="flex gap-4 overflow-hidden sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {Array.from({ length: limit }).map((_, i) => (
               <div
@@ -98,12 +98,12 @@ export default function CategoryQuickLinks({
   const list = categories.slice(0, limit);
 
   return (
-    <section className="py-8 lg:py-12 bg-white overflow-hidden">
+    <section className="py-8 lg:py-12  overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Section */}
         <div className="flex items-end justify-between mb-8">
           <div className="space-y-1">
-            <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-600">
+            <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-sky-600">
               Collections
             </h2>
             <h3 className="text-2xl font-bold text-zinc-900 tracking-tight">
@@ -143,7 +143,7 @@ export default function CategoryQuickLinks({
                     {cat.name}
                   </p>
                   <div className="flex items-center gap-1.5 overflow-hidden">
-                    <span className="h-px w-0 group-hover:w-4 bg-blue-400 transition-all duration-300" />
+                    <span className="h-px w-0 group-hover:w-4 bg-sky-400 transition-all duration-300" />
                     <span className="text-[10px] uppercase font-black tracking-widest text-blue-400 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                       Explore
                     </span>
