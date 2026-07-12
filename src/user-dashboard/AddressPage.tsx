@@ -65,7 +65,7 @@ export default function AddressesPage() {
       await axios.put(
         `${API}/v1/addresses/default/${id}`,
         {},
-        { withCredentials: true }
+        { withCredentials: true },
       );
       toast.success("Default address updated");
       loadAddresses();
@@ -84,15 +84,17 @@ export default function AddressesPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center lg:text-left mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="w-full bg-transparent pb-3 border-b border-zinc-200 mb-5 text-left antialiased"
         >
-          <h1 className="text-4xl font-bold text-gray-900 flex items-center gap-3 justify-center lg:justify-start">
-            <MapPin className="text-blue-600" size={40} />
-            My Addresses
-          </h1>
-          <p className="text-gray-600 mt-2">Manage your delivery locations</p>
+          <h5 className="text-sm font-bold text-zinc-900 flex items-center gap-2 justify-start uppercase tracking-wider">
+            {/* <MapPin className="text-blue-600" size={40} /> */}
+            Your Addresses
+          </h5>
+          <p className="text-xs text-zinc-500 mt-1 font-normal">
+            Manage your delivery locations
+          </p>
         </motion.div>
 
         {/* Add Button */}
@@ -104,9 +106,9 @@ export default function AddressesPage() {
         >
           <button
             onClick={() => setIsAddOpen(true)}
-            className="inline-flex items-center gap-3 bg-linear-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition"
+            className="inline-flex items-center gap-3 bg-linear-to-r from-green-600 to-emerald-600 text-white px-4 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition"
           >
-            <Plus size={24} />
+            <Plus size={20} />
             Add New Address
           </button>
         </motion.div>
