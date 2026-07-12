@@ -145,7 +145,7 @@ import {
   Heart,
   Package,
   LogOut,
-  Pin,
+  // Pin,
   ChevronDown,
   LogIn,
   UserPlus,
@@ -216,17 +216,17 @@ export default function UserMenuView({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute right-0 top-full mt-2 w-52 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-zinc-100 overflow-hidden z-100"
+            className="absolute right-0 top-full mt-2 w-40 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-zinc-100 overflow-hidden z-100"
             role="menu"
           >
             {isLoggedIn ? (
               <div className="flex flex-col">
                 {/* Minimalist Identity Header */}
                 <div className="px-4 py-3 bg-zinc-50/50 border-b border-zinc-100">
-                  <p className="text-[12px] font-bold text-zinc-900 truncate leading-none mb-1">
+                  <p className="text-[8px] font-bold text-zinc-900 truncate leading-none mb-1">
                     {user?.name}
                   </p>
-                  <p className="text-[10px] text-zinc-500 truncate font-medium">
+                  <p className="text-[8px] text-zinc-500 truncate font-medium">
                     {user?.email}
                   </p>
                 </div>
@@ -248,11 +248,11 @@ export default function UserMenuView({
                     icon={<Heart size={14} />}
                     label="Wishlist"
                   />
-                  <Item
+                  {/* <Item
                     to="/addresses"
                     icon={<Pin size={14} />}
                     label="Addresses"
-                  />
+                  /> */}
                 </div>
 
                 <div className="border-t border-zinc-100 my-1" />
@@ -272,7 +272,7 @@ export default function UserMenuView({
               </div>
             ) : (
               <div className="p-1.5 space-y-0.5">
-                <div className="px-3 py-2 mb-1">
+                <div className="px-3 py-1">
                   <p className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">
                     Welcome
                   </p>
