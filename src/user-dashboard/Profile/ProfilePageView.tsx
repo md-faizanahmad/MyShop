@@ -217,9 +217,9 @@ export default function ProfilePageView({
               Portal
             </span>
             <span className="text-zinc-300 text-xs">/</span> */}
-            <h1 className="text-xs font-bold uppercase tracking-wider text-zinc-900">
+            <h5 className="text-xs font-bold uppercase tracking-wider text-zinc-900">
               {user.name} Profile
-            </h1>
+            </h5>
           </div>
           {/* <button className="flex items-center gap-1.5 px-2.5 py-1 border border-zinc-200 text-[11px] font-medium text-zinc-600 bg-white hover:bg-zinc-50 transition-colors">
             <Settings size={12} />
