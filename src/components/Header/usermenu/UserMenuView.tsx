@@ -223,12 +223,12 @@ export default function UserMenuView({
               <div className="flex flex-col">
                 {/* Minimalist Identity Header */}
                 <div className="px-4 py-3 bg-zinc-50/50 border-b border-zinc-100">
-                  <p className="text-[8px] font-bold text-zinc-900 truncate leading-none mb-1">
+                  <p className="text-[12px] font-bold text-zinc-900 truncate leading-none mb-1">
                     {user?.name}
                   </p>
-                  <p className="text-[8px] text-zinc-500 truncate font-medium">
+                  {/* <p className="text-[8px] text-zinc-500 truncate font-medium">
                     {user?.email}
-                  </p>
+                  </p> */}
                 </div>
 
                 {/* Items with reduced padding and smaller font */}

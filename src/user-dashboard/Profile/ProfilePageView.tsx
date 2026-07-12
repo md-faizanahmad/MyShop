@@ -181,7 +181,6 @@ import {
   User,
   Mail,
   Phone,
-  Settings,
   Package,
   MapPin,
   ChevronRight,
