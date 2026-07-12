@@ -255,7 +255,7 @@ export default function AddressesPage() {
             </AnimatePresence>
           </motion.div>
         )} */}
-        /// new design
+        {/* /// new design */}
         {!loading && addresses.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -272,7 +272,7 @@ export default function AddressesPage() {
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ delay: index * 0.05 }}
                   className={`relative bg-white border p-4 transition-colors ${
-                    addr.isDefault ? "border-zinc-900" : "border-zinc-200"
+                    addr.isDefault ? "border-sky-500900" : "border-zinc-200"
                   }`}
                 >
                   {/* Top Identifier Row */}
@@ -305,7 +305,7 @@ export default function AddressesPage() {
                     <span className="font-mono">{addr.pincode}</span>
                     {addr.landmark && (
                       <span className="block text-zinc-400 mt-0.5 text-[11px]">
-                        Ref: Near {addr.landmark}
+                        Near: Near {addr.landmark}
                       </span>
                     )}
                   </p>
@@ -314,18 +314,18 @@ export default function AddressesPage() {
                   <div className="flex flex-wrap items-center gap-3 mt-4 pt-3 border-t border-zinc-100">
                     <button
                       onClick={() => openEdit(addr)}
-                      className="text-[11px] font-bold text-zinc-600 hover:text-zinc-900 transition-colors flex items-center gap-1 uppercase"
+                      className="text-[9px] font-bold text-zinc-600 hover:text-zinc-900 transition-colors flex items-center gap-1 uppercase"
                     >
                       <Edit size={11} />
-                      <span>Modify</span>
+                      <span>Edit</span>
                     </button>
 
                     <button
                       onClick={() => deleteAddress(addr._id)}
-                      className="text-[11px] font-bold text-red-700 hover:text-red-800 transition-colors flex items-center gap-1 uppercase"
+                      className="text-[9px] font-bold text-red-700 hover:text-red-800 transition-colors flex items-center gap-1 uppercase"
                     >
                       <Trash2 size={11} />
-                      <span>Remove</span>
+                      <span>Delete</span>
                     </button>
 
                     {!addr.isDefault && (
