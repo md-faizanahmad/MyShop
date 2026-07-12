@@ -188,7 +188,7 @@ export default function UserMenuView({
         className="flex items-center gap-1.5 p-1 rounded-full hover:bg-zinc-100 transition-colors group select-none"
       >
         <div className="relative">
-          <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-white ring-2 ring-offset-1 ring-transparent group-hover:ring-zinc-200 transition-all">
+          <div className="w-8 h-8 rounded-full bg-zinc-900/20 flex items-center justify-center text-black ring-2 ring-offset-1 ring-transparent group-hover:ring-zinc-200 transition-all">
             {isLoggedIn ? (
               <span className="text-[11px] font-bold tracking-tight">
                 {firstLetter}
@@ -216,7 +216,7 @@ export default function UserMenuView({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute right-0 top-full mt-2 w-40 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-zinc-100 overflow-hidden z-100"
+            className="absolute right-0 top-full  w-40 bg-white  shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-zinc-100 overflow-hidden z-100"
             role="menu"
           >
             {isLoggedIn ? (
@@ -232,7 +232,7 @@ export default function UserMenuView({
                 </div>
 
                 {/* Items with reduced padding and smaller font */}
-                <div className="p-1.5 space-y-0.5">
+                <div className="p-1 space-y-0.5">
                   <Item
                     to="/profile"
                     icon={<User size={14} />}
@@ -271,7 +271,7 @@ export default function UserMenuView({
                 </div>
               </div>
             ) : (
-              <div className="p-1.5 space-y-0.5">
+              <div className="p-1 space-y-0.5">
                 <div className="px-3 py-1">
                   <p className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">
                     Welcome
@@ -281,7 +281,7 @@ export default function UserMenuView({
                 <Item
                   to="/signup"
                   icon={<UserPlus size={14} />}
-                  label="Join Store"
+                  label="New User"
                 />
               </div>
             )}
