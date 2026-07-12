@@ -491,7 +491,7 @@ export default function ProductCard({ product }: Props) {
         ) : (
           <>
             <ShoppingCart size={12} strokeWidth={2.5} />
-            <span>{isStock ? "Unavailable" : "Add to Order"}</span>
+            <span>{isStock ? "Unavailable" : "Add to Cart"}</span>
           </>
         )}
       </button>
