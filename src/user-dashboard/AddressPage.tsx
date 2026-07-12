@@ -96,23 +96,21 @@ export default function AddressesPage() {
             Manage your delivery locations
           </p>
         </motion.div>
-
         {/* Add Button */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="mb-8"
+          className="mb-4 text-left antialiased"
         >
           <button
             onClick={() => setIsAddOpen(true)}
-            className="inline-flex items-center gap-3 bg-linear-to-r from-green-600 to-emerald-600 text-white px-4 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition"
+            className="inline-flex items-center gap-2 h-9 px-3 border border-zinc-300 bg-white text-zinc-900 text-xs font-bold uppercase tracking-wider hover:bg-zinc-50 transition-colors select-none"
           >
-            <Plus size={20} />
+            <Plus size={13} strokeWidth={2.5} />
             Add New Address
           </button>
         </motion.div>
-
         {/* Loading State */}
         {loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -140,7 +138,6 @@ export default function AddressesPage() {
             ))}
           </div>
         )}
-
         {/* Empty State */}
         {!loading && addresses.length === 0 && (
           <motion.div
@@ -166,9 +163,8 @@ export default function AddressesPage() {
             </div>
           </motion.div>
         )}
-
         {/* Addresses List */}
-        {!loading && addresses.length > 0 && (
+        {/* {!loading && addresses.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -253,6 +249,93 @@ export default function AddressesPage() {
                         </button>
                       )}
                     </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )} */}
+        /// new design
+        {!loading && addresses.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left antialiased"
+          >
+            <AnimatePresence mode="popLayout">
+              {addresses.map((addr, index) => (
+                <motion.div
+                  key={addr._id}
+                  layout
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ delay: index * 0.05 }}
+                  className={`relative bg-white border p-4 transition-colors ${
+                    addr.isDefault ? "border-zinc-900" : "border-zinc-200"
+                  }`}
+                >
+                  {/* Top Identifier Row */}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[9px] font-mono uppercase tracking-wider text-zinc-400">
+                      Address Location Block
+                    </span>
+                    {addr.isDefault && (
+                      <span className="bg-zinc-900 text-white text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 font-bold flex items-center gap-1">
+                        <Home size={10} />
+                        Default Selection
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Customer Shipping Credentials */}
+                  <div className="space-y-1">
+                    <h3 className="text-xs font-bold text-zinc-900 uppercase tracking-wide">
+                      {addr.fullName}
+                    </h3>
+                    <p className="text-xs font-mono text-zinc-500">
+                      {addr.phone}
+                    </p>
+                  </div>
+
+                  {/* Postal Address Geometry Block */}
+                  <p className="text-xs text-zinc-600 mt-2.5 leading-relaxed font-normal">
+                    {addr.street}, {addr.city},<br />
+                    {addr.state} —{" "}
+                    <span className="font-mono">{addr.pincode}</span>
+                    {addr.landmark && (
+                      <span className="block text-zinc-400 mt-0.5 text-[11px]">
+                        Ref: Near {addr.landmark}
+                      </span>
+                    )}
+                  </p>
+
+                  {/* Retail Control Trigger Row */}
+                  <div className="flex flex-wrap items-center gap-3 mt-4 pt-3 border-t border-zinc-100">
+                    <button
+                      onClick={() => openEdit(addr)}
+                      className="text-[11px] font-bold text-zinc-600 hover:text-zinc-900 transition-colors flex items-center gap-1 uppercase"
+                    >
+                      <Edit size={11} />
+                      <span>Modify</span>
+                    </button>
+
+                    <button
+                      onClick={() => deleteAddress(addr._id)}
+                      className="text-[11px] font-bold text-red-700 hover:text-red-800 transition-colors flex items-center gap-1 uppercase"
+                    >
+                      <Trash2 size={11} />
+                      <span>Remove</span>
+                    </button>
+
+                    {!addr.isDefault && (
+                      <button
+                        onClick={() => setDefault(addr._id)}
+                        className="text-[11px] font-mono text-sky-600 hover:text-sky-700 font-bold ml-auto uppercase tracking-wide"
+                      >
+                        Set As Default
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               ))}
