@@ -46,11 +46,17 @@ export default function WishlistPage() {
      Render
   ----------------------------- */
   return (
-    <div className="min-h-screen bg-sky-50 py-12 px-4">
+    <div className="min-h-screen bg-sky-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">My Wishlist ({items.length})</h1>
+          <h1 className="text-2xl font-bold">
+            My Wishlist
+            {/* ({items.length}) */}
+            <span className="ml-2 text-base font-medium text-gray-500">
+              ({items.length})
+            </span>
+          </h1>
 
           <button
             onClick={() => {
@@ -65,14 +71,14 @@ export default function WishlistPage() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {items.map((item) => {
             const p = item.product;
 
             return (
               <div
                 key={item.productId}
-                className="bg-white rounded-xl shadow border overflow-hidden"
+                className="bg-white overflow-hidden rounded-lg border  shadow-sm"
               >
                 <Link to={`/category/${p.category.slug}/product/${p.slug}`}>
                   <img
@@ -82,16 +88,16 @@ export default function WishlistPage() {
                   />
                 </Link>
 
-                <div className="p-3 space-y-2">
-                  <h3 className="text-sm font-semibold line-clamp-2">
+                <div className="p-1.5 space-y-2.5">
+                  <h3 className="text-sm  line-clamp-2 min-h-10  font-medium leading-5">
                     {p.name}
                   </h3>
 
-                  <p className="font-bold text-sky-600">
+                  <p className="text-base font-bold  text-sky-600">
                     ₹{p.price.toLocaleString("en-IN")}
                   </p>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 mt-2">
                     <button
                       onClick={() => {
                         if (!isInCart(p._id)) {
@@ -99,13 +105,13 @@ export default function WishlistPage() {
                           toast.success("Added to cart");
                         }
                       }}
-                      className={`flex-1 py-2 text-xs font-bold rounded-lg ${
+                      className={`flex h-9 flex-1 items-center justify-center gap-1 rounded-md text-xs font-semibold ${
                         isInCart(p._id)
                           ? "bg-green-100 text-green-700"
                           : "bg-sky-600 text-white"
                       }`}
                     >
-                      <ShoppingCart size={14} className="inline mr-1" />
+                      <ShoppingCart size={13} className="inline mr-1" />
                       {isInCart(p._id) ? "Added" : "Add"}
                     </button>
 
@@ -114,9 +120,9 @@ export default function WishlistPage() {
                         void remove(item.productId);
                         toast.success("Removed");
                       }}
-                      className="p-2 bg-red-50 text-red-600 rounded-lg"
+                      className="flex items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white "
                     >
-                      <X size={14} />
+                      <X size={13} />
                     </button>
                   </div>
                 </div>
