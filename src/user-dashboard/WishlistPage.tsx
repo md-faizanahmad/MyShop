@@ -120,7 +120,7 @@ export default function WishlistPage() {
                         void remove(item.productId);
                         toast.success("Removed");
                       }}
-                      className="flex items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white "
+                      className="flex items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white `"
                     >
                       <X size={13} />
                     </button>
