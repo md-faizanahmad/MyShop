@@ -1,9 +1,24 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { RefreshCw, WifiOff } from "lucide-react";
 import { useConnectionStore } from "./store/useConnectionStore";
 
 export default function ConnectionError() {
   const isConnected = useConnectionStore((state) => state.isConnected);
+
+  useEffect(() => {
+    if (!isConnected) {
+      // Prevent background scrolling
+      document.body.style.overflow = "hidden";
+    } else {
+      // Restore scrolling
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isConnected]);
 
   if (isConnected) return null;
 
