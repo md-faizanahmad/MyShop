@@ -48,15 +48,18 @@ import CheckoutPage from "./pages/checkout/checkoutPage";
 // import { useAuthStore } from "./store/useAuthStore";
 // import TestModeBanner from "./components/TestModeBanner";
 
+import useConnectionWatcher from "./hooks/useConnectionWatcher";
+import ConnectionError from "./ConnectionError";
 // ------------------ MAIN APP CONTENT ------------------
 function AppContent() {
   // const restoring = useAuthStore((s) => s.initializing);
 
   // if (restoring) return <LoadingScreen />;
-
+  useConnectionWatcher();
   return (
     <>
       <ScrollToTop />
+      <ConnectionError />
       {/* <TestModeBanner /> */}
       {/* Header with Search, Navbar, Cart, etc. */}
       <Header />
