@@ -62,6 +62,102 @@
 // }
 
 ////////////////////////// Update 16-02-2026
+// import { Link } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import type { HomeCategory } from "../../types/home";
+
+// interface Props {
+//   categories: HomeCategory[];
+//   loading: boolean;
+//   limit?: number;
+// }
+
+// export default function CategoryQuickLinks({
+//   categories,
+//   loading,
+//   limit = 6,
+// }: Props) {
+//   if (loading) {
+//     return (
+//       <section className="py-8 lg:py-12">
+//         <div className="max-w-7xl mx-auto px-6">
+//           <div className="h-4 w-40  rounded-full mb-8 animate-pulse" />
+//           <div className="flex gap-4 overflow-hidden sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+//             {Array.from({ length: limit }).map((_, i) => (
+//               <div
+//                 key={i}
+//                 className="shrink-0 w-32 sm:w-auto aspect-4/5 rounded-3xl bg-zinc-100 animate-pulse"
+//               />
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//     );
+//   }
+
+//   const list = categories.slice(0, limit);
+
+//   return (
+//     <section className="py-8 lg:py-12  overflow-hidden">
+//       <div className="max-w-7xl mx-auto px-6">
+//         {/* Header Section */}
+//         <div className="flex items-end justify-between mb-8">
+//           <div className="space-y-1">
+//             <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-sky-600">
+//               Collections
+//             </h2>
+//             <h3 className="text-2xl font-bold text-zinc-900 tracking-tight">
+//               Shop by Category
+//             </h3>
+//           </div>
+//         </div>
+
+//         {/* Categories Container: Scrollable on Mobile, Grid on Desktop */}
+//         <div className="flex items-center gap-4 overflow-x-auto no-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+//           {list.map((cat, index) => (
+//             <motion.div
+//               key={cat._id}
+//               initial={{ opacity: 0, y: 20 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               viewport={{ once: true }}
+//               transition={{ delay: index * 0.05 }}
+//               className="shrink-0 w-36 sm:w-auto"
+//             >
+//               <Link
+//                 to={`/category/${cat.slug}`}
+//                 className="group relative block aspect-4/5 overflow-hidden rounded-4xl bg-zinc-100"
+//               >
+//                 {/* Image Component */}
+//                 <img
+//                   src={cat.image ?? ""}
+//                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+//                   alt={cat.name}
+//                 />
+
+//                 {/* Gradient Overlay */}
+//                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+
+//                 {/* Text Content Overlay */}
+//                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+//                   <p className="text-white font-bold text-sm sm:text-base leading-tight mb-1">
+//                     {cat.name}
+//                   </p>
+//                   <div className="flex items-center gap-1.5 overflow-hidden">
+//                     <span className="h-px w-0 group-hover:w-4 bg-sky-400 transition-all duration-300" />
+//                     <span className="text-[10px] uppercase font-black tracking-widest text-blue-400 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+//                       Explore
+//                     </span>
+//                   </div>
+//                 </div>
+//               </Link>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+///////////////////////////////////////////////17072026
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import type { HomeCategory } from "../../types/home";
@@ -77,16 +173,22 @@ export default function CategoryQuickLinks({
   loading,
   limit = 6,
 }: Props) {
+  // Loading State
   if (loading) {
     return (
-      <section className="py-8 lg:py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="h-4 w-40  rounded-full mb-8 animate-pulse" />
-          <div className="flex gap-4 overflow-hidden sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+      <section className="w-full py-10 lg:py-16 bg-white dark:bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="space-y-2 mb-8 animate-pulse">
+            <div className="h-3 w-24 rounded bg-zinc-200 dark:bg-zinc-800 tracking-widest" />
+            <div className="h-7 w-48 rounded bg-zinc-200 dark:bg-zinc-800" />
+          </div>
+
+          {/* Mirrors the layout grid exactly */}
+          <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {Array.from({ length: limit }).map((_, i) => (
               <div
                 key={i}
-                className="shrink-0 w-32 sm:w-auto aspect-4/5 rounded-3xl bg-zinc-100 animate-pulse"
+                className="w-full aspect-4/5 xs:aspect-[3/4] rounded-2xl bg-zinc-100 dark:bg-zinc-900 animate-pulse"
               />
             ))}
           </div>
@@ -98,55 +200,74 @@ export default function CategoryQuickLinks({
   const list = categories.slice(0, limit);
 
   return (
-    <section className="py-8 lg:py-12  overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="w-full py-10 lg:py-16 bg-white dark:bg-zinc-950">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <div className="flex items-end justify-between mb-8">
-          <div className="space-y-1">
-            <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-sky-600">
-              Collections
-            </h2>
-            <h3 className="text-2xl font-bold text-zinc-900 tracking-tight">
-              Shop by Category
-            </h3>
-          </div>
+        <div className="mb-8 space-y-1.5">
+          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-600 dark:text-sky-400 block">
+            Collections
+          </span>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+            Shop by Category
+          </h2>
         </div>
 
-        {/* Categories Container: Scrollable on Mobile, Grid on Desktop */}
-        <div className="flex items-center gap-4 overflow-x-auto no-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        {/* Pure Grid Layout — No scrolling under any circumstances */}
+        <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {list.map((cat, index) => (
             <motion.div
               key={cat._id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="shrink-0 w-36 sm:w-auto"
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.03,
+                ease: [0.215, 0.61, 0.355, 1.0],
+              }}
+              className="w-full"
             >
               <Link
                 to={`/category/${cat.slug}`}
-                className="group relative block aspect-4/5 overflow-hidden rounded-4xl bg-zinc-100"
+                className="group relative block aspect-4/5 xs:aspect-[3/4] w-full overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 isolation-isolate"
               >
-                {/* Image Component */}
+                {/* Image asset component */}
                 <img
-                  src={cat.image ?? ""}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  src={
+                    cat.image ||
+                    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  }
+                  className="absolute inset-0 h-full w-full object-cover transform-gpu transition-transform duration-700 ease-out group-hover:scale-105"
                   alt={cat.name}
+                  loading="lazy"
                 />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+                {/* Deep premium overlay protecting text readability */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-black/0 opacity-90 transition-opacity duration-300 group-hover:opacity-95" />
 
-                {/* Text Content Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                  <p className="text-white font-bold text-sm sm:text-base leading-tight mb-1">
+                {/* Content Overlay */}
+                <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end p-3.5 xs:p-5 text-left transform-gpu">
+                  <p className="text-xs xs:text-sm sm:text-base font-semibold text-white tracking-wide leading-tight mb-1">
                     {cat.name}
                   </p>
-                  <div className="flex items-center gap-1.5 overflow-hidden">
-                    <span className="h-px w-0 group-hover:w-4 bg-sky-400 transition-all duration-300" />
-                    <span className="text-[10px] uppercase font-black tracking-widest text-blue-400 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+
+                  {/* Exploded interaction element */}
+                  <div className="flex items-center gap-1.5 h-4 overflow-hidden opacity-90 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 transform-gpu translate-y-0.5 sm:translate-y-2 group-hover:translate-y-0">
+                    <span className="text-[8px] xs:text-[9px] uppercase font-bold tracking-widest text-sky-400">
                       Explore
                     </span>
+                    <svg
+                      className="w-2 h-2 xs:w-2.5 xs:h-2.5 text-sky-400 stroke-[2.5px] transform-gpu transition-transform duration-300 group-hover:translate-x-0.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
                   </div>
                 </div>
               </Link>
