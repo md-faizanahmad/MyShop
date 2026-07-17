@@ -174,7 +174,7 @@ export default function CartPage(): JSX.Element {
   const items = useCartStore((s) => s.items);
   const loading = useCartStore((s) => s.loading);
   const totalItems = useCartStore((s) =>
-    s.items.reduce((sum, i) => sum + i.qty, 0)
+    s.items.reduce((sum, i) => sum + i.qty, 0),
   );
   const updateQty = useCartStore((s) => s.updateQty);
   const removeItem = useCartStore((s) => s.removeItem);
@@ -213,7 +213,7 @@ export default function CartPage(): JSX.Element {
   return (
     <div className="min-h-screen bg-sky-50 py-8 px-4">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8 text-center">
+        <h1 className="text-1xl font-bold mb-8 text-left">
           Your Cart ({totalItems} items)
         </h1>
 
@@ -265,7 +265,7 @@ export default function CartPage(): JSX.Element {
                               onClick={() => {
                                 if (!canIncrease) {
                                   toast.error(
-                                    `Maximum ${maxQty} units allowed`
+                                    `Maximum ${maxQty} units allowed`,
                                   );
                                   return;
                                 }
