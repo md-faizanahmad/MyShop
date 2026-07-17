@@ -172,7 +172,7 @@
 
 ////////////// new update
 // src/components/home/HeroSection.tsx
-import { ArrowRight, Package, Shield, Truck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import type { HomeHero } from "../../types/home";
 
@@ -271,7 +271,7 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
             </div>
 
             {/* TRUST ICONS */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-6 text-sm">
+            {/* <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-6 text-sm">
               <div className="flex items-center gap-2">
                 <Truck className="h-6 w-6 text-green-400" />
                 <span className="font-medium">Free Delivery</span>
@@ -284,7 +284,7 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
                 <Package className="h-6 w-6 text-green-400" />
                 <span className="font-medium">Easy Returns</span>
               </div>
-            </div>
+            </div> */}
           </motion.div>
 
           {/* RIGHT COLUMN (empty for now, reserved for illustrations) */}
