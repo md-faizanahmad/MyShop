@@ -27,7 +27,7 @@ export default function OrderBreadcrumb({ orderId, createdAt }: Props) {
           </Link>
           <span>/</span>
 
-          <span className="font-medium text-gray-900 truncate">{orderId}</span>
+          <span className="font-bold text-gray-900 truncate">{orderId}</span>
         </nav>
 
         {/* Separator */}
