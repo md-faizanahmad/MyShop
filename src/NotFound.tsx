@@ -15,7 +15,7 @@ export default function NotFound() {
         <div className="w-24 h-24 sm:w-32 sm:h-32 bg-zinc-50 rounded-full flex items-center justify-center relative">
           <ShoppingBag size={48} className="text-zinc-200" strokeWidth={1} />
           {/* A floating '?' badge */}
-          <div className="absolute top-0 right-0 w-10 h-10 bg-blue-600 rounded-full border-4 border-white flex items-center justify-center shadow-lg">
+          <div className="absolute top-0 right-0 w-10 h-10 bg-red-600 rounded-full border-4 border-white flex items-center justify-center shadow-lg">
             <span className="text-white font-bold text-sm">?</span>
           </div>
         </div>
@@ -24,7 +24,7 @@ export default function NotFound() {
       {/* --- TEXT CONTENT --- */}
       <div className="max-w-md space-y-4">
         <h1 className="text-4xl sm:text-5xl font-black text-zinc-900 tracking-tight">
-          Oops! <span className="text-blue-600">404</span>
+          Oops! <span className="text-sky-600">404</span>
         </h1>
         <h2 className="text-xl font-bold text-zinc-800">
           This page seems to be out of stock.

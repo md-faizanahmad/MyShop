@@ -11,7 +11,8 @@ import OrderItemsList from "./order/OrderItemsList";
 import ShippingAddressCard from "./order/ShippingAddressCard";
 import OrderTotal from "./order/OrderTotal";
 import OrderActions from "./order/OrderActions";
-import { LoaderCircle } from "lucide-react";
+// import { LoaderCircle } from "lucide-react";
+import AZLoader from "../shared/AZLoader";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -35,17 +36,18 @@ export default function OrderDetails() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-80 flex-col items-center justify-center px-6 py-12">
-        <LoaderCircle size={36} className="animate-spin tex" />
+      // <div className="flex min-h-80 flex-col items-center justify-center px-6 py-12">
+      //   <LoaderCircle size={36} className="animate-spin tex" />
 
-        <h3 className="mt-5 text-lg font-semibold text-gray-900">
-          Loading order details
-        </h3>
+      //   <h3 className="mt-5 text-lg font-semibold text-gray-900">
+      //     Loading order details
+      //   </h3>
 
-        <p className="mt-2 text-sm text-gray-500">
-          Please wait while we fetch your order...
-        </p>
-      </div>
+      //   <p className="mt-2 text-sm text-gray-500">
+      //     Please wait while we fetch your order...
+      //   </p>
+      // </div>
+      <AZLoader />
     );
   }
 
