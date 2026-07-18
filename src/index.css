@@ -80,50 +80,56 @@ button {
 }
 
 /* Brand */
-/* ===========================
-   AZ Loader
-=========================== */
+/* ==========================
+   AZ Brand Loader
+========================== */
 
 .az-loader {
   display: inline-flex;
 }
 
-.az-letter {
-  position: relative;
+.az-fill {
   display: inline-block;
-  overflow: hidden;
-}
+  color: transparent;
 
-.az-a {
-  color: #10a0f0;
-}
-
-.az-z {
-  color: #b81010;
-}
-
-.az-letter::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translateX(-140%);
   background: linear-gradient(
-    115deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.15) 40%,
-    rgba(255, 255, 255, 0.95) 50%,
-    rgba(255, 255, 255, 0.15) 60%,
-    transparent 70%
+    90deg,
+    #10a0f0 0%,
+    #10a0f0 50%,
+    #b81010 50%,
+    #b81010 100%
   );
-  animation: az-loading 1.2s linear infinite;
+
+  background-size: 220% 100%;
+  background-position: 100% 0;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  animation: azFill 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.az-z::before {
-  animation-delay: 0.15s;
-}
+@keyframes azFill {
+  0% {
+    background-position: 100% 0;
+    opacity: 0.25;
+  }
 
-@keyframes az-loading {
-  to {
-    transform: translateX(140%);
+  25% {
+    opacity: 1;
+  }
+
+  65% {
+    background-position: 0% 0;
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    background-position: -100% 0;
+    opacity: 0.25;
   }
 }

@@ -50,6 +50,7 @@ import CheckoutPage from "./pages/checkout/checkoutPage";
 
 import useConnectionWatcher from "./hooks/useConnectionWatcher";
 import ConnectionError from "./ConnectionError";
+import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
 function AppContent() {
   // const restoring = useAuthStore((s) => s.initializing);
@@ -71,6 +72,7 @@ function AppContent() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/loading" element={<AZLoader />} />
             <Route path="/products" element={<AllProductsPage />} />
 
             {/* // Category listing (main) */}
