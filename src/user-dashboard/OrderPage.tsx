@@ -203,7 +203,7 @@ export default function OrdersPage() {
       queryKey: ["my-orders", page],
       queryFn: async () => {
         const { data } = await api.get<PaginatedOrdersResponse>(
-          `/v1/orders/my-orders?page=${page}&limit=${PAGE_LIMIT}`
+          `/v1/orders/my-orders?page=${page}&limit=${PAGE_LIMIT}`,
         );
         return data;
       },
@@ -221,11 +221,11 @@ export default function OrdersPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
-          <h4 className="text-3xl sm:text-4xl font-bold text-gray-900 flex items-center gap-3">
-            <Package size={34} className="text-blue-600" />
+          <h4 className="flex items-center gap-2 text-2xl font-semibold text-gray-900">
+            <Package size={26} className="text-blue-600" />
             My Orders
             {(data?.totalCount ?? 0) > 0 && (
-              <span className="text-xl font-normal text-gray-600">
+              <span className="text-base font-normal text-gray-500">
                 ({data?.totalCount})
               </span>
             )}
