@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import logo from "../assets/logo.png";
+import logo from "../assets/brand-logo.png";
 
 interface BrandProps {
   link?: string;

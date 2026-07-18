@@ -35,8 +35,8 @@ export default function OrderDetails() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-[320px] flex-col items-center justify-center px-6 py-12">
-        <LoaderCircle size={36} className="animate-spin text-blue-600" />
+      <div className="flex min-h-80 flex-col items-center justify-center px-6 py-12">
+        <LoaderCircle size={36} className="animate-spin tex" />
 
         <h3 className="mt-5 text-lg font-semibold text-gray-900">
           Loading order details
