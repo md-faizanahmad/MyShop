@@ -80,3 +80,50 @@ button {
 }
 
 /* Brand */
+/* ===========================
+   AZ Loader
+=========================== */
+
+.az-loader {
+  display: inline-flex;
+}
+
+.az-letter {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.az-a {
+  color: #10a0f0;
+}
+
+.az-z {
+  color: #b81010;
+}
+
+.az-letter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-140%);
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.15) 60%,
+    transparent 70%
+  );
+  animation: az-loading 1.2s linear infinite;
+}
+
+.az-z::before {
+  animation-delay: 0.15s;
+}
+
+@keyframes az-loading {
+  to {
+    transform: translateX(140%);
+  }
+}
