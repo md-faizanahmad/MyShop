@@ -129,7 +129,7 @@ export default function ActionButtons({
       {outOfStock && (
         <div className="mt-1 border border-red-100 bg-red-50/50 px-3 py-2 text-center">
           <p className="text-[11px] font-mono uppercase tracking-widest font-bold text-red-700">
-            Inventory Allocation Exhausted / Out Of Stock
+            Come IN-STOCK Soon
           </p>
         </div>
       )}
