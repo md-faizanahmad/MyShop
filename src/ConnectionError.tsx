@@ -7,16 +7,23 @@ export default function ConnectionError() {
   const isConnected = useConnectionStore((state) => state.isConnected);
 
   useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+
     if (!isConnected) {
-      // Prevent background scrolling
-      document.body.style.overflow = "hidden";
+      html.style.overflow = "hidden";
+      body.style.overflow = "hidden";
     } else {
-      // Restore scrolling
-      document.body.style.overflow = "";
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
     }
 
     return () => {
-      document.body.style.overflow = "";
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
     };
   }, [isConnected]);
 
@@ -32,7 +39,7 @@ export default function ConnectionError() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-9999 flex items-center justify-center bg-white/90 backdrop-blur-sm"
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/90 backdrop-blur-sm"
       >
         <motion.div
           initial={{ scale: 0.95, y: 16 }}
