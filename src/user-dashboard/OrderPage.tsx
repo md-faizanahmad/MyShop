@@ -222,7 +222,7 @@ export default function OrdersPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
           <h4 className="flex items-center gap-2 text-2xl font-semibold text-gray-900">
-            <Package size={26} className="text-blue-600" />
+            <Package size={26} className="text-sky-300" />
             My Orders
             {(data?.totalCount ?? 0) > 0 && (
               <span className="text-base font-normal text-gray-500">
@@ -314,7 +314,7 @@ export default function OrdersPage() {
               <button
                 disabled={!hasNextPage}
                 onClick={() => setPage((p) => p + 1)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-40"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-sky-400 text-white hover:bg-sky-600 disabled:opacity-40"
               >
                 Next
                 <ChevronRight size={18} />
