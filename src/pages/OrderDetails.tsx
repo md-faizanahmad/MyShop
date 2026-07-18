@@ -11,6 +11,7 @@ import OrderItemsList from "./order/OrderItemsList";
 import ShippingAddressCard from "./order/ShippingAddressCard";
 import OrderTotal from "./order/OrderTotal";
 import OrderActions from "./order/OrderActions";
+import { LoaderCircle } from "lucide-react";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -34,7 +35,17 @@ export default function OrderDetails() {
 
   if (isLoading) {
     return (
-      <div className="p-6 text-sm text-gray-500">Loading order details…</div>
+      <div className="flex min-h-[320px] flex-col items-center justify-center px-6 py-12">
+        <LoaderCircle size={36} className="animate-spin text-blue-600" />
+
+        <h3 className="mt-5 text-lg font-semibold text-gray-900">
+          Loading order details
+        </h3>
+
+        <p className="mt-2 text-sm text-gray-500">
+          Please wait while we fetch your order...
+        </p>
+      </div>
     );
   }
 
@@ -47,11 +58,11 @@ export default function OrderDetails() {
   ---------------------------------- */
   const itemsTotal = order.items.reduce(
     (sum, item) => sum + item.product.price * item.qty,
-    0
+    0,
   );
 
   const canCancel = !["cancelled", "delivered", "shipping"].includes(
-    order.status.toLowerCase()
+    order.status.toLowerCase(),
   );
 
   async function cancelOrder() {
@@ -61,7 +72,7 @@ export default function OrderDetails() {
       await axios.put(
         `${API}/v1/orders/cancel/${orderId}`,
         {},
-        { withCredentials: true }
+        { withCredentials: true },
       );
       toast.success("Order cancelled");
       refetch();
