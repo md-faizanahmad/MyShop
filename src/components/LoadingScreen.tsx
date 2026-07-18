@@ -21,7 +21,7 @@ export default function LoadingScreen() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gray-50">
+    <div className="h-screen flex flex-col items-center justify-center ">
       {/* Spinner */}
       <motion.div
         className="w-12 h-12 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin"
