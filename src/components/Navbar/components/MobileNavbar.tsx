@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import { ChevronDown, ChevronLeft } from "lucide-react";
 import type { MobileNavbarProps } from "../../../types/nav";
 
+const mobileLinkClass =
+  "flex items-center py-3 text-[15px] font-medium text-gray-800 rounded-lg hover:bg-gray-50";
+
+const mobileHeaderLinkClass =
+  "flex items-center py-3 text-[16px] font-semibold text-sky-900 rounded-lg hover:bg-gray-50";
+
+const mobileSubLinkClass =
+  "flex items-center py-3 text-[15px] font-medium text-red-500 rounded-lg hover:bg-gray-50";
+
 export default function MobileNavbar({
   categories,
   onClose,
@@ -15,11 +24,7 @@ export default function MobileNavbar({
       {!activeCategory && (
         <nav className="flex flex-col px-4 py-3">
           {/* Home */}
-          <Link
-            to="/"
-            onClick={onClose}
-            className="flex items-center py-3 text-[16px] font-semibold text-gray-900 rounded-lg hover:bg-gray-50"
-          >
+          <Link to="/" onClick={onClose} className={mobileHeaderLinkClass}>
             Home
           </Link>
 
@@ -46,7 +51,7 @@ export default function MobileNavbar({
                     <Link
                       to={`/category/${cat.slug}`}
                       onClick={onClose}
-                      className="flex items-center py-3 text-[15px] font-medium text-gray-800 rounded-lg hover:bg-gray-50"
+                      className={mobileLinkClass}
                     >
                       {cat.name}
                     </Link>
@@ -99,7 +104,7 @@ export default function MobileNavbar({
                       <Link
                         to={`/category/${activeCatObj.slug}/sub/${sub.slug}`}
                         onClick={onClose}
-                        className="flex items-center py-3 text-[15px] font-medium text-gray-700 rounded-lg hover:bg-gray-50"
+                        className={mobileSubLinkClass}
                       >
                         {sub.name}
                       </Link>
