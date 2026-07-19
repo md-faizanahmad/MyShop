@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Search, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Navbar from "./Navbar";
 import CartIcon from "./CartIcon";
 // import WishlistIcon from "./WishlistIcon";
 import Brand from "../../shared/Brand";
 import UserMenu from "./usermenu/UserMenu";
 import SearchBarContainer from "../searchbar/SearchBarContainer";
+import Navbar from "../Navbar/Navbar";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
