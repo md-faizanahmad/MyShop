@@ -1,4 +1,3 @@
-///////////// update design and sub-c
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, ChevronLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
