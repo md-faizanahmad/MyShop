@@ -1,22 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import type { Category, NavbarProps } from "./components/Navbar.types";
 import MobileNavbar from "./components/MobileNavbar";
 import DesktopNavbar from "./components/DesktopNavbar";
+import type { NavbarProps } from "./components/navbar.types";
 
-const API_URL = import.meta.env.VITE_API_URL;
+import { useCategories } from "./hooks/useCategories";
 
 export default function Navbar({ mobile = false, onClose }: NavbarProps) {
-  const { data: categories = [], isLoading } = useQuery<Category[]>({
-    queryKey: ["public-categories-with-subs"],
-    queryFn: async () => {
-      const res = await axios.get<{ categories: Category[] }>(
-        `${API_URL}/v1/categories?withSubs=true`,
-      );
-
-      return res.data.categories ?? [];
-    },
-  });
+  const { data: categories = [], isLoading } = useCategories();
 
   return (
     <nav className="w-full">

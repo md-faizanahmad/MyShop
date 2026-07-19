@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import type { DesktopNavbarProps } from "./Navbar.types";
+import type { DesktopNavbarProps } from "./navbar.types";
 import NavbarLinkSkeleton from "../../../skeleton/NavbarLinkSkeleton";
 
 export default function DesktopNavbar({
