@@ -5,6 +5,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import NavbarLinkSkeleton from "../../../skeleton/NavbarLinkSkeleton";
 import type { DesktopNavbarProps } from "../../../types/nav";
 
+const desktopLinkClass = "text-gray-500 hover:text-blue-600";
+
+const desktopActiveClass = "text-sky-600 font-semibold";
+
+const desktopDropdownLinkClass =
+  "block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-blue-600";
+
 export default function DesktopNavbar({
   categories,
   isLoading,
@@ -24,8 +31,8 @@ export default function DesktopNavbar({
     <div className="hidden lg:flex items-center gap-8 h-16">
       <Link
         to="/"
-        className={`text-gray-800 hover:text-blue-600 ${
-          isActive("/") ? "text-blue-600 font-semibold" : ""
+        className={`${desktopLinkClass} ${
+          isActive("/") ? desktopActiveClass : ""
         }`}
       >
         Home
@@ -45,7 +52,7 @@ export default function DesktopNavbar({
             {hasSub ? (
               <Link
                 to={`/category/${cat.slug}`}
-                className={`flex items-center gap-1 text-gray-800 hover:text-blue-600 ${
+                className={`flex items-center gap-1 ${desktopLinkClass} ${
                   isActive(`/category/${cat.slug}`)
                     ? "text-blue-600 font-semibold"
                     : ""
@@ -57,7 +64,7 @@ export default function DesktopNavbar({
             ) : (
               <Link
                 to={`/category/${cat.slug}`}
-                className={`text-gray-800 hover:text-blue-600 ${
+                className={`${desktopActiveClass} ${
                   isActive(`/category/${cat.slug}`)
                     ? "text-blue-600 font-semibold"
                     : ""
@@ -80,7 +87,7 @@ export default function DesktopNavbar({
                     <Link
                       key={sub._id}
                       to={`/category/${cat.slug}/sub/${sub.slug}`}
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                      className={desktopDropdownLinkClass}
                     >
                       {sub.name}
                     </Link>
