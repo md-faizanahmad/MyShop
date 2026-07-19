@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, ChevronLeft } from "lucide-react";
-import type { MobileNavbarProps } from "./navbar.types";
+import type { MobileNavbarProps } from "../../../types/nav";
 
 export default function MobileNavbar({
   categories,

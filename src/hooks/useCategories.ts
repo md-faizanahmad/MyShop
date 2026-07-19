@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import type { Category } from "../components/navbar.types";
+import type { Category } from "../types/nav";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

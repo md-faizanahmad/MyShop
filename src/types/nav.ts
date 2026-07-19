@@ -1,8 +1,27 @@
-/// NavBar
-export interface NavLinkType {
-  label: string;
-  path: string;
-}
-export interface Category {
+export interface Subcategory {
+  _id: string;
   name: string;
+  slug: string;
+}
+
+export interface Category {
+  _id: string;
+  name: string;
+  slug: string;
+  subcategories?: Subcategory[];
+}
+
+export interface NavbarProps {
+  mobile?: boolean;
+  onClose?: () => void;
+}
+
+export interface DesktopNavbarProps {
+  categories: Category[];
+  isLoading: boolean;
+}
+
+export interface MobileNavbarProps {
+  categories: Category[];
+  onClose?: () => void;
 }
