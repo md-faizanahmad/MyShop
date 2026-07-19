@@ -23,18 +23,18 @@ export default function DesktopNavbar({
     location.pathname === path ||
     (path !== "/" && location.pathname.startsWith(path));
 
+  const getDesktopLinkClass = (
+    path: string,
+    baseClass: string = desktopLinkClass,
+  ) => `${baseClass} ${isActive(path) ? desktopActiveClass : ""}`;
+
   if (isLoading) {
     return <NavbarLinkSkeleton count={categories?.length || 6} />;
   }
 
   return (
     <div className="hidden lg:flex items-center gap-8 h-16">
-      <Link
-        to="/"
-        className={`${desktopLinkClass} ${
-          isActive("/") ? desktopActiveClass : ""
-        }`}
-      >
+      <Link to="/" className={getDesktopLinkClass("/")}>
         Home
       </Link>
 
@@ -52,11 +52,10 @@ export default function DesktopNavbar({
             {hasSub ? (
               <Link
                 to={`/category/${cat.slug}`}
-                className={`flex items-center gap-1 ${desktopLinkClass} ${
-                  isActive(`/category/${cat.slug}`)
-                    ? "text-blue-600 font-semibold"
-                    : ""
-                }`}
+                className={getDesktopLinkClass(
+                  `/category/${cat.slug}`,
+                  `flex items-center gap-1 ${desktopLinkClass}`,
+                )}
               >
                 {cat.name}
                 <ChevronDown size={14} className="opacity-70" />
@@ -64,11 +63,7 @@ export default function DesktopNavbar({
             ) : (
               <Link
                 to={`/category/${cat.slug}`}
-                className={`${desktopActiveClass} ${
-                  isActive(`/category/${cat.slug}`)
-                    ? "text-blue-600 font-semibold"
-                    : ""
-                }`}
+                className={getDesktopLinkClass(`/category/${cat.slug}`)}
               >
                 {cat.name}
               </Link>
