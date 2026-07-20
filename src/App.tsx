@@ -52,6 +52,7 @@ import useConnectionWatcher from "./hooks/useConnectionWatcher";
 import ConnectionError from "./ConnectionError";
 import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
 import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
+import ForgotPasswordPage from "./components/auth/password/ForgetPassword";
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
 function AppContent() {
@@ -103,6 +104,7 @@ function AppContent() {
 
             {/*------- Auth------ */}
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/login-otp" element={<LoginWithOTP />} />
             <Route path="/signup" element={<SignUp />} />
             {/* Protected User Pages */}
