@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Heart,
   ShoppingBag,
@@ -141,7 +141,7 @@ export default function NewArrivalsPage() {
               accessories, and daily essentials.
             </p>
           </div>
-          <div className="hidden md:flex space-x-2 text-sm font-mono opacity-20 text-right select-none select-none absolute right-16 pointer-events-none">
+          <div className="hidden md:flex space-x-2 text-sm font-mono opacity-20 text-right select-none  absolute right-16 pointer-events-none">
             <span className="text-7xl font-black tracking-tighter">NEW IN</span>
           </div>
         </section>
@@ -204,7 +204,7 @@ export default function NewArrivalsPage() {
                 className="group relative bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between"
               >
                 {/* Product Media Block */}
-                <div className="relative bg-gray-50 h-[320px] overflow-hidden flex items-center justify-center">
+                <div className="relative bg-gray-50 h-80 overflow-hidden flex items-center justify-center">
                   <img
                     src={product.image}
                     alt={product.title}
@@ -241,7 +241,7 @@ export default function NewArrivalsPage() {
                 </div>
 
                 {/* Info Text Elements Container */}
-                <div className="p-5 space-y-3 flex-grow flex flex-col justify-between">
+                <div className="p-5 space-y-3 grow flex flex-col justify-between">
                   <div className="space-y-1.5">
                     <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
                       {product.category}
