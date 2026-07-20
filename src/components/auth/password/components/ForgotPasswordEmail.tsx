@@ -9,7 +9,7 @@ interface ForgotPasswordEmailStepProps {
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-export default function ForgotPasswordEmailStep({
+export default function ForgotPasswordEmail({
   email,
   isLoading,
   onEmailChange,
