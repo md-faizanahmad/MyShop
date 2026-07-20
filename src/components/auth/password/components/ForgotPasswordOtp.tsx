@@ -1,13 +1,14 @@
 import type { FormEvent } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, KeyRound } from "lucide-react";
+import OtpInput from "./OtpInput";
 
 interface ForgotPasswordOtpStepProps {
   email: string;
   otp: string[];
   isLoading: boolean;
   onBack: () => void;
-  onOtpChange: (element: HTMLInputElement, index: number) => void;
+  onOtpChange: (value: string[]) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   onResend?: () => void;
 }
@@ -51,19 +52,7 @@ export default function ForgotPasswordOtp({
       </div>
 
       <form onSubmit={onSubmit} className="space-y-6">
-        <div className="flex justify-between gap-2">
-          {otp.map((digit, index) => (
-            <input
-              key={index}
-              type="text"
-              maxLength={1}
-              value={digit}
-              onChange={(e) => onOtpChange(e.target, index)}
-              onFocus={(e) => e.target.select()}
-              className="h-14 w-12 rounded-xl border border-slate-200 bg-slate-50 text-center text-xl font-bold text-slate-900 transition-all focus:border-transparent focus:ring-2 focus:ring-slate-900 focus:outline-none"
-            />
-          ))}
-        </div>
+        <OtpInput value={otp} onChange={onOtpChange} />
 
         <div className="text-center text-xs text-slate-500">
           Didn't receive code?{" "}
