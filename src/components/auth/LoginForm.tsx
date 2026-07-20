@@ -226,6 +226,9 @@ export default function LoginForm({
           >
             Sign up
           </Link>
+          <div className="text-sm mt-4">
+            <Link to="/forgot-password">Forget Password ?</Link>
+          </div>
         </p>
       </motion.div>
     </div>
