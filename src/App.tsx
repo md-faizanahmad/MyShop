@@ -52,7 +52,7 @@ import useConnectionWatcher from "./hooks/useConnectionWatcher";
 import ConnectionError from "./ConnectionError";
 import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
 import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
-import ForgotPasswordPage from "./components/auth/password/ForgetPassword";
+import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
 function AppContent() {
