@@ -350,11 +350,6 @@ export default function DealsAndOffersPage() {
           </div>
         </section>
       </main>
-
-      <footer className="bg-gray-900 text-gray-400 text-center py-6 mt-16 text-xs">
-        &copy; 2026 MegaDeals Inc. All structural interface configurations are
-        mock elements for layout reference.
-      </footer>
     </div>
   );
 }
