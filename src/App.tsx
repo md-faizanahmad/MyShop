@@ -50,6 +50,7 @@ import CheckoutPage from "./pages/checkout/checkoutPage";
 
 import useConnectionWatcher from "./hooks/useConnectionWatcher";
 import ConnectionError from "./ConnectionError";
+import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
 function AppContent() {
@@ -72,6 +73,7 @@ function AppContent() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/deals" element={<DealsAndOffersPage />} />
             {/* <Route path="/loading" element={<AZLoader />} /> */}
             <Route path="/products" element={<AllProductsPage />} />
 

@@ -131,7 +131,7 @@ import type { MobileNavbarProps } from "../../../types/nav";
 /* -------------------------------------------------------------------------- */
 
 const rootClass =
-  "fixed inset-0 z-50 flex h-screen w-screen flex-col overflow-hidden bg-white text-neutral-900 antialiased selection:bg-neutral-100";
+  "fixed inset-0 z-50 flex h-screen w-70 flex-col overflow-hidden bg-white text-neutral-900 antialiased selection:bg-neutral-100";
 
 const headerClass =
   "flex h-16 shrink-0 items-center justify-between border-b border-neutral-100 px-5";
@@ -216,7 +216,7 @@ export default function MobileNavbar({
         </button>
       </header>
 
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-2 overflow-hidden">
         {!activeCategory && (
           <nav
             aria-label="Mobile navigation"
