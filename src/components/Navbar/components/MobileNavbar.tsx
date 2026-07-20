@@ -122,130 +122,107 @@
 ///////////////////// Update 20072026
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ChevronRight,
-  ChevronLeft,
-  Home,
-  User,
-  HelpCircle,
-  Flame,
-  Percent,
-  X,
-  Bell,
-  Package,
-} from "lucide-react";
+import { ChevronRight, ArrowLeft, X } from "lucide-react";
 import type { MobileNavbarProps } from "../../../types/nav";
 
-const sectionHeadingClass =
-  "px-6 pt-5 pb-2 text-xs font-bold text-gray-400 uppercase tracking-widest";
-
-const navItemClass =
-  "flex items-center gap-4 px-6 py-4 text-[16px] font-medium text-gray-800 transition-colors hover:bg-gray-50 active:bg-gray-100 border-b border-gray-50";
-
-const subcategoryItemClass =
-  "flex items-center justify-between px-6 py-4 text-[16px] text-gray-700 transition-colors hover:bg-gray-50 active:bg-gray-100 border-b border-gray-50";
+interface EnhancedMobileNavbarProps extends MobileNavbarProps {
+  user?: {
+    name: string;
+    avatarUrl?: string;
+  } | null;
+}
 
 export default function MobileNavbar({
   categories,
   onClose,
-}: MobileNavbarProps) {
+  user = null,
+}: EnhancedMobileNavbarProps) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-white fixed inset-0 z-50 overflow-hidden">
-      {/* E-COMMERCE BRAND HEADER */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-slate-900 text-white shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center font-bold text-sm text-white">
-            U
+    <div className="flex flex-col h-screen w-screen bg-white fixed inset-0 z-50 overflow-hidden antialiased text-neutral-900 selection:bg-neutral-100">
+      {/* BRAND ARCHITECTURE HEADER */}
+      <div className="flex items-center justify-between px-5 h-16 border-b border-neutral-100 shrink-0">
+        {user ? (
+          <Link
+            to="/account"
+            onClick={onClose}
+            className="flex items-center gap-2.5 group"
+          >
+            {user.avatarUrl ? (
+              <img
+                src={user.avatarUrl}
+                alt=""
+                className="w-7 h-7 rounded-full object-cover bg-neutral-100"
+              />
+            ) : (
+              <div className="w-7 h-7 rounded-full bg-neutral-900 text-white flex items-center justify-center text-xs font-semibold tracking-wider uppercase">
+                {user.name.charAt(0)}
+              </div>
+            )}
+            <span className="text-[14px] font-medium tracking-tight text-neutral-800 group-active:text-neutral-500">
+              {user.name}
+            </span>
+          </Link>
+        ) : (
+          <div className="flex items-center gap-4 text-[14px] font-medium tracking-tight">
+            <Link
+              to="/login"
+              onClick={onClose}
+              className="text-neutral-900 hover:underline"
+            >
+              Log in
+            </Link>
+            <span className="text-neutral-300">/</span>
+            <Link
+              to="/register"
+              onClick={onClose}
+              className="text-neutral-500 hover:underline"
+            >
+              Register
+            </Link>
           </div>
-          <div>
-            <p className="text-xs text-gray-300 leading-none">Hello, Sign In</p>
-            <p className="text-sm font-bold mt-0.5">Your Account</p>
-          </div>
-        </div>
+        )}
+
         <button
           onClick={onClose}
-          className="p-1 rounded-full hover:bg-slate-800 text-gray-300 hover:text-white transition-colors"
+          className="p-2 -mr-2 text-neutral-400 hover:text-neutral-900 transition-colors active:scale-95"
           aria-label="Close menu"
         >
-          <X size={24} />
+          <X size={20} strokeWidth={1.5} />
         </button>
       </div>
 
-      {/* ROOT LEVEL */}
+      {/* ROOT MENU STATE */}
       {!activeCategory && (
-        <nav className="flex-1 overflow-y-auto pb-10">
-          {/* Quick Shortcuts Grid */}
-          <div className="grid grid-cols-3 border-b border-gray-100 text-center bg-gray-50/50">
-            <Link
-              to="/"
-              onClick={onClose}
-              className="flex flex-col items-center gap-1 py-4 text-xs font-medium text-gray-700 border-r border-gray-100 hover:bg-gray-100"
-            >
-              <Home size={20} className="text-gray-500" />
-              <span>Home</span>
-            </Link>
-            <Link
-              to="/account/orders"
-              onClick={onClose}
-              className="flex flex-col items-center gap-1 py-4 text-xs font-medium text-gray-700 border-r border-gray-100 hover:bg-gray-100"
-            >
-              <Package size={20} className="text-gray-500" />
-              <span>Orders</span>
-            </Link>
-            <Link
-              to="/notifications"
-              onClick={onClose}
-              className="flex flex-col items-center gap-1 py-4 text-xs font-medium text-gray-700 hover:bg-gray-100"
-            >
-              <Bell size={20} className="text-gray-500" />
-              <span>Alerts</span>
-            </Link>
-          </div>
-
-          {/* Highlights Section */}
-          <div className="flex flex-col">
-            <div className={sectionHeadingClass}>Trending & Offers</div>
-            <Link to="/trending" onClick={onClose} className={navItemClass}>
-              <Flame size={22} className="text-orange-500" />
-              <span>Best Sellers</span>
-            </Link>
-            <Link to="/offers" onClick={onClose} className={navItemClass}>
-              <Percent size={22} className="text-emerald-600" />
-              <span>Deals & Clearance</span>
-            </Link>
-          </div>
-
-          {/* Shop By Category Section */}
-          <div className="flex flex-col">
-            <div className={sectionHeadingClass}>Shop Department</div>
-            <ul className="flex flex-col">
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col justify-between pb-8">
+          {/* Main Department/Category Links */}
+          <div className="flex flex-col pt-2">
+            <ul className="divide-y divide-neutral-50/60">
               {categories.map((cat) => {
                 const hasSub =
                   Array.isArray(cat.subcategories) &&
                   cat.subcategories.length > 0;
 
                 return (
-                  <li key={cat._id}>
+                  <li key={cat._id} className="w-full">
                     {hasSub ? (
                       <button
                         onClick={() => setActiveCategory(cat._id)}
-                        className="flex items-center justify-between w-full text-left transition-colors hover:bg-gray-50 active:bg-gray-100 border-b border-gray-50"
+                        className="flex items-center justify-between w-full px-5 py-4.5 text-left transition-all active:bg-neutral-50 text-[16px] font-medium tracking-tight text-neutral-900"
                       >
-                        <div className="flex items-center gap-4 px-6 py-4 text-[16px] font-medium text-gray-800">
-                          <span>{cat.name}</span>
-                        </div>
+                        <span>{cat.name}</span>
                         <ChevronRight
-                          size={20}
-                          className="text-gray-400 mr-6"
+                          size={16}
+                          strokeWidth={1.5}
+                          className="text-neutral-400"
                         />
                       </button>
                     ) : (
                       <Link
                         to={`/category/${cat.slug}`}
                         onClick={onClose}
-                        className={navItemClass}
+                        className="flex items-center w-full px-5 py-4.5 text-[16px] font-medium tracking-tight text-neutral-900 active:bg-neutral-50"
                       >
                         {cat.name}
                       </Link>
@@ -256,22 +233,57 @@ export default function MobileNavbar({
             </ul>
           </div>
 
-          {/* Help & Settings Section */}
-          <div className="flex flex-col">
-            <div className={sectionHeadingClass}>Help & Settings</div>
-            <Link to="/account" onClick={onClose} className={navItemClass}>
-              <User size={20} className="text-gray-400" />
-              <span>Your Profile</span>
-            </Link>
-            <Link to="/support" onClick={onClose} className={navItemClass}>
-              <HelpCircle size={20} className="text-gray-400" />
-              <span>Customer Service</span>
-            </Link>
+          {/* Core Retail Actions & Secondary Utilities Stacked at Bottom */}
+          <div className="mt-auto pt-10 border-t border-neutral-100/60">
+            {/* Promo / High-Priority Links */}
+            <div className="px-5 mb-6 flex flex-col gap-3">
+              <Link
+                to="/sale"
+                onClick={onClose}
+                className="flex items-center justify-between px-4 py-3 bg-red-50 rounded-md text-red-700 font-semibold text-[14px] tracking-tight active:opacity-90"
+              >
+                <span>Mid-Season Sale</span>
+                <span className="text-[11px] uppercase bg-red-600 text-white px-1.5 py-0.5 rounded tracking-widest font-bold">
+                  Up to 50%
+                </span>
+              </Link>
+            </div>
+
+            {/* Micro Utility Links */}
+            <ul className="px-5 space-y-3.5 text-[13px] font-medium text-neutral-500">
+              <li>
+                <Link
+                  to="/orders"
+                  onClick={onClose}
+                  className="hover:text-neutral-900 block active:underline"
+                >
+                  Track Orders & Returns
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/stores"
+                  onClick={onClose}
+                  className="hover:text-neutral-900 block active:underline"
+                >
+                  Find a Store
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/support"
+                  onClick={onClose}
+                  className="hover:text-neutral-900 block active:underline"
+                >
+                  Help & Customer Support
+                </Link>
+              </li>
+            </ul>
           </div>
         </nav>
       )}
 
-      {/* SUBCATEGORY LEVEL */}
+      {/* SUB-LEVEL DRILL DOWN */}
       {activeCategory && (
         <div className="flex flex-col flex-1 overflow-hidden bg-white">
           {(() => {
@@ -282,43 +294,40 @@ export default function MobileNavbar({
 
             return (
               <div className="flex flex-col h-full">
-                {/* Dynamic Back Header */}
+                {/* Back Button Bar */}
                 <button
                   onClick={() => setActiveCategory(null)}
-                  className="w-full flex items-center gap-3 px-6 py-4 bg-gray-50 border-b border-gray-100 text-[16px] font-bold text-gray-800 transition-colors hover:bg-gray-100 shrink-0"
+                  className="w-full flex items-center gap-2 px-5 h-12 bg-neutral-50/50 border-b border-neutral-100/80 text-[13px] font-semibold text-neutral-600 transition-colors active:bg-neutral-100 shrink-0 uppercase tracking-wider"
                 >
-                  <ChevronLeft size={22} className="text-gray-600" />
-                  <span>Main Menu</span>
+                  <ArrowLeft size={14} strokeWidth={2} />
+                  <span>Back to categories</span>
                 </button>
 
-                {/* Subcategories Scrolling Area */}
-                <div className="flex-1 overflow-y-auto pb-10">
-                  <div className="px-6 pt-5 pb-2 text-xs font-bold text-gray-400 uppercase tracking-widest">
+                {/* Sub-navigation List */}
+                <div className="flex-1 overflow-y-auto pb-12">
+                  <div className="px-5 pt-6 pb-3 text-xs font-bold text-neutral-400 uppercase tracking-widest">
                     {activeCatObj.name}
                   </div>
 
-                  <ul className="flex flex-col">
-                    {/* Primary "See All" Option */}
+                  <ul className="divide-y divide-neutral-50/60">
                     <li>
                       <Link
                         to={`/category/${activeCatObj.slug}`}
                         onClick={onClose}
-                        className="flex items-center px-6 py-4 text-[16px] font-semibold text-sky-600 border-b border-gray-100 hover:bg-sky-50/30"
+                        className="flex items-center w-full px-5 py-4 text-[15px] font-semibold text-neutral-900 bg-neutral-50/30 hover:underline"
                       >
-                        See All {activeCatObj.name}
+                        View All
                       </Link>
                     </li>
 
-                    {/* Subcategories */}
                     {activeCatObj.subcategories?.map((sub) => (
                       <li key={sub._id}>
                         <Link
                           to={`/category/${activeCatObj.slug}/sub/${sub.slug}`}
                           onClick={onClose}
-                          className={subcategoryItemClass}
+                          className="flex items-center justify-between w-full px-5 py-4 text-[15px] text-neutral-700 active:bg-neutral-50 transition-colors"
                         >
                           <span>{sub.name}</span>
-                          <ChevronRight size={16} className="text-gray-300" />
                         </Link>
                       </li>
                     ))}
