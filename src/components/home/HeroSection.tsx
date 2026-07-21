@@ -318,7 +318,7 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
         className="absolute inset-0 pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-blue-600/30 via-indigo-500/20 to-purple-500/20 blur-[120px] rounded-full opacity-70" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-linear-to-tr from-blue-600/30 via-indigo-500/20 to-purple-500/20 blur-[120px] rounded-full opacity-70" />
       </div>
 
       {/* Background Image */}
@@ -358,7 +358,7 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
               {hero.gradientHeadline && (
                 <>
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-sky-300 to-emerald-300">
+                  <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-300 via-sky-300 to-emerald-300">
                     {hero.gradientHeadline}
                   </span>
                 </>
