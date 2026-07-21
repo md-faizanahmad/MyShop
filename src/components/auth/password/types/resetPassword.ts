@@ -64,11 +64,8 @@ export interface UseResetPasswordReturn {
   setConfirmPassword: (value: string) => void;
 
   handleOtpChange: (value: string[]) => void;
-
   handleEmailSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
-
   handleOtpSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
-
   handleResetPassword: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 
   resendOtp: () => Promise<void>;
