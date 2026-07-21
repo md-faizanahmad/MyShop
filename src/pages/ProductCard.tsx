@@ -322,6 +322,7 @@ import { motion } from "framer-motion";
 import type { PublicProduct } from "../types/product";
 import { useCartStore } from "../store/useCartStore";
 import { useWishlistStore } from "../store/useWishlistStore";
+import { useAuthStore } from "../store/useAuthStore";
 
 interface Props {
   product: PublicProduct;
@@ -331,6 +332,8 @@ export default function ProductCard({ product }: Props) {
   const cartItems = useCartStore((s) => s.items);
   const addToCart = useCartStore((s) => s.addItem);
   const removeFromCart = useCartStore((s) => s.removeItem);
+
+  const { status } = useAuthStore();
 
   const wishlistItems = useWishlistStore((s) => s.items);
   const addWish = useWishlistStore((s) => s.add);
@@ -425,18 +428,22 @@ export default function ProductCard({ product }: Props) {
           )}
 
           {/* MINIMALIST WISHLIST TOGGLE */}
-          <button
-            onClick={toggleWishlist}
-            className="absolute top-2 right-2 bg-white border border-neutral-200 p-1.5 transition-colors hover:bg-neutral-50"
-          >
-            <Heart
-              size={18}
-              strokeWidth={1}
-              className={
-                isWishlisted ? "fill-red-900 text-red-900" : "text-neutral-400"
-              }
-            />
-          </button>
+          {status === "authenticated" && (
+            <button
+              onClick={toggleWishlist}
+              className="absolute top-2 right-2 bg-white border border-neutral-200 p-1.5 transition-colors hover:bg-neutral-50"
+            >
+              <Heart
+                size={18}
+                strokeWidth={1}
+                className={
+                  isWishlisted
+                    ? "fill-red-900 text-red-900"
+                    : "text-neutral-400"
+                }
+              />
+            </button>
+          )}
         </div>
 
         {/* METADATA CONTENT PANEL */}
