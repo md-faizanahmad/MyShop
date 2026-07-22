@@ -176,11 +176,11 @@ export default function CategoryQuickLinks({
   // Loading State
   if (loading) {
     return (
-      <section className="w-full py-10 lg:py-16 bg-white dark:bg-zinc-950">
+      <section className="w-full py-10 lg:py-16 bg-white ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-2 mb-8 animate-pulse">
-            <div className="h-3 w-24 rounded bg-zinc-200 dark:bg-zinc-800 tracking-widest" />
-            <div className="h-7 w-48 rounded bg-zinc-200 dark:bg-zinc-800" />
+            <div className="h-3 w-24 rounded bg-zinc-200  tracking-widest" />
+            <div className="h-7 w-48 rounded bg-zinc-200 " />
           </div>
 
           {/* Mirrors the layout grid exactly */}
@@ -188,7 +188,7 @@ export default function CategoryQuickLinks({
             {Array.from({ length: limit }).map((_, i) => (
               <div
                 key={i}
-                className="w-full aspect-4/5 xs:aspect-[3/4] rounded-2xl bg-zinc-100 dark:bg-zinc-900 animate-pulse"
+                className="w-full aspect-4/5 xs:aspect-[3/4] rounded-2xl bg-zinc-100  animate-pulse"
               />
             ))}
           </div>
@@ -200,14 +200,14 @@ export default function CategoryQuickLinks({
   const list = categories.slice(0, limit);
 
   return (
-    <section className="w-full py-10 lg:py-16 bg-white dark:bg-zinc-950">
+    <section className="w-full py-10 lg:py-16 bg-white ">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="mb-8 space-y-1.5">
-          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-600 dark:text-sky-400 block">
+          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-600  block">
             Collections
           </span>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 ">
             Shop by Category
           </h2>
         </div>
@@ -229,7 +229,7 @@ export default function CategoryQuickLinks({
             >
               <Link
                 to={`/category/${cat.slug}`}
-                className="group relative block aspect-4/5 xs:aspect-[3/4] w-full overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 isolation-isolate"
+                className="group relative block aspect-4/5 xs:aspect-[3/4] w-full overflow-hidden rounded-2xl bg-zinc-100  isolation-isolate"
               >
                 {/* Image asset component */}
                 <img

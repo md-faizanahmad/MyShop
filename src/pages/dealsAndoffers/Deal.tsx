@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -147,7 +147,7 @@ export default function DealsAndOffersPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
         {/* 1. HERO PROMOTIONAL CAROUSEL (Static UI Layout) */}
         <section className="relative bg-gray-900 rounded-2xl overflow-hidden shadow-lg h-[340px] sm:h-[400px] flex items-center">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-900 via-indigo-900 to-transparent opacity-90 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-purple-900 via-indigo-900 to-transparent opacity-90 mix-blend-multiply"></div>
           <div
             className="absolute inset-0 bg-gray-800 opacity-20 bg-cover bg-center"
             style={{
