@@ -356,9 +356,9 @@
 // };
 
 // export default CustomerReviews;
-////////////////////////////////////////////////////////////////////////// update design 11072026
-import { Star, CheckCircle2, Quote, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+////////////////////////////////////////////////////////////////////////// update design 11-07-2026
+import { Star, CheckCircle2, Quote, ArrowLeft, ArrowRight } from "lucide-react";
+import { useRef } from "react";
 import type { FC } from "react";
 
 export interface Review {
@@ -381,155 +381,166 @@ interface CustomerReviewsProps {
 
 const CustomerReviews: FC<CustomerReviewsProps> = ({
   reviews,
-  totalReviewsLabel = "Customer Reviews",
-  title = "Voices of our Community",
-  subtitle = "Real stories from people who shop with us every day.",
+  totalReviewsLabel = "Verified Reviews",
+  title = "Customer Feedback",
+  subtitle = "What buyers are saying about our tech and setup essentials.",
 }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   const avgRating =
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
       : 0;
 
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 360;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <section className="py-12 px-4  antialiased">
-      <div className="max-w-5xl mx-auto">
-        {/* --- HEADER: SHOPPING ARCHIVE ARCHITECTURE --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-4 mb-8 gap-6">
+    <section className="py-16 bg-gray-50 dark:bg-gray-900 overflow-hidden antialiased">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* --- HEADER --- */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-200 dark:border-gray-800 pb-5 mb-8 gap-6">
           <div className="flex flex-col gap-1">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-700 font-semibold">
-              Recent Top Reviews
+            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-amber-400 font-semibold">
+              Live Customer Feedback
             </span>
-            <h2 className="text-lg font-bold tracking-tight text-zinc-900">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-950 dark:text-gray-50">
               {title}
             </h2>
-            <p className="text-xs text-zinc-500 max-w-md">{subtitle}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md">
+              {subtitle}
+            </p>
           </div>
 
-          {/* E-Commerce Dashboard Summary Block */}
-          <div className="flex items-center gap-4 px-4 py-2.5 bg-white border border-zinc-200 self-start md:self-auto shadow-sm">
-            <span className="text-2xl font-black tracking-tight text-zinc-900">
-              {avgRating.toFixed(1)}
-            </span>
-            <div className="flex flex-col border-l border-zinc-200 pl-4">
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={10}
-                    className={
-                      i < Math.round(avgRating)
-                        ? "fill-amber-400 text-amber-400"
-                        : "text-zinc-200"
-                    }
-                  />
-                ))}
+          {/* Rating Summary Card & Navigation Controls */}
+          <div className="flex items-center gap-4 self-start md:self-auto">
+            <div className="flex items-center gap-4 px-4 py-2.5 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-md shadow-xs">
+              <span className="text-2xl font-black tracking-tight text-gray-950 dark:text-gray-50">
+                {avgRating.toFixed(1)}
+              </span>
+              <div className="flex flex-col border-l border-gray-200 dark:border-gray-800 pl-4">
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={12}
+                      className={
+                        i < Math.round(avgRating)
+                          ? "fill-amber-400 text-amber-400"
+                          : "fill-gray-100 text-gray-300 dark:fill-gray-800 dark:text-gray-700"
+                      }
+                    />
+                  ))}
+                </div>
+                <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mt-0.5">
+                  {reviews.length} {totalReviewsLabel}
+                </p>
               </div>
-              <p className="text-[10px] font-mono text-zinc-400 mt-0.5">
-                {reviews.length} {totalReviewsLabel}
-              </p>
             </div>
+
+            {/* Carousel Arrow Controls */}
+            {reviews.length > 0 && (
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => scroll("left")}
+                  className="p-2.5 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                  aria-label="Previous reviews"
+                >
+                  <ArrowLeft size={16} />
+                </button>
+                <button
+                  onClick={() => scroll("right")}
+                  className="p-2.5 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                  aria-label="Next reviews"
+                >
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* --- REVIEWS SHOPPING MATRIX GRID --- */}
+        {/* --- CAROUSEL CONTAINER (ONLY ORIGINAL ITEMS) --- */}
         {reviews.length === 0 ? (
-          <div className="text-left py-8 px-4 border border-dashed border-zinc-300 bg-white flex items-center gap-3">
-            <Quote className="text-zinc-300 shrink-0" size={14} />
-            <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
+          <div className="py-8 px-4 border border-dashed border-gray-300 dark:border-gray-800 bg-white dark:bg-gray-950 flex items-center gap-3">
+            <Quote className="text-gray-400 shrink-0" size={16} />
+            <p className="text-xs font-mono text-gray-500 uppercase tracking-wider">
               No customer logs registered.
             </p>
           </div>
         ) : (
-          <motion.ul
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={{
-              hidden: { opacity: 0 },
-              show: { opacity: 1, transition: { staggerChildren: 0.05 } },
-            }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {reviews.map((review) => (
-              <motion.li
+              <article
                 key={review.id}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.99 },
-                  show: { opacity: 1, scale: 1 },
-                }}
-                transition={{ duration: 0.2 }}
-                className="block"
+                className="w-80 sm:w-96 shrink-0 snap-start flex flex-col justify-between border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-5 rounded-lg shadow-xs hover:border-gray-300 dark:hover:border-gray-700 transition-colors"
               >
-                <article className="group h-full flex flex-col justify-between border border-zinc-200 bg-white p-5 transition-all hover:border-zinc-300 hover:shadow-sm">
-                  <div>
-                    {/* User Metadata */}
-                    <div className="flex items-start justify-between border-b border-zinc-100 pb-3 mb-3">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-6 h-6 bg-zinc-800 text-zinc-100 flex items-center justify-center font-mono text-[9px] font-bold tracking-tight">
-                          {review.name.charAt(0)}
-                        </div>
-                        <div className="flex flex-col">
-                          <h4 className="text-xs font-bold tracking-tight text-zinc-900 flex items-center gap-1">
-                            <span>{review.name}</span>
-                            {review.verified && (
-                              <CheckCircle2
-                                size={10}
-                                className="text-emerald-600 fill-emerald-50"
-                              />
-                            )}
-                          </h4>
-                          {review.city && (
-                            <span className="text-[9px] font-mono text-zinc-400 uppercase">
-                              {review.city}
-                            </span>
-                          )}
-                        </div>
+                <div>
+                  {/* User Header */}
+                  <div className="flex items-start justify-between border-b border-gray-100 dark:border-gray-900 pb-3 mb-3">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 flex items-center justify-center font-mono text-xs font-bold rounded">
+                        {review.name.charAt(0)}
                       </div>
-
-                      <time
-                        className="text-[9px] font-mono text-zinc-400"
-                        dateTime={review.dateISO}
-                      >
-                        {review.date}
-                      </time>
+                      <div className="flex flex-col">
+                        <h4 className="text-xs font-bold tracking-tight text-gray-900 dark:text-gray-100 flex items-center gap-1">
+                          <span>{review.name}</span>
+                          {review.verified && (
+                            <CheckCircle2
+                              size={12}
+                              className="text-emerald-600 fill-emerald-50 dark:fill-emerald-950"
+                            />
+                          )}
+                        </h4>
+                        {review.city && (
+                          <span className="text-[10px] font-mono text-gray-400 uppercase">
+                            {review.city}
+                          </span>
+                        )}
+                      </div>
                     </div>
 
-                    {/* Shopping Star Metrics */}
-                    <div className="flex gap-0.5 mb-2.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          size={10}
-                          className={
-                            i < review.rating
-                              ? "fill-amber-400 text-amber-400"
-                              : "text-zinc-200"
-                          }
-                        />
-                      ))}
-                    </div>
-
-                    {/* Comment Content */}
-                    <blockquote className="text-xs text-zinc-600 leading-relaxed font-normal">
-                      &ldquo;{review.comment}&rdquo;
-                    </blockquote>
+                    <time
+                      className="text-[10px] font-mono text-gray-400"
+                      dateTime={review.dateISO}
+                    >
+                      {review.date}
+                    </time>
                   </div>
-                </article>
-              </motion.li>
-            ))}
-          </motion.ul>
-        )}
 
-        {/* --- FOOTER CTA --- */}
-        {reviews.length > 6 && (
-          <div className="flex justify-end mt-6">
-            <button className="group inline-flex h-8 items-center gap-2 bg-zinc-900 px-3 text-xs font-medium text-white transition-colors hover:bg-zinc-800 shadow-sm">
-              <span>Read Full Catalog</span>
-              <ArrowRight
-                size={12}
-                className="transition-transform group-hover:translate-x-0.5"
-              />
-            </button>
+                  {/* Rating Stars */}
+                  <div className="flex gap-0.5 mb-2.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={11}
+                        className={
+                          i < review.rating
+                            ? "fill-amber-400 text-amber-400"
+                            : "fill-gray-100 text-gray-200 dark:fill-gray-900 dark:text-gray-800"
+                        }
+                      />
+                    ))}
+                  </div>
+
+                  {/* Comment Body */}
+                  <blockquote className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed font-normal">
+                    &ldquo;{review.comment}&rdquo;
+                  </blockquote>
+                </div>
+              </article>
+            ))}
           </div>
         )}
       </div>
