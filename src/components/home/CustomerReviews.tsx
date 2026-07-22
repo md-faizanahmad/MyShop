@@ -406,26 +406,24 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
     <section className="py-16 bg-gray-50  overflow-hidden antialiased">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* --- HEADER --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-200 dark:border-gray-800 pb-5 mb-8 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-200  pb-5 mb-8 gap-6">
           <div className="flex flex-col gap-1">
-            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-amber-400 font-semibold">
+            <span className="text-xs font-mono uppercase tracking-widest text-amber-600  font-semibold">
               Live Customer Feedback
             </span>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-950 dark:text-gray-50">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-950 ">
               {title}
             </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md">
-              {subtitle}
-            </p>
+            <p className="text-sm text-gray-600  max-w-md">{subtitle}</p>
           </div>
 
           {/* Rating Summary Card & Navigation Controls */}
           <div className="flex items-center gap-4 self-start md:self-auto">
-            <div className="flex items-center gap-4 px-4 py-2.5 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-md shadow-xs">
-              <span className="text-2xl font-black tracking-tight text-gray-950 dark:text-gray-50">
+            <div className="flex items-center gap-4 px-4 py-2.5 bg-white  border border-gray-200  rounded-md shadow-xs">
+              <span className="text-2xl font-black tracking-tight text-gray-950 ">
                 {avgRating.toFixed(1)}
               </span>
-              <div className="flex flex-col border-l border-gray-200 dark:border-gray-800 pl-4">
+              <div className="flex flex-col border-l border-gray-200  pl-4">
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
                     <Star
@@ -434,12 +432,12 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
                       className={
                         i < Math.round(avgRating)
                           ? "fill-amber-400 text-amber-400"
-                          : "fill-gray-100 text-gray-300 dark:fill-gray-800 dark:text-gray-700"
+                          : "fill-gray-100 text-gray-300  "
                       }
                     />
                   ))}
                 </div>
-                <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mt-0.5">
+                <p className="text-xs font-mono text-gray-500  mt-0.5">
                   {reviews.length} {totalReviewsLabel}
                 </p>
               </div>
@@ -450,14 +448,14 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => scroll("left")}
-                  className="p-2.5 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                  className="p-2.5 rounded-md border border-gray-200  bg-white  text-gray-700  hover:bg-gray-100  transition-colors"
                   aria-label="Previous reviews"
                 >
                   <ArrowLeft size={16} />
                 </button>
                 <button
                   onClick={() => scroll("right")}
-                  className="p-2.5 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                  className="p-2.5 rounded-md border border-gray-200  bg-white text-gray-700  hover:bg-gray-100  transition-colors"
                   aria-label="Next reviews"
                 >
                   <ArrowRight size={16} />
@@ -469,7 +467,7 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
 
         {/* --- CAROUSEL CONTAINER (ONLY ORIGINAL ITEMS) --- */}
         {reviews.length === 0 ? (
-          <div className="py-8 px-4 border border-dashed border-gray-300 dark:border-gray-800 bg-white dark:bg-gray-950 flex items-center gap-3">
+          <div className="py-8 px-4 border border-dashed border-gray-300  bg-white  flex items-center gap-3">
             <Quote className="text-gray-400 shrink-0" size={16} />
             <p className="text-xs font-mono text-gray-500 uppercase tracking-wider">
               No customer logs registered.
@@ -484,22 +482,22 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
             {reviews.map((review) => (
               <article
                 key={review.id}
-                className="w-80 sm:w-96 shrink-0 snap-start flex flex-col justify-between border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-5 rounded-lg shadow-xs hover:border-gray-300 dark:hover:border-gray-700 transition-colors"
+                className="w-80 sm:w-96 shrink-0 snap-start flex flex-col justify-between border border-gray-200  bg-white  p-5 rounded-lg shadow-xs hover:border-gray-300  transition-colors"
               >
                 <div>
                   {/* User Header */}
-                  <div className="flex items-start justify-between border-b border-gray-100 dark:border-gray-900 pb-3 mb-3">
+                  <div className="flex items-start justify-between border-b border-gray-100  pb-3 mb-3">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 flex items-center justify-center font-mono text-xs font-bold rounded">
+                      <div className="w-7 h-7 bg-gray-900  text-white  flex items-center justify-center font-mono text-xs font-bold rounded">
                         {review.name.charAt(0)}
                       </div>
                       <div className="flex flex-col">
-                        <h4 className="text-xs font-bold tracking-tight text-gray-900 dark:text-gray-100 flex items-center gap-1">
+                        <h4 className="text-xs font-bold tracking-tight text-gray-900  flex items-center gap-1">
                           <span>{review.name}</span>
                           {review.verified && (
                             <CheckCircle2
                               size={12}
-                              className="text-emerald-600 fill-emerald-50 dark:fill-emerald-950"
+                              className="text-emerald-600 fill-emerald-50 "
                             />
                           )}
                         </h4>
@@ -528,14 +526,14 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
                         className={
                           i < review.rating
                             ? "fill-amber-400 text-amber-400"
-                            : "fill-gray-100 text-gray-200 dark:fill-gray-900 dark:text-gray-800"
+                            : "fill-gray-100 text-gray-200 "
                         }
                       />
                     ))}
                   </div>
 
                   {/* Comment Body */}
-                  <blockquote className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed font-normal">
+                  <blockquote className="text-xs text-gray-700  leading-relaxed font-normal">
                     &ldquo;{review.comment}&rdquo;
                   </blockquote>
                 </div>
