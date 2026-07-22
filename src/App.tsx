@@ -53,7 +53,7 @@ import ConnectionError from "./ConnectionError";
 import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
 import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
 import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
-import MobileCategoryNavbar from "./components/Navbar/components/MobileCategoryNavbar";
+
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
 function AppContent() {
@@ -67,7 +67,7 @@ function AppContent() {
       <ConnectionError />
       {/* <TestModeBanner /> */}
       {/* Header with Search, Navbar, Cart, etc. */}
-      <MobileCategoryNavbar />
+
       <Header />
 
       <Outlet />

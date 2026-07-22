@@ -11,6 +11,7 @@ import BrandStorySection from "../components/home/BrandStorySection";
 import FeatureProducts from "../components/home/FeatureProducts";
 import CustomerReviews from "../components/home/CustomerReviews";
 import TechPromoBanners from "../components/home/TechPromoBanners";
+import MobileCategoryNavbar from "../components/Navbar/components/MobileCategoryNavbar";
 // import MobileCategoryScroll from "../components/home/MobileScrollNav";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <MobileCategoryNavbar />
       <main className="flex flex-col gap-12 md:gap-16">
         <HeroSection hero={hero} loading={isLoading} />
         {/* <MobileCategoryScroll /> */}
