@@ -76,60 +76,67 @@ export default function ReviewList({
         return (
           <li
             key={r._id}
-            className={`group relative rounded-xl border p-5 transition-all duration-200 ${
+            className={`group relative w-70 rounded-lg border p-4 transition-all ${
               isEditing
-                ? "border-blue-200 bg-blue-50/30 ring-2 ring-blue-50"
-                : "border-gray-100 bg-white hover:shadow-md"
+                ? "border-sky-500 bg-blue-50/20"
+                : "border-gray-200 bg-white hover:border-gray-300"
             }`}
           >
-            {/* Top Bar: User & Actions */}
-            <div className="flex flex-col sm:flex-row sm:justify-between items-start gap-3">
-              <div className="flex gap-3">
-                <div className="h-10 w-10 shrink-0 rounded-full bg-linear-to-tr from-gray-100 to-gray-200 flex items-center justify-center font-bold text-gray-500 text-sm">
+            {/* Header: User Info & Actions */}
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center gap-3">
+                {/* Avatar */}
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 font-semibold text-gray-700 text-sm">
                   {r.user.name?.charAt(0).toUpperCase() || "U"}
                 </div>
+
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-gray-900 leading-none">
+                    <span className="font-semibold text-gray-900 text-sm">
                       {r.user.name}
                     </span>
-
-                    <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded-full uppercase tracking-tighter">
-                      <CheckCircle size={10} /> Verified
+                    <span className="inline-flex items-center gap-1 text-xs text-emerald-700 font-medium">
+                      <CheckCircle size={12} className="text-emerald-600" />
+                      Verified Purchase
                     </span>
                   </div>
-                  <p className="text-[11px] text-gray-400 mt-1 font-medium italic">
+                  <p className="text-xs text-gray-500 mt-0.5">
                     {new Date(r.createdAt).toLocaleDateString(undefined, {
-                      dateStyle: "medium",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
                     })}
                   </p>
                 </div>
               </div>
 
+              {/* Owner Actions */}
               {isOwner && !isEditing && (
-                <div className="absolute top-4 right-4 sm:static flex gap-1 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => {
                       setEditingId(r._id);
                       setEditRating(r.rating);
                       setEditComment(r.comment);
                     }}
-                    className="p-2 text-gray-400 hover:text-blue-600 hover:bg-white rounded-lg shadow-sm sm:shadow-none border border-transparent hover:border-blue-100 transition-all"
+                    className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+                    title="Edit Review"
                   >
-                    <Pencil size={16} />
+                    <Pencil size={15} />
                   </button>
                   <button
                     onClick={() => deleteMutation.mutate()}
-                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-white rounded-lg shadow-sm sm:shadow-none border border-transparent hover:border-red-100 transition-all"
+                    className="rounded p-1.5 text-gray-500 hover:bg-red-50 hover:text-red-600 transition-colors"
+                    title="Delete Review"
                   >
-                    <Trash2 size={16} />
+                    <Trash2 size={15} />
                   </button>
                 </div>
               )}
             </div>
 
             {/* Rating Stars */}
-            <div className="mt-3 flex gap-0.5">
+            <div className="mt-3 flex items-center gap-1">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star
                   key={i}
@@ -139,42 +146,42 @@ export default function ReviewList({
                   } ${
                     i < (isEditing ? editRating : r.rating)
                       ? "fill-amber-400 text-amber-400"
-                      : "text-gray-200"
+                      : "fill-gray-100 text-gray-300"
                   }`}
                   onClick={isEditing ? () => setEditRating(i + 1) : undefined}
                 />
               ))}
             </div>
 
-            {/* Comment Section */}
+            {/* Content / Edit Mode */}
             {!isEditing ? (
-              <p className="mt-3 text-gray-700 text-sm sm:text-base leading-relaxed">
+              <p className="mt-2.5 text-sm text-gray-800 leading-relaxed">
                 {r.comment}
               </p>
             ) : (
-              <div className="mt-4 space-y-3">
+              <div className="mt-3 space-y-3">
                 <textarea
                   value={editComment}
                   onChange={(e) => setEditComment(e.target.value)}
                   rows={3}
-                  className="w-full resize-none rounded-xl border border-blue-200 p-3 text-sm focus:ring-4 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all shadow-sm"
-                  placeholder="Share your thoughts..."
+                  className="w-full rounded-md border border-gray-300 p-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  placeholder="Update your review..."
                 />
 
-                <div className="flex gap-2">
+                <div className="flex items-center gap-2">
                   <button
                     disabled={updateMutation.isPending}
                     onClick={() => updateMutation.mutate()}
-                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-bold text-white hover:bg-blue-700 transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-1.5 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800 transition-colors disabled:opacity-50"
                   >
-                    <Save size={14} />{" "}
-                    {updateMutation.isPending ? "Saving..." : "Save Changes"}
+                    <Save size={13} />
+                    {updateMutation.isPending ? "Saving..." : "Save"}
                   </button>
                   <button
                     onClick={() => setEditingId(null)}
-                    className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-xs font-bold text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                   >
-                    <X size={14} /> Cancel
+                    <X size={13} /> Cancel
                   </button>
                 </div>
               </div>
