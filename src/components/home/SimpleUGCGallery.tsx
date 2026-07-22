@@ -43,22 +43,17 @@ const techUgcData: TechUGCItem[] = [
       "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?q=80&w=600&auto=format&fit=crop",
     category: "Tablets",
   },
+
   {
     id: "6",
-    // A drone being operated in a scenic location
-    image:
-      "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=600&auto=format&fit=crop",
-    category: "Drones",
-  },
-  {
-    id: "7",
     // Multiple devices (phone, watch, headphones) charging together
+
     image:
-      "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=600&auto=format&fit=crop",
+      "    https://images.unsplash.com/photo-1725304382197-663ae3864750?q=80&w=1974&auto=format&fit=crop",
     category: "Charging Tech",
   },
   {
-    id: "8",
+    id: "7",
     // Mechanical keyboard, personalized setup
     image:
       "https://images.unsplash.com/photo-1618384800394-2456b19d8d8d?q=80&w=600&auto=format&fit=crop",
@@ -81,7 +76,7 @@ const TechUGCGallery: FC<TechUGCGalleryProps> = ({
   // 2. Updated defaults for tech context
   title = "Our Tech in the Wild",
   subtitle = "Community favorites, real-world setups",
-  ctaLabel = "Explore All Gadgets",
+  // ctaLabel = "Explore All Gadgets",
   onCategoryClick,
 }) => {
   const handleItemClick = (category: string): void => {
@@ -142,7 +137,7 @@ const TechUGCGallery: FC<TechUGCGalleryProps> = ({
         </div>
 
         {/* CTA Button Area */}
-        <div className="text-left mt-12 md:mt-16">
+        {/* <div className="text-left mt-12 md:mt-16">
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md bg-gray-950 text-white dark:bg-gray-50 dark:text-gray-950 px-8 py-3 text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-200 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-50"
@@ -153,7 +148,7 @@ const TechUGCGallery: FC<TechUGCGalleryProps> = ({
           >
             {ctaLabel}
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
