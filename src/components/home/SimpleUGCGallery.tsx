@@ -5,7 +5,6 @@ interface TechUGCItem {
   id: string;
   image: string;
   category: string;
-  username: string; // Added username for authentic UGC feel
 }
 
 const techUgcData: TechUGCItem[] = [
@@ -15,7 +14,6 @@ const techUgcData: TechUGCItem[] = [
     image:
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=600&auto=format&fit=crop",
     category: "Smartphones",
-    username: "@alex_tech",
   },
   {
     id: "2",
@@ -23,7 +21,6 @@ const techUgcData: TechUGCItem[] = [
     image:
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop",
     category: "Headphones",
-    username: "@music_lover99",
   },
   {
     id: "3",
@@ -31,7 +28,6 @@ const techUgcData: TechUGCItem[] = [
     image:
       "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=600&auto=format&fit=crop",
     category: "Laptops",
-    username: "@dev_mode",
   },
   {
     id: "4",
@@ -39,7 +35,6 @@ const techUgcData: TechUGCItem[] = [
     image:
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=600&auto=format&fit=crop",
     category: "Smartwatches",
-    username: "@fitness_fan",
   },
   {
     id: "5",
@@ -47,7 +42,6 @@ const techUgcData: TechUGCItem[] = [
     image:
       "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?q=80&w=600&auto=format&fit=crop",
     category: "Tablets",
-    username: "@creative_mind",
   },
   {
     id: "6",
@@ -55,7 +49,6 @@ const techUgcData: TechUGCItem[] = [
     image:
       "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=600&auto=format&fit=crop",
     category: "Drones",
-    username: "@sky_view",
   },
   {
     id: "7",
@@ -63,7 +56,6 @@ const techUgcData: TechUGCItem[] = [
     image:
       "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=600&auto=format&fit=crop",
     category: "Charging Tech",
-    username: "@power_user",
   },
   {
     id: "8",
@@ -71,7 +63,6 @@ const techUgcData: TechUGCItem[] = [
     image:
       "https://images.unsplash.com/photo-1618384800394-2456b19d8d8d?q=80&w=600&auto=format&fit=crop",
     category: "Accessories",
-    username: "@setup_pro",
   },
 ];
 
@@ -119,14 +110,14 @@ const TechUGCGallery: FC<TechUGCGalleryProps> = ({
               key={item.id}
               type="button"
               onClick={() => handleItemClick(item.category)}
-              aria-label={`View ${item.category} curated by ${item.username}`}
+              aria-label={`View ${item.category} `}
               // Increased aspect ratio slightly (5/4) for a more substantial feel
-              className="group relative overflow-hidden rounded-lg aspect-[5/4] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:focus-visible:ring-gray-50"
+              className="group relative overflow-hidden rounded-lg aspect-5/4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:focus-visible:ring-gray-50"
             >
               {/* The Image - No Cheap Scaling */}
               <img
                 src={item.image}
-                alt={`${item.category} setup from ${item.username}`}
+                alt={`${item.category} `}
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
                 onError={(e) => {
@@ -139,10 +130,6 @@ const TechUGCGallery: FC<TechUGCGalleryProps> = ({
 
               {/* Sophisticated Gradient Overlay - Shows details on hover */}
               <div className="absolute inset-0 bg-linear-to-t from-gray-950/90 via-gray-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
-                {/* Username */}
-                <span className="text-xs font-medium text-gray-300 mb-1">
-                  {item.username}
-                </span>
                 {/* Category Pill - Using amber for a warm, high-quality accent */}
                 <div className="flex">
                   <span className="inline-flex rounded-full bg-amber-400 px-3.5 py-1 text-xs font-bold text-gray-950 shadow-md">
