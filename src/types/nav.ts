@@ -8,6 +8,7 @@ export interface Category {
   _id: string;
   name: string;
   slug: string;
+  image: string;
   subcategories?: Subcategory[];
 }
 
