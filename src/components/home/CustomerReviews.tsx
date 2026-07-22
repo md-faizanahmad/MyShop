@@ -403,7 +403,7 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
   };
 
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900 overflow-hidden antialiased">
+    <section className="py-16 bg-gray-50  overflow-hidden antialiased">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* --- HEADER --- */}
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-200 dark:border-gray-800 pb-5 mb-8 gap-6">

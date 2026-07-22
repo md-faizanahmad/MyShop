@@ -86,14 +86,14 @@ const TechUGCGallery: FC<TechUGCGalleryProps> = ({
   return (
     // 3. Sophisticated Neutral Palette (No Blue)
     // Using gray-50/gray-900 for section background
-    <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+    <section className="py-16 md:py-24 bg-gray-50 ">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         {/* Title / Header Area */}
         <div className="mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-950 dark:text-gray-50 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-950  tracking-tight">
             {title}
           </h2>
-          <p className="mt-3 text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl">
+          <p className="mt-3 text-base md:text-lg text-gray-700  max-w-2xl">
             {subtitle}
           </p>
         </div>
@@ -107,7 +107,7 @@ const TechUGCGallery: FC<TechUGCGalleryProps> = ({
               onClick={() => handleItemClick(item.category)}
               aria-label={`View ${item.category} `}
               // Increased aspect ratio slightly (5/4) for a more substantial feel
-              className="group relative overflow-hidden rounded-lg aspect-5/4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:focus-visible:ring-gray-50"
+              className="group relative overflow-hidden rounded-lg aspect-5/4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 "
             >
               {/* The Image - No Cheap Scaling */}
               <img
