@@ -1,98 +1,3 @@
-// import { motion } from "framer-motion";
-
-// interface BrandStorySectionProps {
-//   title?: string;
-//   description?: string;
-//   imageUrl?: string;
-// }
-
-// export default function BrandStorySection({
-//   title = "Why MyAZStore?",
-//   description = "We’re focused on making everyday shopping feel effortless. From handpicked collections to secure checkout and fast delivery, every part of MyAZStore is designed to give you a reliable and enjoyable experience — without overpaying for quality.",
-//   imageUrl = "https://res.cloudinary.com/daqb5wglu/image/upload/v1765033486/category_placeholder_lxynt2.png",
-// }: BrandStorySectionProps) {
-//   return (
-//     <section className="w-full py-12 md:py-16 bg-gradient-to-b from-gray-50 via-white to-gray-50">
-//       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center">
-//           {/* TEXT SIDE */}
-//           <motion.div
-//             initial={{ opacity: 0, y: 24 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true, amount: 0.4 }}
-//             transition={{ duration: 0.5, ease: "easeOut" }}
-//           >
-//             {/* Small badge */}
-//             <div className="inline-flex items-center rounded-full border border-gray-200 bg-white/80 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-gray-500 mb-3">
-//               Our Story
-//             </div>
-
-//             <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug">
-//               {title}
-//             </h2>
-
-//             <p className="text-gray-600 mt-4 leading-relaxed text-[14px] md:text-[15px]">
-//               {description}
-//             </p>
-
-//             {/* Highlights / stats */}
-//             <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-//               <div className="rounded-xl border border-gray-200 bg-white/80 px-4 py-3">
-//                 <p className="text-xs uppercase tracking-wide text-gray-500">
-//                   Curated Products
-//                 </p>
-//                 <p className="mt-1 text-base font-semibold text-gray-900">
-//                   Quality first
-//                 </p>
-//               </div>
-//               <div className="rounded-xl border border-gray-200 bg-white/80 px-4 py-3">
-//                 <p className="text-xs uppercase tracking-wide text-gray-500">
-//                   Shopping Experience
-//                 </p>
-//                 <p className="mt-1 text-base font-semibold text-gray-900">
-//                   Smooth & secure
-//                 </p>
-//               </div>
-//             </div>
-//           </motion.div>
-
-//           {/* IMAGE SIDE */}
-//           <motion.div
-//             className="relative"
-//             initial={{ opacity: 0, y: 24 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true, amount: 0.3 }}
-//             transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-//           >
-//             {/* subtle background shape */}
-//             <div className="absolute -inset-4 md:-inset-6 rounded-3xl bg-gradient-to-tr from-purple-100/60 via-pink-100/40 to-transparent blur-2xl" />
-
-//             <div className="relative rounded-3xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-//               <img
-//                 src={imageUrl}
-//                 alt="About MyAZStore"
-//                 className="w-full h-full max-h-80 md:max-h-96 object-cover"
-//                 loading="lazy"
-//               />
-
-//               {/* bottom label */}
-//               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent px-4 pb-4 pt-10">
-//                 <p className="text-xs uppercase tracking-wide text-gray-200">
-//                   Built for everyday shopping
-//                 </p>
-//                 <p className="text-sm font-medium text-white">
-//                   Fair pricing, fast delivery, simple experience.
-//                 </p>
-//               </div>
-//             </div>
-//           </motion.div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-///// updatyed
 import { motion } from "framer-motion";
 
 interface BrandStorySectionProps {
@@ -101,60 +6,54 @@ interface BrandStorySectionProps {
   imageUrl?: string;
 }
 
+const DEFAULT_TECH_IMAGE =
+  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop";
+
 export default function BrandStorySection({
   title = "Why MyAZStore?",
-  description = "We’re focused on making everyday shopping feel effortless. From handpicked collections to secure checkout and fast delivery, every part of MyAZStore is designed to give you a reliable and enjoyable experience — without overpaying for quality.",
-  imageUrl = "https://res.cloudinary.com/daqb5wglu/image/upload/v1765033486/category_placeholder_lxynt2.png",
+  description = "We’re dedicated to elevating your desk, mobile, and audio setup. From precision-engineered peripherals to everyday charging essentials, every product at MyAZStore is tested for reliability and sleek minimalist design — without the premium markups.",
+  imageUrl = DEFAULT_TECH_IMAGE,
 }: BrandStorySectionProps) {
-  const PLACEHOLDER =
-    "https://res.cloudinary.com/daqb5wglu/image/upload/v1765033486/category_placeholder_lxynt2.png";
-
   return (
-    <section className="w-full py-12 md:py-16 bg-linear-to-b from-gray-50 via-white to-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center">
+    <section className="w-full py-16 md:py-24 bg-gray-50 dark:bg-gray-900 antialiased">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* TEXT SIDE */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             {/* Small badge */}
-            <div
-              className="inline-flex items-center rounded-full border border-gray-200 bg-white/80 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-gray-500 mb-3"
-              aria-hidden="true"
-            >
-              Our Story
+            <div className="inline-flex items-center rounded-full border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-3 py-1 text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-amber-400 font-semibold mb-4">
+              Our Philosophy
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-950 dark:text-gray-50 tracking-tight leading-snug">
               {title}
             </h2>
 
-            <p className="text-gray-600 mt-4 leading-relaxed text-[14px] md:text-[15px]">
+            <p className="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed text-sm md:text-base">
               {description}
             </p>
 
-            {/* Highlights / stats as a semantic definition list */}
-            <dl
-              className="mt-6 grid grid-cols-2 gap-4 text-sm"
-              aria-hidden={false}
-            >
-              <div className="rounded-xl border border-gray-200 bg-white/80 px-4 py-3">
-                <dt className="text-xs uppercase tracking-wide text-gray-500">
-                  Curated Products
+            {/* Highlights / stats */}
+            <dl className="mt-8 grid grid-cols-2 gap-4 text-sm">
+              <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4 shadow-xs">
+                <dt className="text-xs font-mono uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  Curated Hardware
                 </dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">
-                  Quality first
+                <dd className="mt-1 text-sm font-semibold text-gray-950 dark:text-gray-50">
+                  Performance First
                 </dd>
               </div>
-              <div className="rounded-xl border border-gray-200 bg-white/80 px-4 py-3">
-                <dt className="text-xs uppercase tracking-wide text-gray-500">
-                  Shopping Experience
+              <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4 shadow-xs">
+                <dt className="text-xs font-mono uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  Setup Experience
                 </dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">
-                  Smooth & secure
+                <dd className="mt-1 text-sm font-semibold text-gray-950 dark:text-gray-50">
+                  Minimal & Seamless
                 </dd>
               </div>
             </dl>
@@ -163,45 +62,32 @@ export default function BrandStorySection({
           {/* IMAGE SIDE */}
           <motion.div
             className="relative"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
           >
-            {/* subtle background shape (decorative) */}
-            <div
-              className="absolute -inset-4 md:-inset-6 rounded-3xl bg-linear-to-tr from-purple-100/60 via-pink-100/40 to-transparent blur-2xl pointer-events-none -z-10"
-              aria-hidden="true"
-            />
-
-            <div className="relative rounded-3xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+            <div className="relative rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 shadow-sm overflow-hidden aspect-4/3">
               <img
                 src={imageUrl}
-                alt="About MyAZStore"
-                className="w-full h-full max-h-80 md:max-h-96 object-cover"
+                alt="MyAZStore Tech Environment"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"
                 onError={(e) => {
-                  const img = e.currentTarget as HTMLImageElement & {
-                    dataset: { fallback?: string };
-                  };
-                  if (!img.dataset.fallback) {
-                    img.dataset.fallback = "1";
-                    img.src = PLACEHOLDER;
+                  const img = e.currentTarget as HTMLImageElement;
+                  if (img.src !== DEFAULT_TECH_IMAGE) {
+                    img.src = DEFAULT_TECH_IMAGE;
                   }
                 }}
-                /* If you serve responsive sizes from your CDN, uncomment and populate:
-                   srcSet="... 480w, ... 768w, ... 1200w"
-                   sizes="(max-width: 768px) 100vw, 50vw"
-                 */
               />
 
-              {/* bottom label */}
-              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/65 via-black/20 to-transparent px-4 pb-4 pt-10">
-                <p className="text-xs uppercase tracking-wide text-gray-200">
-                  Built for everyday shopping
+              {/* Bottom gradient overlay & detail label */}
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-gray-950/90 via-gray-950/40 to-transparent p-5 pt-12">
+                <p className="text-xs font-mono uppercase tracking-widest text-amber-400 font-semibold">
+                  Built for everyday power users
                 </p>
-                <p className="text-sm font-medium text-white">
-                  Fair pricing, fast delivery, simple experience.
+                <p className="text-xs sm:text-sm font-medium text-gray-200 mt-0.5">
+                  Engineered gadgets, transparent pricing, fast fulfillment.
                 </p>
               </div>
             </div>
