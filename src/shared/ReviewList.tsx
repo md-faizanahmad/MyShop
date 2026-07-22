@@ -66,7 +66,10 @@ export default function ReviewList({
   return (
     <ul className="grid gap-4">
       {reviews.map((r) => {
-        const isOwner = r.user?._id === currentUserId;
+        // const isOwner = r.user?._id === currentUserId;
+        const isLoggedIn = Boolean(currentUserId);
+
+        const isOwner = isLoggedIn && r.user?._id === currentUserId;
 
         const isEditing = editingId === r._id;
 

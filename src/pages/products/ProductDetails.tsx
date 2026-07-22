@@ -21,6 +21,7 @@ import ReviewList from "../../shared/ReviewList";
 import SuggestedProducts from "../../shared/SuggestedProducts";
 import ProductDescription from "./ProductDescription";
 import ProductName from "./ProductName";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -42,7 +43,7 @@ export default function ProductDetails() {
   const wishlistItems = useWishlistStore((s) => s.items);
   const addWish = useWishlistStore((s) => s.add);
   const removeWish = useWishlistStore((s) => s.remove);
-
+  const user = useAuthStore((state) => state.user);
   /* -----------------------------
      Data fetch
   ----------------------------- */
@@ -181,6 +182,7 @@ export default function ProductDetails() {
             <ReviewList
               productId={product._id}
               reviews={product.reviews ?? []}
+              currentUserId={user?._id}
             />
           </div>
           <ReviewForm productId={product._id} slug={product.slug} />

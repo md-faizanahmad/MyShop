@@ -307,30 +307,29 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
 
   return (
     <section
-      className="relative overflow-hidden text-white bg-slate-950 py-16 sm:py-24 lg:py-32 flex items-center"
+      className="relative isolate flex min-h-[620px] items-center overflow-hidden bg-neutral-950 py-16 text-white sm:py-20 lg:py-28"
       aria-labelledby="hero-heading"
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-slate-950/80 z-10" />
+      <div className="absolute inset-0 z-10 bg-linear-to-b from-black/45 via-black/65 to-neutral-950" />
 
       {/* Modern ambient glow backdrop */}
-      <div
-        className="absolute inset-0 pointer-events-none overflow-hidden"
-        aria-hidden="true"
-      >
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-linear-to-tr from-blue-600/30 via-indigo-500/20 to-purple-500/20 blur-[120px] rounded-full opacity-70" />
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div className="absolute inset-0 opacity-[0.035] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-size-[48px_48px]" />
+
+        <div className="absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-3xl" />
       </div>
 
       {/* Background Image */}
       {hero.backgroundImage && (
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
+          className="absolute inset-0 scale-105 bg-cover bg-center opacity-20"
           style={{ backgroundImage: `url(${hero.backgroundImage})` }}
           aria-hidden="true"
         />
       )}
 
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative z-20 mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
