@@ -267,7 +267,7 @@ export default function MobileNavbar({
                 })}
               </ul>
             </section>
-            <footer className="mt-auto border-t border-neutral-100/60 pt-10">
+            <footer className="mt-auto border-t border-neutral-100/60 pt-2">
               <div className="px-5">
                 {bottomNavigation
                   .filter(({ featured }) => featured)
@@ -286,7 +286,7 @@ export default function MobileNavbar({
                     </Link>
                   ))}
 
-                <nav aria-label="Customer services" className="mt-6">
+                <nav aria-label="Customer services" className="mt-3">
                   <ul className="space-y-3.5">
                     {bottomNavigation
                       .filter(({ featured }) => !featured)
