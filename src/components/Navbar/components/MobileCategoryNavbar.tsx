@@ -6,9 +6,9 @@ export default function MobileCategoryNavbar() {
 
   // Unified outer container styling to prevent layout shift during loading
   const containerClasses =
-    "border-b border-neutral-200 bg-white lg:hidden mt-20";
+    "border-b border-neutral-200 bg-white lg:hidden mt-12";
   const scrollWrapperClasses =
-    "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-3";
+    "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-3 py-6";
 
   if (isLoading) {
     return (
