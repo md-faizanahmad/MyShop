@@ -29,14 +29,12 @@ const CLASSES = {
   statValue: "mt-1 text-sm font-semibold text-gray-900",
 
   // Image Frame & Overlay
-  imageWrapper:
-    "relative rounded-lg border border-gray-200 bg-white shadow-xs overflow-hidden aspect-[4/3]",
+  imageWrapper: "relative  overflow-hidden aspect-[4/3]",
   image:
     "w-full h-full object-cover transition-transform duration-700 hover:scale-105",
-  overlay:
-    "absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 via-black/30 to-transparent p-5 pt-12",
+  overlay: "absolute inset-x-0 bottom-0  p-5 pt-12",
   overlayTag: "text-xs uppercase tracking-wider text-amber-300 font-semibold",
-  overlayText: "text-xs sm:text-sm font-medium text-white mt-0.5",
+  overlayText: "text-xs sm:text-sm font-medium text-black mt-0.5 ",
 } as const;
 
 export default function BrandStorySection({
