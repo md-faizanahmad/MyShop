@@ -7,7 +7,7 @@ interface BrandStorySectionProps {
 }
 
 const DEFAULT_TECH_IMAGE =
-  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop";
+  "https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png";
 
 /* --- TAILWIND CLASS CONSTRAINTS --- */
 const CLASSES = {
