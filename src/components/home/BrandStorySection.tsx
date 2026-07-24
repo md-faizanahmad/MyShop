@@ -55,7 +55,10 @@ export default function BrandStorySection({
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <div className={CLASSES.badge}>Our Story</div>
+            <div className={CLASSES.badge}>
+              <span className="text-red-700">Our</span>{" "}
+              <span className="text-sky-700">Story</span>
+            </div>
 
             <h2 className={CLASSES.heading}>{title}</h2>
 
