@@ -72,9 +72,9 @@ export default function Footer() {
           <div className="lg:col-span-5 space-y-6">
             <Brand noAnimation size={48} />
             <p className="text-zinc-500 text-sm leading-relaxed max-w-md">
-              MyAZStore is your trusted online marketplace for everyday
-              essentials and unique finds. We focus on quality products, fair
-              pricing, and a smooth shopping experience across India.
+              AZStore is your trusted online marketplace for everyday essentials
+              and unique finds. We focus on quality products, fair pricing, and
+              a smooth shopping experience across India.
             </p>
             {/* Added Social Placeholder for "Real E-commerce" feel */}
 
@@ -126,8 +126,8 @@ export default function Footer() {
           {/* Copyright & Credits */}
           <div className="order-2 md:order-1 text-center md:text-left">
             <p className="text-[13px] font-light tracking-wide">
-              © {year} <span className="text-white font-medium">MyAZStore</span>
-              . Built by{" "}
+              © {year} <span className="text-white font-medium">AZStore</span>.
+              Built by{" "}
               <a
                 href="https://mdfaizanahmad.vercel.app"
                 target="_blank"
