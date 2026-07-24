@@ -32,31 +32,30 @@ const footerSections = [
     ],
   },
 ];
-
 const paymentIcons = [
   {
     name: "Amazon Pay",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Amazon_Pay_logo.svg/640px-Amazon_Pay_logo.svg.png",
+    src: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
   },
   {
     name: "Google Pay",
-    src: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/55/Google_Pay_Logo_%282020%29.svg",
   },
   {
     name: "UPI",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/UPI_logo.svg/640px-UPI_logo.svg.png",
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg",
   },
   {
     name: "Visa",
-    src: "https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg",
   },
   {
     name: "MasterCard",
     src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg",
   },
   {
-    name: "NetBanking",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Netbanking.svg/640px-Netbanking.svg.png",
+    name: "Net Banking",
+    src: "/images/net-banking.svg", // Add this locally
   },
 ];
 
