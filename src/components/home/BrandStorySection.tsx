@@ -40,7 +40,7 @@ const CLASSES = {
 } as const;
 
 export default function BrandStorySection({
-  title = "Why MyAZStore?",
+  title = "Why AZStore?",
   description = "We’re here to help you find tech and gear that just works. From phone accessories to laptop and audio setup essentials, every item at MyAZStore is picked to give you good quality and daily convenience — without high price tags.",
   imageUrl = DEFAULT_TECH_IMAGE,
 }: BrandStorySectionProps) {
