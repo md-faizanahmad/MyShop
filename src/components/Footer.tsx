@@ -39,7 +39,7 @@ const paymentIcons = [
   },
   {
     name: "Google Pay",
-    src: "https://upload.wikimedia.org/wikipedia/commons/5/55/Google_Pay_Logo_%282020%29.svg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/330px-Google_Pay_Logo.svg.png",
   },
   {
     name: "UPI",
@@ -47,7 +47,7 @@ const paymentIcons = [
   },
   {
     name: "Visa",
-    src: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Visa_Inc._logo_%282005%E2%80%932014%29.svg/3840px-Visa_Inc._logo_%282005%E2%80%932014%29.svg.png",
   },
   {
     name: "MasterCard",
@@ -55,7 +55,7 @@ const paymentIcons = [
   },
   {
     name: "Net Banking",
-    src: "/images/net-banking.svg", // Add this locally
+    src: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Netbanking.svg", // Add this locally
   },
 ];
 
