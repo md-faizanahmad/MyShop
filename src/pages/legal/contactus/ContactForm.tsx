@@ -1,5 +1,6 @@
 import React from "react";
 import { Loader2 } from "lucide-react";
+import { SUPPORT_TOPICS } from "../../../config/contact.config";
 
 export type SupportTopic = "orders" | "returns" | "payment" | "general";
 
@@ -19,24 +20,6 @@ interface ContactFormProps {
   onSubmit: (e: React.FormEvent) => void;
 }
 
-export const SUPPORT_TOPICS = [
-  {
-    id: "orders",
-    label: "Order Status",
-  },
-  {
-    id: "returns",
-    label: "Returns & Refund",
-  },
-  {
-    id: "payment",
-    label: "Payment Issue",
-  },
-  {
-    id: "general",
-    label: "General Inquiry",
-  },
-] as const;
 export const ContactForm: React.FC<ContactFormProps> = ({
   form,
   loading,
@@ -50,26 +33,36 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500">
           How can we help?
         </label>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {[
-            { id: "orders", label: "Order Status" },
-            { id: "returns", label: "Returns & Refund" },
-            { id: "payment", label: "Payment Issue" },
-            { id: "general", label: "General Inquiry" },
-          ].map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => onChange("topic", item.id as SupportTopic)}
-              className={`rounded-lg border px-3 py-2 text-xs font-medium transition-all ${
-                form.topic === item.id
-                  ? "border-slate-900 bg-slate-900 text-white shadow-sm"
-                  : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+        <div className="grid gap-3 sm:grid-cols-2">
+          {SUPPORT_TOPICS.map((topic) => {
+            const active = form.topic === topic.id;
+
+            return (
+              <button
+                key={topic.id}
+                type="button"
+                onClick={() => onChange("topic", topic.id)}
+                aria-pressed={active}
+                className={`rounded-xl border p-4 text-left transition-all ${
+                  active
+                    ? "border-[#550077] bg-[#550077]/5 ring-1 ring-[#550077]"
+                    : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                }`}
+              >
+                <p
+                  className={`text-sm font-semibold ${
+                    active ? "text-[#550077]" : "text-slate-900"
+                  }`}
+                >
+                  {topic.label}
+                </p>
+
+                <p className="mt-1 text-xs text-slate-500">
+                  {topic.description}
+                </p>
+              </button>
+            );
+          })}
         </div>
       </div>
 
