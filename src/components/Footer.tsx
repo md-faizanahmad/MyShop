@@ -140,7 +140,7 @@ export default function Footer() {
           </div>
 
           {/* Payment Trust Badges */}
-          <div className="order-1 md:order-2 flex flex-col items-center md:items-end gap-3">
+          <div className="order-1 md:order-2 flex flex-col items-center md:items-end gap-3 cursor-pointer">
             <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold">
               Secure Payments
             </span>
