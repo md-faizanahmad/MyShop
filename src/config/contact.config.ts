@@ -8,9 +8,7 @@ import type { SupportTopic } from "../types/contact.types";
 
 export const CONTACT = {
   email: import.meta.env.VITE_SUPPORT_EMAIL ?? "support@myazstore.shop",
-
   phone: import.meta.env.VITE_SUPPORT_PHONE ?? "+91 75630 92029",
-
   whatsapp: import.meta.env.VITE_SUPPORT_WHATSAPP ?? "917563092029",
 
   website: "https://myazstore.shop",
