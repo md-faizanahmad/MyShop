@@ -341,8 +341,12 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
             {hero.liveBadge?.enabled && (
               <div className="inline-flex items-center gap-2.5 bg-slate-900/90 backdrop-blur-md rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-200 border border-slate-700/80 shadow-md">
                 <span className="relative flex h-2 w-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="absolute inline-flex h-full w-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-sky-500 opacity-75" />
+                  <span
+                    className="absolute inline-flex h-full w-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-red-500 opacity-75"
+                    style={{ animationDelay: "1s" }}
+                  />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
                 </span>
                 <span>{hero.liveBadge.text}</span>
               </div>
