@@ -5,12 +5,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ContactForm, type ContactFormData } from "./contactus/ContactForm";
 import { ContactChannels } from "./contactus/ContactChannels";
+import { CONTACT } from "../../config/contact.config";
 
 const API = import.meta.env.VITE_API_URL ?? "";
 
-const SUPPORT_EMAIL = "support@myazstore.shop";
-const PHONE_NUMBER = "+917563092029";
-const WHATSAPP_NUMBER = "917563092029";
+// const SUPPORT_EMAIL = "support@myazstore.shop";
+// const PHONE_NUMBER = "+917563092029";
+// const WHATSAPP_NUMBER = "917563092029";
 
 const initialForm: ContactFormData = {
   name: "",
@@ -64,7 +65,7 @@ export default function Contact() {
         const body = encodeURIComponent(
           `Topic: ${form.topic}\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nOrder ID: ${form.orderId}\n\nMessage:\n${form.message}`,
         );
-        window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
         toast.info("Opening mail client as alternative...");
       } catch {
         toast.error(
@@ -132,9 +133,9 @@ export default function Contact() {
             className="space-y-6 lg:col-span-5"
           >
             <ContactChannels
-              supportEmail={SUPPORT_EMAIL}
-              phoneNumber={PHONE_NUMBER}
-              whatsappNumber={WHATSAPP_NUMBER}
+              supportEmail={CONTACT.email}
+              phoneNumber={CONTACT.phone}
+              whatsappNumber={CONTACT.whatsapp}
             />
 
             {/* Operating Hours Block */}

@@ -1,94 +1,90 @@
+// // hooks/useContact.ts
+
 // import { useState } from "react";
 // import axios from "axios";
 // import { toast } from "react-toastify";
 
-// import { CONTACT } from "../config/contact.config";
-// import type { ContactFormData } from "../types/contact.types";
-
-// const API = import.meta.env.VITE_API_URL ?? "";
-
-// const INITIAL_FORM: ContactFormData = {
-//   name: "",
-//   email: "",
-//   phone: "",
-//   topic: "orders",
-//   orderId: "",
-//   message: "",
-// };
-
 // export function useContact() {
-//   const [form, setForm] = useState(INITIAL_FORM);
-//   const [loading, setLoading] = useState(false);
+//   const [formData, setFormData] =
+//     useState<ContactFormDat>(INITIAL_CONTACT_FORM);
+
+//   const [isSubmitting, setIsSubmitting] = useState(false);
 
 //   const updateField = (key: keyof ContactFormData, value: string) => {
-//     setForm((prev: any) => ({
+//     setFormData((prev) => ({
 //       ...prev,
 //       [key]: value,
 //     }));
 //   };
 
-//   const reset = () => setForm(INITIAL_FORM);
+//   async function handleSubmit(e: React.FormEvent) {
+//     e.preventDefault();
 
-//   const submit = async (e?: React.FormEvent<HTMLFormElement>) => {
-//     e?.preventDefault();
-
-//     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+//     if (
+//       !formData.name.trim() ||
+//       !formData.email.trim() ||
+//       !formData.message.trim()
+//     ) {
 //       toast.error("Please complete all required fields.");
 //       return;
 //     }
 
-//     setLoading(true);
+//     setIsSubmitting(true);
 
 //     try {
 //       await axios.post(
-//         `${API}/v1/contact`,
+//         `${CONTACT_API}/v1/contact`,
 //         {
-//           name: form.name.trim(),
-//           email: form.email.trim(),
-//           phone: form.phone.trim() || undefined,
-//           category: form.topic,
-//           orderId: form.orderId.trim() || undefined,
-//           message: form.message.trim(),
+//           name: formData.name.trim(),
+//           email: formData.email.trim(),
+//           phone: formData.phone.trim() || undefined,
+//           category: formData.topic,
+//           orderId: formData.orderId.trim() || undefined,
+//           message: formData.message.trim(),
 //         },
 //         {
-//           timeout: 8000,
 //           withCredentials: true,
+//           timeout: 8000,
 //         },
 //       );
 
-//       toast.success("Your support request has been sent successfully.");
+//       toast.success("Ticket submitted! We'll reply within 24 hours.");
 
-//       reset();
+//       setFormData(INITIAL_CONTACT_FORM);
 //     } catch {
 //       try {
 //         const subject = encodeURIComponent(
-//           `[${form.topic.toUpperCase()}] ${form.name}`,
+//           `[${formData.topic.toUpperCase()}] Inquiry from ${formData.name}`,
 //         );
 
-//         const body = encodeURIComponent(`
-// Name: ${form.name}
-// Email: ${form.email}
-// Phone: ${form.phone}
-// Order ID: ${form.orderId}
+//         const body = encodeURIComponent(
+//           `Topic: ${formData.topic}
+// Name: ${formData.name}
+// Email: ${formData.email}
+// Phone: ${formData.phone}
+// Order ID: ${formData.orderId}
 
-// ${form.message}
-// `);
+// Message:
+// ${formData.message}`,
+//         );
 
 //         window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
 
-//         toast.info("Opening your email application...");
+//         toast.info("Opening mail client as alternative...");
 //       } catch {
-//         toast.error("Unable to contact support. Please use WhatsApp instead.");
+//         toast.error(
+//           "Couldn't reach servers. Please message us on WhatsApp directly.",
+//         );
 //       }
 //     } finally {
-//       setLoading(false);
+//       setIsSubmitting(false);
 //     }
-//   };
+//   }
 
 //   return {
-//     form,
-//     loading,
+//     formData,
+//     isSubmitting,
 //     updateField,
-//     submit,
+//     handleSubmit,
 //   };
 // }
