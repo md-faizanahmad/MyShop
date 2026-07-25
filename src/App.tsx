@@ -53,6 +53,7 @@ import ConnectionError from "./ConnectionError";
 import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
 import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
 import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
+import FAQ from "./pages/legal/Faq";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
@@ -174,6 +175,7 @@ function AppContent() {
             <Route path="/privacy-policy" element={<Privacy />} />
             <Route path="/shipping-policy" element={<Shipping />} />
             <Route path="/cancellations-refunds" element={<Refund />} />
+            <Route path="/faq" element={<FAQ />} />
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
