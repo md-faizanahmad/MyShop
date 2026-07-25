@@ -9,7 +9,7 @@ export default function LegalLayout({
 }) {
   return (
     <div className=" mx-auto px-4 py-5 ">
-      <h5 className="text-3xl font-bold mb-6">{title}</h5>
+      <h5 className="text-2xl font-bold text-sky-500 mb-6">{title}</h5>
       <div className="prose prose-neutral max-w-none">{children}</div>
     </div>
   );
