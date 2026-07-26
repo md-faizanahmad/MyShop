@@ -207,7 +207,7 @@ Design, branding, features, and business logic can be tailored based on client r
 
 <p align="center">
 <b>Md Faizan Ahmad</b><br/>
-Frontend-Focused Full-Stack Developer<br/>
+Full-Stack Developer<br/>
 Production-Oriented Architecture & Scalable UI Systems
 </p>
 
