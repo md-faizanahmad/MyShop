@@ -182,7 +182,7 @@ View Full Invoice PDF
 <h2 style="color:#0f172a;">⚙ Customization & Deployment</h2>
 
 <p>
-This platform can be customized for:
+This platform can be customized and :
 </p>
 
 <ul>
