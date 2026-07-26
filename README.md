@@ -1,6 +1,8 @@
+
+<h1 align="center" style="color:#0f172a;">
 <img
-width=60 height=60 src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png" alt="" />
-<h1 align="center" style="color:#0f172a;">AZStore E-Commerce Platform.
+width=60  src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png" alt="" />
+AZStore E-Commerce Platform.
 </h1>
 
 <p align="center" style="color:#475569; font-size:16px;">
