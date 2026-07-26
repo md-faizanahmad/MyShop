@@ -14,7 +14,7 @@ Mobile-First • Secure Authentication • Razorpay Integration • Invoice Syst
 <h2 style="color:#0f172a;">📌 Project Overview</h2>
 
 <p>
-MyAZStore is a complete full-stack e-commerce platform designed with a real production mindset. 
+AZStore is a complete full-stack e-commerce platform designed with a real production mindset. 
 Users can browse products, securely authenticate using password + OTP verification, manage wishlist and cart, complete Razorpay payments, and receive automated order notifications with invoices.
 </p>
 
