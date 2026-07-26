@@ -1,5 +1,4 @@
-<h1 align="center" style="color:#0f172a;">
-🛒 AZStore E-Commerce Platform.
+<h1 align="center" style="color:#0f172a;">AZStore E-Commerce Platform.
 </h1>
 
 <p align="center" style="color:#475569; font-size:16px;">
