@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center" style="color:#475569; font-size:16px;">
-Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • 
+Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • More 
 </p>
 
 <p align="center">
