@@ -6,7 +6,7 @@ Mobile-First • Secure Authentication • Razorpay Integration • Invoice Syst
 </p>
 
 <p align="center">
-<b>Live Demo:</b> <i> myazstore.shop </i>
+<b>Live Demo:</b> <strong> myazstore.shop </strong>
 </p>
 
 <hr/>
