@@ -6,7 +6,7 @@ AZStore E-Commerce Platform
 </h1>
 
 <p align="center" style="color:#475569; font-size:16px;">
-Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • More 
+Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • OTP Based 
 </p>
 
 <p align="center">
