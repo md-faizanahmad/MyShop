@@ -76,9 +76,7 @@ export default function TechPromoBanners() {
                 <h3 className="text-base font-semibold tracking-tight text-neutral-900">
                   {product.name}
                 </h3>
-                <p className="text-xs text-neutral-400">
-                  Premium hardware specifications.
-                </p>
+                <p className="text-xs text-neutral-400">{product.name}.</p>
               </div>
 
               <Link
