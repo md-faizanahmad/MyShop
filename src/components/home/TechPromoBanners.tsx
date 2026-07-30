@@ -23,6 +23,16 @@ const products = [
     accent: "text-emerald-400",
     icon: <Laptop size={12} />,
   },
+  {
+    name: "Mac Atlas",
+    category: "Laptops",
+    slug: "mac-atlas",
+    imageUrl:
+      "https://res.cloudinary.com/daqb5wglu/image/upload/q_auto,f_auto,w_auto,dpr_auto/v1765302805/MyStore/products/file_micrrn.jpg",
+    theme: "from-blue-950 to-zinc-950",
+    accent: "text-emerald-400",
+    icon: <Laptop size={12} />,
+  },
 ];
 
 export default function TechPromoBanners() {

@@ -17,6 +17,7 @@ interface ImageGalleryProps {
   has360View?: boolean;
   isWishlisted?: boolean; // New prop
   onWishlistToggle?: () => void; // New prop
+  currentUserId?: string;
 }
 
 export default function ImageGallery({
