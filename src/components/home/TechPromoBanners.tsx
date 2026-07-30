@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Laptop, Smartphone } from "lucide-react";
+import { ArrowRight, Laptop, Smartphone, Tv } from "lucide-react";
 import { motion } from "framer-motion";
 
 const products = [
@@ -30,8 +30,8 @@ const products = [
     imageUrl:
       "https://res.cloudinary.com/daqb5wglu/image/upload/v1764863271/MyStore/products/file_iu6ql2.jpg",
     theme: "from-blue-950 to-zinc-950",
-    accent: "text-emerald-400",
-    icon: <Laptop size={12} />,
+    accent: "text-red-400",
+    icon: <Tv size={12} />,
   },
 ];
 
