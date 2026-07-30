@@ -57,7 +57,7 @@ export default function TechPromoBanners() {
             </div>
 
             {/* Image */}
-            <div className="my-1 aspect-video w-full overflow-hidden bg-neutral-50 flex items-center justify-center p-6 border border-neutral-100">
+            <div className="my-1 aspect-video w-full overflow-hidden  flex items-center justify-center p-6 border border-neutral-100">
               <img
                 src={product.imageUrl}
                 alt={product.name}

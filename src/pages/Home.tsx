@@ -23,7 +23,7 @@ export default function Home() {
   const latestReviews = data?.latestReviews ?? [];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       <MobileCategoryNavbar />
       <main className="flex flex-col gap-12 md:gap-16">
         <HeroSection hero={hero} loading={isLoading} />
