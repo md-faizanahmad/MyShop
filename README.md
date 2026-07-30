@@ -1,13 +1,16 @@
+<img
+ src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png" alt="" />
 <h1 align="center" style="color:#0f172a;">
-🛒 MyAZStore – E-Commerce Platform
+
+AZStore E-Commerce Platform
 </h1>
 
 <p align="center" style="color:#475569; font-size:16px;">
-Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation
+Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • OTP Based 
 </p>
 
 <p align="center">
-<b>🔗 Live Demo:</b> <i> myazstore.shop </i>
+<b>Live Demo:</b> <strong> myazstore.shop </strong>
 </p>
 
 <hr/>
@@ -15,7 +18,7 @@ Mobile-First • Secure Authentication • Razorpay Integration • Invoice Syst
 <h2 style="color:#0f172a;">📌 Project Overview</h2>
 
 <p>
-MyAZStore is a complete full-stack e-commerce platform designed with a real production mindset. 
+AZStore is a complete full-stack e-commerce platform designed with a real production mindset. 
 Users can browse products, securely authenticate using password + OTP verification, manage wishlist and cart, complete Razorpay payments, and receive automated order notifications with invoices.
 </p>
 
@@ -183,7 +186,7 @@ View Full Invoice PDF
 <h2 style="color:#0f172a;">⚙ Customization & Deployment</h2>
 
 <p>
-This platform can be customized for:
+This platform can be customized and exten a feature:
 </p>
 
 <ul>
@@ -204,7 +207,7 @@ Design, branding, features, and business logic can be tailored based on client r
 
 <p align="center">
 <b>Md Faizan Ahmad</b><br/>
-Frontend-Focused Full-Stack Developer<br/>
+Full-Stack Developer<br/>
 Production-Oriented Architecture & Scalable UI Systems
 </p>
 
