@@ -12,6 +12,7 @@ import FeatureProducts from "../components/home/FeatureProducts";
 import CustomerReviews from "../components/home/CustomerReviews";
 import TechPromoBanners from "../components/home/TechPromoBanners";
 import MobileCategoryNavbar from "../components/Navbar/components/MobileCategoryNavbar";
+import TopAnnouncementBar from "../components/announcement-bar/TopAnnouncementBar";
 // import MobileCategoryScroll from "../components/home/MobileScrollNav";
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
   return (
     <div className="min-h-screen ">
       <MobileCategoryNavbar />
+      <TopAnnouncementBar />
       <main className="flex flex-col gap-12 md:gap-16">
         <HeroSection hero={hero} loading={isLoading} />
         {/* <MobileCategoryScroll /> */}
