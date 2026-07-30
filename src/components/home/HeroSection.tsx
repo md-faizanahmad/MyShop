@@ -307,7 +307,7 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
 
   return (
     <section
-      className="relative isolate flex min-h-[620px] items-center overflow-hidden bg-neutral-950 py-16 text-white sm:py-20 lg:py-28"
+      className="relative isolate flex min-h-[620px] items-center overflow-hidden bg-neutral-950 py-16 text-white sm:py-20 lg:py-25"
       aria-labelledby="hero-heading"
     >
       {/* Dark overlay */}
