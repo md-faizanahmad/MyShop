@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   ShieldCheck,
   Truck,
@@ -5,7 +6,7 @@ import {
   Headphones,
   type LucideIcon,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Benefit {
   id: string;
@@ -52,8 +53,27 @@ const benefits: Benefit[] = [
 ];
 
 export default function TrustBenefitsBar() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const total = benefits.length;
+
+  // Auto-play timer for mobile slider
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % total);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [total, isPaused]);
+
+  const handleNext = () => setActiveIndex((prev) => (prev + 1) % total);
+  const handlePrev = () => setActiveIndex((prev) => (prev - 1 + total) % total);
+
   return (
-    <section className="w-full bg-slate-50/50 dark:bg-neutral-900/50 border-y border-neutral-200/80 dark:border-neutral-800 py-6 antialiased overflow-hidden">
+    <section className="w-full bg-slate-50/50 dark:bg-neutral-900/50 border-y border-neutral-200/80 dark:border-neutral-800 py-4 md:py-6 antialiased overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
         {/* ================= DESKTOP LAYOUT (Grid) ================= */}
         <div className="hidden md:grid md:grid-cols-4 divide-x divide-neutral-200 dark:divide-neutral-800">
@@ -87,33 +107,70 @@ export default function TrustBenefitsBar() {
           })}
         </div>
 
-        {/* ================= MOBILE LAYOUT (Infinite Marquee) ================= */}
-        <div className="relative md:hidden w-full overflow-hidden mask-[linear-gradient(to_right,transparent_0,black_10%,black_90%,transparent_100%)]">
-          <div className="flex w-max animate-marquee gap-8">
-            {/* Duplicated list to create flawless seamless loop */}
-            {[...benefits, ...benefits].map((b, index) => {
-              const Icon = b.icon;
-              return (
-                <div
-                  key={`${b.id}-${index}`}
-                  className="flex items-center gap-3 shrink-0 pr-2"
-                >
-                  <div
-                    className={`p-2 rounded-lg ${b.bgClass} ${b.colorClass} shrink-0`}
+        {/* ================= MOBILE LAYOUT (Auto / Manual Swipe) ================= */}
+        <div
+          className="block md:hidden relative w-full"
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div className="relative min-h-[52px] w-full flex items-center justify-center overflow-hidden">
+            <AnimatePresence mode="wait">
+              {benefits.map((b, index) => {
+                if (index !== activeIndex) return null;
+                const Icon = b.icon;
+
+                return (
+                  <motion.div
+                    key={b.id}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -40 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
+                    onDragEnd={(_, info) => {
+                      if (info.offset.x < -30) handleNext();
+                      if (info.offset.x > 30) handlePrev();
+                    }}
+                    className="absolute inset-0 flex items-center justify-center gap-3 px-4 touch-pan-y"
                   >
-                    <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100 whitespace-nowrap">
-                      {b.title}
-                    </h3>
-                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium whitespace-nowrap">
-                      {b.subtitle}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+                    <div
+                      className={`p-2 rounded-xl ${b.bgClass} ${b.colorClass} shrink-0`}
+                    >
+                      <Icon size={20} strokeWidth={2.2} aria-hidden="true" />
+                    </div>
+
+                    <div className="flex flex-col justify-center">
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
+                        {b.title}
+                      </h3>
+                      <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium leading-tight">
+                        {b.subtitle}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+
+          {/* Pagination Indicators */}
+          <div className="flex items-center justify-center gap-1.5 mt-2">
+            {benefits.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  idx === activeIndex
+                    ? "w-5 bg-neutral-800 dark:bg-neutral-200"
+                    : "w-1.5 bg-neutral-300 dark:bg-neutral-700"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>
