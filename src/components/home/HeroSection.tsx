@@ -289,16 +289,16 @@ interface HeroSectionProps {
 export default function HeroSection({ hero, loading }: HeroSectionProps) {
   if (loading) {
     return (
-      <section className="relative min-h-[60vh] bg-slate-900 animate-pulse flex items-center justify-center">
-        <div className="h-10 w-10 rounded-full border-2 border-slate-700 border-t-indigo-500 animate-spin" />
+      <section className="relative h-[180px] sm:h-[300px] md:min-h-[500px] bg-slate-900 animate-pulse flex items-center justify-center">
+        <div className="h-6 w-6 sm:h-8 sm:w-8 rounded-full border-2 border-slate-700 border-t-indigo-500 animate-spin" />
       </section>
     );
   }
 
   if (!hero) {
     return (
-      <section className="relative min-h-[50vh] flex items-center justify-center bg-slate-950 px-4">
-        <p className="text-slate-400 text-lg font-medium">
+      <section className="relative h-[150px] sm:h-[220px] flex items-center justify-center bg-slate-950 px-4">
+        <p className="text-slate-400 text-xs font-medium">
           Unable to load banner.
         </p>
       </section>
@@ -307,88 +307,90 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
 
   return (
     <section
-      className="relative isolate flex min-h-[620px] items-center overflow-hidden bg-neutral-950 py-16 text-white sm:py-20 lg:py-25"
+      className="relative isolate flex min-h-[190px] xs:min-h-[220px] sm:min-h-[340px] md:min-h-[500px] items-center overflow-hidden bg-neutral-950 py-4 sm:py-10 md:py-16 text-white"
       aria-labelledby="hero-heading"
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 z-10 bg-linear-to-b from-black/45 via-black/65 to-neutral-950" />
+      {/* Dark gradient overlay tailored for mobile readability */}
+      <div className="absolute inset-0 z-10 bg-linear-to-r from-black/90 via-black/65 to-transparent md:bg-linear-to-b md:from-black/50 md:via-black/70 md:to-neutral-950" />
 
       {/* Modern ambient glow backdrop */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 opacity-[0.035] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-size-[48px_48px]" />
-
-        <div className="absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-3xl" />
+        <div className="absolute inset-0 opacity-[0.035] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-size-[20px_20px] sm:bg-size-[48px_48px]" />
+        <div className="absolute left-1/3 top-0 h-[150px] sm:h-[350px] w-[150px] sm:w-[350px] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-xl sm:blur-3xl" />
       </div>
 
       {/* Background Image */}
       {hero.backgroundImage && (
         <div
-          className="absolute inset-0 scale-105 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-right sm:bg-center opacity-45 md:opacity-30 transition-all"
           style={{ backgroundImage: `url(${hero.backgroundImage})` }}
           aria-hidden="true"
         />
       )}
 
-      <div className="relative z-20 mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="relative z-20 mx-auto w-full max-w-7xl px-3.5 sm:px-6 lg:px-8">
+        <div className="max-w-[88%] xs:max-w-[80%] sm:max-w-xl md:max-w-4xl md:mx-auto text-left md:text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6 sm:space-y-8"
+            transition={{ duration: 0.35 }}
+            className="space-y-1.5 xs:space-y-2.5 sm:space-y-4 md:space-y-6"
           >
             {/* LIVE BADGE */}
             {hero.liveBadge?.enabled && (
-              <div className="inline-flex items-center gap-2.5 bg-slate-900/90 backdrop-blur-md rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-200 border border-slate-700/80 shadow-md">
-                <span className="relative flex h-2 w-2" aria-hidden="true">
+              <div className="inline-flex items-center gap-1.5 bg-slate-900/90 backdrop-blur-md rounded-full px-2 py-0.5 sm:px-3 sm:py-1 text-[9px] xs:text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-200 border border-slate-700/80 shadow-xs">
+                <span
+                  className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2"
+                  aria-hidden="true"
+                >
                   <span className="absolute inline-flex h-full w-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-sky-500 opacity-75" />
-                  <span
-                    className="absolute inline-flex h-full w-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-red-500 opacity-75"
-                    style={{ animationDelay: "1s" }}
-                  />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                  <span className="relative inline-flex h-full w-full rounded-full bg-white" />
                 </span>
-                <span>{hero.liveBadge.text}</span>
+                <span className="truncate max-w-[180px] xs:max-w-none">
+                  {hero.liveBadge.text}
+                </span>
               </div>
             )}
 
             {/* MAIN HEADLINE */}
-            <h1
+            <h2
               id="hero-heading"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] tracking-tight text-white"
+              className="text-lg xs:text-xl sm:text-3xl md:text-5xl lg:text-6xl font-black leading-tight sm:leading-tight tracking-tight text-white"
             >
               {hero.headline}
               {hero.gradientHeadline && (
                 <>
-                  <br />
+                  <span className="hidden xs:inline">
+                    <br />
+                  </span>{" "}
                   <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-300 via-sky-300 to-emerald-300">
                     {hero.gradientHeadline}
                   </span>
                 </>
               )}
-            </h1>
+            </h2>
 
             {/* SUB HEADLINE */}
             {hero.subheadline && (
-              <p className="text-base sm:text-lg md:text-xl text-slate-300 font-medium max-w-[720px] mx-auto leading-relaxed">
+              <p className="text-[11px] xs:text-xs sm:text-base md:text-xl text-slate-300 font-medium leading-tight sm:leading-relaxed line-clamp-2 md:line-clamp-none max-w-[95%] md:max-w-[720px] md:mx-auto">
                 {hero.subheadline}
               </p>
             )}
 
             {/* CTA BUTTONS */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4">
+            <div className="flex flex-row gap-2 sm:gap-3 pt-1 sm:pt-2 md:justify-center items-center">
               <a
                 href={hero.primaryCTA.link}
-                className="w-full sm:w-auto group relative rounded-xl bg-white px-8 py-4 text-base sm:text-lg font-bold text-slate-950 flex items-center justify-center gap-2 hover:bg-slate-100 active:scale-[0.98] transition duration-200 shadow-lg shadow-white/5"
+                className="group relative rounded-lg sm:rounded-xl bg-white px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4 text-[11px] xs:text-xs sm:text-base font-bold text-slate-950 flex items-center justify-center gap-1 hover:bg-slate-100 active:scale-[0.98] transition duration-200 shadow-sm shrink-0"
               >
-                {hero.primaryCTA.text}
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform text-slate-950" />
+                <span>{hero.primaryCTA.text}</span>
+                <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-0.5 transition-transform text-slate-950" />
               </a>
 
               {hero.secondaryCTA && (
                 <a
                   href={hero.secondaryCTA.link}
-                  className="w-full sm:w-auto rounded-xl border border-slate-700 bg-slate-900/60 backdrop-blur-md px-8 py-4 text-base sm:text-lg font-semibold text-slate-200 hover:bg-slate-800 hover:text-white active:scale-[0.98] transition-all duration-200"
+                  className="rounded-lg sm:rounded-xl border border-slate-700 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4 text-[11px] xs:text-xs sm:text-base font-semibold text-slate-200 hover:bg-slate-800 hover:text-white active:scale-[0.98] transition-all duration-200 truncate"
                 >
                   {hero.secondaryCTA.text}
                 </a>
