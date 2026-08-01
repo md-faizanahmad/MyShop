@@ -88,7 +88,7 @@ export default function TrustBenefitsBar() {
         </div>
 
         {/* ================= MOBILE LAYOUT (Infinite Marquee) ================= */}
-        <div className="relative md:hidden w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_10%,_black_90%,transparent_100%)]">
+        <div className="relative md:hidden w-full overflow-hidden mask-[linear-gradient(to_right,transparent_0,black_10%,black_90%,transparent_100%)]">
           <div className="flex w-max animate-marquee gap-8">
             {/* Duplicated list to create flawless seamless loop */}
             {[...benefits, ...benefits].map((b, index) => {
