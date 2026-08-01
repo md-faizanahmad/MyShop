@@ -265,7 +265,7 @@ export default function TechPromoBanners() {
                     </div>
 
                     {/* Image */}
-                    <div className="my-3 relative aspect-[4/3] w-full rounded-xl bg-slate-50/80 border border-slate-100 p-4 flex items-center justify-center overflow-hidden">
+                    <div className="my-3 relative aspect-4/3 w-full rounded-xl bg-slate-50/80 border border-slate-100 p-4 flex items-center justify-center overflow-hidden">
                       <img
                         src={product.imageUrl}
                         alt={product.name}
@@ -345,7 +345,7 @@ export default function TechPromoBanners() {
                   </span>
                 </div>
 
-                <div className="my-4 relative aspect-[4/3] w-full rounded-xl bg-slate-50/80 border border-slate-100 p-6 flex items-center justify-center overflow-hidden">
+                <div className="my-4 relative aspect-4/3 w-full rounded-xl bg-slate-50/80 border border-slate-100 p-6 flex items-center justify-center overflow-hidden">
                   <img
                     src={product.imageUrl}
                     alt={product.name}
