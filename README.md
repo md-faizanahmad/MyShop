@@ -1,9 +1,9 @@
 <img
  src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png" alt="" />
-<h1 align="center" style="color:#0f172a;">
+<h3 align="center" style="color:#0f172a;">
 
 AZStore E-Commerce Platform with Admin Panel 
-</h1>
+</h3>
 
 <p align="center" style="color:#475569; font-size:16px;">
 Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • OTP Based 
