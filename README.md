@@ -28,7 +28,7 @@ This is not just a UI project — it includes authentication logic, payment veri
 
 <hr/>
 
-<h2 align="center" style="color:#0f172a;">🖥 Desktop Experience</h2>
+<h2 style="color:#0f172a;">🖥 Desktop Experience</h2>
 
 <h3 style="color:#1e293b;">🔹 Header & Navigation</h3>
 <p>Authentication-aware navigation with cart & account state handling.</p>
