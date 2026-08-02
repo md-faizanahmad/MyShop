@@ -5,7 +5,7 @@
 AZStore E-Commerce Platform with Admin Panel.
 </h3>
 
-<p align="center" style="color:#475569; font-size:16px;">
+<p style="color:#475569; font-size:16px;">
 Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • OTP Based • 
 Order Status 
 </p>
