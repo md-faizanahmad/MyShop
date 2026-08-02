@@ -10,7 +10,7 @@ Mobile-First • Secure Authentication • Razorpay Integration • Invoice Syst
 Order Status 
 </p>
 
-<p align="center">
+<p>
 <b>Live:</b> <strong> myazstore.shop </strong>
 </p>
 
