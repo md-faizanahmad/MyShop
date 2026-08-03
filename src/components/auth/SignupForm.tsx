@@ -540,11 +540,11 @@ export default function SignupForm({
                 type="submit"
                 disabled={!verified || isMutationPending || isSubmitting}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-sky-600 to-blue-600 text-white font-semibold text-sm sm:text-base py-3 sm:py-3.5 rounded-xl disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed hover:opacity-95 transition-all shadow-md shadow-sky-600/20 flex items-center justify-center gap-2 mt-2"
+                className="w-full bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white font-medium text-xs xs:text-sm sm:text-base py-2.5 xs:py-3 sm:py-3.5 rounded-xl shadow-sm hover:shadow transition-all duration-200 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:shadow-none disabled:border disabled:border-zinc-200 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-2"
               >
                 {isMutationPending ? (
                   <>
-                    <Loader2 className="animate-spin" size={18} />
+                    <Loader2 className="animate-spin" size={16} />
                     <span>Creating account...</span>
                   </>
                 ) : (
