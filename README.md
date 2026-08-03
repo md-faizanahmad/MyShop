@@ -1,16 +1,17 @@
 <img
  src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png" alt="" />
-<h1 align="center" style="color:#0f172a;">
+<h3 align="center" style="color:#0f172a;">
 
-AZStore E-Commerce Platform
-</h1>
+AZStore E-Commerce Platform with Admin Panel.
+</h3>
 
-<p align="center" style="color:#475569; font-size:16px;">
-Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • OTP Based 
+<p style="color:#475569; font-size:16px;">
+Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • OTP Based • 
+Order Status 
 </p>
 
-<p align="center">
-<b>Live Demo:</b> <strong> myazstore.shop </strong>
+<p>
+<b>Live:</b> <strong> myazstore.shop </strong>
 </p>
 
 <hr/>
@@ -28,7 +29,7 @@ This is not just a UI project — it includes authentication logic, payment veri
 
 <hr/>
 
-<h2 align="center" style="color:#0f172a;">🖥 Desktop Experience</h2>
+<h2 style="color:#0f172a;">🖥 Desktop Experience</h2>
 
 <h3 style="color:#1e293b;">🔹 Header & Navigation</h3>
 <p>Authentication-aware navigation with cart & account state handling.</p>
