@@ -6,9 +6,9 @@ export default function MobileCategoryNavbar() {
 
   // Unified outer container styling to prevent layout shift during loading
   const containerClasses =
-    "border-b border-neutral-200 bg-white lg:hidden mt-12";
+    "border-b border-neutral-200/80 bg-white lg:hidden mt-12";
   const scrollWrapperClasses =
-    "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-3 py-6";
+    "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-3 py-4";
 
   if (isLoading) {
     return (
@@ -20,10 +20,10 @@ export default function MobileCategoryNavbar() {
           {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}
-              className="flex w-[76px] shrink-0 flex-col items-center"
+              className="flex w-[72px] shrink-0 flex-col items-center"
             >
-              <div className="h-[68px] w-[68px] animate-pulse rounded-full bg-neutral-200" />
-              <div className="mt-2 h-3 w-14 animate-pulse rounded bg-neutral-200" />
+              <div className="h-[64px] w-[64px] animate-pulse rounded-full bg-slate-100 border border-slate-200/60 shadow-xs" />
+              <div className="mt-2 h-2.5 w-12 animate-pulse rounded bg-slate-200/70" />
             </div>
           ))}
         </div>
@@ -40,19 +40,21 @@ export default function MobileCategoryNavbar() {
           <Link
             key={category._id}
             to={`/category/${category.slug}`}
-            className="group flex w-[76px] shrink-0 snap-start flex-col items-center focus:outline-none"
+            className="group flex w-[72px] shrink-0 snap-start flex-col items-center focus:outline-none"
           >
-            <div className="flex h-[68px] w-[68px] items-center justify-center overflow-hidden rounded-full border border-neutral-200 bg-neutral-50 shadow-sm transition-transform duration-200 group-active:scale-95 group-focus-visible:ring-2 group-focus-visible:ring-neutral-900">
+            {/* Category Avatar Frame */}
+            <div className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-slate-200/80 bg-slate-50 shadow-xs transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:shadow-md group-hover:border-blue-200 group-active:scale-95 group-focus-visible:ring-2 group-focus-visible:ring-blue-600">
               <img
                 src={category.image}
                 alt={category.name}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full  object-cover transition-transform duration-300 group-hover:scale-105"
+                className="h-full w-full rounded-full object-contain p-2.5 transition-transform duration-300 ease-out group-hover:scale-110"
               />
             </div>
 
-            <span className="mt-2 line-clamp-2 text-center text-[11px] font-medium leading-tight text-neutral-700">
+            {/* Category Label */}
+            <span className="mt-1.5 line-clamp-2 text-center text-[11px] font-semibold leading-snug tracking-tight text-slate-700 group-hover:text-blue-600 transition-colors">
               {category.name}
             </span>
           </Link>
