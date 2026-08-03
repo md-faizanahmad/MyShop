@@ -337,7 +337,7 @@ export default function SignupForm({
   } = form;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-100 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="min-h-screen lg:mt-0 md:mt-0 mt-8 bg-linear-to-br from-sky-50 to-blue-100 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -346,11 +346,11 @@ export default function SignupForm({
       >
         <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden border border-sky-100/60">
           {/* Header */}
-          <div className="bg-gradient-to-r from-sky-500 to-blue-600 px-6 sm:px-10 py-8 sm:py-10 text-white text-center sm:text-left">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          <div className="bg-sky-600 px-4 xs:px-6 sm:px-8 py-5 sm:py-7 text-white text-center sm:text-left">
+            <h3 className="text-2xl xs:text-xl sm:text-2xl font-bold tracking-tight">
               Create your account
-            </h1>
-            <p className="mt-1.5 text-sm sm:text-base text-sky-100">
+            </h3>
+            <p className="mt-1 text-xs sm:text-sm text-sky-100 font-medium">
               Join AZ Store today!
             </p>
           </div>
