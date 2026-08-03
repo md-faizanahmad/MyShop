@@ -54,7 +54,6 @@ import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
 import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
 import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
 import FAQ from "./pages/legal/Faq";
-import TopAnnouncementBar from "./components/announcement-bar/TopAnnouncementBar";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
@@ -65,8 +64,8 @@ function AppContent() {
   useConnectionWatcher();
   return (
     <>
-      <TopAnnouncementBar />
       <ScrollToTop />
+
       <ConnectionError />
       {/* <TestModeBanner /> */}
       {/* Header with Search, Navbar, Cart, etc. */}
@@ -74,7 +73,7 @@ function AppContent() {
 
       <Outlet />
       {/* Main Content */}
-      <main className="min-h-screen mt-8">
+      <main className="min-h-screen ">
         <div className="pt-3 md:pt-2">
           {/* Matches header height */}
           <Routes>

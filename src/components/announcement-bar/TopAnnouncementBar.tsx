@@ -7,12 +7,11 @@ import { ANNOUNCEMENTS } from "./announcement.data";
 
 const ROTATION_INTERVAL = 5000;
 
-// FIX: Standard z-index (z-40 so top navbar sits properly below or above it), relative layout flow
 const rootClass =
-  "fixed z-90  h-10 w-full overflow-hidden border-b border-white/10 bg-zinc-950 text-white shrink-0";
+  "relative h-10 overflow-hidden border-b border-white/10 bg-zinc-950 text-white";
 
 const containerClass =
-  "mx-auto flex h-full max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8";
+  "mx-auto flex h-full max-w-7xl items-center justify-between  sm:px-6 lg:px-8";
 
 const messageWrapperClass = "flex min-w-0 flex-1 items-center justify-center";
 
@@ -22,7 +21,7 @@ const messageClass =
 const iconClass = "h-4 w-4 shrink-0 text-red-500";
 
 const ctaClass =
-  "ml-3 sm:ml-4 inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-red-500 transition-colors duration-200 hover:text-red-400 sm:text-sm";
+  "ml-4 inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-red-500 transition-colors duration-200 hover:text-red-400 sm:text-sm";
 
 export default function TopAnnouncementBar() {
   const [currentIndex, setCurrentIndex] = useState(0);
