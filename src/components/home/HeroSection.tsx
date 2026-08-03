@@ -307,7 +307,7 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
 
   return (
     <section
-      className="relative isolate flex min-h-[190px] xs:min-h-[220px] sm:min-h-[340px] md:min-h-[500px] items-center overflow-hidden bg-neutral-950 py-4 sm:py-10 md:py-16 text-white"
+      className="relative isolate flex min-h-[190px] xs:min-h-[220px] sm:min-h-[340px] md:min-h-[500px] items-center overflow-hidden bg-neutral-950 py-4 m-1 sm:py-10 md:py-16 text-white"
       aria-labelledby="hero-heading"
     >
       {/* Dark gradient overlay tailored for mobile readability */}
