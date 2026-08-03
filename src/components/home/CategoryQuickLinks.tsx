@@ -158,6 +158,127 @@
 //   );
 // }
 ///////////////////////////////////////////////17072026
+// import { Link } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import type { HomeCategory } from "../../types/home";
+
+// interface Props {
+//   categories: HomeCategory[];
+//   loading: boolean;
+//   limit?: number;
+// }
+
+// export default function CategoryQuickLinks({
+//   categories,
+//   loading,
+//   limit = 6,
+// }: Props) {
+//   // Loading State
+//   if (loading) {
+//     return (
+//       <section className="w-full py-10 lg:py-16 bg-white ">
+//         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+//           <div className="space-y-2 mb-8 animate-pulse">
+//             <div className="h-3 w-24 rounded bg-zinc-200  tracking-widest" />
+//             <div className="h-7 w-48 rounded bg-zinc-200 " />
+//           </div>
+
+//           {/* Mirrors the layout grid exactly */}
+//           <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:grid-cols-3 lg:grid-cols-6">
+//             {Array.from({ length: limit }).map((_, i) => (
+//               <div
+//                 key={i}
+//                 className="w-full aspect-4/5 xs:aspect-[3/4] rounded-2xl bg-zinc-100  animate-pulse"
+//               />
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//     );
+//   }
+
+//   const list = categories.slice(0, limit);
+
+//   return (
+//     <section className="w-full py-10 lg:py-16 bg-white ">
+//       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+//         {/* Header Section */}
+//         <div className="mb-8 space-y-1.5">
+//           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-600  block">
+//             Collections
+//           </span>
+//           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 ">
+//             Shop by Category
+//           </h2>
+//         </div>
+
+//         {/* Pure Grid Layout — No scrolling under any circumstances */}
+//         <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:grid-cols-3 lg:grid-cols-6">
+//           {list.map((cat, index) => (
+//             <motion.div
+//               key={cat._id}
+//               initial={{ opacity: 0, y: 12 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               viewport={{ once: true, margin: "-20px" }}
+//               transition={{
+//                 duration: 0.4,
+//                 delay: index * 0.03,
+//                 ease: [0.215, 0.61, 0.355, 1.0],
+//               }}
+//               className="w-full"
+//             >
+//               <Link
+//                 to={`/category/${cat.slug}`}
+//                 className="group relative block aspect-4/5 xs:aspect-[3/4] w-full overflow-hidden rounded-2xl bg-zinc-100  isolation-isolate"
+//               >
+//                 {/* Image asset component */}
+//                 <img
+//                   src={
+//                     cat.image ||
+//                     "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+//                   }
+//                   className="absolute inset-0 h-full w-full object-cover transform-gpu transition-transform duration-700 ease-out group-hover:scale-105"
+//                   alt={cat.name}
+//                   loading="lazy"
+//                 />
+
+//                 {/* Deep premium overlay protecting text readability */}
+//                 <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-black/0 opacity-90 transition-opacity duration-300 group-hover:opacity-95" />
+
+//                 {/* Content Overlay */}
+//                 <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end p-3.5 xs:p-5 text-left transform-gpu">
+//                   <p className="text-xs xs:text-sm sm:text-base font-semibold text-white tracking-wide leading-tight mb-1">
+//                     {cat.name}
+//                   </p>
+
+//                   {/* Exploded interaction element */}
+//                   <div className="flex items-center gap-1.5 h-4 overflow-hidden opacity-90 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 transform-gpu translate-y-0.5 sm:translate-y-2 group-hover:translate-y-0">
+//                     <span className="text-[8px] xs:text-[9px] uppercase font-bold tracking-widest text-sky-400">
+//                       Explore
+//                     </span>
+//                     <svg
+//                       className="w-2 h-2 xs:w-2.5 xs:h-2.5 text-sky-400 stroke-[2.5px] transform-gpu transition-transform duration-300 group-hover:translate-x-0.5"
+//                       fill="none"
+//                       viewBox="0 0 24 24"
+//                       stroke="currentColor"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         d="M9 5l7 7-7 7"
+//                       />
+//                     </svg>
+//                   </div>
+//                 </div>
+//               </Link>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+//////////////////////////////////03082026
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import type { HomeCategory } from "../../types/home";
@@ -176,11 +297,11 @@ export default function CategoryQuickLinks({
   // Loading State
   if (loading) {
     return (
-      <section className="w-full py-10 lg:py-16 bg-white ">
+      <section className="w-full py-10 lg:py-16 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-2 mb-8 animate-pulse">
-            <div className="h-3 w-24 rounded bg-zinc-200  tracking-widest" />
-            <div className="h-7 w-48 rounded bg-zinc-200 " />
+            <div className="h-3 w-24 rounded bg-zinc-200 tracking-widest" />
+            <div className="h-7 w-48 rounded bg-zinc-200" />
           </div>
 
           {/* Mirrors the layout grid exactly */}
@@ -188,7 +309,7 @@ export default function CategoryQuickLinks({
             {Array.from({ length: limit }).map((_, i) => (
               <div
                 key={i}
-                className="w-full aspect-4/5 xs:aspect-[3/4] rounded-2xl bg-zinc-100  animate-pulse"
+                className="w-full aspect-[4/5] sm:aspect-[3/4] rounded-2xl bg-zinc-100 animate-pulse"
               />
             ))}
           </div>
@@ -200,19 +321,19 @@ export default function CategoryQuickLinks({
   const list = categories.slice(0, limit);
 
   return (
-    <section className="w-full py-10 lg:py-16 bg-white ">
+    <section className="w-full py-10 lg:py-16 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="mb-8 space-y-1.5">
-          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-600  block">
+          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-600 block">
             Collections
           </span>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 ">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">
             Shop by Category
           </h2>
         </div>
 
-        {/* Pure Grid Layout — No scrolling under any circumstances */}
+        {/* Pure Grid Layout */}
         <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {list.map((cat, index) => (
             <motion.div
@@ -229,7 +350,7 @@ export default function CategoryQuickLinks({
             >
               <Link
                 to={`/category/${cat.slug}`}
-                className="group relative block aspect-4/5 xs:aspect-[3/4] w-full overflow-hidden rounded-2xl bg-zinc-100  isolation-isolate"
+                className="group relative block aspect-4/5 sm:aspect-3/4 w-full overflow-hidden rounded-2xl bg-zinc-100 isolation-isolate"
               >
                 {/* Image asset component */}
                 <img
@@ -246,13 +367,13 @@ export default function CategoryQuickLinks({
                 <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-black/0 opacity-90 transition-opacity duration-300 group-hover:opacity-95" />
 
                 {/* Content Overlay */}
-                <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end p-3.5 xs:p-5 text-left transform-gpu">
-                  <p className="text-xs xs:text-sm sm:text-base font-semibold text-white tracking-wide leading-tight mb-1">
+                <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end p-3 xs:p-4 text-left transform-gpu">
+                  <p className="text-xs sm:text-sm font-semibold text-white tracking-wide leading-tight mb-1 line-clamp-2">
                     {cat.name}
                   </p>
 
                   {/* Exploded interaction element */}
-                  <div className="flex items-center gap-1.5 h-4 overflow-hidden opacity-90 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 transform-gpu translate-y-0.5 sm:translate-y-2 group-hover:translate-y-0">
+                  <div className="flex items-center gap-1 h-4 overflow-hidden opacity-90 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 transform-gpu translate-y-0.5 sm:translate-y-2 group-hover:translate-y-0">
                     <span className="text-[8px] xs:text-[9px] uppercase font-bold tracking-widest text-sky-400">
                       Explore
                     </span>
