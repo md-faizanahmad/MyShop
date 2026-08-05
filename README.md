@@ -7,17 +7,23 @@ AZStore E-Commerce Platform with Admin Panel
 
 <table align="center">
   <tr>
-    <td>📱 <strong>Mobile-First</strong></td>
-    <td>🔐 <strong>Secure Authentication</strong></td>
-    <td>📲 <strong>OTP Login</strong></td>
-    <td>💳 <strong>Razorpay Payments</strong></td>
-  </tr>
-  <tr>
-    <td>📦 <strong>Order Management</strong></td>
-    <td>🧾 <strong>PDF Invoices</strong></td>
-    <td>📧 <strong>Email Automation</strong></td>
-    <td>🚚 <strong>Real-Time Order Status</strong></td>
-  </tr>
+    <td valign="top">
+
+- 📱 Mobile-First Design
+- 🔐 Secure Authentication
+- 📲 OTP Login
+- 💳 Razorpay Payments
+
+  </td>
+  <td valign="top">
+
+- 📦 Order Management
+- 🧾 PDF Invoices
+- 📧 Email Automation
+- 🚚 Real-Time Order Status
+
+  </td>
+</tr>
 </table>
 <p>
 <b>Live:</b> <strong> myazstore.shop </strong>
