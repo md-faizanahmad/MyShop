@@ -39,7 +39,18 @@ OTP verification, PDF invoices, email automation, and a responsive admin dashboa
 </table>
 
 <hr/>
+<h2>🚀 Why AZStore?</h2>
 
+<ul>
+  <li>🛍️ Complete e-commerce platform with customer storefront and admin dashboard.</li>
+  <li>🔐 Secure authentication with Email Verification, JWT, and OTP.</li>
+  <li>💳 Integrated Razorpay payment gateway with payment verification.</li>
+  <li>📦 Order lifecycle management with real-time status updates.</li>
+  <li>📧 Automated transactional emails and downloadable PDF invoices.</li>
+  <li>📱 Responsive mobile-first interface built for production use.</li>
+</ul>
+
+<hr/>
 <h2 style="color:#0f172a;">📌 Project Overview</h2>
 
 <p>
