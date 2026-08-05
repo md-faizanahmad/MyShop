@@ -1,27 +1,42 @@
 <img
- src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png" alt="" />
-<h3 align="center" style="color:#0f172a;">
+  src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png"
+  alt="AZStore Logo"
+  width="120"
+/>
 
-AZStore E-Commerce Platform with Admin Panel
+<h1 align="center">AZStore</h1>
+
+<h3 align="center">
+Production-Ready Full-Stack E-Commerce Platform
 </h3>
+
+<p align="center">
+A modern e-commerce solution featuring secure authentication, Razorpay payments,
+OTP verification, PDF invoices, email automation, and a responsive admin dashboard.
+</p>
+
+<p align="center">
+  🌐 <a href="https://myazstore.shop">Live Store</a>
+  •
+  💼 <a href="https://your-admin-url.com">Admin Demo</a>
+  •
+  📖 <a href="#project-overview">Documentation</a>
+</p>
 
 <table align="center">
   <tr>
-    <td align="center">📱<br><strong>Mobile-First</strong></td>
-    <td align="center">🔐<br><strong>Secure Authentication</strong></td>
-    <td align="center">📲<br><strong>OTP Login</strong></td>
-    <td align="center">💳<br><strong>Razorpay Payments</strong></td>
+    <td align="center">📱<br><b>Mobile-First</b></td>
+    <td align="center">🔐<br><b>Secure Auth</b></td>
+    <td align="center">📲<br><b>OTP Login</b></td>
+    <td align="center">💳<br><b>Razorpay</b></td>
   </tr>
   <tr>
-    <td align="center">📦<br><strong>Order Management</strong></td>
-    <td align="center">🧾<br><strong>PDF Invoices</strong></td>
-    <td align="center">📧<br><strong>Email Automation</strong></td>
-    <td align="center">🚚<br><strong>Real-Time Order Status</strong></td>
+    <td align="center">📦<br><b>Order System</b></td>
+    <td align="center">🧾<br><b>PDF Invoice</b></td>
+    <td align="center">📧<br><b>Email Automation</b></td>
+    <td align="center">🚚<br><b>Order Tracking</b></td>
   </tr>
 </table>
-<p>
-<b>Live:</b> <strong> myazstore.shop </strong>
-</p>
 
 <hr/>
 
