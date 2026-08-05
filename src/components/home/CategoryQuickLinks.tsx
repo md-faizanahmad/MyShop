@@ -358,7 +358,7 @@ export default function CategoryQuickLinks({
                     cat.image ||
                     "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                   }
-                  className="absolute inset-0 h-full w-full object-cover transform-gpu transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-contain transform-gpu transition-transform duration-700 ease-out group-hover:scale-105"
                   alt={cat.name}
                   loading="lazy"
                 />
