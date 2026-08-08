@@ -3,7 +3,7 @@
   alt="AZStore Logo"
   width="120"
 />
-
+</div>
 <h1 align="center">AZStore.</h1>
 
 <h3 align="center">
