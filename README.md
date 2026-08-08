@@ -1,7 +1,7 @@
 <div align="center">
 <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png"
   alt="AZStore Logo"
-  width="120"
+  width="70%"
 />
 </div>
 <h1 align="center">AZStore.</h1>
