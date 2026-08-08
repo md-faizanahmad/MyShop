@@ -18,7 +18,7 @@ OTP verification, PDF invoices, email automation, and a responsive admin dashboa
 <p align="center">
   🌐 <a href="https://myazstore.shop">Live Store</a>
   •
-  💼 <a href="https://your-admin-url.com">Admin Demo</a>
+  💼 <a href="myazstore.shop">Admin Demo</a>
   •
   📖 <a href="#project-overview">Documentation</a>
 </p>
