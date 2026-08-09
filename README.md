@@ -7,7 +7,7 @@
 <h1 align="center">AZStore.</h1>
 
 <h3 align="center">
-Full-Stack E-Commerce Platform
+ E-Commerce Platform
 </h3>
 
 <p align="center">
