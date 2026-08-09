@@ -1,6 +1,6 @@
 <div align="center">
 <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png"
-  alt="AZStore Logo"
+  alt="AZStoreLogo"
   width="70%"
 />
 </div>
