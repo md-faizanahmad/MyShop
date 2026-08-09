@@ -4,7 +4,7 @@
   width="70%"
 />
 </div>
-<h1 align="center">AZStore</h1>
+<h1 align="center">AZStore.</h1>
 
 <h3 align="center">
 Full-Stack E-Commerce Platform
