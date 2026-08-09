@@ -1,4 +1,4 @@
-<div align="center" border="1px">
+<div align="center" bord>
 <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png"
   alt="AZStoreLogo"
   width="70%"
