@@ -51,7 +51,7 @@ OTP verification, PDF invoices, email automation, and a responsive admin dashboa
 </ul>
 
 <hr/>
-<h2 style="color:#0f172a;">📌 Project Overview</h2>
+<h2 style="color:#0f172a;">📌 Project Overview.</h2>
 
 <p>
 AZStore is a complete full-stack e-commerce platform designed with a real production mindset. 
