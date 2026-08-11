@@ -13,19 +13,6 @@ export default function ExplorePage() {
         aria-labelledby="explore-categories-title"
         className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6"
       >
-        <div className="mb-5">
-          <h1
-            id="explore-categories-title"
-            className="text-xl font-semibold tracking-tight text-neutral-900"
-          >
-            Explore Categories
-          </h1>
-
-          <p className="mt-1 text-sm text-neutral-500">
-            Discover products by category
-          </p>
-        </div>
-
         {isLoading ? (
           <div
             className="grid grid-cols-2 gap-3"
