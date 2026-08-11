@@ -1,4 +1,5 @@
 import type { Category } from "../../types/nav";
+import ExploreCategorySection from "./components/ExploreCategorySection";
 import ExploreHeader from "./components/ExploreHeader";
 
 interface ExplorePageProps {
