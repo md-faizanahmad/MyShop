@@ -1,7 +1,6 @@
+import type { Category } from "../../../types/nav";
 import ExploreCategoryCard from "./ExploreCategoryCard";
 import ExploreSubcategoryCard from "./ExploreSubcategoryCard";
-
-import type { Category } from "../../types/category";
 
 interface ExploreCategorySectionProps {
   category: Category;
