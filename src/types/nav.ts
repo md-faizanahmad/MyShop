@@ -2,6 +2,7 @@ export interface Subcategory {
   _id: string;
   name: string;
   slug: string;
+  image: string;
 }
 
 export interface Category {
