@@ -1,16 +1,10 @@
-import type { Category } from "../../types/nav";
+import { useCategories } from "../../hooks/useCategories";
 import ExploreCategorySection from "./components/ExploreCategorySection";
 import ExploreHeader from "./components/ExploreHeader";
 
-interface ExplorePageProps {
-  categories: Category[];
-  loading?: boolean;
-}
+export default function ExplorePage() {
+  const { data: categories = [], isLoading, isError } = useCategories();
 
-export default function ExplorePage({
-  categories,
-  loading = false,
-}: ExplorePageProps) {
   return (
     <main className="min-h-screen bg-white pb-20">
       <ExploreHeader />
@@ -32,7 +26,7 @@ export default function ExplorePage({
           </p>
         </div>
 
-        {loading ? (
+        {isLoading ? (
           <div
             className="grid grid-cols-2 gap-3"
             aria-busy="true"
@@ -45,6 +39,19 @@ export default function ExplorePage({
               />
             ))}
           </div>
+        ) : isError ? (
+          <div
+            role="alert"
+            className="rounded-2xl border border-neutral-100 px-5 py-12 text-center"
+          >
+            <p className="text-sm font-medium text-neutral-700">
+              Unable to load categories
+            </p>
+
+            <p className="mt-1 text-xs text-neutral-400">
+              Please try again later.
+            </p>
+          </div>
         ) : categories.length === 0 ? (
           <div className="rounded-2xl border border-neutral-100 px-5 py-12 text-center">
             <p className="text-sm font-medium text-neutral-700">
@@ -52,7 +59,7 @@ export default function ExplorePage({
             </p>
 
             <p className="mt-1 text-xs text-neutral-400">
-              Please try again later.
+              Check back later for new categories.
             </p>
           </div>
         ) : (
