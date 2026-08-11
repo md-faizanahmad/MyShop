@@ -323,20 +323,22 @@ export default function AllProductsPage() {
     <div className="min-h-screen bg-slate-50/60 px-4 sm:px-6 lg:px-8 py-8 sm:py-10 text-slate-900 mt-5">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* TOP BAR */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4  p-4 sm:p-5 ">
-          <h5 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+        <div className="flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          {/* Header Title */}
+          <h2 className="text-base font-bold text-slate-900 sm:text-lg">
             All Products{" "}
-            <span className="text-slate-400 font-normal text-xl sm:text-2xl">
+            <span className="text-xs font-normal text-slate-400 sm:text-sm">
               ({filteredProducts.length})
             </span>
-          </h5>
+          </h2>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {/* Category */}
+          {/* Filter & Sort Bar */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+            {/* Category Dropdown */}
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 font-medium rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 transition cursor-pointer capitalize"
+              className="h-9 shrink-0 rounded-xl border border-slate-200/80 bg-slate-100/80 px-3 text-xs font-medium text-slate-800 transition active:bg-slate-200/70 focus:outline-none focus:ring-2 focus:ring-slate-900 capitalize"
             >
               <option value="all">All Categories</option>
               {categories.map((c) => (
@@ -346,11 +348,11 @@ export default function AllProductsPage() {
               ))}
             </select>
 
-            {/* Sort */}
+            {/* Sort Dropdown */}
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortKey)}
-              className="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 font-medium rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 transition cursor-pointer"
+              className="h-9 shrink-0 rounded-xl border border-slate-200/80 bg-slate-100/80 px-3 text-xs font-medium text-slate-800 transition active:bg-slate-200/70 focus:outline-none focus:ring-2 focus:ring-slate-900"
             >
               <option value="latest">Latest</option>
               <option value="price-low">Price: Low to High</option>
@@ -358,19 +360,20 @@ export default function AllProductsPage() {
               <option value="rating">Top Rated</option>
             </select>
 
-            {/* Stock */}
-            <label className="flex items-center gap-2 text-sm font-medium text-slate-700 cursor-pointer bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl px-3.5 py-2 transition select-none">
+            {/* In Stock Toggle */}
+            <label className="flex h-9 shrink-0 cursor-pointer select-none items-center gap-2 rounded-xl border border-slate-200/80 bg-slate-100/80 px-3 text-xs font-medium text-slate-700 transition active:bg-slate-200/70">
               <input
                 type="checkbox"
                 checked={inStockOnly}
                 onChange={(e) => setInStockOnly(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900 accent-slate-900"
+                className="h-3.5 w-3.5 rounded border-slate-300 text-slate-900 accent-slate-900 focus:ring-slate-900"
               />
-              In stock only
+              In stock
             </label>
 
-            <div className="p-2 text-slate-400 hidden sm:block">
-              <SlidersHorizontal className="w-5 h-5" />
+            {/* Filter Icon */}
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-100/80 text-slate-500">
+              <SlidersHorizontal className="h-4 w-4" />
             </div>
           </div>
         </div>
