@@ -219,7 +219,7 @@ export default function TechPromoBanners() {
               initial={{ width: "0%" }}
               animate={{ width: isPaused ? "0%" : "100%" }}
               transition={{ duration: 4.5, ease: "linear" }}
-              className="h-full bg-blue-600"
+              className="h-full bg-linear-to-r from-sky-600 from-0% via-sky-600 via-50% to-red-600 to-50%"
             />
           </div>
 
@@ -306,7 +306,7 @@ export default function TechPromoBanners() {
                 onClick={() => setActiveIndex(idx)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   idx === activeIndex
-                    ? "w-6 bg-blue-600"
+                    ? "w-6 bg-sky-600"
                     : "w-2 bg-slate-300 hover:bg-slate-400"
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
