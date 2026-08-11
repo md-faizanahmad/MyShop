@@ -54,6 +54,7 @@ import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
 import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
 import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
 import FAQ from "./pages/legal/Faq";
+import BottomNavigation from "./components/Navbar/components/BottomNavigation/BottomNavigation";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
@@ -181,7 +182,7 @@ function AppContent() {
           </Routes>
         </div>
       </main>
-
+      <BottomNavigation />
       <Footer />
     </>
   );
