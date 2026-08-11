@@ -1,54 +1,55 @@
 import { useState, useEffect } from "react";
 import {
-  ShieldCheck,
   Truck,
   RotateCcw,
+  ShieldCheck,
   Headphones,
   type LucideIcon,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface Benefit {
   id: string;
   icon: LucideIcon;
   title: string;
   subtitle: string;
+  badge?: string;
   colorClass: string;
   bgClass: string;
 }
 
 const benefits: Benefit[] = [
   {
-    id: "free-shipping",
+    id: "express-delivery",
     icon: Truck,
-    title: "Fast Delivery",
-    subtitle: "Reliable shipping protocol",
-    colorClass: "text-blue-600 dark:text-blue-400",
-    bgClass: "bg-blue-50 dark:bg-blue-950/50",
+    title: "Express Delivery",
+    subtitle: "Free on orders over ₹499",
+    badge: "FAST",
+    colorClass: "text-sky-600",
+    bgClass: "bg-sky-50",
   },
   {
     id: "easy-returns",
     icon: RotateCcw,
-    title: "Easy Returns",
-    subtitle: "7-day return policy",
-    colorClass: "text-amber-600 dark:text-amber-400",
-    bgClass: "bg-amber-50 dark:bg-amber-950/50",
+    title: "Instant Returns",
+    subtitle: "7-day doorstep pickup",
+    colorClass: "text-red-600",
+    bgClass: "bg-red-50",
   },
   {
-    id: "secure-payments",
+    id: "secure-checkout",
     icon: ShieldCheck,
-    title: "Secure Pay",
-    subtitle: "Encrypted checkout",
-    colorClass: "text-emerald-600 dark:text-emerald-400",
-    bgClass: "bg-emerald-50 dark:bg-emerald-950/50",
+    title: "Secure Checkout",
+    subtitle: "UPI, Cards & COD available",
+    colorClass: "text-sky-600",
+    bgClass: "bg-sky-50",
   },
   {
-    id: "support",
+    id: "customer-support",
     icon: Headphones,
     title: "24/7 Support",
-    subtitle: "Expert assistance desk",
-    colorClass: "text-indigo-600 dark:text-indigo-400",
-    bgClass: "bg-indigo-50 dark:bg-indigo-950/50",
+    subtitle: "Quick resolution helpline",
+    colorClass: "text-red-600",
+    bgClass: "bg-red-50",
   },
 ];
 
@@ -56,117 +57,100 @@ export default function TrustBenefitsBar() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const total = benefits.length;
-
-  // Auto-play timer for mobile slider
+  // Auto-play interval for mobile view
   useEffect(() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % total);
-    }, 3500);
+      setActiveIndex((prev) => (prev + 1) % benefits.length);
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, [total, isPaused]);
-
-  const handleNext = () => setActiveIndex((prev) => (prev + 1) % total);
-  const handlePrev = () => setActiveIndex((prev) => (prev - 1 + total) % total);
+  }, [isPaused]);
 
   return (
-    <section className="w-full bg-slate-50/50 dark:bg-neutral-900/50 border-y border-neutral-200/80 dark:border-neutral-800 py-4 md:py-6 antialiased overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="w-full border-y border-slate-200/80 bg-white py-3.5">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         {/* ================= DESKTOP LAYOUT (Grid) ================= */}
-        <div className="hidden md:grid md:grid-cols-4 divide-x divide-neutral-200 dark:divide-neutral-800">
-          {benefits.map((b, index) => {
+        <div className="hidden md:grid md:grid-cols-4 md:gap-4">
+          {benefits.map((b) => {
             const Icon = b.icon;
             return (
-              <motion.div
-                key={b.id}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08, duration: 0.4 }}
-                className="flex items-center gap-3.5 px-6 first:pl-2 last:pr-2 group transition-all duration-200"
-              >
+              <div key={b.id} className="flex items-center gap-3">
                 <div
-                  className={`p-2.5 rounded-xl ${b.bgClass} ${b.colorClass} shrink-0 group-hover:scale-105 transition-transform duration-200`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${b.bgClass} ${b.colorClass}`}
                 >
-                  <Icon size={20} strokeWidth={2.2} aria-hidden="true" />
+                  <Icon size={19} strokeWidth={2.2} aria-hidden="true" />
                 </div>
-
-                <div className="flex flex-col gap-0.5">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
-                    {b.title}
-                  </h3>
-                  <p className="text-[12px] text-neutral-500 dark:text-neutral-400 font-medium leading-tight">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="truncate text-xs font-bold text-slate-900">
+                      {b.title}
+                    </h3>
+                    {b.badge && (
+                      <span className="rounded bg-sky-100 px-1 py-0.5 text-[9px] font-extrabold tracking-tight text-sky-700">
+                        {b.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="truncate text-[11px] font-medium text-slate-500">
                     {b.subtitle}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
-        {/* ================= MOBILE LAYOUT (Auto / Manual Swipe) ================= */}
+        {/* ================= MOBILE LAYOUT (Auto Carousel) ================= */}
         <div
-          className="block md:hidden relative w-full"
+          className="flex flex-col items-center md:hidden"
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="relative min-h-[52px] w-full flex items-center justify-center overflow-hidden">
-            <AnimatePresence mode="wait">
-              {benefits.map((b, index) => {
-                if (index !== activeIndex) return null;
-                const Icon = b.icon;
-
-                return (
-                  <motion.div
-                    key={b.id}
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -40 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.2}
-                    onDragEnd={(_, info) => {
-                      if (info.offset.x < -30) handleNext();
-                      if (info.offset.x > 30) handlePrev();
-                    }}
-                    className="absolute inset-0 flex items-center justify-center gap-3 px-4 touch-pan-y"
+          {/* Active Benefit Item */}
+          <div className="flex min-h-[52px] w-full items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-2.5 transition-all">
+            {(() => {
+              const b = benefits[activeIndex];
+              const Icon = b.icon;
+              return (
+                <>
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${b.bgClass} ${b.colorClass}`}
                   >
-                    <div
-                      className={`p-2 rounded-xl ${b.bgClass} ${b.colorClass} shrink-0`}
-                    >
-                      <Icon size={20} strokeWidth={2.2} aria-hidden="true" />
-                    </div>
-
-                    <div className="flex flex-col justify-center">
-                      <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
+                    <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <div className="flex items-center gap-1.5">
+                      <h3 className="text-xs font-bold text-slate-900">
                         {b.title}
                       </h3>
-                      <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium leading-tight">
-                        {b.subtitle}
-                      </p>
+                      {b.badge && (
+                        <span className="rounded bg-sky-100 px-1 py-0.5 text-[9px] font-extrabold tracking-tight text-sky-700">
+                          {b.badge}
+                        </span>
+                      )}
                     </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+                    <p className="text-[11px] font-medium text-slate-500">
+                      {b.subtitle}
+                    </p>
+                  </div>
+                </>
+              );
+            })()}
           </div>
 
-          {/* Pagination Indicators */}
-          <div className="flex items-center justify-center gap-1.5 mt-2">
+          {/* Dots Indicator */}
+          <div className="mt-2.5 flex items-center gap-1.5">
             {benefits.map((_, idx) => (
               <button
                 key={idx}
+                type="button"
                 onClick={() => setActiveIndex(idx)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === activeIndex
-                    ? "w-5 bg-neutral-800 dark:bg-neutral-200"
-                    : "w-1.5 bg-neutral-300 dark:bg-neutral-700"
+                  idx === activeIndex ? "w-4 bg-sky-600" : "w-1.5 bg-slate-200"
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
