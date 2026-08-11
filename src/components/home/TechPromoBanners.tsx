@@ -173,7 +173,7 @@ export default function TechPromoBanners() {
         {/* Section Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-md bg-blue-100 text-blue-600">
+            <span className="rounded-md bg-linear-to-br from-sky-100 to-red-100 p-1.5 text-red-500">
               <Sparkles size={16} />
             </span>
             <h2 className="text-lg font-bold text-slate-900 tracking-tight">
