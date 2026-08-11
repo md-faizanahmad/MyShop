@@ -1,22 +1,57 @@
-<img
- src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png" alt="" />
-<h3 align="center" style="color:#0f172a;">
+<div align="center" >
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png"
+  alt="AZStoreLogo"
+  width="70%"
+/>
+</div>
+<h1 align="center">AZStore.</h1>
 
-AZStore E-Commerce Platform with Admin Panel.
+<h3 align="center">
+ E-Commerce Platform with Admin.
 </h3>
 
-<p style="color:#475569; font-size:16px;">
-Mobile-First • Secure Authentication • Razorpay Integration • Invoice System • Email Automation • OTP Based • 
-Order Status 
+<p align="center">
+A modern e-commerce solution featuring secure authentication, Razorpay payments,
+OTP verification, PDF invoices, email automation, and a responsive admin dashboard.
 </p>
 
-<p>
-<b>Live:</b> <strong> myazstore.shop </strong>
+<p align="center">
+  🌐 <a href="https://myazstore.shop">Live Store</a>
+  •
+  💼 <a href="myazstore.shop">Admin Demo</a>
+  •
+  📖 <a href="#project-overview">Documentation</a>
 </p>
+
+<table align="center">
+  <tr>
+    <td align="center">📱<br><b>Mobile-First</b></td>
+    <td align="center">🔐<br><b>Secure Auth</b></td>
+    <td align="center">📲<br><b>OTP Login</b></td>
+    <td align="center">💳<br><b>Razorpay</b></td>
+  </tr>
+  <tr>
+    <td align="center">📦<br><b>Order System</b></td>
+    <td align="center">🧾<br><b>PDF Invoice</b></td>
+    <td align="center">📧<br><b>Email Automation</b></td>
+    <td align="center">🚚<br><b>Order Tracking</b></td>
+  </tr>
+</table>
 
 <hr/>
+<h2>🚀 Why AZStore?</h2>
 
-<h2 style="color:#0f172a;">📌 Project Overview</h2>
+<ul>
+  <li>🛍️ Complete e-commerce platform with customer storefront and admin dashboard.</li>
+  <li>🔐 Secure authentication with Email Verification, JWT, and OTP.</li>
+  <li>💳 Integrated Razorpay payment gateway with payment verification.</li>
+  <li>📦 Order lifecycle management with real-time status updates.</li>
+  <li>📧 Automated transactional emails and downloadable PDF invoices.</li>
+  <li>📱 Responsive mobile-first interface built for production use.</li>
+</ul>
+
+<hr/>
+<h2 style="color:#0f172a;">📌 Project Overview.</h2>
 
 <p>
 AZStore is a complete full-stack e-commerce platform designed with a real production mindset. 
