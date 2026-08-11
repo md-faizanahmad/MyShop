@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, LayoutGrid } from "lucide-react";
 import SearchBarContainer from "../../../components/searchbar/SearchBarContainer";
 
 export default function ExploreHeader() {
@@ -7,57 +7,72 @@ export default function ExploreHeader() {
 
   return (
     <>
-      <header className="mx-auto w-full max-w-7xl px-4 pt-5 sm:px-6">
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-neutral-400">
-            Discover
-          </p>
+      <header className="w-full bg-white px-4 pt-4 pb-2 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          {/* Header Title */}
+          <h4 className="text-xl font-extrabold tracking-tight text-neutral-900 sm:text-2xl">
+            Explore Categories
+          </h4>
 
-          <h1 className="mt-1 text-[21px] font-semibold leading-tight tracking-tight text-neutral-950">
-            Explore
-          </h1>
+          {/* Search & Grid Filter Row */}
+          <div className="mt-3.5 flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search categories"
+              className="
+                flex 
+                h-12 
+                flex-1 
+                items-center 
+                gap-2.5 
+                rounded-2xl 
+                bg-neutral-100/90 
+                px-4 
+                text-left 
+                transition-colors 
+                active:bg-neutral-200/70 
+                focus:outline-none 
+                focus-visible:ring-2 
+                focus-visible:ring-neutral-900
+              "
+            >
+              <Search
+                size={20}
+                strokeWidth={2}
+                className="shrink-0 text-neutral-400"
+                aria-hidden="true"
+              />
+              <span className="truncate text-sm font-normal text-neutral-400">
+                Search categories
+              </span>
+            </button>
 
-          <p className="mt-1 text-[13px] leading-5 text-neutral-500">
-            Discover categories and find something you’ll love.
-          </p>
+            {/* Category / Filter Button */}
+            <button
+              type="button"
+              aria-label="Filter or switch category view"
+              className="
+                flex 
+                h-12 
+                w-12 
+                shrink-0 
+                items-center 
+                justify-center 
+                rounded-2xl 
+                bg-neutral-100/90 
+                text-neutral-800 
+                transition-colors 
+                active:bg-neutral-200/70 
+                focus:outline-none 
+                focus-visible:ring-2 
+                focus-visible:ring-neutral-900
+              "
+            >
+              <LayoutGrid size={20} strokeWidth={2} />
+            </button>
+          </div>
         </div>
-
-        <button
-          type="button"
-          onClick={() => setSearchOpen(true)}
-          aria-label="Search products"
-          className="
-            mt-4
-            flex
-            h-11
-            w-full
-            items-center
-            gap-3
-            rounded-xl
-            border
-            border-neutral-200
-            bg-neutral-50
-            px-3.5
-            text-left
-            transition-colors
-            active:bg-neutral-100
-            focus:outline-none
-            focus-visible:border-red-500
-            focus-visible:ring-2
-            focus-visible:ring-red-500/20
-          "
-        >
-          <Search
-            size={18}
-            strokeWidth={1.8}
-            className="shrink-0 text-neutral-400"
-            aria-hidden="true"
-          />
-
-          <span className="truncate text-[13px] text-neutral-400">
-            Search products...
-          </span>
-        </button>
       </header>
 
       {searchOpen && (
