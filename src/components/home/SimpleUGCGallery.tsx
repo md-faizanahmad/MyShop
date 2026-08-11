@@ -86,7 +86,7 @@ const TechUGCGallery: FC<TechUGCGalleryProps> = ({
   return (
     // 3. Sophisticated Neutral Palette (No Blue)
     // Using gray-50/gray-900 for section background
-    <section className="py-16 md:py-24 bg-gray-50 ">
+    <section className="py-16 md:py-24  ">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         {/* Title / Header Area */}
         <div className="mb-12 md:mb-16">

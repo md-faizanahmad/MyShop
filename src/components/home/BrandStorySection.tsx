@@ -11,7 +11,7 @@ const DEFAULT_TECH_IMAGE =
 
 /* --- TAILWIND CLASS CONSTRAINTS --- */
 const CLASSES = {
-  section: "w-full py-16 md:py-24 bg-gray-50 antialiased",
+  section: "w-full py-16 md:py-24 antialiased",
   container: "max-w-7xl mx-auto px-5 sm:px-8 lg:px-12",
   grid: "grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center",
 
