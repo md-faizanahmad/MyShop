@@ -309,7 +309,7 @@ export default function CategoryQuickLinks({
             {Array.from({ length: limit }).map((_, i) => (
               <div
                 key={i}
-                className="w-full aspect-[4/5] sm:aspect-[3/4] rounded-2xl bg-zinc-100 animate-pulse"
+                className="w-full aspect-4/5 sm:aspect-3/4 rounded-2xl bg-zinc-100 animate-pulse"
               />
             ))}
           </div>

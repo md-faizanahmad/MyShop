@@ -38,7 +38,7 @@ export default function ExploreCategoryCard({
             inset-0
             h-full
             w-full
-            object-cover
+            object-contain
             transition-transform
             duration-500
             ease-out
