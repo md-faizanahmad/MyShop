@@ -321,7 +321,7 @@ export default function CategoryQuickLinks({
   const list = categories.slice(0, limit);
 
   return (
-    <section className="w-full py-6 lg:py-16 bg-white">
+    <section className="w-full py-2 lg:py-16 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="mb-8 space-y-1.5">
