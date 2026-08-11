@@ -55,6 +55,7 @@ import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
 import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
 import FAQ from "./pages/legal/Faq";
 import BottomNavigation from "./components/Navbar/components/BottomNavigation/BottomNavigation";
+import ExplorePage from "./pages/Explore/ExplorePage";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
@@ -84,6 +85,8 @@ function AppContent() {
             <Route path="/new-arrivals" element={<NewArrivalsPage />} />
             {/* <Route path="/loading" element={<AZLoader />} /> */}
             <Route path="/products" element={<AllProductsPage />} />
+
+            <Route path="/explore" element={<ExplorePage />} />
 
             {/* // Category listing (main) */}
             {/* Category listing (main) */}
