@@ -167,12 +167,6 @@ interface BottomNavigationItem {
 
 const bottomNavigation: BottomNavigationItem[] = [
   {
-    label: "Mid-Season Sale",
-    to: "/sale",
-    featured: true,
-    badge: "Up to 50%",
-  },
-  {
     label: "Track Orders & Returns",
     to: "/orders",
   },
@@ -216,13 +210,17 @@ export default function MobileNavbar({
         </button>
       </header>
 
-      <main className="flex-2 overflow-hidden">
+      <main className="min-h-0 flex-1 overflow-hidden">
         {!activeCategory && (
           <nav
             aria-label="Mobile navigation"
-            className="flex h-full flex-col justify-between overflow-y-auto overflow-x-hidden pb-8"
+            className="flex h-full min-h-0 flex-col overflow-hidden"
           >
-            <section aria-labelledby="mobile-categories-heading">
+            {/* Categories */}
+            <section
+              aria-labelledby="mobile-categories-heading"
+              className="min-h-0 flex-1 overflow-y-auto overscroll-contain"
+            >
               <h2 id="mobile-categories-heading" className="sr-only">
                 Shop Categories
               </h2>
@@ -267,43 +265,43 @@ export default function MobileNavbar({
                 })}
               </ul>
             </section>
-            <footer className="mt-auto border-t border-neutral-100/60 pt-2">
-              <div className="px-5">
-                {bottomNavigation
-                  .filter(({ featured }) => featured)
-                  .map(({ label, to, badge }) => (
-                    <Link
-                      key={to}
-                      to={to}
-                      onClick={onClose}
-                      className={featuredLinkClass}
-                    >
-                      <span>{label}</span>
 
-                      <span className="rounded bg-red-600 px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-widest text-white">
-                        {badge}
-                      </span>
-                    </Link>
-                  ))}
+            {/* Bottom links */}
+            <footer className="shrink-0 border-t border-neutral-100 bg-white px-5 py-8">
+              {bottomNavigation
+                .filter(({ featured }) => featured)
+                .map(({ label, to, badge }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    onClick={onClose}
+                    className={featuredLinkClass}
+                  >
+                    <span>{label}</span>
 
-                <nav aria-label="Customer services" className="mt-3">
-                  <ul className="space-y-3.5">
-                    {bottomNavigation
-                      .filter(({ featured }) => !featured)
-                      .map(({ label, to }) => (
-                        <li key={to}>
-                          <Link
-                            to={to}
-                            onClick={onClose}
-                            className={utilityLinkClass}
-                          >
-                            {label}
-                          </Link>
-                        </li>
-                      ))}
-                  </ul>
-                </nav>
-              </div>
+                    <span className="rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                      {badge}
+                    </span>
+                  </Link>
+                ))}
+
+              <nav aria-label="Customer services" className="mt-3">
+                <ul className="space-y-3">
+                  {bottomNavigation
+                    .filter(({ featured }) => !featured)
+                    .map(({ label, to }) => (
+                      <li key={to}>
+                        <Link
+                          to={to}
+                          onClick={onClose}
+                          className={utilityLinkClass}
+                        >
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </nav>
             </footer>
           </nav>
         )}
