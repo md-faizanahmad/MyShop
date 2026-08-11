@@ -23,7 +23,7 @@ export const bottomNavigationItems = [
   },
   {
     label: "Account",
-    to: "/account",
+    to: "/login",
     icon: UserRound,
   },
 ] as const;

@@ -20,9 +20,7 @@ export default function BottomNavigationItem({
         [
           "flex min-w-0 flex-1 flex-col items-center justify-center gap-1",
           "py-2 text-[11px] font-medium transition-colors",
-          isActive
-            ? "text-red-600"
-            : "text-neutral-500 active:text-neutral-900",
+          isActive ? "text-red-600" : "text-neutral-500 active:text-red-900",
         ].join(" ")
       }
       aria-label={label}
