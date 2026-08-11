@@ -1,6 +1,4 @@
 import type { Category } from "../../types/nav";
-import ExploreCategorySection from "./components/ExploreCategorySection";
-import ExploreHeader from "./components/ExploreHeader";
 
 interface ExplorePageProps {
   categories: Category[];
@@ -16,12 +14,12 @@ export default function ExplorePage({
       <ExploreHeader />
 
       <section
-        aria-labelledby="explore-categories-heading"
+        aria-labelledby="explore-categories-title"
         className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6"
       >
         <div className="mb-5">
           <h1
-            id="explore-categories-heading"
+            id="explore-categories-title"
             className="text-xl font-semibold tracking-tight text-neutral-900"
           >
             Explore Categories
@@ -35,8 +33,8 @@ export default function ExplorePage({
         {loading ? (
           <div
             className="grid grid-cols-2 gap-3"
-            aria-label="Loading categories"
             aria-busy="true"
+            aria-label="Loading categories"
           >
             {Array.from({ length: 4 }).map((_, index) => (
               <div
@@ -45,13 +43,7 @@ export default function ExplorePage({
               />
             ))}
           </div>
-        ) : categories.length > 0 ? (
-          <div className="space-y-8">
-            {categories.map((category) => (
-              <ExploreCategorySection key={category._id} category={category} />
-            ))}
-          </div>
-        ) : (
+        ) : categories.length === 0 ? (
           <div className="rounded-2xl border border-neutral-100 px-5 py-12 text-center">
             <p className="text-sm font-medium text-neutral-700">
               No categories available
@@ -60,6 +52,12 @@ export default function ExplorePage({
             <p className="mt-1 text-xs text-neutral-400">
               Please try again later.
             </p>
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {categories.map((category) => (
+              <ExploreCategorySection key={category._id} category={category} />
+            ))}
           </div>
         )}
       </section>
