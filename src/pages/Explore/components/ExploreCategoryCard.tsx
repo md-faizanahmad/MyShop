@@ -17,7 +17,7 @@ export default function ExploreCategoryCard({
         group
         relative
         block
-        h-52
+        aspect-video
         overflow-hidden
         rounded-2xl
         bg-neutral-100
@@ -32,6 +32,7 @@ export default function ExploreCategoryCard({
           src={category.image}
           alt=""
           loading="lazy"
+          decoding="async"
           className="
             absolute
             inset-0
@@ -45,27 +46,30 @@ export default function ExploreCategoryCard({
           "
         />
       ) : (
-        <div className="absolute inset-0 bg-neutral-100" />
+        <div className="absolute inset-0 bg-neutral-100" aria-hidden="true" />
       )}
 
       <div
         className="
           absolute
           inset-0
-          bg-gradient-to-t
-          from-black/65
-          via-black/10
+          bg-linear-to-t
+          from-black/70
+          via-black/20
           to-transparent
         "
+        aria-hidden="true"
       />
 
-      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
-        <div>
-          <h3 className="text-lg font-semibold tracking-tight text-white">
+      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4">
+        <div className="min-w-0">
+          <h3 className="truncate text-lg font-semibold tracking-tight text-white">
             {category.name}
           </h3>
 
-          <p className="mt-0.5 text-xs text-white/75">Explore collection</p>
+          <p className="mt-0.5 text-xs font-medium text-white/75">
+            Explore collection
+          </p>
         </div>
 
         <span
@@ -82,9 +86,11 @@ export default function ExploreCategoryCard({
             transition-transform
             duration-300
             group-hover:translate-x-0.5
+            group-active:scale-95
           "
+          aria-hidden="true"
         >
-          <ArrowUpRight size={17} strokeWidth={1.8} aria-hidden="true" />
+          <ArrowUpRight size={17} strokeWidth={1.8} />
         </span>
       </div>
     </Link>

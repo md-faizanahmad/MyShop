@@ -12,29 +12,33 @@ export default function ExploreCategorySection({
   const subcategories = category.subcategories ?? [];
 
   return (
-    <section aria-labelledby={`category-${category._id}`}>
-      <div className="mb-3 flex items-end justify-between">
-        <div>
-          <h2
-            id={`category-${category._id}`}
-            className="text-base font-semibold tracking-tight text-neutral-900"
-          >
-            {category.name}
-          </h2>
+    <section
+      aria-labelledby={`explore-category-${category._id}`}
+      className="space-y-3"
+    >
+      <div className="flex items-center justify-between">
+        <h2
+          id={`explore-category-${category._id}`}
+          className="text-base font-semibold tracking-tight text-neutral-900"
+        >
+          {category.name}
+        </h2>
 
-          {subcategories.length > 0 && (
-            <p className="mt-0.5 text-xs text-neutral-400">
-              Explore {subcategories.length}{" "}
-              {subcategories.length === 1 ? "subcategory" : "subcategories"}
-            </p>
-          )}
-        </div>
+        {subcategories.length > 0 && (
+          <span className="text-xs font-medium text-neutral-400">
+            {subcategories.length}{" "}
+            {subcategories.length === 1 ? "subcategory" : "subcategories"}
+          </span>
+        )}
       </div>
 
       <ExploreCategoryCard category={category} />
 
       {subcategories.length > 0 && (
-        <div className="mt-3 grid grid-cols-2 gap-3">
+        <div
+          className="grid grid-cols-2 gap-3"
+          aria-label={`${category.name} subcategories`}
+        >
           {subcategories.map((subcategory) => (
             <ExploreSubcategoryCard
               key={subcategory._id}
