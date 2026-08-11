@@ -49,24 +49,26 @@ export default function WishlistPage() {
     <div className="min-h-screen bg-sky-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold">
+        <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6">
+          {/* Title & Item Count */}
+          <h1 className="text-lg font-bold text-slate-900 sm:text-2xl">
             My Wishlist
-            {/* ({items.length}) */}
-            <span className="ml-2 text-base font-medium text-gray-500">
+            <span className="ml-1.5 text-xs font-normal text-slate-400 sm:text-base">
               ({items.length})
             </span>
           </h1>
 
+          {/* Clear All Button */}
           <button
+            type="button"
             onClick={() => {
               void clear();
               toast.success("Wishlist cleared");
             }}
-            className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-xl"
+            className="flex items-center gap-1.5 rounded-xl bg-red-600 px-3 py-1.5 text-xs font-medium text-white transition-all active:scale-95 hover:bg-red-700 sm:px-4 sm:py-2 sm:text-sm"
           >
-            <Trash2 size={18} />
-            Clear All
+            <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <span>Clear All</span>
           </button>
         </div>
 
