@@ -294,7 +294,7 @@ export default function CheckoutPage() {
         setBuyNowItem({
           product: res.data.product,
           qty: 1,
-        })
+        }),
       )
       .catch(() => {
         toast.error("Unable to load product");
@@ -305,7 +305,7 @@ export default function CheckoutPage() {
   /* -------------------- ITEMS SOURCE -------------------- */
   const items = useMemo(
     () => (isQuickBuy ? (buyNowItem ? [buyNowItem] : []) : cartItems),
-    [isQuickBuy, buyNowItem, cartItems]
+    [isQuickBuy, buyNowItem, cartItems],
   );
 
   /* -------------------- PRICE -------------------- */
@@ -332,7 +332,7 @@ export default function CheckoutPage() {
           })),
           totalAmount: total,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       const verify: VerifyResponse = await startPayment();
@@ -340,7 +340,7 @@ export default function CheckoutPage() {
       navigate(
         verify.orderId
           ? `/order-success?orderId=${verify.orderId}`
-          : "/order-success"
+          : "/order-success",
       );
     } catch {
       setState("idle");
@@ -361,7 +361,7 @@ export default function CheckoutPage() {
           animate={{ opacity: 1 }}
           className="min-h-screen bg-gray-50 py-8 px-4"
         >
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8 mt-8 md:mt-0 lg:mt-0">
             <div className="lg:col-span-2 space-y-8">
               <CheckoutAddresses
                 addresses={addresses}

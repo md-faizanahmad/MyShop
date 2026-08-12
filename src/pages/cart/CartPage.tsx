@@ -286,318 +286,95 @@ export default function CartPage(): JSX.Element {
         </h4>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          <div className="space-y-4 lg:col-span-2 lg:space-y-5">
-            <AnimatePresence initial={false}>
-              {items.map((item, index) => {
+          <div className="lg:col-span-2 space-y-6">
+            <AnimatePresence>
+              {items.map((item) => {
                 const p = item.product;
                 const maxQty = getMaxQtyByPrice(p.price);
                 const canIncrease = item.qty < maxQty;
 
-                const productUrl = `/category/${p.category?.slug}/product/${p.slug}`;
-
                 return (
-                  <div key={p._id}>
-                    {/* ---------------------------------------------------------------- */}
-                    {/* Cart item                                                        */}
-                    {/* ---------------------------------------------------------------- */}
+                  <motion.div
+                    key={p._id}
+                    layout
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    className="bg-white rounded-2xl p-5 shadow"
+                  >
+                    <div className="flex gap-4">
+                      <img
+                        src={p.imageUrl}
+                        alt={p.name}
+                        className="w-24 h-24 rounded-xl object-cover"
+                      />
 
-                    <motion.div
-                      layout
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, x: -50 }}
-                      transition={{ duration: 0.2 }}
-                      className="
-              overflow-hidden
-              rounded-2xl
-              border
-              border-neutral-100
-              bg-white
-              shadow-sm
-              transition-shadow
-              hover:shadow-md
-            "
-                    >
-                      <div className="flex gap-3 p-3 sm:gap-4 sm:p-4 lg:p-5">
-                        {/* ---------------------------------------------------------- */}
-                        {/* Product Image                                                */}
-                        {/* ---------------------------------------------------------- */}
+                      <div className="flex-1 space-y-3">
+                        <h3 className="font-semibold text-lg">{p.name}</h3>
 
-                        <Link
-                          to={productUrl}
-                          aria-label={`View ${p.name}`}
-                          className="
-                  group
-                  relative
-                  h-24
-                  w-24
-                  shrink-0
-                  overflow-hidden
-                  rounded-xl
-                  bg-neutral-50
-                  sm:h-28
-                  sm:w-28
-                  lg:h-32
-                  lg:w-32
-                "
-                        >
-                          <img
-                            src={p.imageUrl}
-                            alt={p.name}
-                            loading="lazy"
-                            decoding="async"
-                            className="
-                    h-full
-                    w-full
-                    object-contain
-                    p-1
-                    transition-transform
-                    duration-300
-                    group-hover:scale-105
-                  "
-                          />
-                        </Link>
+                        <p className="font-bold text-sky-600">
+                          ₹{(p.price * item.qty).toLocaleString("en-IN")}
+                        </p>
 
-                        {/* ---------------------------------------------------------- */}
-                        {/* Product Information                                          */}
-                        {/* ---------------------------------------------------------- */}
-
-                        <div className="flex min-w-0 flex-1 flex-col">
-                          <Link
-                            to={productUrl}
-                            className="
-                    line-clamp-2
-                    text-sm
-                    font-semibold
-                    leading-5
-                    tracking-tight
-                    text-neutral-900
-                    transition-colors
-                    hover:text-sky-600
-                    sm:text-base
-                  "
-                          >
-                            {p.name}
-                          </Link>
-
-                          {/* Price */}
-                          <p className="mt-1.5 text-sm font-bold text-sky-600 sm:text-base">
-                            ₹{(p.price * item.qty).toLocaleString("en-IN")}
-                          </p>
-
-                          {/* -------------------------------------------------------- */}
-                          {/* Bottom Actions                                             */}
-                          {/* -------------------------------------------------------- */}
-
-                          <div className="mt-auto flex items-end justify-between gap-2 pt-3">
-                            {/* Quantity */}
-                            <div
-                              className="
-                      flex
-                      h-9
-                      items-center
-                      overflow-hidden
-                      rounded-lg
-                      border
-                      border-neutral-200
-                      bg-white
-                      sm:h-10
-                    "
+                        <div className="flex items-center gap-4">
+                          {/* Qty */}
+                          <div className="flex items-center border rounded-xl">
+                            <button
+                              onClick={() => updateQty(p._id, item.qty - 1)}
+                              disabled={item.qty <= 1}
+                              className="px-3 py-2 disabled:opacity-40"
                             >
-                              <button
-                                type="button"
-                                onClick={() => updateQty(p._id, item.qty - 1)}
-                                disabled={item.qty <= 1}
-                                aria-label={`Decrease quantity of ${p.name}`}
-                                className="
-                        flex
-                        h-full
-                        w-9
-                        items-center
-                        justify-center
-                        text-base
-                        text-neutral-600
-                        transition-colors
-                        hover:bg-neutral-50
-                        disabled:cursor-not-allowed
-                        disabled:opacity-35
-                        sm:w-10
-                      "
-                              >
-                                −
-                              </button>
+                              −
+                            </button>
 
-                              <span
-                                className="
-                        flex
-                        min-w-8
-                        items-center
-                        justify-center
-                        px-1
-                        text-sm
-                        font-semibold
-                        text-neutral-900
-                      "
-                              >
-                                {item.qty}
-                              </span>
+                            <span className="px-4 font-bold">{item.qty}</span>
 
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  if (!canIncrease) {
-                                    toast.error(
-                                      `Maximum ${maxQty} units allowed`,
-                                    );
-                                    return;
-                                  }
-
-                                  updateQty(p._id, item.qty + 1);
-                                }}
-                                disabled={!canIncrease}
-                                aria-label={`Increase quantity of ${p.name}`}
-                                className="
-                        flex
-                        h-full
-                        w-9
-                        items-center
-                        justify-center
-                        text-base
-                        text-neutral-600
-                        transition-colors
-                        hover:bg-neutral-50
-                        disabled:cursor-not-allowed
-                        disabled:opacity-35
-                        sm:w-10
-                      "
-                              >
-                                +
-                              </button>
-                            </div>
-
-                            {/* Actions */}
-                            <div className="flex items-center gap-1.5">
-                              {/* Wishlist */}
-                              {isWishlisted(p._id) && (
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    void removeWish(p._id);
-                                    toast.success("Removed from wishlist");
-                                  }}
-                                  aria-label={`Remove ${p.name} from wishlist`}
-                                  className="
-                          flex
-                          h-9
-                          w-9
-                          items-center
-                          justify-center
-                          rounded-lg
-                          bg-red-50
-                          text-red-500
-                          transition-colors
-                          hover:bg-red-100
-                          active:scale-95
-                          sm:h-10
-                          sm:w-10
-                        "
-                                >
-                                  <Heart
-                                    size={18}
-                                    strokeWidth={1.8}
-                                    className="fill-current"
-                                    aria-hidden="true"
-                                  />
-                                </button>
-                              )}
-
-                              {/* Remove */}
-                              <button
-                                type="button"
-                                onClick={() => void removeItem(p._id)}
-                                aria-label={`Remove ${p.name} from cart`}
-                                className="
-                        flex
-                        h-9
-                        w-9
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-red-50
-                        text-red-500
-                        transition-colors
-                        hover:bg-red-100
-                        active:scale-95
-                        sm:h-10
-                        sm:w-10
-                      "
-                              >
-                                <Trash2
-                                  size={18}
-                                  strokeWidth={1.8}
-                                  aria-hidden="true"
-                                />
-                              </button>
-                            </div>
+                            <button
+                              onClick={() => {
+                                if (!canIncrease) {
+                                  toast.error(
+                                    `Maximum ${maxQty} units allowed`,
+                                  );
+                                  return;
+                                }
+                                updateQty(p._id, item.qty + 1);
+                              }}
+                              disabled={!canIncrease}
+                              className="px-3 py-2 disabled:opacity-40"
+                            >
+                              +
+                            </button>
                           </div>
+
+                          {/* Wishlist remove */}
+                          {isWishlisted(p._id) && (
+                            <button
+                              onClick={() => {
+                                void removeWish(p._id);
+                                toast.success("Removed from wishlist");
+                              }}
+                              className="p-2 rounded-xl bg-red-50 text-red-600"
+                            >
+                              <Heart size={20} className="fill-current" />
+                            </button>
+                          )}
+
+                          {/* Remove */}
+                          <button
+                            onClick={() => void removeItem(p._id)}
+                            className="p-2 text-red-600 bg-red-50 rounded-xl"
+                          >
+                            <Trash2 size={20} />
+                          </button>
                         </div>
                       </div>
-                    </motion.div>
-
-                    {/* ---------------------------------------------------------------- */}
-                    {/* More Items Notice                                                */}
-                    {/* ---------------------------------------------------------------- */}
-
-                    {index === 2 && items.length > 3 && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        className="
-                mt-4
-                flex
-                items-start
-                gap-2.5
-                rounded-xl
-                border
-                border-amber-100
-                bg-amber-50
-                px-3.5
-                py-3
-                text-amber-800
-                sm:px-4
-              "
-                      >
-                        <span
-                          className="
-                  mt-0.5
-                  flex
-                  h-5
-                  w-5
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-amber-100
-                  text-[11px]
-                  font-bold
-                  text-amber-700
-                "
-                          aria-hidden="true"
-                        >
-                          !
-                        </span>
-
-                        <p className="text-[11px] leading-4 sm:text-xs">
-                          You have more items in your cart. Review your
-                          quantities before checkout.
-                        </p>
-                      </motion.div>
-                    )}
-                  </div>
+                    </div>
+                  </motion.div>
                 );
               })}
             </AnimatePresence>
           </div>
+
           <OrderSummaryCard />
         </div>
       </div>
