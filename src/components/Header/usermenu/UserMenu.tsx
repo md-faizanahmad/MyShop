@@ -53,7 +53,7 @@ export default function UserMenu() {
   }, []);
   if (status === "loading") {
     return (
-      <div className="w-8 h-8 me-4 flex items-center justify-center font-bold bg-gray-200 rounded-full animate-pulse" />
+      <div className="w-8 h-8 me-4 flex items-center justify-center font-bold  rounded-full animate-pulse" />
     );
   }
   const toggleOpen = () => setOpen((s) => !s);
