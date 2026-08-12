@@ -71,6 +71,7 @@ function AppContent() {
       <ConnectionError />
       {/* <TestModeBanner /> */}
       {/* Header with Search, Navbar, Cart, etc. */}
+
       <Header />
 
       <Outlet />

@@ -25,8 +25,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen ">
-      <MobileCategoryNavbar />
       <TopAnnouncementBar />
+      <MobileCategoryNavbar />
       <main className="flex flex-col gap-12 md:gap-16">
         <HeroSection hero={hero} loading={isLoading} />
         {/* <MobileCategoryScroll /> */}
