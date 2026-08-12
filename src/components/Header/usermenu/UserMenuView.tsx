@@ -422,24 +422,22 @@ export default function UserMenuView({
         {/* Mobile icon */}
         {isLoggedIn ? (
           <span
-            className={`
+            className="
       flex
       h-[21px]
       w-[21px]
       items-center
       justify-center
       rounded-full
-      border
-      text-[10px]
+      bg-linear-to-br
+      from-sky-600
+      to-red-600
+      text-[9px]
       font-bold
-      transition-colors
-      ${
-        open
-          ? "border-red-600 bg-red-600 text-white"
-          : "border-neutral-400 bg-transparent text-neutral-600"
-      }
+      text-white
+      shadow-sm
       md:hidden
-    `}
+    "
           >
             {firstLetter}
           </span>
@@ -450,24 +448,9 @@ export default function UserMenuView({
             aria-hidden="true"
             className={`
       md:hidden
+      transition-colors
       ${open ? "text-red-600" : "text-neutral-500"}
     `}
-          />
-        )}
-        {isLoggedIn && (
-          <span
-            className="
-                absolute
-                -bottom-0.5
-                -right-0.5
-                h-2.5
-                w-2.5
-                rounded-full
-                border-2
-                border-white
-                bg-emerald-500
-              "
-            aria-hidden="true"
           />
         )}
 
