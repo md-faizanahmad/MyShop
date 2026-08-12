@@ -46,7 +46,7 @@ export default function WishlistPage() {
      Render
   ----------------------------- */
   return (
-    <div className="min-h-screen bg-sky-50 py-8 px-4">
+    <div className="min-h-screen bg-sky-50 py-8 px-4 mt-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6">
