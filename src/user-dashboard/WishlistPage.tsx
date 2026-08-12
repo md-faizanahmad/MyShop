@@ -63,7 +63,7 @@ export default function WishlistPage() {
      Render
   ----------------------------- */
   return (
-    <div className="min-h-screen  py-8 px-4 mt-9 lg:mt-3 md:mt-3">
+    <div className="min-h-screen  py-8 px-4 ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-5 flex items-center justify-between gap-3 sm:mb-6">

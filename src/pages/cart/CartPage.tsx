@@ -276,7 +276,7 @@ export default function CartPage(): JSX.Element {
   }
 
   return (
-    <div className="min-h-screen bg-sky-50 py-8 px-4 mt-8">
+    <div className="min-h-screen bg-sky-50 py-8 px-4">
       <div className="max-w-6xl mx-auto">
         <h4 className="mb-5 text-left text-xl font-semibold tracking-tight text-slate-900 sm:mb-6 sm:text-2xl">
           Your Cart{" "}

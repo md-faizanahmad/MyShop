@@ -84,7 +84,7 @@ export default function OrderDetails() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl p-4 space-y-6 mt-10 md:mt-0 lg:mt-0">
+    <div className="mx-auto max-w-5xl p-4 space-y-6 ">
       {/* Breadcrumb + header */}
       <OrderHeader orderId={order._id} createdAt={order.createdAt} />
 

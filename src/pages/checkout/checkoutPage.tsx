@@ -361,7 +361,7 @@ export default function CheckoutPage() {
           animate={{ opacity: 1 }}
           className="min-h-screen bg-gray-50 py-8 px-4"
         >
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8 mt-8 md:mt-0 lg:mt-0">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8 ">
             <div className="lg:col-span-2 space-y-8">
               <CheckoutAddresses
                 addresses={addresses}

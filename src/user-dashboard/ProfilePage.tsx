@@ -52,7 +52,7 @@ export default function ProfilePage() {
   ----------------------------- */
   if (!user || ordersQuery.isLoading || addressesQuery.isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8 mt-8">
+      <div className="min-h-screen bg-gray-50 py-8 ">
         <div className="max-w-6xl mx-auto px-4">
           <DashboardSkeleton />
         </div>
@@ -68,7 +68,7 @@ export default function ProfilePage() {
     : [];
 
   return (
-    <div className="p-4 md:mt-3 lg:mt-3 mt-8">
+    <div className="p-4 ">
       <ProfilePageView
         user={user}
         orders={orders}
