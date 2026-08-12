@@ -293,24 +293,21 @@
 // }
 //////////////////////////////////////////////////12082026
 import {
-  User,
-  Heart,
-  Package,
-  LogOut,
   ChevronDown,
+  Heart,
   LogIn,
+  LogOut,
+  Package,
+  User,
   UserPlus,
+  UserRound,
 } from "lucide-react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import type { UserType } from "./usermenu-types";
 import Item from "./Item";
 
-/* -------------------------------------------------------------------------- */
-/*                                   Types                                    */
-/* -------------------------------------------------------------------------- */
-
-type Props = {
+interface Props {
   open: boolean;
   toggleOpen: () => void;
   buttonRef: React.RefObject<HTMLButtonElement | null>;
@@ -318,7 +315,7 @@ type Props = {
   isLoggedIn: boolean;
   user: UserType | null;
   onLogout: () => Promise<void> | void;
-};
+}
 
 interface MenuItem {
   to: string;
@@ -327,7 +324,7 @@ interface MenuItem {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                              Menu Definitions                              */
+/*                              Menu Configuration                            */
 /* -------------------------------------------------------------------------- */
 
 const accountMenuItems: MenuItem[] = [
@@ -362,133 +359,7 @@ const guestMenuItems: MenuItem[] = [
 ];
 
 /* -------------------------------------------------------------------------- */
-/*                               Style Classes                                */
-/* -------------------------------------------------------------------------- */
-
-const triggerClass = `
-  group
-  select-none
-  rounded-full
-  p-1
-  transition-colors
-  hover:bg-zinc-100
-  focus:outline-none
-  focus-visible:ring-2
-  focus-visible:ring-red-500/30
-`;
-
-const avatarClass = `
-  relative
-  flex
-  h-8
-  w-8
-  shrink-0
-  items-center
-  justify-center
-  rounded-full
-  bg-zinc-900/10
-  text-zinc-900
-  ring-2
-  ring-transparent
-  transition-all
-  group-hover:ring-zinc-200
-`;
-
-const accountLabelClass = `
-  text-[10px]
-  font-medium
-  leading-none
-  text-neutral-600
-  md:hidden
-`;
-
-const menuClass = `
-  fixed
-  bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)]
-  right-3
-  z-50
-  w-[min(13rem,calc(100vw-1.5rem))]
-  overflow-hidden
-  rounded-2xl
-  border
-  border-neutral-200/80
-  bg-white
-  shadow-[0_12px_40px_rgba(0,0,0,0.14)]
-
-  md:absolute
-  md:bottom-auto
-  md:right-0
-  md:top-full
-  md:mt-2
-  md:w-44
-  md:rounded-xl
-  md:shadow-[0_8px_30px_rgba(0,0,0,0.12)]
-`;
-
-const identityClass = `
-  border-b
-  border-neutral-100
-  bg-neutral-50/70
-  px-4
-  py-3.5
-`;
-
-const identityNameClass = `
-  truncate
-  text-[12px]
-  font-semibold
-  leading-4
-  text-neutral-900
-`;
-
-const menuListClass = `
-  space-y-0.5
-  p-1.5
-`;
-
-const logoutWrapperClass = `
-  border-t
-  border-neutral-100
-  p-1.5
-`;
-
-const logoutButtonClass = `
-  group
-  flex
-  w-full
-  items-center
-  gap-2.5
-  rounded-lg
-  px-3
-  py-2.5
-  text-left
-  text-[12px]
-  font-semibold
-  text-red-500
-  transition-colors
-  hover:bg-red-50
-  focus:outline-none
-  focus-visible:ring-2
-  focus-visible:ring-red-500/20
-  md:py-2
-`;
-
-/* -------------------------------------------------------------------------- */
-/*                              Helper Component                              */
-/* -------------------------------------------------------------------------- */
-
-function MenuItems({ items }: { items: MenuItem[] }) {
-  return (
-    <>
-      {items.map((item) => (
-        <Item key={item.to} to={item.to} icon={item.icon} label={item.label} />
-      ))}
-    </>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                               Main Component                               */
+/*                                  Component                                 */
 /* -------------------------------------------------------------------------- */
 
 export default function UserMenuView({
@@ -506,12 +377,13 @@ export default function UserMenuView({
     ? (user?.name?.[0]?.toUpperCase() ?? "U")
     : null;
 
-  const menuTitle = isLoggedIn ? user?.name || "Account" : "Welcome";
-
   return (
-    <div className="relative" ref={menuRef}>
+    <div
+      ref={menuRef}
+      className="relative flex min-w-0 flex-1 justify-center md:flex-none"
+    >
       {/* ------------------------------------------------------------------ */}
-      {/* Trigger                                                            */}
+      {/* Account Trigger                                                    */}
       {/* ------------------------------------------------------------------ */}
 
       <motion.button
@@ -522,28 +394,82 @@ export default function UserMenuView({
         aria-expanded={open}
         aria-haspopup="menu"
         aria-label={isLoggedIn ? "Open account menu" : "Open account options"}
-        className={`
-          ${triggerClass}
+        className="
+          group
           flex
+          min-w-0
+          flex-1
           flex-col
           items-center
           justify-center
           gap-1
+          py-2
+          text-[11px]
+          font-medium
+          transition-colors
+          focus:outline-none
+          focus-visible:ring-2
+          focus-visible:ring-red-500/30
+
+          md:flex-none
           md:flex-row
           md:gap-1.5
-        `}
+          md:rounded-full
+          md:p-1
+          md:hover:bg-zinc-100
+        "
       >
-        {/* Avatar */}
-        <div className={avatarClass}>
-          {isLoggedIn ? (
-            <span className="text-[11px] font-bold tracking-tight">
-              {firstLetter}
-            </span>
-          ) : (
-            <User size={15} strokeWidth={2.2} aria-hidden="true" />
-          )}
+        {/* Mobile icon */}
+        <UserRound
+          size={21}
+          strokeWidth={open ? 2 : 1.7}
+          aria-hidden="true"
+          className={`
+            md:hidden
+            transition-colors
+            ${open ? "text-red-600" : "text-neutral-500"}
+          `}
+        />
 
-          {/* Online indicator */}
+        {/* Mobile label */}
+        <span
+          className={`
+            text-[11px]
+            md:hidden
+            transition-colors
+            ${open ? "text-red-600" : "text-neutral-500"}
+          `}
+        >
+          Account
+        </span>
+
+        {/* Desktop avatar */}
+        <div className="relative hidden md:block">
+          <div
+            className="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-full
+              bg-zinc-900/10
+              text-zinc-900
+              ring-2
+              ring-transparent
+              transition-all
+              group-hover:ring-zinc-200
+            "
+          >
+            {isLoggedIn ? (
+              <span className="text-[11px] font-bold tracking-tight">
+                {firstLetter}
+              </span>
+            ) : (
+              <User size={15} strokeWidth={2.2} aria-hidden="true" />
+            )}
+          </div>
+
           {isLoggedIn && (
             <span
               className="
@@ -562,10 +488,7 @@ export default function UserMenuView({
           )}
         </div>
 
-        {/* Mobile bottom-nav label */}
-        <span className={accountLabelClass}>Account</span>
-
-        {/* Desktop dropdown indicator */}
+        {/* Desktop chevron */}
         <ChevronDown
           size={12}
           aria-hidden="true"
@@ -610,7 +533,7 @@ export default function UserMenuView({
             />
 
             {/* ------------------------------------------------------------ */}
-            {/* Account Menu                                                  */}
+            {/* Account menu                                                   */}
             {/* ------------------------------------------------------------ */}
 
             <motion.div
@@ -647,45 +570,98 @@ export default function UserMenuView({
                 duration: shouldReduceMotion ? 0 : 0.15,
                 ease: "easeOut",
               }}
-              className={menuClass}
+              className="
+                fixed
+                bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)]
+                right-3
+                z-50
+                w-[min(13rem,calc(100vw-1.5rem))]
+                overflow-hidden
+                rounded-2xl
+                border
+                border-neutral-200/80
+                bg-white
+                shadow-[0_12px_40px_rgba(0,0,0,0.14)]
+
+                md:absolute
+                md:bottom-auto
+                md:right-0
+                md:top-full
+                md:mt-2
+                md:w-44
+                md:rounded-xl
+                md:shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+              "
             >
               {isLoggedIn ? (
                 <div className="flex flex-col">
-                  {/* ------------------------------------------------------ */}
-                  {/* User identity                                           */}
-                  {/* ------------------------------------------------------ */}
-
-                  <div className={identityClass}>
-                    <p className={identityNameClass}>{menuTitle}</p>
+                  {/* Identity */}
+                  <div
+                    className="
+                      border-b
+                      border-neutral-100
+                      bg-neutral-50/70
+                      px-4
+                      py-3.5
+                    "
+                  >
+                    <p
+                      className="
+                        truncate
+                        text-[12px]
+                        font-semibold
+                        leading-4
+                        text-neutral-900
+                      "
+                    >
+                      {user?.name || "Account"}
+                    </p>
                   </div>
 
-                  {/* ------------------------------------------------------ */}
-                  {/* Account navigation                                      */}
-                  {/* ------------------------------------------------------ */}
-
-                  <div className={menuListClass}>
-                    <MenuItems items={accountMenuItems} />
+                  {/* Account links */}
+                  <div className="space-y-0.5 p-1.5">
+                    {accountMenuItems.map((item) => (
+                      <Item
+                        key={item.to}
+                        to={item.to}
+                        icon={item.icon}
+                        label={item.label}
+                      />
+                    ))}
                   </div>
 
-                  {/* ------------------------------------------------------ */}
-                  {/* Logout                                                   */}
-                  {/* ------------------------------------------------------ */}
-
-                  <div className={logoutWrapperClass}>
+                  {/* Logout */}
+                  <div className="border-t border-neutral-100 p-1.5">
                     <button
                       type="button"
                       onClick={onLogout}
                       role="menuitem"
-                      className={logoutButtonClass}
+                      className="
+                        group
+                        flex
+                        w-full
+                        items-center
+                        gap-2.5
+                        rounded-lg
+                        px-3
+                        py-2.5
+                        text-left
+                        text-[12px]
+                        font-semibold
+                        text-red-500
+                        transition-colors
+                        hover:bg-red-50
+                        focus:outline-none
+                        focus-visible:ring-2
+                        focus-visible:ring-red-500/20
+                        md:py-2
+                      "
                     >
                       <LogOut
                         size={15}
                         strokeWidth={1.8}
                         aria-hidden="true"
-                        className="
-                          transition-transform
-                          group-hover:-translate-x-0.5
-                        "
+                        className="transition-transform group-hover:-translate-x-0.5"
                       />
 
                       <span>Logout</span>
@@ -694,22 +670,39 @@ export default function UserMenuView({
                 </div>
               ) : (
                 <div className="flex flex-col">
-                  {/* ------------------------------------------------------ */}
-                  {/* Guest heading                                           */}
-                  {/* ------------------------------------------------------ */}
-
-                  <div className={identityClass}>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-400">
+                  {/* Guest heading */}
+                  <div
+                    className="
+                      border-b
+                      border-neutral-100
+                      bg-neutral-50/70
+                      px-4
+                      py-3.5
+                    "
+                  >
+                    <p
+                      className="
+                        text-[10px]
+                        font-bold
+                        uppercase
+                        tracking-[0.14em]
+                        text-neutral-400
+                      "
+                    >
                       Welcome
                     </p>
                   </div>
 
-                  {/* ------------------------------------------------------ */}
-                  {/* Guest navigation                                        */}
-                  {/* ------------------------------------------------------ */}
-
-                  <div className={menuListClass}>
-                    <MenuItems items={guestMenuItems} />
+                  {/* Guest links */}
+                  <div className="space-y-0.5 p-1.5">
+                    {guestMenuItems.map((item) => (
+                      <Item
+                        key={item.to}
+                        to={item.to}
+                        icon={item.icon}
+                        label={item.label}
+                      />
+                    ))}
                   </div>
                 </div>
               )}
