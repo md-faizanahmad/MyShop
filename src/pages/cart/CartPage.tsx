@@ -187,21 +187,86 @@ export default function CartPage(): JSX.Element {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-sky-50">
-        Loading cart…
+      <div className="flex min-h-[60vh] items-center justify-center px-4 text-neutral-500">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            className="
+        h-8
+        w-8
+        animate-spin
+        rounded-full
+        border-2
+        border-neutral-200
+        border-t-red-600
+      "
+            aria-hidden="true"
+          />
+
+          <span className="text-xs font-medium md:text-sm">Loading cart…</span>
+        </div>
       </div>
     );
   }
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-sky-50">
-        <div className="text-center">
-          <ShoppingBag size={64} className="mx-auto text-sky-600 mb-6" />
-          <h2 className="text-3xl font-bold mb-4">Your cart is empty</h2>
+      <div className="flex min-h-[60vh] items-center justify-center px-5">
+        <div className="flex max-w-sm flex-col items-center text-center">
+          <div
+            className="
+        mb-4
+        flex
+        h-14
+        w-14
+        items-center
+        justify-center
+        rounded-full
+        bg-sky-50
+        text-sky-600
+        sm:mb-5
+        sm:h-16
+        sm:w-16
+      "
+          >
+            <ShoppingBag
+              size={28}
+              strokeWidth={1.8}
+              className="sm:size-8"
+              aria-hidden="true"
+            />
+          </div>
+
+          <h2 className="text-xl font-semibold tracking-tight text-neutral-900 sm:text-2xl">
+            Your cart is empty
+          </h2>
+
+          <p className="mt-1.5 text-xs leading-5 text-neutral-500 sm:mt-2 sm:text-sm">
+            Looks like you haven&apos;t added anything to your cart yet.
+          </p>
+
           <Link
             to="/"
-            className="inline-block bg-sky-600 text-white px-6 py-3 rounded-xl font-semibold"
+            className="
+        mt-5
+        inline-flex
+        items-center
+        justify-center
+        rounded-xl
+        bg-sky-600
+        px-5
+        py-2.5
+        text-xs
+        font-semibold
+        text-white
+        shadow-sm
+        transition-colors
+        hover:bg-sky-700
+        active:scale-[0.98]
+        sm:mt-6
+        sm:px-6
+        sm:py-3
+        sm:text-sm
+      "
           >
             Continue shopping
           </Link>
@@ -213,9 +278,9 @@ export default function CartPage(): JSX.Element {
   return (
     <div className="min-h-screen bg-sky-50 py-8 px-4 mt-8">
       <div className="max-w-6xl mx-auto">
-        <h4 className="mb-4 text-left text-lg font-bold tracking-tight text-slate-900 sm:mb-6 sm:text-2xl">
+        <h4 className="mb-5 text-left text-xl font-semibold tracking-tight text-slate-900 sm:mb-6 sm:text-2xl">
           Your Cart{" "}
-          <span className="text-2xl font-normal text-slate-400 sm:text-base">
+          <span className="ml-1 text-xs font-normal text-slate-400 sm:text-sm">
             ({totalItems} {totalItems === 1 ? "item" : "items"})
           </span>
         </h4>
