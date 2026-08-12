@@ -68,12 +68,12 @@ export default function Header() {
               <Search className="text-gray-700" />
             </button>
 
-            {/* <div className="mr-2 md:mr-0"> */}
-            <CartIcon />
-            {/* </div> */}
-            {/* <div className="hidden md:block"> */}
-            <UserMenu />
-            {/* </div> */}
+            <div className="mr-2 md:mr-0">
+              <CartIcon />
+            </div>
+            <div className="hidden md:block">
+              <UserMenu />
+            </div>
           </div>
         </div>
       </header>
