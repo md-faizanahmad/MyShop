@@ -213,12 +213,12 @@ export default function CartPage(): JSX.Element {
   return (
     <div className="min-h-screen bg-sky-50 py-8 px-4 mt-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="mb-4 text-left text-lg font-bold tracking-tight text-slate-900 sm:mb-6 sm:text-2xl">
+        <h4 className="mb-4 text-left text-lg font-bold tracking-tight text-slate-900 sm:mb-6 sm:text-2xl">
           Your Cart{" "}
-          <span className="text-xs font-normal text-slate-400 sm:text-base">
+          <span className="text-2xl font-normal text-slate-400 sm:text-base">
             ({totalItems} {totalItems === 1 ? "item" : "items"})
           </span>
-        </h1>
+        </h4>
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">

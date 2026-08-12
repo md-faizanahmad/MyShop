@@ -46,12 +46,12 @@ export default function WishlistPage() {
      Render
   ----------------------------- */
   return (
-    <div className="min-h-screen  py-8 px-4 pt-7">
+    <div className="min-h-screen  py-8 px-4 mt-7 lg:mt-3 md:mt-3">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6">
           {/* Title & Item Count */}
-          <h4 className="text-sm font-bold text-slate-900 lg:text-3xl md:lg:text-3xl">
+          <h4 className="text-2x1 font-bold text-slate-900 lg:text-3xl md:lg:text-3xl">
             My Wishlist
             <span className="ml-1.5 text-xs font-normal text-slate-400 sm:text-base">
               ({items.length})

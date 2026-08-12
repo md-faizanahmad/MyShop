@@ -68,7 +68,7 @@ export default function Header() {
               <Search className="text-gray-700" />
             </button>
 
-            <div className="mr-2 md:mr-0">
+            <div className="mr-4 md:mr-0">
               <CartIcon />
             </div>
             <div className="hidden md:block">
