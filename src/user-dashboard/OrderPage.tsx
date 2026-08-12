@@ -220,21 +220,26 @@ export default function OrdersPage() {
     <div className="min-h-screen mt-8 lg:mt-3 md:mt-3  py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-10">
-          <h4 className="flex items-center gap-2 text-2xl font-semibold text-gray-900">
-            <Package size={26} className="text-sky-300" />
-            My Orders
+        <div className="mb-6 flex items-center justify-between md:mb-8">
+          <h4 className="flex min-w-0 items-center gap-2 text-xl font-semibold tracking-tight text-gray-900 md:text-2xl">
+            <Package
+              size={22}
+              className="shrink-0 text-sky-500 md:size-[26px]"
+            />
+
+            <span className="truncate">My Orders</span>
+
             {(data?.totalCount ?? 0) > 0 && (
-              <span className="text-base font-normal text-gray-500">
+              <span className="shrink-0 text-sm font-normal text-gray-500 md:text-base">
                 ({data?.totalCount})
               </span>
             )}
           </h4>
 
           {isFetching && (
-            <span className="text-xs text-gray-500 flex items-center gap-2">
-              <RefreshCw size={14} className="animate-spin" />
-              Updating…
+            <span className="ml-3 flex shrink-0 items-center gap-1.5 text-[11px] text-gray-500 md:gap-2 md:text-xs">
+              <RefreshCw size={13} className="animate-spin md:size-3.5" />
+              <span className="hidden sm:inline">Updating…</span>
             </span>
           )}
         </div>
