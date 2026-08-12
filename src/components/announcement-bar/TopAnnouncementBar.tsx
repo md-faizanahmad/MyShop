@@ -8,10 +8,10 @@ import { ANNOUNCEMENTS } from "./announcement.data";
 const ROTATION_INTERVAL = 5000;
 
 const rootClass =
-  "relative h-10 overflow-hidden border-b border-white/10 bg-zinc-950 text-white";
+  "fixed inset-x-0 top-0 z-[60] h-10 overflow-hidden border-b border-white/10 bg-zinc-950 text-white";
 
 const containerClass =
-  "mx-auto flex h-full max-w-7xl items-center justify-between  sm:px-6 lg:px-8";
+  "mx-auto flex h-full max-w-7xl items-center justify-between sm:px-6 lg:px-8";
 
 const messageWrapperClass = "flex min-w-0 flex-1 items-center justify-center";
 

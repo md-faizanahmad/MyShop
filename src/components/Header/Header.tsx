@@ -27,7 +27,19 @@ export default function Header() {
   return (
     <>
       {/* FIXED HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg shadow-md border-b border-sky-100">
+      <header
+        className="
+    fixed
+    inset-x-0
+    top-10
+    z-50
+    border-b
+    border-sky-100
+    bg-white/90
+    shadow-md
+    backdrop-blur-lg
+  "
+      >
         <div className="relative max-w-7xl mx-auto md:px-4 flex items-center h-16">
           {/* LEFT (Mobile): Menu + Search */}
           <div className="flex items-center gap-1 lg:hidden">
@@ -129,7 +141,7 @@ export default function Header() {
       </AnimatePresence>
 
       {/* <div className="lg:h-16 md:h-16 h-0" /> */}
-      <div aria-hidden="true" className="h-16" />
+      <div aria-hidden="true" className="h-26" />
     </>
   );
 }

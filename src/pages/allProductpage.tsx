@@ -320,7 +320,7 @@ export default function AllProductsPage() {
       Render
   ----------------------------- */
   return (
-    <div className="min-h-screen bg-slate-50/60 px-4 sm:px-6 lg:px-8 py-8 sm:py-10 text-slate-900 mt-5">
+    <div className="min-h-screen bg-slate-50/60 px-4 sm:px-6 lg:px-8 py-8 sm:py-10 text-slate-900 ">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* TOP BAR */}
         <div className="flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">

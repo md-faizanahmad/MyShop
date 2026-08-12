@@ -56,6 +56,7 @@ import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
 import FAQ from "./pages/legal/Faq";
 import BottomNavigation from "./components/Navbar/components/BottomNavigation/BottomNavigation";
 import ExplorePage from "./pages/Explore/ExplorePage";
+import TopAnnouncementBar from "./components/announcement-bar/TopAnnouncementBar";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
@@ -71,7 +72,7 @@ function AppContent() {
       <ConnectionError />
       {/* <TestModeBanner /> */}
       {/* Header with Search, Navbar, Cart, etc. */}
-
+      <TopAnnouncementBar />
       <Header />
 
       <Outlet />

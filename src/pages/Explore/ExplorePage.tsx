@@ -6,7 +6,7 @@ export default function ExplorePage() {
   const { data: categories = [], isLoading, isError } = useCategories();
 
   return (
-    <main className="min-h-screen bg-white pb-20 mt-15">
+    <main className="min-h-screen bg-white pb-20 ">
       <ExploreHeader />
 
       <section
