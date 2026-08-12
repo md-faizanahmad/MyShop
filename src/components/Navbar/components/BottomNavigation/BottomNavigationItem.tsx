@@ -1,17 +1,28 @@
 import { NavLink } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
+import UserMenu from "../../../Header/usermenu/UserMenu";
 
 interface BottomNavigationItemProps {
   label: string;
   to: string;
   icon: LucideIcon;
+  type: "link" | "account";
 }
 
 export default function BottomNavigationItem({
   label,
   to,
   icon: Icon,
+  type,
 }: BottomNavigationItemProps) {
+  if (type === "account") {
+    return (
+      <div className="flex min-w-0 flex-1 items-center justify-center">
+        <UserMenu />
+      </div>
+    );
+  }
+
   return (
     <NavLink
       to={to}
