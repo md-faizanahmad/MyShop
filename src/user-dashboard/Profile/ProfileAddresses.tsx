@@ -30,7 +30,7 @@ export default function ProfileAddresses() {
   const addresses = Array.isArray(data) ? data : [];
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+    <div className=" mt-8 md:mt-0 lg:mt-0 rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       {/* Header */}
       <div className="p-4 sm:p-6 border-b border-gray-50 flex items-center justify-between bg-white">
         <div>
@@ -42,7 +42,7 @@ export default function ProfileAddresses() {
           </p>
         </div>
 
-        <button className="flex  items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm shadow-blue-200">
+        <button className="flex  items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-sky-700 transition-colors shadow-sm shadow-blue-200">
           <Link
             to="/addresses"
             className="flex items-center text-white hover:text-white"

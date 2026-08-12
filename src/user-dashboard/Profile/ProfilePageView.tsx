@@ -210,25 +210,6 @@ export default function ProfilePageView({
 
   return (
     <div className="min-h-screen bg-zinc-50 pb-12 antialiased">
-      {/* Top Breadcrumb Style Title Strip */}
-      {/* <div className="bg-white border-b border-zinc-200">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
-              Portal
-            </span>
-            <span className="text-zinc-300 text-xs">/</span>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-900">
-              {user.name} Profile
-            </h3>
-          </div>
-          <button className="flex items-center gap-1.5 px-2.5 py-1 border border-zinc-200 text-[11px] font-medium text-zinc-600 bg-white hover:bg-zinc-50 transition-colors">
-            <Settings size={12} />
-            <span>Preferences</span>
-          </button>
-        </div>
-      </div> */}
-
       <div className="max-w-7xl mx-auto px-4 mt-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
           {/* Left Navigation Console (Flipkart/Amazon Compact Core) */}

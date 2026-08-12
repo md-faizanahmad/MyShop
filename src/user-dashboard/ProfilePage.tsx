@@ -75,8 +75,6 @@ export default function ProfilePage() {
         ordersLoading={ordersQuery.isFetching}
         ordersError={ordersQuery.isError}
       />
-
-      {/* <ProfileAddresses /> */}
     </div>
   );
 }
