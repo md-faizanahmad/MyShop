@@ -29,8 +29,25 @@ export default function WishlistPage() {
   ----------------------------- */
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-gray-500">
-        Loading wishlist…
+      <div className="flex min-h-[60vh] items-center justify-center px-4 text-neutral-500">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            className="
+        h-8
+        w-8
+        animate-spin
+        rounded-full
+        border-2
+        border-neutral-200
+        border-t-red-600
+      "
+            aria-hidden="true"
+          />
+
+          <span className="text-xs font-medium md:text-sm">
+            Loading wishlist…
+          </span>
+        </div>
       </div>
     );
   }
@@ -49,11 +66,12 @@ export default function WishlistPage() {
     <div className="min-h-screen  py-8 px-4 mt-7 lg:mt-3 md:mt-3">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6">
+        <div className="mb-5 flex items-center justify-between gap-3 sm:mb-6">
           {/* Title & Item Count */}
-          <h4 className="text-2x1 font-bold text-slate-900 lg:text-3xl md:lg:text-3xl">
-            My Wishlist
-            <span className="ml-1.5 text-xs font-normal text-slate-400 sm:text-base">
+          <h4 className="flex min-w-0 items-center text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
+            <span className="truncate">My Wishlist</span>
+
+            <span className="ml-1.5 shrink-0 text-xs font-normal text-slate-400 sm:text-sm lg:text-base">
               ({items.length})
             </span>
           </h4>
@@ -65,9 +83,30 @@ export default function WishlistPage() {
               void clear();
               toast.success("Wishlist cleared");
             }}
-            className="flex items-center gap-1.5 rounded-xl bg-red-600 px-3 py-1.5 text-xs font-medium text-white transition-all active:scale-95 hover:bg-red-700 sm:px-4 sm:py-2 sm:text-sm"
+            className="
+      flex
+      shrink-0
+      items-center
+      gap-1.5
+      rounded-lg
+      bg-red-600
+      px-2.5
+      py-1.5
+      text-[11px]
+      font-semibold
+      text-white
+      transition-colors
+      hover:bg-red-700
+      active:scale-95
+
+      sm:rounded-xl
+      sm:px-4
+      sm:py-2
+      sm:text-sm
+    "
           >
             <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+
             <span>Clear All</span>
           </button>
         </div>
