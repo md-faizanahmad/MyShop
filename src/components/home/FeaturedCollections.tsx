@@ -77,7 +77,7 @@ const fallbackConfig = {
   badgeClass: "bg-slate-100 text-slate-700 border-slate-200",
 };
 
-export default function TechPromoBanners() {
+export default function FeaturedCollections() {
   const { data: products = [], isLoading } = useFeaturedProducts();
 
   const [activeIndex, setActiveIndex] = useState(0);

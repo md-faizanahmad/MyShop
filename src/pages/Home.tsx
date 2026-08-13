@@ -11,7 +11,7 @@ import BrandStorySection from "../components/home/BrandStorySection";
 import FeatureProducts from "../components/home/FeatureProducts";
 import CustomerReviews from "../components/home/CustomerReviews";
 import MobileCategoryNavbar from "../components/Navbar/components/MobileCategoryNavbar";
-import FeaturedCollection from "../components/home/FeaturedCollections";
+// import FeaturedCollection from "../components/home/FeaturedCollections";
 // import MobileCategoryScroll from "../components/home/MobileScrollNav";
 
 export default function Home() {
@@ -38,7 +38,7 @@ export default function Home() {
 
         <TrustBenefitsBar />
         {/* <FlashSale /> */}
-        <FeaturedCollection />
+        {/* <FeaturedCollection /> */}
         {/* Featured Products */}
         <FeatureProducts />
 
