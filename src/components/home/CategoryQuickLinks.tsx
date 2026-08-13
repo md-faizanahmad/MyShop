@@ -290,7 +290,6 @@ interface Props {
 }
 
 export default function CategoryQuickLinks({ categories, loading }: Props) {
-  // Loading State matches the new strict 2x2 layout
   if (loading) {
     return (
       <section className="w-full py-8 lg:py-16 bg-slate-50/50">
@@ -299,13 +298,13 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
             <div className="h-3 w-24 rounded-full bg-slate-200" />
             <div className="h-8 w-48 rounded-md bg-slate-200" />
           </div>
-          {/* Strictly 3 columns to force the 2x2 bento wrap */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {/* Mobile: 2 cols, Desktop: 3 cols */}
+          <div className="grid grid-cols-2 gap-3 md:gap-4 md:grid-cols-3">
             {Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
-                className={`w-full min-h-60 lg:min-h-[280px] rounded-3xl bg-slate-200 animate-pulse ${
-                  i === 0 || i === 3 ? "md:col-span-2" : "md:col-span-1"
+                className={`w-full min-h-[180px] sm:min-h-60 lg:min-h-[280px] rounded-3xl bg-slate-200 animate-pulse col-span-1 ${
+                  i === 0 || i === 3 ? "md:col-span-2" : ""
                 }`}
               />
             ))}
@@ -315,11 +314,10 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
     );
   }
 
-  // Ensure we only ever show exactly 4 items for this layout
   const list = categories.slice(0, 4);
 
   return (
-    <section className="w-full py-8 lg:py-16 ">
+    <section className="w-full py-8 lg:py-4 bg-slate-50/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 space-y-1.5">
           <span className="text-xs font-bold uppercase tracking-widest text-sky-600 block">
@@ -330,11 +328,10 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
           </h2>
         </div>
 
-        {/* Strictly 3 columns to force the 2x2 bento wrap */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        {/* Mobile: 2 cols, Desktop: 3 cols */}
+        <div className="grid grid-cols-2 gap-3 md:gap-4 md:grid-cols-3">
           {list.map((cat, index) => {
-            // Index 0 & 3 span 2 columns. Index 1 & 2 span 1 column.
-            // This creates the perfect Checkerboard: [Wide][Small] over [Small][Wide]
+            // isWide now specifically means "is wide on desktop"
             const isWide = index === 0 || index === 3;
             const isHighlighted = index === 0;
 
@@ -349,8 +346,8 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
                   delay: index * 0.05,
                   ease: [0.215, 0.61, 0.355, 1],
                 }}
-                className={`w-full h-full min-h-60 lg:min-h-[280px] ${
-                  isWide ? "md:col-span-2" : "md:col-span-1"
+                className={`w-full h-full min-h-[180px] sm:min-h-60 lg:min-h-[280px] col-span-1 ${
+                  isWide ? "md:col-span-2" : ""
                 }`}
               >
                 <Link
@@ -363,8 +360,8 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
                     w-full
                     flex-col
                     overflow-hidden
-                    rounded-3xl
-                    p-6 md:p-8
+                    rounded-[20px] md:rounded-3xl
+                    p-4 sm:p-6 md:p-8
                     transition-all
                     duration-300
                     hover:-translate-y-1
@@ -377,20 +374,21 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
                     }
                   `}
                 >
-                  {/* Content Container - Adjusted widths so text isn't hidden */}
+                  {/* Text Container: 90% width on mobile, responsive on desktop */}
                   <div
-                    className={`relative z-10 flex flex-col h-full ${isWide ? "w-[55%]" : "w-[85%]"}`}
+                    className={`relative z-10 flex flex-col h-full ${isWide ? "w-[90%] md:w-[55%]" : "w-[90%] md:w-[85%]"}`}
                   >
                     <h3
-                      className={`text-xl md:text-2xl font-bold leading-tight mb-2 ${
+                      className={`text-lg sm:text-xl md:text-2xl font-bold leading-tight mb-1 sm:mb-2 ${
                         isHighlighted ? "text-white" : "text-slate-900"
                       }`}
                     >
                       {cat.name}
                     </h3>
 
+                    {/* Hide description completely on mobile to keep the 2x2 grid clean */}
                     <p
-                      className={`text-xs md:text-sm mb-6 line-clamp-2 ${
+                      className={`text-xs md:text-sm mb-6 line-clamp-2 hidden md:[display:-webkit-box] ${
                         isHighlighted ? "text-white/90" : "text-slate-500"
                       }`}
                     >
@@ -405,8 +403,8 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
                           items-center
                           justify-center
                           rounded-full
-                          px-4 py-2
-                          text-xs
+                          px-3 py-1.5 md:px-4 md:py-2
+                          text-[10px] md:text-xs
                           font-bold
                           transition-transform
                           duration-300
@@ -423,10 +421,12 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
                     </div>
                   </div>
 
-                  {/* Absolute Positioned Image - Smaller height on small boxes to prevent overlap */}
+                  {/* Image Container: Small on mobile, responsive on desktop */}
                   <div
-                    className={`absolute right-0 bottom-0 pointer-events-none p-4 ${
-                      isWide ? "h-full w-[45%] md:w-[50%]" : "h-[60%] w-[70%]"
+                    className={`absolute right-0 bottom-0 pointer-events-none p-2 sm:p-4 ${
+                      isWide
+                        ? "h-[55%] w-[75%] md:h-[80%] md:w-[50%]"
+                        : "h-[55%] w-[75%] md:h-[60%] md:w-[70%]"
                     }`}
                   >
                     <img
