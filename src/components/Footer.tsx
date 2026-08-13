@@ -2,13 +2,30 @@ import { Link } from "react-router-dom";
 import Brand from "../shared/Brand";
 import { socialLinks } from "../config/socials";
 
+// ------------------ TYPES & INTERFACES ------------------
+
+interface FooterLink {
+  label: string;
+  to: string;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+interface PaymentIcon {
+  name: string;
+  src: string;
+}
+
 // ------------------ CONFIG ARRAYS ------------------
-const footerSections = [
+
+const footerSections: FooterSection[] = [
   {
     title: "Shop",
     links: [
       { label: "All Products", to: "/products" },
-      // { label: "Browse Categories", to: "/categories" },
       { label: "Deals & Offers", to: "/deals" },
       { label: "New Arrivals", to: "/new-arrivals" },
     ],
@@ -32,7 +49,8 @@ const footerSections = [
     ],
   },
 ];
-const paymentIcons = [
+
+const paymentIcons: PaymentIcon[] = [
   {
     name: "Amazon Pay",
     src: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
@@ -54,8 +72,9 @@ const paymentIcons = [
     src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg",
   },
   {
-    name: "Net Banking",
-    src: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Netbanking.svg", // Add this locally
+    name: "Cash on Delivery",
+    // Clean inline SVG badge for COD to avoid external hosting dependency
+    src: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40"><rect width="120" height="40" rx="6" fill="%2318181b"/><text x="60" y="26" font-family="Arial, sans-serif" font-size="16" font-weight="900" fill="%23ffffff" text-anchor="middle" letter-spacing="1">C.O.D</text></svg>',
   },
 ];
 
@@ -74,9 +93,8 @@ export default function Footer() {
             <p className="text-zinc-500 text-sm leading-relaxed max-w-md">
               AZStore is your trusted online marketplace for everyday essentials
               and unique finds. We focus on quality products, fair pricing, and
-              a smooth shopping experience across India.
+              a smooth shopping experience.
             </p>
-            {/* Added Social Placeholder for "Real E-commerce" feel */}
 
             <div className="flex gap-3">
               {socialLinks.map((social) => {
@@ -89,14 +107,14 @@ export default function Footer() {
                     rel="noreferrer"
                     aria-label={social.name}
                     className={`
-          w-10 h-10 rounded-full 
-          bg-zinc-900/50 border border-zinc-800 
-          flex items-center justify-center 
-          transition-all duration-300 group
-          ${social.color}
-          hover:border-zinc-600 hover:bg-zinc-800/80
-          hover:-translate-y-1
-        `}
+                      w-10 h-10 rounded-full 
+                      bg-zinc-900/50 border border-zinc-800 
+                      flex items-center justify-center 
+                      transition-all duration-300 group
+                      ${social.color}
+                      hover:border-zinc-600 hover:bg-zinc-800/80
+                      hover:-translate-y-1
+                    `}
                   >
                     <Icon
                       size={18}
@@ -150,13 +168,15 @@ export default function Footer() {
                   key={p.name}
                   src={p.src}
                   alt={p.name}
-                  className="h-5 w-auto object-contain"
+                  title={p.name}
+                  className="h-6 w-auto object-contain"
                 />
               ))}
             </div>
           </div>
         </div>
       </div>
+      <div aria-hidden="true" className="h-10" />
     </footer>
   );
 }
@@ -168,7 +188,7 @@ function FooterColumn({
   links,
 }: {
   title: string;
-  links: { label: string; to: string }[];
+  links: FooterLink[];
 }) {
   return (
     <div className="flex flex-col space-y-4">
