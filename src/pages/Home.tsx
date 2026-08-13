@@ -10,7 +10,7 @@ import TrustBenefitsBar from "../components/home/TrustBenefitsBar";
 import BrandStorySection from "../components/home/BrandStorySection";
 import FeatureProducts from "../components/home/FeatureProducts";
 import CustomerReviews from "../components/home/CustomerReviews";
-import TechPromoBanners from "../components/home/TechPromoBanners";
+import TechPromoBanners from "../components/home/FeaturedCollections";
 import MobileCategoryNavbar from "../components/Navbar/components/MobileCategoryNavbar";
 // import MobileCategoryScroll from "../components/home/MobileScrollNav";
 
