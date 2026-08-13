@@ -289,12 +289,8 @@ interface Props {
   limit?: number;
 }
 
-export default function CategoryQuickLinks({
-  categories,
-  loading,
-  limit = 7, // Kept to 7 to match a nice bento grid layout
-}: Props) {
-  // Loading State - Updated to match new bento layout
+export default function CategoryQuickLinks({ categories, loading }: Props) {
+  // Loading State matches the new strict 2x2 layout
   if (loading) {
     return (
       <section className="w-full py-8 lg:py-16 bg-slate-50/50">
@@ -303,12 +299,13 @@ export default function CategoryQuickLinks({
             <div className="h-3 w-24 rounded-full bg-slate-200" />
             <div className="h-8 w-48 rounded-md bg-slate-200" />
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {Array.from({ length: limit }).map((_, i) => (
+          {/* Strictly 3 columns to force the 2x2 bento wrap */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
-                className={`w-full min-h-[220px] rounded-3xl bg-slate-100 animate-pulse ${
-                  i === 0 || i === 4 ? "sm:col-span-2" : "col-span-1"
+                className={`w-full min-h-60 lg:min-h-[280px] rounded-3xl bg-slate-200 animate-pulse ${
+                  i === 0 || i === 3 ? "md:col-span-2" : "md:col-span-1"
                 }`}
               />
             ))}
@@ -318,12 +315,12 @@ export default function CategoryQuickLinks({
     );
   }
 
-  const list = categories.slice(0, limit);
+  // Ensure we only ever show exactly 4 items for this layout
+  const list = categories.slice(0, 4);
 
   return (
-    <section className="w-full py-8 lg:py-8">
+    <section className="w-full py-8 lg:py-16 ">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
         <div className="mb-8 space-y-1.5">
           <span className="text-xs font-bold uppercase tracking-widest text-sky-600 block">
             Collections
@@ -333,12 +330,12 @@ export default function CategoryQuickLinks({
           </h2>
         </div>
 
-        {/* Mobile-First Bento Grid Layout */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Strictly 3 columns to force the 2x2 bento wrap */}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {list.map((cat, index) => {
-            // Logic to create the varied width "Bento" look like the image
-            // We make the 1st and 5th items span 2 columns on tablet/desktop
-            const isWide = index === 0 || index === 4;
+            // Index 0 & 3 span 2 columns. Index 1 & 2 span 1 column.
+            // This creates the perfect Checkerboard: [Wide][Small] over [Small][Wide]
+            const isWide = index === 0 || index === 3;
             const isHighlighted = index === 0;
 
             return (
@@ -352,8 +349,8 @@ export default function CategoryQuickLinks({
                   delay: index * 0.05,
                   ease: [0.215, 0.61, 0.355, 1],
                 }}
-                className={`w-full h-full min-h-[220px] ${
-                  isWide ? "sm:col-span-2" : "col-span-1"
+                className={`w-full h-full min-h-60 lg:min-h-[280px] ${
+                  isWide ? "md:col-span-2" : "md:col-span-1"
                 }`}
               >
                 <Link
@@ -375,32 +372,33 @@ export default function CategoryQuickLinks({
                     hover:shadow-slate-200/50
                     ${
                       isHighlighted
-                        ? "bg-sky-500 text-white"
+                        ? "bg-linear-to-br from-sky-600 to-white text-white"
                         : "bg-white text-slate-900 border border-slate-100"
                     }
                   `}
                 >
-                  {/* Content Container (z-10 to stay above absolute image) */}
-                  <div className="relative z-10 flex flex-col h-full w-[60%] sm:w-[55%]">
+                  {/* Content Container - Adjusted widths so text isn't hidden */}
+                  <div
+                    className={`relative z-10 flex flex-col h-full ${isWide ? "w-[55%]" : "w-[85%]"}`}
+                  >
                     <h3
-                      className={`text-lg md:text-xl font-bold leading-tight mb-2 ${
+                      className={`text-xl md:text-2xl font-bold leading-tight mb-2 ${
                         isHighlighted ? "text-white" : "text-slate-900"
                       }`}
                     >
                       {cat.name}
                     </h3>
 
-                    {/* Fallback description text since the image has subtitles */}
                     <p
                       className={`text-xs md:text-sm mb-6 line-clamp-2 ${
-                        isHighlighted ? "text-blue-100" : "text-slate-500"
+                        isHighlighted ? "text-white/90" : "text-slate-500"
                       }`}
                     >
                       Explore the latest in {cat.name.toLowerCase()} technology
                       and accessories.
                     </p>
 
-                    <div className="mt-auto">
+                    <div className="mt-auto items-start flex">
                       <span
                         className={`
                           inline-flex
@@ -415,7 +413,7 @@ export default function CategoryQuickLinks({
                           group-hover:scale-105
                           ${
                             isHighlighted
-                              ? "bg-white text-blue-600 shadow-sm"
+                              ? "bg-white text-sky-600 shadow-sm"
                               : "bg-slate-50 text-slate-900 border border-slate-200"
                           }
                         `}
@@ -425,8 +423,12 @@ export default function CategoryQuickLinks({
                     </div>
                   </div>
 
-                  {/* Absolute Positioned Image */}
-                  <div className="absolute right-0 bottom-0 h-full w-[50%] p-2 pointer-events-none">
+                  {/* Absolute Positioned Image - Smaller height on small boxes to prevent overlap */}
+                  <div
+                    className={`absolute right-0 bottom-0 pointer-events-none p-4 ${
+                      isWide ? "h-full w-[45%] md:w-[50%]" : "h-[60%] w-[70%]"
+                    }`}
+                  >
                     <img
                       src={
                         cat.image ||
@@ -445,7 +447,7 @@ export default function CategoryQuickLinks({
                         duration-500
                         ease-out
                         group-hover:scale-110
-                        ${isHighlighted ? "translate-x-4 translate-y-4" : ""}
+                        ${isHighlighted ? "translate-x-2 translate-y-2" : ""}
                       `}
                     />
                   </div>
