@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import CategoryBadge from "./CategoryBadge";
+import type { FeaturedProduct } from "../../../types/featureProducts";
 
 interface FeaturedCardProps {
-  product: any;
+  product: FeaturedProduct;
   config: {
     icon: React.ReactNode;
     badgeClass: string;
