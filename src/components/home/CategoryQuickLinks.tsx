@@ -292,24 +292,24 @@ interface Props {
 export default function CategoryQuickLinks({
   categories,
   loading,
-  limit = 6,
+  limit = 7, // Kept to 7 to match a nice bento grid layout
 }: Props) {
-  // Loading State
+  // Loading State - Updated to match new bento layout
   if (loading) {
     return (
-      <section className="w-full py-10 lg:py-16 bg-white">
+      <section className="w-full py-8 lg:py-16 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-2 mb-8 animate-pulse">
-            <div className="h-3 w-24 rounded bg-zinc-200 tracking-widest" />
-            <div className="h-7 w-48 rounded bg-zinc-200" />
+            <div className="h-3 w-24 rounded-full bg-slate-200" />
+            <div className="h-8 w-48 rounded-md bg-slate-200" />
           </div>
-
-          {/* Mirrors the layout grid exactly */}
-          <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: limit }).map((_, i) => (
               <div
                 key={i}
-                className="w-full aspect-4/5 sm:aspect-3/4 rounded-2xl bg-zinc-100 animate-pulse"
+                className={`w-full min-h-[220px] rounded-3xl bg-slate-100 animate-pulse ${
+                  i === 0 || i === 4 ? "sm:col-span-2" : "col-span-1"
+                }`}
               />
             ))}
           </div>
@@ -321,79 +321,138 @@ export default function CategoryQuickLinks({
   const list = categories.slice(0, limit);
 
   return (
-    <section className="w-full py-2 lg:py-16 bg-white">
+    <section className="w-full py-8 lg:py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="mb-8 space-y-1.5">
-          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-600 block">
+          <span className="text-xs font-bold uppercase tracking-widest text-sky-600 block">
             Collections
           </span>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
             Shop by Category
           </h2>
         </div>
 
-        {/* Pure Grid Layout */}
-        <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {list.map((cat, index) => (
-            <motion.div
-              key={cat._id}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{
-                duration: 0.4,
-                delay: index * 0.03,
-                ease: [0.215, 0.61, 0.355, 1.0],
-              }}
-              className="w-full"
-            >
-              <Link
-                to={`/category/${cat.slug}`}
-                className="group relative block aspect-4/5 sm:aspect-3/4 w-full overflow-hidden rounded-2xl bg-zinc-100 isolation-isolate"
+        {/* Mobile-First Bento Grid Layout */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {list.map((cat, index) => {
+            // Logic to create the varied width "Bento" look like the image
+            // We make the 1st and 5th items span 2 columns on tablet/desktop
+            const isWide = index === 0 || index === 4;
+            const isHighlighted = index === 0;
+
+            return (
+              <motion.div
+                key={cat._id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.05,
+                  ease: [0.215, 0.61, 0.355, 1],
+                }}
+                className={`w-full h-full min-h-[220px] ${
+                  isWide ? "sm:col-span-2" : "col-span-1"
+                }`}
               >
-                {/* Image asset component */}
-                <img
-                  src={
-                    cat.image ||
-                    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                  }
-                  className="absolute inset-0 h-full w-full object-contain transform-gpu transition-transform duration-700 ease-out group-hover:scale-105"
-                  alt={cat.name}
-                  loading="lazy"
-                />
-
-                {/* Deep premium overlay protecting text readability */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-black/0 opacity-90 transition-opacity duration-300 group-hover:opacity-95" />
-
-                {/* Content Overlay */}
-                <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end p-3 xs:p-4 text-left transform-gpu">
-                  <p className="text-xs sm:text-sm font-semibold text-white tracking-wide leading-tight mb-1 line-clamp-2">
-                    {cat.name}
-                  </p>
-
-                  {/* Exploded interaction element */}
-                  <div className="flex items-center gap-1 h-4 overflow-hidden opacity-90 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 transform-gpu translate-y-0.5 sm:translate-y-2 group-hover:translate-y-0">
-                    <span className="text-[8px] xs:text-[9px] uppercase font-bold tracking-widest text-sky-400">
-                      Explore
-                    </span>
-                    <svg
-                      className="w-2 h-2 xs:w-2.5 xs:h-2.5 text-sky-400 stroke-[2.5px] transform-gpu transition-transform duration-300 group-hover:translate-x-0.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                <Link
+                  to={`/category/${cat.slug}`}
+                  className={`
+                    group
+                    relative
+                    flex
+                    h-full
+                    w-full
+                    flex-col
+                    overflow-hidden
+                    rounded-3xl
+                    p-6 md:p-8
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    hover:shadow-slate-200/50
+                    ${
+                      isHighlighted
+                        ? "bg-sky-500 text-white"
+                        : "bg-white text-slate-900 border border-slate-100"
+                    }
+                  `}
+                >
+                  {/* Content Container (z-10 to stay above absolute image) */}
+                  <div className="relative z-10 flex flex-col h-full w-[60%] sm:w-[55%]">
+                    <h3
+                      className={`text-lg md:text-xl font-bold leading-tight mb-2 ${
+                        isHighlighted ? "text-white" : "text-slate-900"
+                      }`}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                      {cat.name}
+                    </h3>
+
+                    {/* Fallback description text since the image has subtitles */}
+                    <p
+                      className={`text-xs md:text-sm mb-6 line-clamp-2 ${
+                        isHighlighted ? "text-blue-100" : "text-slate-500"
+                      }`}
+                    >
+                      Explore the latest in {cat.name.toLowerCase()} technology
+                      and accessories.
+                    </p>
+
+                    <div className="mt-auto">
+                      <span
+                        className={`
+                          inline-flex
+                          items-center
+                          justify-center
+                          rounded-full
+                          px-4 py-2
+                          text-xs
+                          font-bold
+                          transition-transform
+                          duration-300
+                          group-hover:scale-105
+                          ${
+                            isHighlighted
+                              ? "bg-white text-blue-600 shadow-sm"
+                              : "bg-slate-50 text-slate-900 border border-slate-200"
+                          }
+                        `}
+                      >
+                        Shop Now
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+
+                  {/* Absolute Positioned Image */}
+                  <div className="absolute right-0 bottom-0 h-full w-[50%] p-2 pointer-events-none">
+                    <img
+                      src={
+                        cat.image ||
+                        "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      }
+                      alt={cat.name}
+                      loading="lazy"
+                      className={`
+                        h-full
+                        w-full
+                        object-contain
+                        object-bottom
+                        md:object-bottom-right
+                        transform-gpu
+                        transition-transform
+                        duration-500
+                        ease-out
+                        group-hover:scale-110
+                        ${isHighlighted ? "translate-x-4 translate-y-4" : ""}
+                      `}
+                    />
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

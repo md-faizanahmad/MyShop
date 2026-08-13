@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { clsx } from "clsx";
 
 import CategoryBadge from "./CategoryBadge";
 import type { FeaturedProduct } from "../../../types/featureProducts";
@@ -15,31 +16,19 @@ interface FeaturedCardProps {
   mobile?: boolean;
 }
 
-const cardClass =
-  "flex h-full flex-col bg-white border border-slate-200/80 shadow-sm";
+// Extracted styling for a clean, modern app-like UI
+const baseCardClass =
+  "group relative flex h-full flex-col overflow-hidden bg-white shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06)] border border-slate-100";
 
-const mobileCardClass = "absolute inset-0 rounded-2xl p-4";
-
+const mobileCardClass = "rounded-2xl w-full";
 const desktopCardClass =
-  "rounded-xl p-4 transition-[border-color,box-shadow] duration-300 hover:border-slate-300 hover:shadow-md";
+  "rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.1)] hover:border-slate-200";
 
-const imageWrapClass =
-  "relative flex w-full items-center justify-center overflow-hidden border border-slate-100 bg-slate-50/70";
+const imageContainerClass =
+  "relative flex w-full items-center justify-center bg-slate-50 overflow-hidden";
 
-const mobileImageClass = "my-3 aspect-[4/3] rounded-xl p-5";
-
-const desktopImageClass = "my-4 aspect-[4/3] rounded-lg p-6";
-
-const productImageClass =
-  "max-h-full max-w-full object-contain pointer-events-none";
-
-const titleClass =
-  "line-clamp-1 text-[15px] font-semibold tracking-tight text-slate-900";
-
-const descriptionClass = "mt-1 text-[11px] font-medium text-slate-500";
-
-const shopButtonClass =
-  "mt-3 inline-flex h-11 w-full items-center justify-between rounded-lg bg-slate-900 px-4 text-xs font-semibold text-white transition-colors duration-200 hover:bg-blue-600 active:bg-blue-700";
+const mobileImageClass = "aspect-square p-2";
+const desktopImageClass = "aspect-[4/3] p-4";
 
 export default function FeaturedCollectionCard({
   product,
@@ -47,76 +36,87 @@ export default function FeaturedCollectionCard({
   index = 0,
   mobile = false,
 }: FeaturedCardProps) {
-  const cardClasses = mobile
-    ? `${cardClass} ${mobileCardClass}`
-    : `${cardClass} ${desktopCardClass}`;
-
-  const imageClasses = mobile
-    ? `${imageWrapClass} ${mobileImageClass}`
-    : `${imageWrapClass} ${desktopImageClass}`;
+  const isDesktop = !mobile;
 
   return (
     <motion.div
-      {...(!mobile && {
-        initial: { opacity: 0, y: 10 },
+      {...(isDesktop && {
+        initial: { opacity: 0, y: 12 },
         whileInView: { opacity: 1, y: 0 },
         viewport: { once: true },
         transition: {
-          delay: index * 0.06,
-          duration: 0.3,
+          delay: index * 0.05,
+          duration: 0.35,
+          ease: "easeOut",
         },
       })}
-      className={cardClasses}
+      className={clsx(
+        baseCardClass,
+        mobile ? mobileCardClass : desktopCardClass,
+      )}
     >
-      {/* Top */}
-      <div className="flex items-center justify-between gap-3">
+      {/* App-Style Floating Badges */}
+      <div className="absolute left-0 right-0 top-0 z-10 flex items-start justify-between p-3 pointer-events-none">
         <CategoryBadge
           icon={config.icon}
           name={product.category.name}
-          className={config.badgeClass}
+          className={clsx(
+            "shadow-sm backdrop-blur-md bg-white/90",
+            config.badgeClass,
+          )}
         />
-
-        <span className="shrink-0 rounded-md bg-emerald-50 px-2 py-1 text-[10px] font-semibold text-emerald-600">
-          In Stock
+        <span className="shrink-0 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-emerald-600 backdrop-blur-md">
+          IN STOCK
         </span>
       </div>
 
-      {/* Product Image */}
-      <div className={imageClasses}>
+      {/* Edge-to-Edge Image Focus */}
+      <div
+        className={clsx(
+          imageContainerClass,
+          mobile ? mobileImageClass : desktopImageClass,
+        )}
+      >
         <img
           src={product.imageUrl}
           alt={product.name}
-          className={`${productImageClass} ${
-            !mobile
-              ? "transition-transform duration-500 group-hover:scale-105"
-              : ""
-          }`}
+          loading="lazy"
+          className={clsx(
+            "max-h-full max-w-full object-contain mix-blend-multiply pointer-events-none",
+            isDesktop &&
+              "transition-transform duration-700 ease-out group-hover:scale-105",
+          )}
         />
       </div>
 
-      {/* Product Info */}
-      <div className="mt-auto">
-        <h3 className={titleClass}>{product.name}</h3>
+      {/* Tighter, Crisp Info Section */}
+      <div className="flex flex-1 flex-col p-3.5">
+        <h3 className="line-clamp-1 text-[15px] font-semibold tracking-tight text-slate-900">
+          {product.name}
+        </h3>
 
-        <p className={descriptionClass}>
+        <p className="mt-0.5 text-xs font-medium text-slate-500 line-clamp-1">
           {mobile
-            ? "Explore this collection"
-            : "Quality tech at competitive prices"}
+            ? "Trending collection"
+            : "Premium tech at competitive prices"}
         </p>
 
+        {/* Minimal App-Style CTA */}
         <Link
           to={`/category/${product.category.slug}/product/${product.slug}`}
-          className={shopButtonClass}
+          className={clsx(
+            "mt-4 inline-flex h-9 w-full items-center justify-between rounded-lg bg-slate-900 px-3.5 text-[13px] font-semibold text-white",
+            "transition-all duration-200 active:scale-[0.98]",
+            isDesktop && "hover:bg-indigo-600",
+          )}
         >
           <span>Shop {product.category.name}</span>
-
           <ArrowRight
-            size={15}
-            className={
-              !mobile
-                ? "transition-transform duration-200 group-hover:translate-x-1"
-                : ""
-            }
+            size={14}
+            className={clsx(
+              isDesktop &&
+                "transition-transform duration-300 group-hover:translate-x-1",
+            )}
           />
         </Link>
       </div>
