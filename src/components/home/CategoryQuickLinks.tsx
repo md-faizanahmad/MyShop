@@ -369,8 +369,8 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
                     hover:shadow-slate-200/50
                     ${
                       isHighlighted
-                        ? "bg-linear-to-br from-sky-600 to-white text-white"
-                        : "bg-white text-slate-900 border border-slate-100"
+                        ? "bg-linear-to-br from-sky-600 to-white text-white hover:brightness-110"
+                        : "bg-white hover:bg-sky-50/50 text-slate-900 border border-slate-100"
                     }
                   `}
                 >
