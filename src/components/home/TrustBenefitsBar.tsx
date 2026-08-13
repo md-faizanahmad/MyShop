@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Truck,
   RotateCcw,
@@ -68,38 +69,45 @@ export default function TrustBenefitsBar() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
+  // Shared inner content to keep code DRY
+  const BenefitContent = ({ b }: { b: Benefit }) => {
+    const Icon = b.icon;
+    return (
+      <>
+        <div
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl md:h-10 md:w-10 ${b.bgClass} ${b.colorClass}`}
+        >
+          <Icon size={19} strokeWidth={2.2} aria-hidden="true" />
+        </div>
+        <div className="flex min-w-0 flex-1 flex-col justify-center">
+          <div className="flex items-center gap-1.5">
+            <h3 className="truncate text-xs font-bold text-slate-900">
+              {b.title}
+            </h3>
+            {b.badge && (
+              <span className="rounded bg-sky-100 px-1 py-0.5 text-[9px] font-extrabold tracking-tight text-sky-700">
+                {b.badge}
+              </span>
+            )}
+          </div>
+          <p className="truncate text-[11px] font-medium text-slate-500">
+            {b.subtitle}
+          </p>
+        </div>
+      </>
+    );
+  };
+
   return (
-    <section className="w-full border-y border-slate-200/80 bg-white py-3.5">
+    <section className="w-full  py-10">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         {/* ================= DESKTOP LAYOUT (Grid) ================= */}
-        <div className="hidden md:grid md:grid-cols-4 md:gap-4">
-          {benefits.map((b) => {
-            const Icon = b.icon;
-            return (
-              <div key={b.id} className="flex items-center gap-3">
-                <div
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${b.bgClass} ${b.colorClass}`}
-                >
-                  <Icon size={19} strokeWidth={2.2} aria-hidden="true" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    <h3 className="truncate text-xs font-bold text-slate-900">
-                      {b.title}
-                    </h3>
-                    {b.badge && (
-                      <span className="rounded bg-sky-100 px-1 py-0.5 text-[9px] font-extrabold tracking-tight text-sky-700">
-                        {b.badge}
-                      </span>
-                    )}
-                  </div>
-                  <p className="truncate text-[11px] font-medium text-slate-500">
-                    {b.subtitle}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+        <div className="hidden md:grid md:grid-cols-4 ms-16 md:gap-4">
+          {benefits.map((b) => (
+            <div key={b.id} className="flex items-center gap-3">
+              <BenefitContent b={b} />
+            </div>
+          ))}
         </div>
 
         {/* ================= MOBILE LAYOUT (Auto Carousel) ================= */}
@@ -110,36 +118,29 @@ export default function TrustBenefitsBar() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Active Benefit Item */}
-          <div className="flex min-h-[52px] w-full items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-2.5 transition-all">
-            {(() => {
-              const b = benefits[activeIndex];
-              const Icon = b.icon;
-              return (
-                <>
-                  <div
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${b.bgClass} ${b.colorClass}`}
-                  >
-                    <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="flex items-center gap-1.5">
-                      <h3 className="text-xs font-bold text-slate-900">
-                        {b.title}
-                      </h3>
-                      {b.badge && (
-                        <span className="rounded bg-sky-100 px-1 py-0.5 text-[9px] font-extrabold tracking-tight text-sky-700">
-                          {b.badge}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-[11px] font-medium text-slate-500">
-                      {b.subtitle}
-                    </p>
-                  </div>
-                </>
-              );
-            })()}
+          {/* Active Benefit Item with Framer Motion and Accessibility */}
+          <div
+            className="relative flex min-h-[52px] w-full overflow-hidden rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-2.5 transition-all"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="flex w-full items-center gap-3 absolute inset-0 px-4 py-2.5"
+              >
+                <BenefitContent b={benefits[activeIndex]} />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Invisible placeholder to maintain parent height since absolute children collapse it */}
+            <div className="invisible flex w-full items-center gap-3">
+              <BenefitContent b={benefits[activeIndex]} />
+            </div>
           </div>
 
           {/* Dots Indicator */}
