@@ -1,51 +1,36 @@
-import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import type { PublicProduct } from "@/types/product";
+import { useEffect, useState } from "react";
 
-interface NewArrival {
-  id: string;
-  name: string;
-  price: string;
-  image: string;
-  badge?: string;
-}
-
-const NEW_ARRIVALS: NewArrival[] = [
-  {
-    id: "1",
-    name: "Premium Wireless Headphones",
-    price: "₹2,499",
-    image: "/images/products/headphones.jpg",
-    badge: "New",
-  },
-  {
-    id: "2",
-    name: "Smart Watch Series",
-    price: "₹1,999",
-    image: "/images/products/smartwatch.jpg",
-    badge: "New",
-  },
-  {
-    id: "3",
-    name: "Portable Bluetooth Speaker",
-    price: "₹1,499",
-    image: "/images/products/speaker.jpg",
-    badge: "New",
-  },
-  {
-    id: "4",
-    name: "Fast Charging Adapter",
-    price: "₹799",
-    image: "/images/products/adapter.jpg",
-  },
-  {
-    id: "5",
-    name: "USB-C Braided Cable",
-    price: "₹399",
-    image: "/images/products/usb-cable.jpg",
-  },
-];
+const PRODUCTS_API = "https://api.myazstore.shop/v1/products";
 
 export default function NewArrivals() {
+  const [products, setProducts] = useState<PublicProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNewArrivals = async () => {
+      try {
+        const response = await fetch(PRODUCTS_API);
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data: { products: PublicProduct[] } = await response.json();
+
+        setProducts(data.products.slice(0, 5));
+      } catch (error) {
+        console.error("Failed to load new arrivals:", error);
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNewArrivals();
+  }, []);
+
   return (
     <section
       aria-labelledby="new-arrivals-heading"
@@ -53,43 +38,45 @@ export default function NewArrivals() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="mb-4 flex items-end justify-between gap-4 sm:mb-6">
-          <div className="min-w-0">
+        <header className="mb-4 flex items-end justify-between gap-4 sm:mb-6">
+          <div>
             <div className="mb-1 flex items-center gap-1.5">
               <Sparkles
                 aria-hidden="true"
-                className="size-3.5 text-sky-500 sm:size-4"
+                className="size-3.5 text-red-500 sm:size-4"
               />
 
-              <span className="text-[11px] font-semibold uppercase tracking-wide text-sky-600 sm:text-xs">
+              <span className="text-[11px] font-semibold text-red-600 sm:text-xs">
                 Fresh picks
               </span>
             </div>
 
             <h2
               id="new-arrivals-heading"
-              className="text-lg font-bold tracking-tight text-zinc-900 sm:text-xl lg:text-2xl"
+              className="
+                text-lg font-bold
+                tracking-tight text-zinc-900
+                sm:text-xl lg:text-2xl
+              "
             >
               New Arrivals
             </h2>
-
-            <p className="mt-0.5 hidden text-sm text-zinc-500 sm:block">
-              Fresh products, just added to the store.
-            </p>
           </div>
 
-          {/* Desktop / mobile route */}
           <Link
             to="/new-arrivals"
             className="
-              inline-flex shrink-0 items-center gap-1
-              rounded-lg px-2 py-1.5
-              text-xs font-semibold text-sky-600
+              inline-flex shrink-0
+              items-center gap-1
+              rounded-lg
+              px-2 py-1.5
+              text-xs font-semibold
+              text-red-600
               transition-colors
-              hover:bg-sky-50 hover:text-sky-700
+              hover:bg-red-50
               focus-visible:outline-none
               focus-visible:ring-2
-              focus-visible:ring-sky-500
+              focus-visible:ring-red-500
               focus-visible:ring-offset-2
               sm:px-3 sm:text-sm
             "
@@ -97,98 +84,182 @@ export default function NewArrivals() {
             View all
             <ArrowRight aria-hidden="true" className="size-3.5 sm:size-4" />
           </Link>
-        </div>
+        </header>
 
-        {/* Mobile: horizontal product rail */}
-        <div
-          className="
-            -mx-4 flex gap-3 overflow-x-auto px-4 pb-2
-            snap-x snap-mandatory
-            scrollbar-none
-            sm:-mx-6 sm:px-6
-            lg:mx-0 lg:grid lg:grid-cols-4
-            lg:gap-4 lg:overflow-visible lg:px-0
-            xl:grid-cols-5
-          "
-        >
-          {NEW_ARRIVALS.map((product) => (
-            <article
-              key={product.id}
-              className="
-                group
-                w-[150px] shrink-0 snap-start
-                overflow-hidden rounded-xl
-                border border-zinc-100
-                bg-white
-                transition-shadow
-                hover:shadow-md
-                sm:w-[170px]
-                lg:w-auto
-              "
-            >
-              {/* Product image */}
-              <Link
-                to={`/product/${product.id}`}
-                aria-label={`View ${product.name}`}
-                className="relative block aspect-square overflow-hidden bg-zinc-50"
+        {/* Loading */}
+        {loading && <NewArrivalsSkeleton />}
+
+        {/* Products */}
+        {!loading && products.length > 0 && (
+          <div
+            className="
+              -mx-4 flex gap-3
+              overflow-x-auto px-4 pb-2
+              snap-x snap-mandatory
+              scrollbar-none
+
+              sm:-mx-6 sm:px-6
+
+              lg:mx-0
+              lg:grid lg:grid-cols-4
+              lg:gap-4
+              lg:overflow-visible
+              lg:px-0
+
+              xl:grid-cols-5
+            "
+          >
+            {products.map((product) => (
+              <article
+                key={product._id}
+                className="
+                  group
+                  w-[150px] shrink-0
+                  snap-start
+                  overflow-hidden
+                  rounded-xl
+                  border border-zinc-100
+                  bg-white
+                  transition-shadow
+                  hover:shadow-md
+
+                  sm:w-[170px]
+                  lg:w-auto
+                "
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  loading="lazy"
-                  decoding="async"
+                {/* Product image */}
+                <Link
+                  to={`/product/${product.slug}`}
+                  aria-label={`View ${product.name}`}
                   className="
-                    h-full w-full object-contain
-                    p-3
-                    transition-transform duration-300
-                    group-hover:scale-[1.04]
+                    relative block
+                    aspect-square
+                    overflow-hidden
+                    bg-zinc-50
                   "
-                />
+                >
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="
+                      h-full w-full
+                      object-contain
+                      p-3
+                      transition-transform
+                      duration-300
+                      group-hover:scale-[1.04]
+                    "
+                  />
 
-                {product.badge && (
                   <span
                     className="
                       absolute left-2 top-2
-                      rounded-md bg-sky-600
+                      rounded-md
+                      bg-red-500
                       px-1.5 py-0.5
-                      text-[9px] font-bold
-                      uppercase tracking-wide text-white
+                      text-[9px]
+                      font-semibold
+                      text-white
                     "
                   >
-                    {product.badge}
+                    New
                   </span>
-                )}
-              </Link>
-
-              {/* Product information */}
-              <div className="p-2.5 sm:p-3">
-                <Link
-                  to={`/product/${product.id}`}
-                  className="
-                    block
-                    text-xs font-medium leading-4
-                    text-zinc-800
-                    line-clamp-2
-                    transition-colors
-                    hover:text-sky-600
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-sky-500
-                    focus-visible:ring-offset-1
-                    sm:text-sm sm:leading-5
-                  "
-                >
-                  {product.name}
                 </Link>
 
-                <p className="mt-1.5 text-sm font-bold text-zinc-950 sm:text-base">
-                  {product.price}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
+                {/* Product information */}
+                <div className="p-2.5 sm:p-3">
+                  <Link
+                    to={`/product/${product.slug}`}
+                    className="
+                      block
+                      line-clamp-2
+                      text-xs
+                      font-medium
+                      leading-4
+                      text-zinc-800
+                      transition-colors
+                      hover:text-red-600
+                      focus-visible:outline-none
+                      focus-visible:ring-2
+                      focus-visible:ring-red-500
+                      focus-visible:ring-offset-1
+                      sm:text-sm
+                      sm:leading-5
+                    "
+                  >
+                    {product.name}
+                  </Link>
+
+                  <div className="mt-1.5 flex items-baseline gap-1.5">
+                    <span className="text-sm font-bold text-zinc-950 sm:text-base">
+                      ₹
+                      {(product.discountPrice ?? product.price).toLocaleString(
+                        "en-IN",
+                      )}
+                    </span>
+
+                    {product.discountPrice &&
+                      product.discountPrice < product.price && (
+                        <span className="text-[11px] text-zinc-400 line-through">
+                          ₹{product.price.toLocaleString("en-IN")}
+                        </span>
+                      )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+
+        {/* Empty state */}
+        {!loading && products.length === 0 && (
+          <p className="py-8 text-center text-sm text-zinc-500">
+            New arrivals are currently unavailable.
+          </p>
+        )}
       </div>
     </section>
+  );
+}
+
+function NewArrivalsSkeleton() {
+  return (
+    <div
+      aria-label="Loading new arrivals"
+      aria-busy="true"
+      className="
+        -mx-4 flex gap-3
+        overflow-hidden px-4
+        sm:-mx-6 sm:px-6
+        lg:mx-0 lg:grid lg:grid-cols-4
+        lg:gap-4 lg:px-0
+        xl:grid-cols-5
+      "
+    >
+      {Array.from({ length: 5 }).map((_, index) => (
+        <div
+          key={index}
+          className="
+            w-[150px] shrink-0
+            overflow-hidden
+            rounded-xl
+            border border-zinc-100
+            bg-white
+            sm:w-[170px]
+            lg:w-auto
+          "
+        >
+          <div className="aspect-square animate-pulse bg-zinc-100" />
+
+          <div className="space-y-2 p-3">
+            <div className="h-3 w-full animate-pulse rounded bg-zinc-100" />
+            <div className="h-3 w-2/3 animate-pulse rounded bg-zinc-100" />
+            <div className="h-4 w-1/3 animate-pulse rounded bg-zinc-100" />
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }
