@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import NavbarLinkSkeleton from "../../../skeleton/NavbarLinkSkeleton";
-import type { DesktopNavbarProps } from "../../../types/nav";
+import type { DesktopNavbarProps } from "@/types/nav";
+import NavbarLinkSkeleton from "@/skeleton/NavbarLinkSkeleton";
 
 const desktopLinkClass = "text-gray-500 hover:text-blue-600";
 

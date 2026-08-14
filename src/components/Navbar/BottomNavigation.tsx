@@ -1,5 +1,5 @@
-import BottomNavigationItem from "./BottomNavigationItem";
-import { bottomNavigationItems } from "./bottomNavigation.config";
+import BottomNavigationItem from "./BottomNavigation/BottomNavigationItem";
+import { bottomNavigationItems } from "./BottomNavigation/bottomNavigation.config";
 
 export default function BottomNavigation() {
   return (

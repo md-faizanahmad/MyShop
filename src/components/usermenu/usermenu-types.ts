@@ -14,7 +14,7 @@
 //   avatarUrl?: string | null;
 // };
 // src/components/user-menu/usermenu-types.ts
-import type { PublicUser } from "../../../types/user";
+import type { PublicUser } from "../../types/user";
 
 export type UserMenuUser = {
   _id?: string;

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import NavbarLinkSkeleton from "../../skeleton/NavbarLinkSkeleton";
+import NavbarLinkSkeleton from "@/skeleton/NavbarLinkSkeleton";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

@@ -31,32 +31,32 @@ import OrderDetails from "./pages/OrderDetails";
 import SearchResults from "./pages/order/SearchResults";
 
 // Legal Pages
-import Contact from "./pages/legal/Contact";
-import Terms from "./pages/legal/Terms";
-import Privacy from "./pages/legal/Privacy";
-import Shipping from "./pages/legal/Shipping";
-import Refund from "./pages/legal/Refund";
-import About from "./pages/About";
-import NotFound from "./NotFound";
+import Contact from "@/pages/legal/Contact";
+import Terms from "@/pages/legal/Terms";
+import Privacy from "@/pages/legal/Privacy";
+import Shipping from "@/pages/legal/Shipping";
+import Refund from "@/pages/legal/Refund";
+import About from "@/pages/About";
+import NotFound from "@/NotFound";
+import FAQ from "@/pages/legal/Faq";
 
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-import LoginWithOTP from "./components/auth/LoginWithOTP";
-import ScrollToTop from "./helper/ScrollToTop";
-import AuthInitializer from "./auth/AuthInitializer";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import LoginWithOTP from "@/components/auth/LoginWithOTP";
+import ScrollToTop from "@/helper/ScrollToTop";
+import AuthInitializer from "@/auth/AuthInitializer";
 import AllProductsPage from "./pages/allProductpage";
 import CheckoutPage from "./pages/checkout/checkoutPage";
 // import { useAuthStore } from "./store/useAuthStore";
 // import TestModeBanner from "./components/TestModeBanner";
 
-import useConnectionWatcher from "./hooks/useConnectionWatcher";
-import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
-import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
-import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
-import FAQ from "./pages/legal/Faq";
-import BottomNavigation from "./components/Navbar/components/BottomNavigation/BottomNavigation";
+import useConnectionWatcher from "@/hooks/useConnectionWatcher";
+import DealsAndOffersPage from "@/pages/dealsAndoffers/Deal";
+import NewArrivalsPage from "@/pages/new-arrivals/New-arrivals";
+import ForgotPasswordPage from "@/components/auth/password/ForgotPassword";
+import BottomNavigation from "@/components/Navbar/BottomNavigation";
 import ExplorePage from "@/pages/Explore/ExplorePage";
-import TopAnnouncementBar from "./components/announcement-bar/TopAnnouncementBar";
-import ConnectionError from "./error/ConnectionError";
+import TopAnnouncementBar from "@/components/announcement-bar/TopAnnouncementBar";
+import ConnectionError from "@/error/ConnectionError";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
@@ -68,10 +68,7 @@ function AppContent() {
   return (
     <>
       <ScrollToTop />
-
       <ConnectionError />
-      {/* <TestModeBanner /> */}
-      {/* Header with Search, Navbar, Cart, etc. */}
       <TopAnnouncementBar />
       <Header />
 

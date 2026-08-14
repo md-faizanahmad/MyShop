@@ -122,9 +122,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ChevronRight, X } from "lucide-react";
-
-import Brand from "../../../shared/Brand";
-import type { MobileNavbarProps } from "../../../types/nav";
+import type { MobileNavbarProps } from "@/types/nav";
+import Brand from "@/shared/Brand";
 
 /* -------------------------------------------------------------------------- */
 /*                                Style Classes                               */

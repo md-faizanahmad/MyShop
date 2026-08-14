@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-import { useAuthStore } from "../../../store/useAuthStore";
+import { useAuthStore } from "../../store/useAuthStore";
 import UserMenuView from "./UserMenuView";
 import type { UserType } from "./usermenu-types";
 

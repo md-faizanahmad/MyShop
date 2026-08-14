@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
-import UserMenu from "../../../Header/usermenu/UserMenu";
+import UserMenu from "@/components/usermenu/UserMenu";
 
 interface BottomNavigationItemProps {
   label: string;

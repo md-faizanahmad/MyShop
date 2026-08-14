@@ -1,5 +1,5 @@
+import { useCategories } from "@/hooks/useCategories";
 import { Link } from "react-router-dom";
-import { useCategories } from "../../../hooks/useCategories";
 
 export default function MobileCategoryNavbar() {
   const { data: categories = [], isLoading } = useCategories();
