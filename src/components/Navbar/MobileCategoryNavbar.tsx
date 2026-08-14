@@ -24,9 +24,10 @@ export default function MobileCategoryNavbar() {
 
   if (isLoading) {
     return (
-      <section
+      <nav
         className={containerClasses}
-        aria-label="Category navigation loading"
+        aria-label="Category navigation"
+        aria-busy="true"
       >
         <div className={scrollWrapperClasses}>
           {Array.from({ length: 6 }).map((_, index) => (
@@ -65,14 +66,14 @@ export default function MobileCategoryNavbar() {
             </div>
           ))}
         </div>
-      </section>
+      </nav>
     );
   }
 
   if (!categories.length) return null;
 
   return (
-    <section className={containerClasses} aria-label="Categories">
+    <nav className={containerClasses} aria-label="Product categories">
       <div className={scrollWrapperClasses}>
         {categories.map((category) => (
           <Link
@@ -161,6 +162,6 @@ export default function MobileCategoryNavbar() {
           </Link>
         ))}
       </div>
-    </section>
+    </nav>
   );
 }
