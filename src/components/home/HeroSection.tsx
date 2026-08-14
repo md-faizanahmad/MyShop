@@ -307,7 +307,7 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
 
   return (
     <section
-      className="relative isolate flex min-h-[190px] xs:min-h-[220px] sm:min-h-[340px] md:min-h-[500px] items-center overflow-hidden bg-neutral-950 py-4 m-1 sm:py-10 md:py-16 text-white"
+      className="relative isolate flex min-h-[205px] xs:min-h-[220px] sm:min-h-[340px] md:min-h-[500px] items-center overflow-hidden bg-neutral-950 py-4 m-1 sm:py-10 md:py-16 text-white"
       aria-labelledby="hero-heading"
     >
       {/* Dark gradient overlay tailored for mobile readability */}
@@ -355,7 +355,7 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
             {/* MAIN HEADLINE */}
             <h2
               id="hero-heading"
-              className="text-lg xs:text-xl sm:text-3xl md:text-5xl lg:text-6xl font-black leading-tight sm:leading-tight tracking-tight text-white"
+              className="text-xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] sm:leading-tight tracking-tight text-white"
             >
               {hero.headline}
               {hero.gradientHeadline && (
@@ -372,25 +372,25 @@ export default function HeroSection({ hero, loading }: HeroSectionProps) {
 
             {/* SUB HEADLINE */}
             {hero.subheadline && (
-              <p className="text-[11px] xs:text-xs sm:text-base md:text-xl text-slate-300 font-medium leading-tight sm:leading-relaxed line-clamp-2 md:line-clamp-none max-w-[95%] md:max-w-[720px] md:mx-auto">
+              <p className="text-xs xs:text-sm sm:text-base md:text-xl text-slate-300 font-medium leading-[1.85] sm:leading-relaxed line-clamp-2 md:line-clamp-none max-w-[95%] md:max-w-[720px] md:mx-auto">
                 {hero.subheadline}
               </p>
             )}
 
             {/* CTA BUTTONS */}
-            <div className="flex flex-row gap-2 sm:gap-3 pt-1 sm:pt-2 md:justify-center items-center">
+            <div className="flex flex-row gap-2 sm:gap-3 pt-1 sm:pt-2 md:justify-center items-center ]">
               <a
                 href={hero.primaryCTA.link}
-                className="group relative rounded-lg sm:rounded-xl bg-white px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4 text-[11px] xs:text-xs sm:text-base font-bold text-slate-950 flex items-center justify-center gap-1 hover:bg-slate-100 active:scale-[0.98] transition duration-200 shadow-sm shrink-0"
+                className="group relative rounded-lg sm:rounded-xl bg-white px-3.5 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-xs xs:text-sm sm:text-base font-bold text-slate-950 flex items-center justify-center gap-1 hover:bg-slate-100 active:scale-[0.98] transition duration-200 shadow-sm shrink-0"
               >
                 <span>{hero.primaryCTA.text}</span>
-                <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-0.5 transition-transform text-slate-950" />
+                <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-0.5 transition-transform text-slate-950" />
               </a>
 
               {hero.secondaryCTA && (
                 <a
                   href={hero.secondaryCTA.link}
-                  className="rounded-lg sm:rounded-xl border border-slate-700 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4 text-[11px] xs:text-xs sm:text-base font-semibold text-slate-200 hover:bg-slate-800 hover:text-white active:scale-[0.98] transition-all duration-200 truncate"
+                  className="rounded-lg sm:rounded-xl border border-slate-700 bg-slate-900/80 backdrop-blur-md px-3.5 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-xs xs:text-sm sm:text-base font-semibold text-slate-200 hover:bg-slate-800 hover:text-white active:scale-[0.98] transition-all duration-200 truncate"
                 >
                   {hero.secondaryCTA.text}
                 </a>
