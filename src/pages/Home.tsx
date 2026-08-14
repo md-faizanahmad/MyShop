@@ -11,8 +11,9 @@ import BrandStorySection from "../components/home/BrandStorySection";
 import FeatureProducts from "../components/home/FeatureProducts";
 import CustomerReviews from "../components/home/CustomerReviews";
 import MobileCategoryNavbar from "../components/Navbar/MobileCategoryNavbar";
-// import FeaturedCollection from "../components/home/FeaturedCollections";
-// import MobileCategoryScroll from "../components/home/MobileScrollNav";
+import FlashSale from "@/components/home/FlashSale";
+import NewArrivals from "@/components/new-arrivals/NewArrivals";
+import FeaturedCollection from "../components/home/FeaturedCollections";
 
 export default function Home() {
   const { data, isLoading } = useHome();
@@ -35,15 +36,12 @@ export default function Home() {
             limit={6}
           />
         </Suspense>
-
+        <FeaturedCollection />
         <TrustBenefitsBar />
-        {/* <FlashSale /> */}
-        {/* <FeaturedCollection /> */}
-        {/* Featured Products */}
+        <FlashSale />
         <FeatureProducts />
-
         <SimpleUGCGallery />
-
+        <NewArrivals />
         {/* Map backend reviews into your component format */}
         <CustomerReviews
           reviews={latestReviews.map((r) => ({
