@@ -49,14 +49,14 @@ import CheckoutPage from "./pages/checkout/checkoutPage";
 // import TestModeBanner from "./components/TestModeBanner";
 
 import useConnectionWatcher from "./hooks/useConnectionWatcher";
-import ConnectionError from "./ConnectionError";
 import DealsAndOffersPage from "./pages/dealsAndoffers/Deal";
 import NewArrivalsPage from "./pages/new-arrivals/New-arrivals";
 import ForgotPasswordPage from "./components/auth/password/ForgotPassword";
 import FAQ from "./pages/legal/Faq";
 import BottomNavigation from "./components/Navbar/components/BottomNavigation/BottomNavigation";
-import ExplorePage from "./pages/Explore/ExplorePage";
+import ExplorePage from "@/pages/Explore/ExplorePage";
 import TopAnnouncementBar from "./components/announcement-bar/TopAnnouncementBar";
+import ConnectionError from "./error/ConnectionError";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------

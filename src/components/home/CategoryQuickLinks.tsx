@@ -317,7 +317,7 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
   const list = categories.slice(0, 4);
 
   return (
-    <section className="w-full py-8 lg:py-4 bg-slate-50/50">
+    <section className="w-full py-4 lg:py-4 ">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 space-y-1.5">
           <span className="text-xs font-bold uppercase tracking-widest text-sky-600 block">
