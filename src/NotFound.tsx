@@ -1,69 +1,148 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, ShoppingBag, Search, Home } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowLeft, Home, Search, ShoppingBag } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center px-6 py-12 text-center select-none">
-      {/* --- VISUAL ICON BLOCK --- */}
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", damping: 20 }}
-        className="relative mb-8"
+    <main
+      className="
+        flex min-h-[calc(100dvh-6.5rem)]
+        items-center justify-center
+        px-4 py-8
+        sm:px-6 sm:py-12
+      "
+    >
+      <section
+        aria-labelledby="not-found-title"
+        className="w-full max-w-md text-center"
       >
-        <div className="w-24 h-24 sm:w-32 sm:h-32 bg-zinc-50 rounded-full flex items-center justify-center relative">
-          <ShoppingBag size={48} className="text-zinc-200" strokeWidth={1} />
-          {/* A floating '?' badge */}
-          <div className="absolute top-0 right-0 w-10 h-10 bg-red-600 rounded-full border-4 border-white flex items-center justify-center shadow-lg">
-            <span className="text-white font-bold text-sm">?</span>
-          </div>
+        {/* Visual */}
+        <div
+          aria-hidden="true"
+          className="
+            mx-auto mb-5
+            flex size-16 items-center justify-center
+            rounded-2xl
+            border border-zinc-100
+            bg-zinc-50
+            text-zinc-300
+            sm:size-20
+          "
+        >
+          <ShoppingBag className="size-7 sm:size-8" strokeWidth={1.5} />
         </div>
-      </motion.div>
 
-      {/* --- TEXT CONTENT --- */}
-      <div className="max-w-md space-y-4">
-        <h1 className="text-4xl sm:text-5xl font-black text-zinc-900 tracking-tight">
-          Oops! <span className="text-sky-600">404</span>
-        </h1>
-        <h2 className="text-xl font-bold text-zinc-800">
-          This page seems to be out of stock.
-        </h2>
-        <p className="text-zinc-500 text-[14px] leading-relaxed">
-          The link you followed might be broken, or the page may have been
-          removed. Try refreshing or explore our latest collections.
-        </p>
-      </div>
+        {/* Content */}
+        <div className="space-y-2.5">
+          <p className="text-sm font-semibold text-sky-600">404</p>
 
-      {/* --- ACTION BUTTONS --- */}
-      <div className="flex flex-col sm:flex-row items-center gap-3 mt-10 w-full max-w-sm">
-        <Link
-          to="/"
-          className="w-full flex items-center justify-center gap-2 bg-zinc-900 text-white px-6 py-3.5 rounded-xl font-bold text-[14px] hover:bg-zinc-800 transition-all active:scale-95 shadow-xl shadow-zinc-200"
+          <h1
+            id="not-found-title"
+            className="
+              text-xl font-bold
+              leading-tight tracking-tight
+              text-zinc-900
+              sm:text-2xl
+            "
+          >
+            Page not found
+          </h1>
+
+          <p
+            className="
+              mx-auto max-w-sm
+              text-sm leading-5
+              text-zinc-500
+              sm:text-[15px] sm:leading-6
+            "
+          >
+            The page you're looking for doesn't exist or may have been moved.
+          </p>
+        </div>
+
+        {/* Actions */}
+        {/* Actions */}
+        <nav
+          aria-label="404 page navigation"
+          className="
+    mt-6 flex
+    items-center justify-center
+    gap-2.5
+  "
         >
-          <Home size={18} />
-          Back to Home
-        </Link>
+          <Link
+            to="/"
+            className="
+      inline-flex h-9
+      items-center justify-center gap-1.5
+      rounded-lg
+      bg-zinc-900
+      px-3.5
+      text-xs font-semibold text-white
+      transition-colors
+      hover:bg-zinc-800
+      focus-visible:outline-none
+      focus-visible:ring-2
+      focus-visible:ring-zinc-900
+      focus-visible:ring-offset-2
+      active:bg-zinc-700
+      sm:h-10
+      sm:px-4
+      sm:text-sm
+    "
+          >
+            <Home aria-hidden="true" className="size-3.5 sm:size-4" />
+            Home
+          </Link>
 
-        <Link
-          to="/products"
-          className="w-full flex items-center justify-center gap-2 bg-white text-zinc-900 border border-zinc-200 px-6 py-3.5 rounded-xl font-bold text-[14px] hover:bg-zinc-50 transition-all active:scale-95"
-        >
-          <Search size={18} />
-          Browse Shop
-        </Link>
-      </div>
-
-      {/* --- SUBTLE RECOVERY OPTION --- */}
-      <div className="mt-12 flex items-center gap-4 pt-8 border-t border-zinc-100">
+          <Link
+            to="/products"
+            className="
+      inline-flex h-9
+      items-center justify-center gap-1.5
+      rounded-lg
+      border border-zinc-200
+      bg-white
+      px-3.5
+      text-xs font-semibold text-zinc-800
+      transition-colors
+      hover:bg-zinc-50
+      focus-visible:outline-none
+      focus-visible:ring-2
+      focus-visible:ring-sky-500
+      focus-visible:ring-offset-2
+      active:bg-zinc-100
+      sm:h-10
+      sm:px-4
+      sm:text-sm
+    "
+          >
+            <Search aria-hidden="true" className="size-3.5 sm:size-4" />
+            Products
+          </Link>
+        </nav>
+        {/* Recovery */}
         <button
+          type="button"
           onClick={() => window.location.reload()}
-          className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-blue-600 transition-colors flex items-center gap-2"
+          className="
+            mt-5
+            inline-flex min-h-10
+            items-center justify-center gap-1.5
+            px-3
+            text-xs font-medium
+            text-zinc-400
+            transition-colors
+            hover:text-sky-600
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-sky-500
+            focus-visible:ring-offset-2
+          "
         >
-          <ArrowLeft size={12} />
-          Retry Connection
+          <ArrowLeft aria-hidden="true" className="size-3.5" />
+          Try again
         </button>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
