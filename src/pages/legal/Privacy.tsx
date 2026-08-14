@@ -1,5 +1,5 @@
 import LegalLayout from "./LegalLayout";
-import privacyData from "../../data/privacy.json";
+import privacyData from "@/data/privacy.json";
 
 export default function Privacy() {
   return (

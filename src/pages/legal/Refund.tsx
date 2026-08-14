@@ -1,5 +1,5 @@
 import LegalLayout from "./LegalLayout";
-import refundData from "../../data/refund.json";
+import refundData from "@/data/refund.json";
 
 export default function Refund() {
   return (

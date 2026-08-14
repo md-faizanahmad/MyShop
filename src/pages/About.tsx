@@ -1,4 +1,4 @@
-import aboutData from "../data/about.json";
+import aboutData from "@/data/about.json";
 import LegalLayout from "./legal/LegalLayout";
 
 export default function About() {

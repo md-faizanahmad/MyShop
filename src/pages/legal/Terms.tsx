@@ -1,5 +1,5 @@
 import LegalLayout from "./LegalLayout";
-import termsData from "../../data/terms.json";
+import termsData from "@/data/terms.json";
 
 export default function Terms() {
   return (

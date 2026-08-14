@@ -1,10 +1,10 @@
 import LegalLayout from "./LegalLayout";
-import shippingData from "../../data/shipping.json";
+import shippingData from "@/data/shipping.json";
 
 export default function Shipping() {
   return (
     <LegalLayout title={shippingData.title}>
-      <div className="mx-auto max-w-4xl px-4 py-4 sm:px-6">
+      <div className="mx-auto max-w-4xl  sm:px-6">
         {/* Intro Section */}
         {shippingData.intro && (
           <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
