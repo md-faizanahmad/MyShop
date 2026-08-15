@@ -20,7 +20,7 @@ export default function DesktopHero({
       className="relative isolate m-1 overflow-hidden rounded-xl bg-slate-100 text-white"
       aria-labelledby="desktop-hero-heading"
     >
-      <div className="relative aspect-[3/1] min-h-[260px] w-full overflow-hidden lg:min-h-[320px]">
+      <div className="relative aspect-3/1 min-h-[260px] w-full overflow-hidden lg:min-h-80">
         {/* Background image */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -57,7 +57,7 @@ export default function DesktopHero({
         </AnimatePresence>
 
         {/* Content */}
-        <div className="relative z-20 flex h-full min-h-[260px] items-center px-8 lg:min-h-[320px] lg:px-14 xl:px-20">
+        <div className="relative z-20 flex h-full min-h-[260px] items-center px-8 lg:min-h-80 lg:px-14 xl:px-20">
           <AnimatePresence mode="wait">
             <motion.div
               key={hero._id}
