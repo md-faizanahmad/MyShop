@@ -13,7 +13,7 @@ export default function MobileHero({ hero }: MobileHeroProps) {
       aria-labelledby="mobile-hero-heading"
     >
       {/* Banner */}
-      <div className="relative aspect-[4/5] min-h-[430px] w-full overflow-hidden">
+      <div className="relative aspect-10/7 min-h-[215px] w-full overflow-hidden">
         {/* Background image */}
         {hero.mobileBackgroundImage ? (
           <img
@@ -52,7 +52,7 @@ export default function MobileHero({ hero }: MobileHeroProps) {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
-            className="w-[58%] max-w-[230px] pl-5 pr-2"
+            className="w-[80%] max-w-[280px] pl-5 pr-2"
           >
             <div className="space-y-3">
               {/* Campaign label */}
