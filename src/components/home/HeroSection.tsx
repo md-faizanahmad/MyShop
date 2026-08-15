@@ -404,10 +404,232 @@
 // }
 
 /////////////////////////////////////// 16-08-2026
+// import { useEffect, useState } from "react";
+// import { ArrowLeft, ArrowRight } from "lucide-react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import type { HomeHero } from "@/types/home";
+
+// interface HeroSectionProps {
+//   heroes: HomeHero[];
+//   loading: boolean;
+// }
+
+// export default function HeroSection({ heroes, loading }: HeroSectionProps) {
+//   const [currentIndex, setCurrentIndex] = useState(0);
+
+//   const hero = heroes[currentIndex];
+
+//   // Keep index valid when banners are removed/changed
+//   useEffect(() => {
+//     if (currentIndex >= heroes.length) {
+//       setCurrentIndex(Math.max(heroes.length - 1, 0));
+//     }
+//   }, [heroes.length, currentIndex]);
+
+//   const goToPrevious = () => {
+//     setCurrentIndex((prev) => (prev === 0 ? heroes.length - 1 : prev - 1));
+//   };
+
+//   const goToNext = () => {
+//     setCurrentIndex((prev) => (prev === heroes.length - 1 ? 0 : prev + 1));
+//   };
+
+//   if (loading) {
+//     return (
+//       <section className="relative m-1 flex h-[205px] items-center justify-center overflow-hidden rounded-xl bg-slate-900 animate-pulse xs:h-[220px] sm:h-[300px] md:h-[500px]">
+//         <div className="h-6 w-6 rounded-full border-2 border-slate-700 border-t-indigo-500 animate-spin sm:h-8 sm:w-8" />
+//       </section>
+//     );
+//   }
+
+//   if (!heroes.length) {
+//     return (
+//       <section className="relative m-1 flex h-[150px] items-center justify-center rounded-xl bg-slate-950 px-4 sm:h-[220px]">
+//         <p className="text-xs font-medium text-slate-400">
+//           Unable to load banner.
+//         </p>
+//       </section>
+//     );
+//   }
+
+//   return (
+//     <section
+//       className="relative isolate m-1 min-h-[205px] overflow-hidden rounded-xl bg-neutral-950 text-white xs:min-h-[220px] sm:min-h-[340px] md:min-h-[500px]"
+//       aria-label="Featured banners"
+//     >
+//       <AnimatePresence mode="wait">
+//         <motion.div
+//           key={hero._id}
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           exit={{ opacity: 0 }}
+//           transition={{ duration: 0.3 }}
+//           className="absolute inset-0"
+//         >
+//           {/* Background image */}
+//           <picture>
+//             {hero.mobileBackgroundImage && (
+//               <source
+//                 media="(max-width: 639px)"
+//                 srcSet={hero.mobileBackgroundImage}
+//               />
+//             )}
+
+//             {hero.backgroundImage && (
+//               <img
+//                 src={hero.backgroundImage}
+//                 alt=""
+//                 className="absolute inset-0 h-full w-full object-cover object-center"
+//                 aria-hidden="true"
+//               />
+//             )}
+//           </picture>
+
+//           {/* Overlay */}
+//           <div className="absolute inset-0 z-10 bg-linear-to-r from-black/90 via-black/60 to-black/20 md:bg-linear-to-b md:from-black/45 md:via-black/65 md:to-neutral-950/80" />
+
+//           {/* Ambient background */}
+//           <div
+//             className="pointer-events-none absolute inset-0 z-10"
+//             aria-hidden="true"
+//           >
+//             <div className="absolute inset-0 opacity-[0.025] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-size-[20px_20px] sm:bg-size-[48px_48px]" />
+
+//             <div className="absolute left-1/3 top-0 h-[150px] w-[150px] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-xl sm:h-[350px] sm:w-[350px] sm:blur-3xl" />
+//           </div>
+//         </motion.div>
+//       </AnimatePresence>
+
+//       {/* Content */}
+//       <div className="relative z-20 mx-auto flex min-h-[205px] w-full max-w-7xl items-center px-3.5 py-5 xs:min-h-[220px] sm:min-h-[340px] sm:px-6 sm:py-10 md:min-h-[500px] md:px-8 md:py-16">
+//         <AnimatePresence mode="wait">
+//           <motion.div
+//             key={hero._id}
+//             initial={{ opacity: 0, y: 8 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             exit={{ opacity: 0, y: -6 }}
+//             transition={{ duration: 0.3 }}
+//             className="w-full"
+//           >
+//             <div className="max-w-[88%] text-left xs:max-w-[80%] sm:max-w-xl md:mx-auto md:max-w-4xl md:text-center">
+//               <div className="space-y-1.5 xs:space-y-2.5 sm:space-y-4 md:space-y-6">
+//                 {/* LIVE BADGE */}
+//                 {hero.liveBadge?.enabled && (
+//                   <div className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-slate-700/80 bg-slate-900/90 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-slate-200 shadow-xs backdrop-blur-md sm:px-3 sm:py-1 sm:text-xs">
+//                     <span
+//                       className="relative flex h-1.5 w-1.5 shrink-0 sm:h-2 sm:w-2"
+//                       aria-hidden="true"
+//                     >
+//                       <span className="absolute inline-flex h-full w-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-sky-500 opacity-75" />
+
+//                       <span className="relative inline-flex h-full w-full rounded-full bg-white" />
+//                     </span>
+
+//                     <span className="truncate">{hero.liveBadge.text}</span>
+//                   </div>
+//                 )}
+
+//                 {/* HEADLINE */}
+//                 <h2 className="text-xl font-black leading-[1.15] tracking-tight text-white xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl">
+//                   {hero.headline}
+
+//                   {hero.gradientHeadline && (
+//                     <>
+//                       <span className="hidden xs:inline">
+//                         <br />
+//                       </span>{" "}
+//                       <span className="bg-linear-to-r from-indigo-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">
+//                         {hero.gradientHeadline}
+//                       </span>
+//                     </>
+//                   )}
+//                 </h2>
+
+//                 {/* SUBHEADLINE */}
+//                 {hero.subheadline && (
+//                   <p className="line-clamp-2 max-w-[95%] text-xs font-medium leading-[1.7] text-slate-300 xs:text-sm sm:text-base sm:leading-relaxed md:mx-auto md:max-w-[720px] md:text-xl md:line-clamp-none">
+//                     {hero.subheadline}
+//                   </p>
+//                 )}
+
+//                 {/* CTA */}
+//                 <div className="flex items-center gap-2 pt-1 sm:gap-3 sm:pt-2 md:justify-center">
+//                   {hero.primaryCTA?.text && (
+//                     <a
+//                       href={hero.primaryCTA.link}
+//                       className="group inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-white px-3.5 py-2 text-xs font-bold text-slate-950 shadow-sm transition duration-200 hover:bg-slate-100 active:scale-[0.98] xs:text-sm sm:rounded-xl sm:px-6 sm:py-3 sm:text-base md:px-8 md:py-4"
+//                     >
+//                       <span>{hero.primaryCTA.text}</span>
+
+//                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+//                     </a>
+//                   )}
+
+//                   {hero.secondaryCTA?.text && (
+//                     <a
+//                       href={hero.secondaryCTA.link}
+//                       className="inline-flex max-w-[45%] shrink-0 items-center justify-center truncate rounded-lg border border-slate-700 bg-slate-900/80 px-3.5 py-2 text-xs font-semibold text-slate-200 backdrop-blur-md transition-all duration-200 hover:bg-slate-800 hover:text-white active:scale-[0.98] xs:text-sm sm:rounded-xl sm:px-6 sm:py-3 sm:text-base md:px-8 md:py-4"
+//                     >
+//                       {hero.secondaryCTA.text}
+//                     </a>
+//                   )}
+//                 </div>
+//               </div>
+//             </div>
+//           </motion.div>
+//         </AnimatePresence>
+//       </div>
+
+//       {/* Navigation — only when multiple banners */}
+//       {heroes.length > 1 && (
+//         <>
+//           {/* Desktop / tablet arrows */}
+//           <button
+//             type="button"
+//             onClick={goToPrevious}
+//             aria-label="Previous banner"
+//             className="absolute left-3 top-1/2 z-30 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur-md transition hover:bg-black/60 sm:flex"
+//           >
+//             <ArrowLeft className="h-4 w-4" />
+//           </button>
+
+//           <button
+//             type="button"
+//             onClick={goToNext}
+//             aria-label="Next banner"
+//             className="absolute right-3 top-1/2 z-30 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur-md transition hover:bg-black/60 sm:flex"
+//           >
+//             <ArrowRight className="h-4 w-4" />
+//           </button>
+
+//           {/* Dots */}
+//           <div className="absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 sm:bottom-4">
+//             {heroes.map((banner, index) => (
+//               <button
+//                 key={banner._id}
+//                 type="button"
+//                 onClick={() => setCurrentIndex(index)}
+//                 aria-label={`Go to banner ${index + 1}`}
+//                 aria-current={index === currentIndex}
+//                 className={`h-1.5 rounded-full transition-all ${
+//                   index === currentIndex
+//                     ? "w-5 bg-white"
+//                     : "w-1.5 bg-white/45 hover:bg-white/70"
+//                 }`}
+//               />
+//             ))}
+//           </div>
+//         </>
+//       )}
+//     </section>
+//   );
+// }
+
+///////////////// ABoave all single Banners ,down many banners
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import type { HomeHero } from "@/types/home";
+import DesktopHero from "../Hero/DesktopHero";
+import MobileHero from "../Hero/MobileHero";
 
 interface HeroSectionProps {
   heroes: HomeHero[];
@@ -419,7 +641,7 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
 
   const hero = heroes[currentIndex];
 
-  // Keep index valid when banners are removed/changed
+  // Keep index valid when banners change
   useEffect(() => {
     if (currentIndex >= heroes.length) {
       setCurrentIndex(Math.max(heroes.length - 1, 0));
@@ -427,24 +649,38 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
   }, [heroes.length, currentIndex]);
 
   const goToPrevious = () => {
+    if (heroes.length <= 1) return;
+
     setCurrentIndex((prev) => (prev === 0 ? heroes.length - 1 : prev - 1));
   };
 
   const goToNext = () => {
+    if (heroes.length <= 1) return;
+
     setCurrentIndex((prev) => (prev === heroes.length - 1 ? 0 : prev + 1));
   };
 
+  /* ---------------- LOADING ---------------- */
+
   if (loading) {
     return (
-      <section className="relative m-1 flex h-[205px] items-center justify-center overflow-hidden rounded-xl bg-slate-900 animate-pulse xs:h-[220px] sm:h-[300px] md:h-[500px]">
+      <section
+        className="relative m-1 flex h-[235px] items-center justify-center overflow-hidden rounded-xl bg-slate-900 animate-pulse sm:h-[340px] md:h-[500px]"
+        aria-label="Loading hero banners"
+      >
         <div className="h-6 w-6 rounded-full border-2 border-slate-700 border-t-indigo-500 animate-spin sm:h-8 sm:w-8" />
       </section>
     );
   }
 
-  if (!heroes.length) {
+  /* ---------------- EMPTY ---------------- */
+
+  if (!heroes.length || !hero) {
     return (
-      <section className="relative m-1 flex h-[150px] items-center justify-center rounded-xl bg-slate-950 px-4 sm:h-[220px]">
+      <section
+        className="relative m-1 flex h-[150px] items-center justify-center overflow-hidden rounded-xl bg-slate-950 px-4 sm:h-[220px]"
+        aria-label="Hero banner unavailable"
+      >
         <p className="text-xs font-medium text-slate-400">
           Unable to load banner.
         </p>
@@ -453,173 +689,49 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
   }
 
   return (
-    <section
-      className="relative isolate m-1 min-h-[205px] overflow-hidden rounded-xl bg-neutral-950 text-white xs:min-h-[220px] sm:min-h-[340px] md:min-h-[500px]"
-      aria-label="Featured banners"
-    >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={hero._id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0"
-        >
-          {/* Background image */}
-          <picture>
-            {hero.mobileBackgroundImage && (
-              <source
-                media="(max-width: 639px)"
-                srcSet={hero.mobileBackgroundImage}
-              />
-            )}
-
-            {hero.backgroundImage && (
-              <img
-                src={hero.backgroundImage}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover object-center"
-                aria-hidden="true"
-              />
-            )}
-          </picture>
-
-          {/* Overlay */}
-          <div className="absolute inset-0 z-10 bg-linear-to-r from-black/90 via-black/60 to-black/20 md:bg-linear-to-b md:from-black/45 md:via-black/65 md:to-neutral-950/80" />
-
-          {/* Ambient background */}
-          <div
-            className="pointer-events-none absolute inset-0 z-10"
-            aria-hidden="true"
-          >
-            <div className="absolute inset-0 opacity-[0.025] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-size-[20px_20px] sm:bg-size-[48px_48px]" />
-
-            <div className="absolute left-1/3 top-0 h-[150px] w-[150px] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-xl sm:h-[350px] sm:w-[350px] sm:blur-3xl" />
-          </div>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Content */}
-      <div className="relative z-20 mx-auto flex min-h-[205px] w-full max-w-7xl items-center px-3.5 py-5 xs:min-h-[220px] sm:min-h-[340px] sm:px-6 sm:py-10 md:min-h-[500px] md:px-8 md:py-16">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={hero._id}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.3 }}
-            className="w-full"
-          >
-            <div className="max-w-[88%] text-left xs:max-w-[80%] sm:max-w-xl md:mx-auto md:max-w-4xl md:text-center">
-              <div className="space-y-1.5 xs:space-y-2.5 sm:space-y-4 md:space-y-6">
-                {/* LIVE BADGE */}
-                {hero.liveBadge?.enabled && (
-                  <div className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-slate-700/80 bg-slate-900/90 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-slate-200 shadow-xs backdrop-blur-md sm:px-3 sm:py-1 sm:text-xs">
-                    <span
-                      className="relative flex h-1.5 w-1.5 shrink-0 sm:h-2 sm:w-2"
-                      aria-hidden="true"
-                    >
-                      <span className="absolute inline-flex h-full w-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-sky-500 opacity-75" />
-
-                      <span className="relative inline-flex h-full w-full rounded-full bg-white" />
-                    </span>
-
-                    <span className="truncate">{hero.liveBadge.text}</span>
-                  </div>
-                )}
-
-                {/* HEADLINE */}
-                <h2 className="text-xl font-black leading-[1.15] tracking-tight text-white xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl">
-                  {hero.headline}
-
-                  {hero.gradientHeadline && (
-                    <>
-                      <span className="hidden xs:inline">
-                        <br />
-                      </span>{" "}
-                      <span className="bg-linear-to-r from-indigo-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">
-                        {hero.gradientHeadline}
-                      </span>
-                    </>
-                  )}
-                </h2>
-
-                {/* SUBHEADLINE */}
-                {hero.subheadline && (
-                  <p className="line-clamp-2 max-w-[95%] text-xs font-medium leading-[1.7] text-slate-300 xs:text-sm sm:text-base sm:leading-relaxed md:mx-auto md:max-w-[720px] md:text-xl md:line-clamp-none">
-                    {hero.subheadline}
-                  </p>
-                )}
-
-                {/* CTA */}
-                <div className="flex items-center gap-2 pt-1 sm:gap-3 sm:pt-2 md:justify-center">
-                  {hero.primaryCTA?.text && (
-                    <a
-                      href={hero.primaryCTA.link}
-                      className="group inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-white px-3.5 py-2 text-xs font-bold text-slate-950 shadow-sm transition duration-200 hover:bg-slate-100 active:scale-[0.98] xs:text-sm sm:rounded-xl sm:px-6 sm:py-3 sm:text-base md:px-8 md:py-4"
-                    >
-                      <span>{hero.primaryCTA.text}</span>
-
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-                    </a>
-                  )}
-
-                  {hero.secondaryCTA?.text && (
-                    <a
-                      href={hero.secondaryCTA.link}
-                      className="inline-flex max-w-[45%] shrink-0 items-center justify-center truncate rounded-lg border border-slate-700 bg-slate-900/80 px-3.5 py-2 text-xs font-semibold text-slate-200 backdrop-blur-md transition-all duration-200 hover:bg-slate-800 hover:text-white active:scale-[0.98] xs:text-sm sm:rounded-xl sm:px-6 sm:py-3 sm:text-base md:px-8 md:py-4"
-                    >
-                      {hero.secondaryCTA.text}
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+    <section className="relative" aria-label="Featured banners">
+      {/* =====================================================
+          DESKTOP / TABLET
+          ===================================================== */}
+      <div className="hidden sm:block">
+        <DesktopHero
+          hero={hero}
+          onPrevious={goToPrevious}
+          onNext={goToNext}
+          showNavigation={heroes.length > 1}
+        />
       </div>
 
-      {/* Navigation — only when multiple banners */}
+      {/* =====================================================
+          MOBILE
+          ===================================================== */}
+      <div className="block sm:hidden">
+        <MobileHero hero={hero} />
+      </div>
+
+      {/* =====================================================
+          MOBILE CAROUSEL DOTS
+          ===================================================== */}
       {heroes.length > 1 && (
-        <>
-          {/* Desktop / tablet arrows */}
-          <button
-            type="button"
-            onClick={goToPrevious}
-            aria-label="Previous banner"
-            className="absolute left-3 top-1/2 z-30 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur-md transition hover:bg-black/60 sm:flex"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
-
-          <button
-            type="button"
-            onClick={goToNext}
-            aria-label="Next banner"
-            className="absolute right-3 top-1/2 z-30 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur-md transition hover:bg-black/60 sm:flex"
-          >
-            <ArrowRight className="h-4 w-4" />
-          </button>
-
-          {/* Dots */}
-          <div className="absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 sm:bottom-4">
-            {heroes.map((banner, index) => (
-              <button
-                key={banner._id}
-                type="button"
-                onClick={() => setCurrentIndex(index)}
-                aria-label={`Go to banner ${index + 1}`}
-                aria-current={index === currentIndex}
-                className={`h-1.5 rounded-full transition-all ${
-                  index === currentIndex
-                    ? "w-5 bg-white"
-                    : "w-1.5 bg-white/45 hover:bg-white/70"
-                }`}
-              />
-            ))}
-          </div>
-        </>
+        <div
+          className="absolute bottom-3 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1.5 sm:hidden"
+          aria-label="Hero banner navigation"
+        >
+          {heroes.map((banner, index) => (
+            <button
+              key={banner._id}
+              type="button"
+              onClick={() => setCurrentIndex(index)}
+              aria-label={`Go to banner ${index + 1}`}
+              aria-current={index === currentIndex}
+              className={`h-1.5 rounded-full transition-all ${
+                index === currentIndex
+                  ? "w-5 bg-white"
+                  : "w-1.5 bg-white/45 hover:bg-white/70"
+              }`}
+            />
+          ))}
+        </div>
       )}
     </section>
   );
