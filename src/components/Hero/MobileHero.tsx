@@ -12,8 +12,9 @@ export default function MobileHero({ hero }: MobileHeroProps) {
       className="relative m-1 overflow-hidden rounded-xl bg-slate-100"
       aria-labelledby="mobile-hero-heading"
     >
-      {/* Banner image */}
-      <div className="relative aspect-2/1 w-full overflow-hidden">
+      {/* Banner */}
+      <div className="relative aspect-[4/5] min-h-[430px] w-full overflow-hidden">
+        {/* Background image */}
         {hero.mobileBackgroundImage ? (
           <img
             src={hero.mobileBackgroundImage}
@@ -29,12 +30,18 @@ export default function MobileHero({ hero }: MobileHeroProps) {
             aria-hidden="true"
           />
         ) : (
-          <div className="absolute inset-0 bg-slate-900" />
+          <div className="absolute inset-0 bg-slate-100" />
         )}
 
-        {/* Subtle readability overlay */}
+        {/* Soft left readability layer */}
         <div
-          className="absolute inset-0 bg-linear-to-r from-black/55 via-black/10 to-transparent"
+          className="absolute inset-0 bg-linear-to-r from-white/85 via-white/35 to-transparent"
+          aria-hidden="true"
+        />
+
+        {/* Bottom soft fade */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/5 to-transparent"
           aria-hidden="true"
         />
 
@@ -42,52 +49,59 @@ export default function MobileHero({ hero }: MobileHeroProps) {
         <div className="absolute inset-0 flex items-center">
           <motion.div
             key={hero._id}
-            initial={{ opacity: 0, x: -8 }}
+            initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
-            className="w-[58%] pl-4 pr-2"
+            className="w-[58%] max-w-[230px] pl-5 pr-2"
           >
-            {/* Badge */}
-            {hero.liveBadge?.enabled && (
-              <div className="mb-1.5 inline-flex max-w-full items-center rounded-full bg-black/60 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
-                <span className="mr-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400" />
-                <span className="truncate">{hero.liveBadge.text}</span>
-              </div>
-            )}
+            <div className="space-y-3">
+              {/* Campaign label */}
+              {hero.liveBadge?.enabled && (
+                <div className="max-w-full">
+                  <p className="truncate text-[10px] font-bold uppercase tracking-[0.22em] text-orange-600">
+                    {hero.liveBadge.text}
+                  </p>
 
-            {/* Headline */}
-            <h2
-              id="mobile-hero-heading"
-              className="line-clamp-2 text-[18px] font-extrabold leading-[1.08] tracking-tight text-white"
-            >
-              {hero.headline}
-
-              {hero.gradientHeadline && (
-                <>
-                  {" "}
-                  <span className="text-white">{hero.gradientHeadline}</span>
-                </>
+                  <div className="mt-2 h-1 w-12 rounded-full bg-orange-500" />
+                </div>
               )}
-            </h2>
 
-            {/* Subheadline */}
-            {hero.subheadline && (
-              <p className="mt-1 line-clamp-2 max-w-full text-[9px] font-medium leading-[1.35] text-white/90">
-                {hero.subheadline}
-              </p>
-            )}
-
-            {/* CTA */}
-            {hero.primaryCTA?.text && (
-              <a
-                href={hero.primaryCTA.link}
-                className="mt-2 inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-[9px] font-bold text-slate-950 shadow-sm transition active:scale-95"
+              {/* Headline */}
+              <h2
+                id="mobile-hero-heading"
+                className="text-[26px] font-extrabold leading-[1.04] tracking-[-0.03em] text-slate-900"
               >
-                {hero.primaryCTA.text}
+                {hero.headline}
 
-                <ArrowRight className="h-3 w-3" />
-              </a>
-            )}
+                {hero.gradientHeadline && (
+                  <>
+                    {" "}
+                    <span className="text-orange-600">
+                      {hero.gradientHeadline}
+                    </span>
+                  </>
+                )}
+              </h2>
+
+              {/* Subheadline */}
+              {hero.subheadline && (
+                <p className="line-clamp-3 max-w-[220px] text-[11px] font-medium leading-[1.5] text-slate-600">
+                  {hero.subheadline}
+                </p>
+              )}
+
+              {/* CTA */}
+              {hero.primaryCTA?.text && (
+                <a
+                  href={hero.primaryCTA.link}
+                  className="group inline-flex items-center gap-1.5 rounded-md bg-orange-500 px-3.5 py-2 text-[11px] font-bold text-white shadow-sm transition hover:bg-orange-600 active:scale-[0.97]"
+                >
+                  <span>{hero.primaryCTA.text}</span>
+
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-active:translate-x-0.5" />
+                </a>
+              )}
+            </div>
           </motion.div>
         </div>
       </div>
