@@ -403,11 +403,11 @@
 //   );
 // }
 
-///////////////////////////////////////
+/////////////////////////////////////// 16-08-2026
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { HomeHero } from "../../types/home";
+import type { HomeHero } from "@/types/home";
 
 interface HeroSectionProps {
   heroes: HomeHero[];
