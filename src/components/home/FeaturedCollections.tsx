@@ -21,60 +21,23 @@ const categoryConfig: Record<
 > = {
   Smartphone: {
     icon: <Smartphone size={13} />,
-    badgeClass: "bg-blue-50 text-blue-700 border-blue-100",
+    badgeClass: "bg-red-50 text-red-600",
   },
 
   Laptops: {
     icon: <Laptop size={13} />,
-    badgeClass: "bg-indigo-50 text-indigo-700 border-indigo-100",
+    badgeClass: "bg-blue-50 text-blue-600",
   },
 
   Electronics: {
     icon: <Tv size={13} />,
-    badgeClass: "bg-amber-50 text-amber-700 border-amber-100",
+    badgeClass: "bg-amber-50 text-amber-600",
   },
 };
 
-const sectionClass =
-  "overflow-hidden bg-slate-50/50 py-8 px-4 antialiased sm:py-10";
-
-const containerClass = "mx-auto w-full max-w-6xl";
-
-const headerClass = "mb-5 flex items-center justify-between sm:mb-6";
-
-const titleWrapClass = "flex min-w-0 items-center gap-2.5";
-
-const titleIconClass =
-  "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white border border-slate-200 text-red-500 shadow-sm";
-
-const titleClass =
-  "text-[17px] font-bold tracking-tight text-slate-900 sm:text-lg";
-
-const desktopSubtitleClass =
-  "hidden text-xs font-medium text-slate-500 md:block";
-
-const controlsClass = "flex items-center gap-1.5 md:hidden";
-
-const controlButtonClass =
-  "flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-transform active:scale-95";
-
-const mobileSliderClass = "relative block w-full md:hidden";
-
-const progressTrackClass =
-  "mb-4 h-0.5 w-full overflow-hidden rounded-full bg-slate-200";
-
-const progressBarClass = "h-full bg-gradient-to-r from-sky-500 to-red-500";
-
-const mobileStageClass =
-  "relative flex min-h-[390px] w-full items-center justify-center sm:min-h-[420px]";
-
-const paginationClass = "mt-4 flex items-center justify-center gap-1.5";
-
-const desktopGridClass = "hidden grid-cols-3 gap-5 md:grid lg:gap-6";
-
 const fallbackConfig = {
   icon: <Smartphone size={13} />,
-  badgeClass: "bg-slate-100 text-slate-700 border-slate-200",
+  badgeClass: "bg-zinc-100 text-zinc-600",
 };
 
 export default function FeaturedCollections() {
@@ -127,54 +90,103 @@ export default function FeaturedCollections() {
   };
 
   return (
-    <section className={sectionClass}>
-      <div className={containerClass}>
-        {/* Section Header */}
-        <div className={headerClass}>
-          <div className={titleWrapClass}>
-            <span className={titleIconClass}>
-              <Sparkles size={15} />
-            </span>
+    <section
+      aria-labelledby="featured-collections-heading"
+      className="py-6 sm:py-8 lg:py-10"
+    >
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* =====================================================
+            SECTION HEADER
+        ====================================================== */}
+        <header className="mb-4 flex items-end justify-between gap-4 sm:mb-5">
+          <div className="min-w-0">
+            <div className="mb-1 flex items-center gap-1.5">
+              <Sparkles aria-hidden="true" className="size-3.5 text-red-500" />
 
-            <h2 className={titleClass}>Featured Collections</h2>
+              <span className="text-[11px] font-semibold text-red-600 sm:text-xs">
+                Curated for you
+              </span>
+            </div>
+
+            <h2
+              id="featured-collections-heading"
+              className="
+                text-lg font-bold
+                leading-tight tracking-tight
+                text-zinc-900
+                sm:text-xl
+                lg:text-2xl
+              "
+            >
+              Featured Collections
+            </h2>
           </div>
 
-          {/* Mobile Controls */}
-          <div className={controlsClass}>
+          {/* Mobile controls */}
+          <div className="flex shrink-0 items-center gap-1.5 md:hidden">
             <button
               type="button"
               onClick={handlePrev}
-              className={controlButtonClass}
-              aria-label="Previous card"
+              aria-label="Previous collection"
+              className="
+                flex size-8 items-center justify-center
+                rounded-full
+                border border-zinc-200
+                bg-white
+                text-zinc-600
+                transition-colors
+                hover:bg-zinc-50
+                active:scale-95
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-red-500
+                focus-visible:ring-offset-2
+              "
             >
-              <ChevronLeft size={16} />
+              <ChevronLeft aria-hidden="true" className="size-4" />
             </button>
 
             <button
               type="button"
               onClick={handleNext}
-              className={controlButtonClass}
-              aria-label="Next card"
+              aria-label="Next collection"
+              className="
+                flex size-8 items-center justify-center
+                rounded-full
+                border border-zinc-200
+                bg-white
+                text-zinc-600
+                transition-colors
+                hover:bg-zinc-50
+                active:scale-95
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-red-500
+                focus-visible:ring-offset-2
+              "
             >
-              <ChevronRight size={16} />
+              <ChevronRight aria-hidden="true" className="size-4" />
             </button>
           </div>
 
-          <p className={desktopSubtitleClass}>
-            Handpicked tech worth exploring
+          {/* Desktop description */}
+          <p className="hidden text-sm text-zinc-500 md:block">
+            Explore popular categories
           </p>
-        </div>
+        </header>
 
-        {/* ================= MOBILE ================= */}
+        {/* =====================================================
+            MOBILE
+        ====================================================== */}
         <div
-          className={mobileSliderClass}
+          className="md:hidden"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
         >
-          {/* Progress */}
-          <div className={progressTrackClass}>
+          {/* Small progress indicator */}
+          <div className="mb-4 h-px overflow-hidden bg-zinc-100">
             <motion.div
               key={activeIndex}
               initial={{ width: "0%" }}
@@ -185,17 +197,15 @@ export default function FeaturedCollections() {
                 duration: 4.5,
                 ease: "linear",
               }}
-              className={progressBarClass}
+              className="h-full bg-red-500"
             />
           </div>
 
-          {/* Slider */}
-          <div className={mobileStageClass}>
+          {/* Mobile card */}
+          <div className="relative min-h-[350px] w-full">
             <AnimatePresence mode="wait">
               {featuredProducts.map((product, index) => {
-                if (index !== activeIndex) {
-                  return null;
-                }
+                if (index !== activeIndex) return null;
 
                 const config =
                   categoryConfig[product.category.name] || fallbackConfig;
@@ -203,38 +213,14 @@ export default function FeaturedCollections() {
                 return (
                   <motion.div
                     key={product._id}
-                    initial={{
-                      opacity: 0,
-                      x: 45,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      x: -45,
-                    }}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -24 }}
                     transition={{
-                      duration: 0.3,
+                      duration: 0.22,
                       ease: "easeOut",
                     }}
-                    drag="x"
-                    dragConstraints={{
-                      left: 0,
-                      right: 0,
-                    }}
-                    dragElastic={0.2}
-                    onDragEnd={(_, info) => {
-                      if (info.offset.x < -40) {
-                        handleNext();
-                      }
-
-                      if (info.offset.x > 40) {
-                        handlePrev();
-                      }
-                    }}
-                    className="absolute inset-0 touch-pan-y"
+                    className="absolute inset-0"
                   >
                     <FeaturedCollectionCard
                       product={product}
@@ -248,37 +234,45 @@ export default function FeaturedCollections() {
           </div>
 
           {/* Pagination */}
-          <div className={paginationClass}>
-            {featuredProducts.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => setActiveIndex(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  index === activeIndex
-                    ? "w-6 bg-slate-900"
-                    : "w-1.5 bg-slate-300 hover:bg-slate-400"
-                }`}
-              />
-            ))}
-          </div>
+          {total > 1 && (
+            <div className="mt-4 flex items-center justify-center gap-1.5">
+              {featuredProducts.map((product, index) => (
+                <button
+                  key={product._id}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  aria-label={`Go to ${product.category.name} collection`}
+                  aria-current={index === activeIndex}
+                  className={`
+                    h-1.5 rounded-full
+                    transition-all duration-200
+                    ${
+                      index === activeIndex
+                        ? "w-5 bg-zinc-900"
+                        : "w-1.5 bg-zinc-300"
+                    }
+                  `}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
-        {/* ================= DESKTOP ================= */}
-        <div className={desktopGridClass}>
+        {/* =====================================================
+            DESKTOP / LAPTOP
+        ====================================================== */}
+        <div className="hidden grid-cols-3 gap-4 md:grid lg:gap-5">
           {featuredProducts.map((product, index) => {
             const config =
               categoryConfig[product.category.name] || fallbackConfig;
 
             return (
-              <div key={product._id} className="group">
-                <FeaturedCollectionCard
-                  product={product}
-                  config={config}
-                  index={index}
-                />
-              </div>
+              <FeaturedCollectionCard
+                key={product._id}
+                product={product}
+                config={config}
+                index={index}
+              />
             );
           })}
         </div>

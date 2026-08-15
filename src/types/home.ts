@@ -12,6 +12,7 @@ export interface HomeHeroCTA {
 }
 
 export interface HomeHero {
+  _id: string;
   liveBadge?: HomeHeroLiveBadge;
   headline: string;
   gradientHeadline: string;
@@ -19,7 +20,15 @@ export interface HomeHero {
   primaryCTA: HomeHeroCTA;
   secondaryCTA?: HomeHeroCTA;
   saleBadge?: HomeHeroLiveBadge;
+
+  // backgroundImage?: string;
   backgroundImage?: string;
+  mobileBackgroundImage?: string;
+
+  isActive: boolean;
+  startAt: string | null;
+  endAt: string | null;
+  sortOrder: number;
 }
 
 export interface HomeCategory {
@@ -49,7 +58,8 @@ export interface HomeReview {
 }
 
 export interface HomeResponse {
-  hero: HomeHero | null;
+  // hero: HomeHero | null;
+  heroes: HomeHero[];
   featuredProducts: PublicProduct[];
   categories: HomeCategory[];
   latestReviews: HomeReview[];

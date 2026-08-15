@@ -13,12 +13,13 @@ import CustomerReviews from "../components/home/CustomerReviews";
 import MobileCategoryNavbar from "../components/Navbar/MobileCategoryNavbar";
 import FlashSale from "@/components/home/FlashSale";
 import NewArrivals from "@/components/new-arrivals/NewArrivals";
-import FeaturedCollection from "../components/home/FeaturedCollections";
+// import FeaturedCollection from "../components/home/FeaturedCollections";
 
 export default function Home() {
   const { data, isLoading } = useHome();
 
-  const hero = data?.hero ?? null;
+  // const hero = data?.hero ?? null;
+  const heroes = data?.heroes ?? [];
   // const featuredProducts = data?.featuredProducts ?? [];
   const categories = data?.categories ?? [];
   const latestReviews = data?.latestReviews ?? [];
@@ -27,7 +28,9 @@ export default function Home() {
     <div className="min-h-screen ">
       <MobileCategoryNavbar />
       <main className="flex flex-col gap-12 md:gap-16">
-        <HeroSection hero={hero} loading={isLoading} />
+        {/* <HeroSection heroes={hero} loading={isLoading} /> */}
+
+        <HeroSection heroes={heroes} loading={isLoading} />
         {/* <MobileCategoryScroll /> */}
         <Suspense>
           <CategorySection
@@ -36,7 +39,7 @@ export default function Home() {
             limit={6}
           />
         </Suspense>
-        <FeaturedCollection />
+        {/* <FeaturedCollection /> */}
         <TrustBenefitsBar />
         <FlashSale />
         <FeatureProducts />
