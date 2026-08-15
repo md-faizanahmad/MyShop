@@ -714,23 +714,25 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
           ===================================================== */}
       {heroes.length > 1 && (
         <div
-          className="absolute bottom-3 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1.5 sm:hidden"
+          className="pointer-events-none absolute inset-x-0 bottom-3 z-40 flex justify-center sm:bottom-4"
           aria-label="Hero banner navigation"
         >
-          {heroes.map((banner, index) => (
-            <button
-              key={banner._id}
-              type="button"
-              onClick={() => setCurrentIndex(index)}
-              aria-label={`Go to banner ${index + 1}`}
-              aria-current={index === currentIndex}
-              className={`h-1.5 rounded-full transition-all ${
-                index === currentIndex
-                  ? "w-5 bg-white"
-                  : "w-1.5 bg-white/45 hover:bg-white/70"
-              }`}
-            />
-          ))}
+          <div className="pointer-events-auto flex items-center gap-1.5 rounded-full bg-black/25 px-2.5 py-1.5 backdrop-blur-sm">
+            {heroes.map((banner, index) => (
+              <button
+                key={banner._id}
+                type="button"
+                onClick={() => setCurrentIndex(index)}
+                aria-label={`Go to banner ${index + 1}`}
+                aria-current={index === currentIndex}
+                className={`h-1.5 rounded-full transition-all duration-200 ${
+                  index === currentIndex
+                    ? "w-5 bg-white"
+                    : "w-1.5 bg-white/50 hover:bg-white/80"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       )}
     </section>
