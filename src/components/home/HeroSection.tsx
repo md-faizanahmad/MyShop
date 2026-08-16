@@ -648,18 +648,15 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
     }
   }, [heroes.length, currentIndex]);
 
-  const goToPrevious = () => {
+  useEffect(() => {
     if (heroes.length <= 1) return;
 
-    setCurrentIndex((prev) => (prev === 0 ? heroes.length - 1 : prev - 1));
-  };
+    const interval = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev === heroes.length - 1 ? 0 : prev + 1));
+    }, 5000);
 
-  const goToNext = () => {
-    if (heroes.length <= 1) return;
-
-    setCurrentIndex((prev) => (prev === heroes.length - 1 ? 0 : prev + 1));
-  };
-
+    return () => window.clearInterval(interval);
+  }, [heroes.length]);
   /* ---------------- LOADING ---------------- */
 
   if (loading) {
@@ -694,12 +691,7 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
           DESKTOP / TABLET
           ===================================================== */}
       <div className="hidden sm:block">
-        <DesktopHero
-          hero={hero}
-          onPrevious={goToPrevious}
-          onNext={goToNext}
-          showNavigation={heroes.length > 1}
-        />
+        <DesktopHero hero={hero} showNavigation={heroes.length > 1} />
       </div>
 
       {/* =====================================================

@@ -49,21 +49,25 @@ export default function MobileHero({ hero }: MobileHeroProps) {
         <div className="absolute inset-0 flex items-center">
           <motion.div
             key={hero._id}
-            initial={{ opacity: 0, x: -10 }}
+            initial={{ opacity: 0, x: 22 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, x: -22 }}
+            transition={{
+              duration: 0.35,
+              ease: "easeOut",
+            }}
             className="w-[80%] max-w-[280px] pl-5 pr-2"
           >
             <div className="space-y-3">
               {/* Campaign label */}
               {hero.liveBadge?.enabled && (
                 <div className="max-w-full">
-                  <p className="truncate text-[10px] font-bold uppercase tracking-[0.22em] text-sky-600">
+                  <p className="truncate text-[10px] font-bold uppercase tracking-[0.22em] text-sky-800">
                     {hero.liveBadge.text}
                   </p>
                   <div className="relative mt-1.5 h-1 w-14 overflow-hidden rounded-full bg-sky-500">
                     <motion.div
-                      className="absolute inset-y-0 left-0 w-1/2 rounded-full bg-red-500"
+                      className="absolute inset-y-0 left-0 w-1/2 rounded-full bg-red-800"
                       animate={{
                         x: ["0%", "200%", "0%"],
                       }}

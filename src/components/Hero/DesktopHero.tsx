@@ -1,70 +1,63 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { HomeHero } from "@/types/home";
 
 interface DesktopHeroProps {
   hero: HomeHero;
-  onPrevious?: () => void;
-  onNext?: () => void;
   showNavigation?: boolean;
 }
 
-export default function DesktopHero({
-  hero,
-  onPrevious,
-  onNext,
-  showNavigation = false,
-}: DesktopHeroProps) {
+export default function DesktopHero({ hero }: DesktopHeroProps) {
   return (
     <section
-      className="relative isolate  overflow-hidden rounded-sm bg-slate-100 text-white"
+      className="relative isolate overflow-hidden rounded-sm bg-slate-900 text-white"
       aria-labelledby="desktop-hero-heading"
     >
       <div className="relative aspect-3/1 min-h-[260px] w-full overflow-hidden lg:min-h-80">
         {/* Background image */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={hero._id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-            className="absolute inset-0"
-          >
-            {hero.backgroundImage ? (
-              <img
-                src={hero.backgroundImage}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover"
-                aria-hidden="true"
-              />
-            ) : (
-              <div className="absolute inset-0 bg-slate-900" />
-            )}
-
-            {/* Content readability overlay */}
-            <div
-              className="absolute inset-0 bg-linear-to-r from-black/75 via-black/35 to-transparent"
+        <div className="absolute inset-0 bg-slate-900">
+          <AnimatePresence initial={false}>
+            <motion.img
+              key={hero._id}
+              src={hero.backgroundImage || ""}
+              alt=""
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.45,
+                ease: "easeInOut",
+              }}
+              className="absolute inset-0 h-full w-full object-cover"
               aria-hidden="true"
             />
+          </AnimatePresence>
 
-            {/* Bottom subtle fade */}
-            <div
-              className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/20 to-transparent"
-              aria-hidden="true"
-            />
-          </motion.div>
-        </AnimatePresence>
+          {/* Content readability overlay */}
+          <div
+            className="absolute inset-0 bg-linear-to-r from-black/75 via-black/35 to-transparent"
+            aria-hidden="true"
+          />
+
+          {/* Bottom subtle fade */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/20 to-transparent"
+            aria-hidden="true"
+          />
+        </div>
 
         {/* Content */}
         <div className="relative z-20 flex h-full min-h-[260px] items-center px-8 lg:min-h-80 lg:px-14 xl:px-20">
           <AnimatePresence mode="wait">
             <motion.div
               key={hero._id}
-              initial={{ opacity: 0, x: -10 }}
+              initial={{ opacity: 0, x: 28 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -6 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, x: -28 }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+              }}
               className="w-full max-w-md"
             >
               <div className="space-y-3 lg:space-y-4">
@@ -144,28 +137,6 @@ export default function DesktopHero({
         </div>
 
         {/* Previous */}
-        {showNavigation && (
-          <button
-            type="button"
-            onClick={onPrevious}
-            aria-label="Previous banner"
-            className="absolute left-3 top-1/2 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white shadow-sm backdrop-blur-md transition hover:bg-black/55 active:scale-95"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
-        )}
-
-        {/* Next */}
-        {showNavigation && (
-          <button
-            type="button"
-            onClick={onNext}
-            aria-label="Next banner"
-            className="absolute right-3 top-1/2 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white shadow-sm backdrop-blur-md transition hover:bg-black/55 active:scale-95"
-          >
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        )}
       </div>
     </section>
   );
