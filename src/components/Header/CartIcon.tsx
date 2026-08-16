@@ -9,21 +9,29 @@ export default function CartIcon() {
      Store
   ----------------------------- */
   const totalItems = useCartStore((s) =>
-    s.items.reduce((sum, i) => sum + i.qty, 0)
+    s.items.reduce((sum, i) => sum + i.qty, 0),
   );
   const loading = useCartStore((s) => s.loading);
 
   /* -----------------------------
      During hydration, don't lie
   ----------------------------- */
+  // if (loading) {
+  //   return (
+  //     <Link to="/cart" className="relative" aria-label="Cart">
+  //       <ShoppingCart size={18} className="text-gray-400 animate-pulse" />
+  //     </Link>
+  //   );
+  // }
+
   if (loading) {
     return (
-      <Link to="/cart" className="relative" aria-label="Cart">
-        <ShoppingCart size={18} className="text-gray-400 animate-pulse" />
-      </Link>
+      <div
+        className="relative h-6 w-6 animate-pulse rounded-md bg-gray-200"
+        aria-hidden="true"
+      />
     );
   }
-
   /* -----------------------------
      Render
   ----------------------------- */

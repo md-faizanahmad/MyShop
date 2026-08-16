@@ -1,8 +1,8 @@
 // src/components/search/SearchBarContainer.tsx
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import type { ProductSearchResult } from "../../types/search";
-import { useSearch } from "../../hooks/useSearch";
+import type { ProductSearchResult } from "@/types/search";
+import { useSearch } from "@/hooks/useSearch";
 import SearchBarView from "./SearchBarView";
 
 interface Props {

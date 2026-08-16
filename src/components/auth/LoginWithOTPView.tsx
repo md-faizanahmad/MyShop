@@ -109,6 +109,15 @@ export default function LoginWithOTPView({
                   ? `Resend in ${remaining}s`
                   : "Send OTP"}
             </button>
+            <p>
+              Prefer using your password?{" "}
+              <Link
+                to="/login"
+                className="font-medium text-sky-600 transition-colors hover:text-sky-700 hover:underline"
+              >
+                Login with password
+              </Link>
+            </p>
           </form>
         )}
 
