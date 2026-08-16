@@ -140,7 +140,7 @@ export default function Header() {
       </AnimatePresence>
 
       {/* <div className="lg:h-16 md:h-16 h-0" /> */}
-      <div aria-hidden="true" className="h-26" />
+      <div aria-hidden="true" className="h-24" />
     </>
   );
 }

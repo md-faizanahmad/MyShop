@@ -17,7 +17,7 @@ export default function DesktopHero({
 }: DesktopHeroProps) {
   return (
     <section
-      className="relative isolate m-1 overflow-hidden rounded-xl bg-slate-100 text-white"
+      className="relative isolate  overflow-hidden rounded-sm bg-slate-100 text-white"
       aria-labelledby="desktop-hero-heading"
     >
       <div className="relative aspect-3/1 min-h-[260px] w-full overflow-hidden lg:min-h-80">
