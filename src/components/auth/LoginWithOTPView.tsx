@@ -1,6 +1,6 @@
 // src/components/auth/LoginWithOTPView.tsx
 import { type FormEvent, type JSX, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export type LoginWithOTPViewProps = {
   step: "email" | "otp";
@@ -45,17 +45,11 @@ export default function LoginWithOTPView({
   }, [step]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-10">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white w-full max-w-md p-8 rounded-xl shadow-lg"
-        role="form"
-        aria-labelledby="login-otp-title"
-      >
+    <main className="min-h-dvh  px-4 py-6 flex items-center justify-center sm:py-8">
+      <section className="bg-white w-full max-w-md p-8 rounded-xl shadow-lg">
         <h2
           id="login-otp-title"
-          className="text-3xl font-bold text-center mb-4 text-gray-800"
+          className="text-xl font-semibold text-center text-slate-900"
         >
           Login with OTP
         </h2>
@@ -97,45 +91,39 @@ export default function LoginWithOTPView({
                 value={email}
                 onChange={(ev) => setEmail(ev.target.value)}
                 disabled={sending}
-                className="mt-1 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sky-500"
                 placeholder="you@example.com"
                 aria-invalid={!!errorMessage}
                 aria-describedby={errorMessage ? "login-otp-error" : undefined}
               />
             </div>
 
-            <motion.button
-              whileTap={{ scale: 0.98 }}
+            <button
               type="submit"
               disabled={sending || remaining > 0}
-              className="w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+              className="w-full bg-sky-600 text-white font-medium py-3 rounded-lg hover:brightness-110 transition disabled:opacity-50"
             >
               {sending
                 ? "Sending..."
                 : remaining > 0
-                ? `Resend in ${remaining}s`
-                : "Send OTP"}
-            </motion.button>
+                  ? `Resend in ${remaining}s`
+                  : "Send OTP"}
+            </button>
           </form>
         )}
 
         {step === "otp" && (
-          <AnimatePresence>
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 6 }}
-              className="space-y-6"
-            >
+          <section>
+            <div className="space-y-6">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
                   void onVerifyOTP(e);
                 }}
               >
-                <p className="text-sm text-gray-600">
-                  We sent an OTP to{" "}
-                  <span className="font-semibold">{email}</span>
+                <p className="text-sm text-slate-500 mb-4 text-center">
+                  OTP sent to{" "}
+                  <span className="font-medium text-slate-700">{email}</span>
                 </p>
 
                 <label htmlFor="otp-input" className="sr-only">
@@ -145,25 +133,22 @@ export default function LoginWithOTPView({
                   id="otp-input"
                   ref={otpRef}
                   name="otp"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
                   maxLength={8}
                   value={otp}
                   onChange={(ev) => setOtp(ev.target.value.replace(/\s+/g, ""))}
                   placeholder="Enter OTP"
                   disabled={verifying}
-                  className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 mb-2"
+                  className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sky-500 mb-2"
                   aria-invalid={!!errorMessage}
                 />
 
-                <motion.button
-                  whileTap={{ scale: 0.98 }}
+                <button
                   type="submit"
                   disabled={verifying}
-                  className="w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+                  className="w-full bg-sky-600 text-white font-medium py-3 rounded-lg hover:bg-sky-700 transition disabled:opacity-50"
                 >
                   {verifying ? "Verifying..." : "Login"}
-                </motion.button>
+                </button>
               </form>
 
               <p className="text-center text-sm text-gray-600">
@@ -173,26 +158,39 @@ export default function LoginWithOTPView({
                 ) : (
                   <button
                     onClick={onResendOTP}
-                    className="text-blue-600 font-semibold hover:underline"
+                    className="text-sky-600 font-semibold hover:underline"
                   >
                     Resend OTP
                   </button>
                 )}
               </p>
 
-              <p className="text-center text-sm text-gray-600">
-                Wrong email?{" "}
-                <button
-                  onClick={onResetEmail}
-                  className="text-blue-600 font-semibold hover:underline"
-                >
-                  Change email
-                </button>
-              </p>
-            </motion.div>
-          </AnimatePresence>
+              <div className="mt-4 space-y-2 text-center text-sm text-slate-500">
+                <p>
+                  Wrong email?{" "}
+                  <button
+                    type="button"
+                    onClick={onResetEmail}
+                    className="font-medium text-sky-600 transition-colors hover:text-sky-700 hover:underline"
+                  >
+                    Change email
+                  </button>
+                </p>
+
+                <p>
+                  Prefer using your password?{" "}
+                  <Link
+                    to="/login"
+                    className="font-medium text-sky-600 transition-colors hover:text-sky-700 hover:underline"
+                  >
+                    Login with password
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </section>
         )}
-      </motion.div>
-    </div>
+      </section>
+    </main>
   );
 }

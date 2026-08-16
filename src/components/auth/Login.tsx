@@ -3,7 +3,7 @@ import { useState, useEffect, type FormEvent, type ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LoginForm from "./LoginForm";
-import { useAuthStore } from "../../store/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const API_BASE = import.meta.env.VITE_API_URL as string;
 

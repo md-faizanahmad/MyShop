@@ -186,7 +186,6 @@ export default function LoginForm({
                 value={otp}
                 onChange={onOtpChange}
                 maxLength={6}
-                inputMode="numeric"
               />
             </div>
 
@@ -218,7 +217,7 @@ export default function LoginForm({
           </div>
         )}
 
-        <p className="text-center text-sm text-gray-600 mt-6">
+        <div className="text-center text-sm text-gray-600 mt-6">
           Don't have an account?{" "}
           <Link
             to="/signup"
@@ -229,7 +228,7 @@ export default function LoginForm({
           <div className="text-sm mt-4">
             <Link to="/forgot-password">Forget Password ?</Link>
           </div>
-        </p>
+        </div>
       </motion.div>
     </div>
   );
