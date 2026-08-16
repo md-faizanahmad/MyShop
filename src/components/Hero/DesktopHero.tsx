@@ -83,14 +83,14 @@ export default function DesktopHero({
                 {/* Headline */}
                 <h2
                   id="desktop-hero-heading"
-                  className="max-w-[520px] text-3xl font-black leading-[1.08] tracking-tight text-white lg:text-4xl xl:text-5xl"
+                  className="max-w-[520px] font-sans text-3xl font-extrabold leading-[1.12] tracking-[-0.025em] text-white lg:text-4xl xl:text-[46px]"
                 >
                   {hero.headline}
 
                   {hero.gradientHeadline && (
                     <>
                       {" "}
-                      <span className="bg-linear-to-r from-sky-200  to-red-200 bg-clip-text text-transparent">
+                      <span className="font-semibold text-white/90">
                         {hero.gradientHeadline}
                       </span>
                     </>
