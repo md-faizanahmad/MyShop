@@ -56,7 +56,7 @@ export default function FlashSale() {
                   px-2 py-1
                   text-[11px]
                   font-semibold
-                  text-red-600
+                  text-sky-600
                   shadow-sm
                   sm:left-4 sm:top-4
                   sm:text-xs
@@ -80,7 +80,7 @@ export default function FlashSale() {
               <div className="mb-2.5 flex items-center gap-1.5">
                 <Zap
                   aria-hidden="true"
-                  className="size-3.5 fill-red-500 text-red-500"
+                  className="size-3.5 fill-sky-500 text-red-500"
                 />
 
                 <span className="text-xs font-semibold text-red-600">
@@ -202,17 +202,17 @@ export default function FlashSale() {
                   w-fit
                   items-center justify-center gap-2
                   rounded-lg
-                  bg-red-500
+                  bg-sky-500
                   px-4 py-2
                   text-sm font-semibold
                   text-white
                   transition-colors
-                  hover:bg-red-600
+                  hover:bg-sky-600
                   focus-visible:outline-none
                   focus-visible:ring-2
-                  focus-visible:ring-red-500
+                  focus-visible:ring-sky-500
                   focus-visible:ring-offset-2
-                  active:bg-red-700
+                  active:bg-sky-700
                   sm:mt-6
                 "
               >
