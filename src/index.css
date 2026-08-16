@@ -48,9 +48,9 @@ button {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
+  /* a:hover {
     color: #0b448f;
-  }
+  } */
 }
 
 @keyframes gradient-x {

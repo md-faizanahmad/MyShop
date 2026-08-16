@@ -115,7 +115,7 @@ export default function DesktopHero({
                   {hero.primaryCTA?.text && (
                     <a
                       href={hero.primaryCTA.link}
-                      className="group inline-flex items-center justify-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-bold text-slate-950 shadow-sm transition hover:bg-slate-100 active:scale-[0.98] lg:px-5 lg:py-2.5 lg:text-sm"
+                      className="group inline-flex items-center justify-center gap-1.5 rounded-lg bg-sky-500 px-4 py-2 text-xs font-bold text-white/85 shadow-sm transition-colors hover:bg-sky-600 hover:text-white active:scale-[0.98] lg:px-5 lg:py-2.5 lg:text-sm"
                     >
                       <span>{hero.primaryCTA.text}</span>
 
@@ -126,7 +126,7 @@ export default function DesktopHero({
                   {hero.secondaryCTA?.text && (
                     <a
                       href={hero.secondaryCTA.link}
-                      className="inline-flex max-w-[180px] items-center justify-center truncate rounded-lg border border-white/25 bg-black/35 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md transition hover:bg-black/55 active:scale-[0.98] lg:px-5 lg:py-2.5 lg:text-sm"
+                      className="inline-flex max-w-[180px] items-center justify-center truncate rounded-lg border border-white/20 bg-slate-900/85 px-4 py-2 text-xs font-semibold text-white/75 shadow-sm transition-colors hover:bg-slate-800 hover:text-white active:scale-[0.98] lg:px-5 lg:py-2.5 lg:text-sm"
                     >
                       {hero.secondaryCTA.text}
                     </a>
