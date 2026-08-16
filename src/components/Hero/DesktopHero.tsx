@@ -69,7 +69,7 @@ export default function DesktopHero({
             >
               <div className="space-y-3 lg:space-y-4">
                 {/* Badge */}
-                {hero.liveBadge?.enabled && (
+                {/* {hero.liveBadge?.enabled && (
                   <div className="inline-flex max-w-[320px] items-center gap-1.5 rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
                     <span className="relative flex h-1.5 w-1.5 shrink-0">
                       <span className="absolute inline-flex h-full w-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-sky-400 opacity-75" />
@@ -78,7 +78,7 @@ export default function DesktopHero({
 
                     <span className="truncate">{hero.liveBadge.text}</span>
                   </div>
-                )}
+                )} */}
 
                 {/* Headline */}
                 <h2
@@ -90,12 +90,18 @@ export default function DesktopHero({
                   {hero.gradientHeadline && (
                     <>
                       {" "}
-                      <span className="bg-linear-to-r from-indigo-200 via-sky-200 to-emerald-200 bg-clip-text text-transparent">
+                      <span className="bg-linear-to-r from-sky-200  to-red-200 bg-clip-text text-transparent">
                         {hero.gradientHeadline}
                       </span>
                     </>
                   )}
                 </h2>
+
+                {hero.liveBadge?.enabled && (
+                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-red-200/85">
+                    {hero.liveBadge.text}
+                  </p>
+                )}
 
                 {/* Subheadline */}
                 {hero.subheadline && (
