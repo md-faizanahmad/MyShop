@@ -10,11 +10,8 @@ export default function FlashSale() {
         <div
           className="
             overflow-hidden
-            rounded-xl
-            border border-zinc-200
-            bg-white
-            shadow-sm
-            sm:rounded-2xl
+            
+
           "
         >
           {/* ================================================
