@@ -9,7 +9,7 @@ interface MobileHeroProps {
 export default function MobileHero({ hero }: MobileHeroProps) {
   return (
     <section
-      className="relative m-1 overflow-hidden rounded-xl "
+      className="relative overflow-hidden rounded-sm "
       aria-labelledby="mobile-hero-heading"
     >
       {/* Banner */}
