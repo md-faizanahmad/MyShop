@@ -9,7 +9,7 @@ interface MobileHeroProps {
 export default function MobileHero({ hero }: MobileHeroProps) {
   return (
     <section
-      className="relative m-1 overflow-hidden rounded-xl bg-slate-100"
+      className="relative m-1 overflow-hidden rounded-xl "
       aria-labelledby="mobile-hero-heading"
     >
       {/* Banner */}
@@ -58,11 +58,11 @@ export default function MobileHero({ hero }: MobileHeroProps) {
               {/* Campaign label */}
               {hero.liveBadge?.enabled && (
                 <div className="max-w-full">
-                  <p className="truncate text-[10px] font-bold uppercase tracking-[0.22em] text-orange-600">
+                  <p className="truncate text-[10px] font-bold uppercase tracking-[0.22em] text-sky-600">
                     {hero.liveBadge.text}
                   </p>
 
-                  <div className="mt-2 h-1 w-12 rounded-full bg-orange-500" />
+                  <div className="mt-2 h-1 w-12 rounded-full bg-sky-500" />
                 </div>
               )}
 
@@ -76,7 +76,7 @@ export default function MobileHero({ hero }: MobileHeroProps) {
                 {hero.gradientHeadline && (
                   <>
                     {" "}
-                    <span className="text-orange-600">
+                    <span className="text-sky-600">
                       {hero.gradientHeadline}
                     </span>
                   </>
@@ -85,7 +85,7 @@ export default function MobileHero({ hero }: MobileHeroProps) {
 
               {/* Subheadline */}
               {hero.subheadline && (
-                <p className="line-clamp-3 max-w-[220px] text-[11px] font-medium leading-[1.5] text-slate-600">
+                <p className="line-clamp-3 max-w-[220px] text-[11px] font-medium leading-normal text-slate-600">
                   {hero.subheadline}
                 </p>
               )}
@@ -94,7 +94,7 @@ export default function MobileHero({ hero }: MobileHeroProps) {
               {hero.primaryCTA?.text && (
                 <a
                   href={hero.primaryCTA.link}
-                  className="group inline-flex items-center gap-1.5 rounded-md bg-orange-500 px-3.5 py-2 text-[11px] font-bold text-white shadow-sm transition hover:bg-orange-600 active:scale-[0.97]"
+                  className="group inline-flex items-center gap-1.5 rounded-md bg-sky-500 px-3.5 py-2 text-[11px] font-bold text-white shadow-sm transition hover:bg-sky-600 active:scale-[0.97]"
                 >
                   <span>{hero.primaryCTA.text}</span>
 
