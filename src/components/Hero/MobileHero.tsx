@@ -61,8 +61,20 @@ export default function MobileHero({ hero }: MobileHeroProps) {
                   <p className="truncate text-[10px] font-bold uppercase tracking-[0.22em] text-sky-600">
                     {hero.liveBadge.text}
                   </p>
-
-                  <div className="mt-2 h-1 w-12 rounded-full bg-sky-500" />
+                  <div className="relative mt-1.5 h-1 w-14 overflow-hidden rounded-full bg-sky-500">
+                    <motion.div
+                      className="absolute inset-y-0 left-0 w-1/2 rounded-full bg-red-500"
+                      animate={{
+                        x: ["0%", "200%", "0%"],
+                      }}
+                      transition={{
+                        duration: 2.8,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </div>
+                  {/* <div className="mt-2 h-1 w-12 rounded-full bg-sky-500" /> */}
                 </div>
               )}
 
