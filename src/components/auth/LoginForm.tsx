@@ -1,31 +1,31 @@
 // // src/pages/auth/LoginForm.tsx
 import type { FormEvent, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, KeyRound } from "lucide-react";
+// import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 export interface LoginFormProps {
   email: string;
   password: string;
-  otp: string;
+  // otp: string;
 
   showPassword: boolean;
-  otpSent: boolean;
-  resendTimer: number;
+  // otpSent: boolean;
+  // resendTimer: number;
 
   loading: boolean;
-  otpLoading: boolean;
-  verifyLoading: boolean;
+  // otpLoading: boolean;
+  // verifyLoading: boolean;
 
   error: string;
 
   onEmailChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onPasswordChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onOtpChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  // onOtpChange: (e: ChangeEvent<HTMLInputElement>) => void;
 
   onSubmitPassword: (e: FormEvent<HTMLFormElement>) => void;
-  onSendOtp: () => void;
-  onVerifyOtp: () => void;
+  // onSendOtp: () => void;
+  // onVerifyOtp: () => void;
 
   toggleShowPassword: () => void;
 }
@@ -33,32 +33,27 @@ export interface LoginFormProps {
 export default function LoginForm({
   email,
   password,
-  otp,
+  // otp,
   showPassword,
-  otpSent,
-  resendTimer,
+  // otpSent,
+  // resendTimer,
   loading,
-  otpLoading,
-  verifyLoading,
+  // otpLoading,
+  // verifyLoading,
   error,
   onEmailChange,
   onPasswordChange,
-  onOtpChange,
+  // onOtpChange,
   onSubmitPassword,
-  onSendOtp,
-  onVerifyOtp,
+  // onSendOtp,
+  // onVerifyOtp,
   toggleShowPassword,
 }: LoginFormProps) {
-  const isGlobalDisabled = loading || otpLoading || verifyLoading;
+  const isGlobalDisabled = loading;
 
   return (
-    <div className="min-h-screen flex items-center justify-center  px-4 sm:px-6 lg:px-8 py-10">
-      <motion.div
-        initial={{ opacity: 0, y: 22 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="bg-white w-full max-w-md sm:max-w-lg rounded-2xl shadow-xl border border-sky-50 px-5 sm:px-8 py-6 sm:py-8"
-      >
+    <main className="min-h-dvh flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <section className="bg-white w-full max-w-md sm:max-w-lg rounded-2xl shadow-xl border border-sky-50 px-5 sm:px-8 py-6 sm:py-8">
         <div className="mb-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
             Welcome back
@@ -69,18 +64,13 @@ export default function LoginForm({
         </div>
 
         {/* ERROR BOX */}
-        <AnimatePresence>
+        <div>
           {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              className="text-red-600 text-xs sm:text-sm text-center mb-4 bg-red-50 py-2 px-4 rounded-lg border border-red-100"
-            >
+            <p className="text-red-600 text-xs sm:text-sm text-center mb-4 bg-red-50 py-2 px-4 rounded-lg border border-red-100">
               {error}
-            </motion.div>
+            </p>
           )}
-        </AnimatePresence>
+        </div>
 
         {/* EMAIL FIELD */}
         <div className="mb-5">
@@ -153,9 +143,17 @@ export default function LoginForm({
           <span className="px-3 text-gray-400 text-xs">OR</span>
           <div className="flex-1 h-px bg-gray-200" />
         </div>
-
+        <div className="text-center text-sm text-slate-500">
+          Prefer a one-time code?{" "}
+          <Link
+            to="/login-otp"
+            className="font-medium text-sky-600 hover:text-sky-700 hover:underline"
+          >
+            Login with OTP
+          </Link>
+        </div>
         {/* LOGIN WITH OTP */}
-        {!otpSent ? (
+        {/* {!otpSent ? (
           <button
             onClick={onSendOtp}
             disabled={otpLoading || !email}
@@ -215,7 +213,7 @@ export default function LoginForm({
               )}
             </div>
           </div>
-        )}
+        )} */}
 
         <div className="text-center text-sm text-gray-600 mt-6">
           Don't have an account?{" "}
@@ -229,7 +227,7 @@ export default function LoginForm({
             <Link to="/forgot-password">Forget Password ?</Link>
           </div>
         </div>
-      </motion.div>
-    </div>
+      </section>
+    </main>
   );
 }
