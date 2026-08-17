@@ -63,115 +63,106 @@ export default function WishlistPage() {
      Render
   ----------------------------- */
   return (
-    <div className="min-h-screen  py-8 px-4 ">
-      <div className="max-w-7xl mx-auto">
+    <main className="min-h-dvh bg-slate-50 px-3 py-5 sm:px-5 sm:py-7 lg:px-8 lg:py-8">
+      <section className="mx-auto w-full max-w-7xl">
         {/* Header */}
-        <div className="mb-5 flex items-center justify-between gap-3 sm:mb-6">
-          {/* Title & Item Count */}
-          <h4 className="flex min-w-0 items-center text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
-            <span className="truncate">My Wishlist</span>
+        <header className="mb-5 flex items-center justify-between gap-3 sm:mb-6">
+          <div className="min-w-0">
+            <h1 className="text-lg font-semibold tracking-tight text-slate-900 sm:text-xl lg:text-2xl">
+              My Wishlist
+              <span className="ml-1.5 text-sm font-normal text-slate-400">
+                ({items.length})
+              </span>
+            </h1>
+          </div>
 
-            <span className="ml-1.5 shrink-0 text-xs font-normal text-slate-400 sm:text-sm lg:text-base">
-              ({items.length})
-            </span>
-          </h4>
-
-          {/* Clear All Button */}
-          <button
-            type="button"
-            onClick={() => {
-              void clear();
-              toast.success("Wishlist cleared");
-            }}
-            className="
-      flex
-      shrink-0
-      items-center
-      gap-1.5
-      rounded-lg
-      bg-red-600
-      px-2.5
-      py-1.5
-      text-[11px]
-      font-semibold
-      text-white
-      transition-colors
-      hover:bg-red-700
-      active:scale-95
-
-      sm:rounded-xl
-      sm:px-4
-      sm:py-2
-      sm:text-sm
-    "
-          >
-            <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-
-            <span>Clear All</span>
-          </button>
-        </div>
+          {items.length > 0 && (
+            <button
+              type="button"
+              onClick={() => {
+                void clear();
+                toast.success("Wishlist cleared");
+              }}
+              className="shrink-0 rounded-lg px-2 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:px-3 sm:py-2 sm:text-sm"
+            >
+              Clear all <Trash2 />
+            </button>
+          )}
+        </header>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        <div
+          aria-label="Wishlist products"
+          className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+        >
           {items.map((item) => {
             const p = item.product;
 
             return (
-              <div
+              <article
                 key={item.productId}
-                className="bg-white overflow-hidden rounded-lg border  shadow-sm"
+                className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
               >
-                <Link to={`/category/${p.category.slug}/product/${p.slug}`}>
+                <Link
+                  to={`/category/${p.category.slug}/product/${p.slug}`}
+                  className="block overflow-hidden bg-slate-100"
+                  aria-label={`View ${p.name}`}
+                >
                   <img
                     src={p.imageUrl}
                     alt={p.name}
-                    className="aspect-square object-cover"
+                    loading="lazy"
+                    className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                   />
                 </Link>
 
-                <div className="p-1.5 space-y-2.5">
-                  <h3 className="text-sm  line-clamp-2 min-h-10  font-medium leading-5">
+                <div className="flex flex-col p-3 sm:p-3.5">
+                  <h2 className="line-clamp-2 min-h-10 text-sm font-medium leading-5 text-slate-900">
                     {p.name}
-                  </h3>
+                  </h2>
 
-                  <p className="text-base font-bold  text-sky-600">
+                  <p className="mt-2 text-base font-semibold text-sky-600">
                     ₹{p.price.toLocaleString("en-IN")}
                   </p>
 
-                  <div className="flex gap-2 mt-2">
+                  <div className="mt-3 flex items-center gap-2">
                     <button
+                      type="button"
                       onClick={() => {
                         if (!isInCart(p._id)) {
                           addToCart(p, 1);
                           toast.success("Added to cart");
                         }
                       }}
-                      className={`flex h-9 flex-1 items-center justify-center gap-1 rounded-md text-xs font-semibold ${
+                      className={`flex h-9 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-lg px-2 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1 ${
                         isInCart(p._id)
-                          ? "bg-green-100 text-green-700"
-                          : "bg-sky-600 text-white"
+                          ? "bg-emerald-50 text-emerald-700"
+                          : "bg-sky-600 text-white hover:bg-sky-700"
                       }`}
                     >
-                      <ShoppingCart size={13} className="inline mr-1" />
-                      {isInCart(p._id) ? "Added" : "Add"}
+                      <ShoppingCart size={14} aria-hidden="true" />
+                      {isInCart(p._id) ? "Added" : "Add to Cart"}
                     </button>
 
                     <button
+                      type="button"
                       onClick={() => {
                         void remove(item.productId);
                         toast.success("Removed");
                       }}
-                      className="flex items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white `"
+                      aria-label={`Remove ${p.name} from wishlist`}
+                      title="Remove from wishlist"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1"
                     >
-                      <X size={13} />
+                      <X size={15} aria-hidden="true" />
                     </button>
                   </div>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
