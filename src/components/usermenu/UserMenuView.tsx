@@ -176,7 +176,7 @@ interface Props {
   onLogout: () => Promise<void> | void;
 }
 
-interface MenuItem {
+export interface MenuItem {
   to: string;
   label: string;
   icon: React.ReactNode;
