@@ -123,26 +123,27 @@ export default function UserMenuDropdown({
           ease: "easeOut",
         }}
         className="
-          fixed
-          bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)]
-          right-3
-          z-50
-          w-[min(13rem,calc(100vw-1.5rem))]
-          overflow-hidden
-          rounded-2xl
-          border
-          border-neutral-200/80
-          bg-white
-          shadow-[0_12px_40px_rgba(0,0,0,0.14)]
+  fixed
+  bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)]
+  right-3
+  z-50
+  w-[min(13rem,calc(100vw-1.5rem))]
+  overflow-hidden
+  rounded-[5px]
+  border
+  border-neutral-200/80
+  bg-white
+  shadow-[0_10px_30px_rgba(0,0,0,0.12)]
 
-          md:absolute
-          md:bottom-auto
-          md:right-0
-          md:top-full
-          md:mt-2
-          md:w-44
-          md:rounded-xl
-          md:shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+  md:absolute
+  md:bottom-auto
+  md:right-0
+  md:top-full
+  md:m
+  md:w-44
+  md:rounded-[5px]
+  md:shadow-[0_8px_24px_rgba(0,0,0,0.10)]
+
         "
       >
         {isLoggedIn ? (
