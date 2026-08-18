@@ -1,6 +1,6 @@
 // components/order/OrderItemsList.tsx
 import { motion } from "framer-motion";
-import type { OrderItemPopulated } from "../../types/order.Details";
+import type { OrderItemPopulated } from "@/types/order.Details";
 import { Link } from "react-router-dom";
 
 interface Props {
