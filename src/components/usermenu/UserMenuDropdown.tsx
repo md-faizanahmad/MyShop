@@ -124,10 +124,12 @@ export default function UserMenuDropdown({
         }}
         className="
   fixed
-  bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)]
+  bottom-[calc(4rem+env(safe-area-inset-bottom)+0.2rem)]
   right-3
+  
   z-50
-  w-[min(210px,calc(100vw-1.5rem))]
+  w-[150px]
+  max-w-[calc(100vw-1.5rem)]
   overflow-hidden
   rounded-[5px]
   border
@@ -140,8 +142,8 @@ export default function UserMenuDropdown({
   md:bottom-auto
   md:right-0
   md:top-full
-  
   md:w-[170px]
+  md:max-w-none
   md:rounded-[5px]
   md:text-[12px]
   md:shadow-[0_8px_24px_rgba(0,0,0,0.10)]
