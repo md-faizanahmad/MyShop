@@ -127,24 +127,25 @@ export default function UserMenuDropdown({
   bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)]
   right-3
   z-50
-  w-[min(13rem,calc(100vw-1.5rem))]
+  w-[min(210px,calc(100vw-1.5rem))]
   overflow-hidden
   rounded-[5px]
   border
   border-neutral-200/80
   bg-white
+  text-[12px]
   shadow-[0_10px_30px_rgba(0,0,0,0.12)]
 
   md:absolute
   md:bottom-auto
   md:right-0
   md:top-full
-  md:m
-  md:w-44
+  
+  md:w-[170px]
   md:rounded-[5px]
+  md:text-[12px]
   md:shadow-[0_8px_24px_rgba(0,0,0,0.10)]
-
-        "
+"
       >
         {isLoggedIn ? (
           <div className="flex flex-col">
@@ -190,7 +191,7 @@ export default function UserMenuDropdown({
              *
              * No separate component is needed here.
              */}
-            <div className="space-y-0.5 p-1.5">
+            <div className="space-y-0 p-1">
               {accountMenuItems.map((item) => (
                 <Item
                   key={item.to}
