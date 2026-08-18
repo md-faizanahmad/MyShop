@@ -41,7 +41,7 @@ export default function Item({ to, label, icon, primary }: Props) {
 
           ${
             primary
-              ? "bg-blue-600 font-semibold text-white"
+              ? "bg-sky-600 font-semibold text-white"
               : "text-neutral-700 hover:bg-neutral-100"
           }
         `}
