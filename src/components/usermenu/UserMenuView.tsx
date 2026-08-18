@@ -151,41 +151,511 @@
 //   );
 // }
 //////////////////////////////////////////////////12082026
-import {
-  ChevronDown,
-  Heart,
-  LogIn,
-  LogOut,
-  Package,
-  User,
-  UserPlus,
-  UserRound,
-} from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+// import {
+//   ChevronDown,
+//   Heart,
+//   LogIn,
+//   LogOut,
+//   Package,
+//   User,
+//   UserPlus,
+//   UserRound,
+// } from "lucide-react";
+// import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+
+// import type { UserType } from "./usermenu-types";
+// import Item from "./Item";
+
+// interface Props {
+//   open: boolean;
+//   toggleOpen: () => void;
+//   buttonRef: React.RefObject<HTMLButtonElement | null>;
+//   menuRef: React.RefObject<HTMLDivElement | null>;
+//   isLoggedIn: boolean;
+//   user: UserType | null;
+//   onLogout: () => Promise<void> | void;
+// }
+
+// export interface MenuItem {
+//   to: string;
+//   label: string;
+//   icon: React.ReactNode;
+// }
+
+// /* -------------------------------------------------------------------------- */
+// /*                              Menu Configuration                            */
+// /* -------------------------------------------------------------------------- */
+
+// const accountMenuItems: MenuItem[] = [
+//   {
+//     to: "/profile",
+//     label: "Profile",
+//     icon: <User size={15} strokeWidth={1.8} />,
+//   },
+//   {
+//     to: "/orders",
+//     label: "Orders",
+//     icon: <Package size={15} strokeWidth={1.8} />,
+//   },
+//   {
+//     to: "/wishlist",
+//     label: "Wishlist",
+//     icon: <Heart size={15} strokeWidth={1.8} />,
+//   },
+// ];
+
+// const guestMenuItems: MenuItem[] = [
+//   {
+//     to: "/login",
+//     label: "Sign In",
+//     icon: <LogIn size={15} strokeWidth={1.8} />,
+//   },
+//   {
+//     to: "/signup",
+//     label: "New User",
+//     icon: <UserPlus size={15} strokeWidth={1.8} />,
+//   },
+// ];
+
+// /* -------------------------------------------------------------------------- */
+// /*                                  Component                                 */
+// /* -------------------------------------------------------------------------- */
+
+// export default function UserMenuView({
+//   open,
+//   toggleOpen,
+//   buttonRef,
+//   menuRef,
+//   isLoggedIn,
+//   user,
+//   onLogout,
+// }: Props) {
+//   const shouldReduceMotion = useReducedMotion();
+
+//   const firstLetter = isLoggedIn
+//     ? (user?.name?.[0]?.toUpperCase() ?? "U")
+//     : null;
+
+//   return (
+//     <div
+//       ref={menuRef}
+//       className="relative flex min-w-0 flex-1 justify-center md:flex-none"
+//     >
+//       {/* ------------------------------------------------------------------ */}
+//       {/* Account Trigger                                                    */}
+//       {/* ------------------------------------------------------------------ */}
+
+//       <motion.button
+//         ref={buttonRef}
+//         type="button"
+//         onClick={toggleOpen}
+//         whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
+//         aria-expanded={open}
+//         aria-haspopup="menu"
+//         aria-label={isLoggedIn ? "Open account menu" : "Open account options"}
+//         className="
+//           group
+//           flex
+//           min-w-0
+//           flex-1
+//           flex-col
+//           items-center
+//           justify-center
+//           gap-1
+//           py-2
+//           text-[11px]
+//           font-medium
+//           transition-colors
+//           focus:outline-none
+//           focus-visible:ring-2
+//           focus-visible:ring-red-500/30
+
+//           md:flex-none
+//           md:flex-row
+//           md:gap-1.5
+//           md:rounded-full
+//           md:p-1
+//           md:hover:bg-zinc-100
+//         "
+//       >
+//         {/* Mobile icon */}
+//         {isLoggedIn ? (
+//           <span
+//             className="
+//       flex
+//       h-[21px]
+//       w-[21px]
+//       items-center
+//       justify-center
+//       rounded-full
+//       bg-linear-to-br
+//       from-sky-600
+//       to-red-600
+//       text-[9px]
+//       font-bold
+//       text-white
+//       shadow-sm
+//       md:hidden
+//     "
+//           >
+//             {firstLetter}
+//           </span>
+//         ) : (
+//           <UserRound
+//             size={21}
+//             strokeWidth={open ? 2 : 1.7}
+//             aria-hidden="true"
+//             className={`
+//       md:hidden
+//       transition-colors
+//       ${open ? "text-red-600" : "text-neutral-500"}
+//     `}
+//           />
+//         )}
+
+//         {/* Mobile label */}
+//         <span
+//           className={`
+//             text-[11px]
+//             md:hidden
+//             transition-colors
+//             ${open ? "text-red-600" : "text-neutral-500"}
+//           `}
+//         >
+//           Account
+//         </span>
+
+//         {/* Desktop avatar */}
+//         <div className="relative hidden md:block">
+//           <div
+//             className="
+//               flex
+//               h-8
+//               w-8
+//               items-center
+//               justify-center
+//               rounded-full
+//               bg-zinc-900/10
+//               text-zinc-900
+//               ring-2
+//               ring-transparent
+//               transition-all
+//               group-hover:ring-zinc-200
+//             "
+//           >
+//             {isLoggedIn ? (
+//               <span className="text-[11px] font-bold tracking-tight">
+//                 {firstLetter}
+//               </span>
+//             ) : (
+//               <User size={15} strokeWidth={2.2} aria-hidden="true" />
+//             )}
+//           </div>
+
+//           {isLoggedIn && (
+//             <span
+//               className="
+//                 absolute
+//                 -bottom-0.5
+//                 -right-0.5
+//                 h-2.5
+//                 w-2.5
+//                 rounded-full
+//                 border-2
+//                 border-white
+//                 bg-emerald-500
+//               "
+//               aria-hidden="true"
+//             />
+//           )}
+//         </div>
+
+//         {/* Desktop chevron */}
+//         <ChevronDown
+//           size={12}
+//           aria-hidden="true"
+//           className={`
+//             hidden
+//             text-zinc-400
+//             transition-transform
+//             duration-200
+//             md:block
+//             ${open ? "rotate-180" : ""}
+//           `}
+//         />
+//       </motion.button>
+
+//       <AnimatePresence>
+//         {open && (
+//           <>
+//             {/* ------------------------------------------------------------ */}
+//             {/* Mobile backdrop                                               */}
+//             {/* ------------------------------------------------------------ */}
+
+//             <motion.button
+//               type="button"
+//               aria-label="Close account menu"
+//               onClick={toggleOpen}
+//               initial={{ opacity: 0 }}
+//               animate={{ opacity: 1 }}
+//               exit={{ opacity: 0 }}
+//               transition={{
+//                 duration: shouldReduceMotion ? 0 : 0.15,
+//               }}
+//               className="
+//                 fixed
+//                 inset-0
+//                 z-40
+//                 cursor-default
+//                 border-0
+//                 bg-black/20
+//                 backdrop-blur-[1px]
+//                 md:hidden
+//               "
+//             />
+
+//             {/* ------------------------------------------------------------ */}
+//             {/* Account menu                                                   */}
+//             {/* ------------------------------------------------------------ */}
+
+//             <motion.div
+//               role="menu"
+//               aria-label="Account menu"
+//               initial={
+//                 shouldReduceMotion
+//                   ? { opacity: 0 }
+//                   : {
+//                       opacity: 0,
+//                       y: 8,
+//                       scale: 0.98,
+//                     }
+//               }
+//               animate={
+//                 shouldReduceMotion
+//                   ? { opacity: 1 }
+//                   : {
+//                       opacity: 1,
+//                       y: 0,
+//                       scale: 1,
+//                     }
+//               }
+//               exit={
+//                 shouldReduceMotion
+//                   ? { opacity: 0 }
+//                   : {
+//                       opacity: 0,
+//                       y: 8,
+//                       scale: 0.98,
+//                     }
+//               }
+//               transition={{
+//                 duration: shouldReduceMotion ? 0 : 0.15,
+//                 ease: "easeOut",
+//               }}
+//               className="
+//                 fixed
+//                 bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)]
+//                 right-3
+//                 z-50
+//                 w-[min(13rem,calc(100vw-1.5rem))]
+//                 overflow-hidden
+//                 rounded-2xl
+//                 border
+//                 border-neutral-200/80
+//                 bg-white
+//                 shadow-[0_12px_40px_rgba(0,0,0,0.14)]
+
+//                 md:absolute
+//                 md:bottom-auto
+//                 md:right-0
+//                 md:top-full
+//                 md:mt-2
+//                 md:w-44
+//                 md:rounded-xl
+//                 md:shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+//               "
+//             >
+//               {isLoggedIn ? (
+//                 <div className="flex flex-col">
+//                   {/* Identity */}
+//                   <div
+//                     className="
+//                       border-b
+//                       border-neutral-100
+//                       bg-neutral-50/70
+//                       px-4
+//                       py-3.5
+//                     "
+//                   >
+//                     <p
+//                       className="
+//                         truncate
+//                         text-[12px]
+//                         font-semibold
+//                         leading-4
+//                         text-neutral-900
+//                       "
+//                     >
+//                       {user?.name || "Account"}
+//                     </p>
+//                   </div>
+
+//                   {/* Account links */}
+//                   <div className="space-y-0.5 p-1.5">
+//                     {accountMenuItems.map((item) => (
+//                       <Item
+//                         key={item.to}
+//                         to={item.to}
+//                         icon={item.icon}
+//                         label={item.label}
+//                       />
+//                     ))}
+//                   </div>
+
+//                   {/* Logout */}
+//                   <div className="border-t border-neutral-100 p-1.5">
+//                     <button
+//                       type="button"
+//                       onClick={onLogout}
+//                       role="menuitem"
+//                       className="
+//                         group
+//                         flex
+//                         w-full
+//                         items-center
+//                         gap-2.5
+//                         rounded-lg
+//                         px-3
+//                         py-2.5
+//                         text-left
+//                         text-[12px]
+//                         font-semibold
+//                         text-red-500
+//                         transition-colors
+//                         hover:bg-red-50
+//                         focus:outline-none
+//                         focus-visible:ring-2
+//                         focus-visible:ring-red-500/20
+//                         md:py-2
+//                       "
+//                     >
+//                       <LogOut
+//                         size={15}
+//                         strokeWidth={1.8}
+//                         aria-hidden="true"
+//                         className="transition-transform group-hover:-translate-x-0.5"
+//                       />
+
+//                       <span>Logout</span>
+//                     </button>
+//                   </div>
+//                 </div>
+//               ) : (
+//                 <div className="flex flex-col">
+//                   {/* Guest heading */}
+//                   <div
+//                     className="
+//                       border-b
+//                       border-neutral-100
+//                       bg-neutral-50/70
+//                       px-4
+//                       py-3.5
+//                     "
+//                   >
+//                     <p
+//                       className="
+//                         text-[10px]
+//                         font-bold
+//                         uppercase
+//                         tracking-[0.14em]
+//                         text-neutral-400
+//                       "
+//                     >
+//                       Welcome
+//                     </p>
+//                   </div>
+
+//                   {/* Guest links */}
+//                   <div className="space-y-0.5 p-1.5">
+//                     {guestMenuItems.map((item) => (
+//                       <Item
+//                         key={item.to}
+//                         to={item.to}
+//                         icon={item.icon}
+//                         label={item.label}
+//                       />
+//                     ))}
+//                   </div>
+//                 </div>
+//               )}
+//             </motion.div>
+//           </>
+//         )}
+//       </AnimatePresence>
+//     </div>
+//   );
+// }
+
+////////////////// Above wla full, Down refactor
+import { Heart, LogIn, Package, User, UserPlus } from "lucide-react";
+import { AnimatePresence, useReducedMotion } from "framer-motion";
 
 import type { UserType } from "./usermenu-types";
-import Item from "./Item";
+import UserMenuTrigger from "./UserMenuTrigger";
+import UserMenuDropdown from "./UserMenuDropdown";
+
+/* -------------------------------------------------------------------------- */
+/*                                   Props                                    */
+/* -------------------------------------------------------------------------- */
 
 interface Props {
+  // Controls whether the account menu is open.
   open: boolean;
-  toggleOpen: () => void;
-  buttonRef: React.RefObject<HTMLButtonElement | null>;
-  menuRef: React.RefObject<HTMLDivElement | null>;
-  isLoggedIn: boolean;
-  user: UserType | null;
-  onLogout: () => Promise<void> | void;
-}
 
-export interface MenuItem {
-  to: string;
-  label: string;
-  icon: React.ReactNode;
+  // Opens or closes the account menu.
+  toggleOpen: () => void;
+
+  // Ref attached to the account trigger button.
+  buttonRef: React.RefObject<HTMLButtonElement | null>;
+
+  // Ref attached to the complete UserMenu wrapper.
+  menuRef: React.RefObject<HTMLDivElement | null>;
+
+  // Determines whether the current user is authenticated.
+  isLoggedIn: boolean;
+
+  // Current user's information when logged in.
+  user: UserType | null;
+
+  // Handles the logout action.
+  onLogout: () => Promise<void> | void;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                              Menu Configuration                            */
 /* -------------------------------------------------------------------------- */
 
+/*
+ * Shared shape for account menu items.
+ *
+ * The configuration stays in UserMenuView because it describes what the
+ * account menu contains, while UserMenuTrigger and UserMenuDropdown are
+ * responsible only for rendering their respective UI.
+ */
+export interface MenuItem {
+  // Destination of the menu item.
+  to: string;
+
+  // Visible label of the menu item.
+  label: string;
+
+  // Icon displayed next to the label.
+  icon: React.ReactNode;
+}
+
+/*
+ * Menu items available to authenticated users.
+ */
 const accountMenuItems: MenuItem[] = [
   {
     to: "/profile",
@@ -204,6 +674,9 @@ const accountMenuItems: MenuItem[] = [
   },
 ];
 
+/*
+ * Menu items available to guests.
+ */
 const guestMenuItems: MenuItem[] = [
   {
     to: "/login",
@@ -230,366 +703,81 @@ export default function UserMenuView({
   user,
   onLogout,
 }: Props) {
+  /*
+   * Detects whether the user prefers reduced motion.
+   *
+   * The value is passed to the trigger and dropdown so both parts of the
+   * UserMenu respect the same accessibility preference.
+   */
   const shouldReduceMotion = useReducedMotion();
 
+  /*
+   * Creates the user's avatar initial.
+   *
+   * The original "U" fallback is preserved.
+   *
+   * The value is calculated once here and passed to UserMenuTrigger instead
+   * of calculating it again inside the child component.
+   */
   const firstLetter = isLoggedIn
     ? (user?.name?.[0]?.toUpperCase() ?? "U")
     : null;
 
   return (
     <div
+      /*
+       * This remains the main UserMenu wrapper ref.
+       *
+       * Keeping the ref here preserves any existing outside-click handling
+       * that depends on the complete account menu area.
+       */
       ref={menuRef}
-      className="relative flex min-w-0 flex-1 justify-center md:flex-none"
+      className="
+        relative
+        flex
+        min-w-0
+        flex-1
+        justify-center
+        md:flex-none
+      "
     >
       {/* ------------------------------------------------------------------ */}
       {/* Account Trigger                                                    */}
       {/* ------------------------------------------------------------------ */}
 
-      <motion.button
-        ref={buttonRef}
-        type="button"
-        onClick={toggleOpen}
-        whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
-        aria-expanded={open}
-        aria-haspopup="menu"
-        aria-label={isLoggedIn ? "Open account menu" : "Open account options"}
-        className="
-          group
-          flex
-          min-w-0
-          flex-1
-          flex-col
-          items-center
-          justify-center
-          gap-1
-          py-2
-          text-[11px]
-          font-medium
-          transition-colors
-          focus:outline-none
-          focus-visible:ring-2
-          focus-visible:ring-red-500/30
+      {/*
+       * UserMenuTrigger contains only the account button UI.
+       *
+       * No dropdown logic is handled by the trigger component.
+       */}
+      <UserMenuTrigger
+        open={open}
+        toggleOpen={toggleOpen}
+        buttonRef={buttonRef}
+        isLoggedIn={isLoggedIn}
+        firstLetter={firstLetter}
+        shouldReduceMotion={shouldReduceMotion}
+      />
 
-          md:flex-none
-          md:flex-row
-          md:gap-1.5
-          md:rounded-full
-          md:p-1
-          md:hover:bg-zinc-100
-        "
-      >
-        {/* Mobile icon */}
-        {isLoggedIn ? (
-          <span
-            className="
-      flex
-      h-[21px]
-      w-[21px]
-      items-center
-      justify-center
-      rounded-full
-      bg-linear-to-br
-      from-sky-600
-      to-red-600
-      text-[9px]
-      font-bold
-      text-white
-      shadow-sm
-      md:hidden
-    "
-          >
-            {firstLetter}
-          </span>
-        ) : (
-          <UserRound
-            size={21}
-            strokeWidth={open ? 2 : 1.7}
-            aria-hidden="true"
-            className={`
-      md:hidden
-      transition-colors
-      ${open ? "text-red-600" : "text-neutral-500"}
-    `}
-          />
-        )}
+      {/* ------------------------------------------------------------------ */}
+      {/* Account Dropdown                                                   */}
+      {/* ------------------------------------------------------------------ */}
 
-        {/* Mobile label */}
-        <span
-          className={`
-            text-[11px]
-            md:hidden
-            transition-colors
-            ${open ? "text-red-600" : "text-neutral-500"}
-          `}
-        >
-          Account
-        </span>
-
-        {/* Desktop avatar */}
-        <div className="relative hidden md:block">
-          <div
-            className="
-              flex
-              h-8
-              w-8
-              items-center
-              justify-center
-              rounded-full
-              bg-zinc-900/10
-              text-zinc-900
-              ring-2
-              ring-transparent
-              transition-all
-              group-hover:ring-zinc-200
-            "
-          >
-            {isLoggedIn ? (
-              <span className="text-[11px] font-bold tracking-tight">
-                {firstLetter}
-              </span>
-            ) : (
-              <User size={15} strokeWidth={2.2} aria-hidden="true" />
-            )}
-          </div>
-
-          {isLoggedIn && (
-            <span
-              className="
-                absolute
-                -bottom-0.5
-                -right-0.5
-                h-2.5
-                w-2.5
-                rounded-full
-                border-2
-                border-white
-                bg-emerald-500
-              "
-              aria-hidden="true"
-            />
-          )}
-        </div>
-
-        {/* Desktop chevron */}
-        <ChevronDown
-          size={12}
-          aria-hidden="true"
-          className={`
-            hidden
-            text-zinc-400
-            transition-transform
-            duration-200
-            md:block
-            ${open ? "rotate-180" : ""}
-          `}
-        />
-      </motion.button>
-
+      {/*
+       * AnimatePresence controls mounting/unmounting of the dropdown so the
+       * existing enter and exit animations continue to work.
+       */}
       <AnimatePresence>
         {open && (
-          <>
-            {/* ------------------------------------------------------------ */}
-            {/* Mobile backdrop                                               */}
-            {/* ------------------------------------------------------------ */}
-
-            <motion.button
-              type="button"
-              aria-label="Close account menu"
-              onClick={toggleOpen}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: shouldReduceMotion ? 0 : 0.15,
-              }}
-              className="
-                fixed
-                inset-0
-                z-40
-                cursor-default
-                border-0
-                bg-black/20
-                backdrop-blur-[1px]
-                md:hidden
-              "
-            />
-
-            {/* ------------------------------------------------------------ */}
-            {/* Account menu                                                   */}
-            {/* ------------------------------------------------------------ */}
-
-            <motion.div
-              role="menu"
-              aria-label="Account menu"
-              initial={
-                shouldReduceMotion
-                  ? { opacity: 0 }
-                  : {
-                      opacity: 0,
-                      y: 8,
-                      scale: 0.98,
-                    }
-              }
-              animate={
-                shouldReduceMotion
-                  ? { opacity: 1 }
-                  : {
-                      opacity: 1,
-                      y: 0,
-                      scale: 1,
-                    }
-              }
-              exit={
-                shouldReduceMotion
-                  ? { opacity: 0 }
-                  : {
-                      opacity: 0,
-                      y: 8,
-                      scale: 0.98,
-                    }
-              }
-              transition={{
-                duration: shouldReduceMotion ? 0 : 0.15,
-                ease: "easeOut",
-              }}
-              className="
-                fixed
-                bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)]
-                right-3
-                z-50
-                w-[min(13rem,calc(100vw-1.5rem))]
-                overflow-hidden
-                rounded-2xl
-                border
-                border-neutral-200/80
-                bg-white
-                shadow-[0_12px_40px_rgba(0,0,0,0.14)]
-
-                md:absolute
-                md:bottom-auto
-                md:right-0
-                md:top-full
-                md:mt-2
-                md:w-44
-                md:rounded-xl
-                md:shadow-[0_8px_30px_rgba(0,0,0,0.12)]
-              "
-            >
-              {isLoggedIn ? (
-                <div className="flex flex-col">
-                  {/* Identity */}
-                  <div
-                    className="
-                      border-b
-                      border-neutral-100
-                      bg-neutral-50/70
-                      px-4
-                      py-3.5
-                    "
-                  >
-                    <p
-                      className="
-                        truncate
-                        text-[12px]
-                        font-semibold
-                        leading-4
-                        text-neutral-900
-                      "
-                    >
-                      {user?.name || "Account"}
-                    </p>
-                  </div>
-
-                  {/* Account links */}
-                  <div className="space-y-0.5 p-1.5">
-                    {accountMenuItems.map((item) => (
-                      <Item
-                        key={item.to}
-                        to={item.to}
-                        icon={item.icon}
-                        label={item.label}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Logout */}
-                  <div className="border-t border-neutral-100 p-1.5">
-                    <button
-                      type="button"
-                      onClick={onLogout}
-                      role="menuitem"
-                      className="
-                        group
-                        flex
-                        w-full
-                        items-center
-                        gap-2.5
-                        rounded-lg
-                        px-3
-                        py-2.5
-                        text-left
-                        text-[12px]
-                        font-semibold
-                        text-red-500
-                        transition-colors
-                        hover:bg-red-50
-                        focus:outline-none
-                        focus-visible:ring-2
-                        focus-visible:ring-red-500/20
-                        md:py-2
-                      "
-                    >
-                      <LogOut
-                        size={15}
-                        strokeWidth={1.8}
-                        aria-hidden="true"
-                        className="transition-transform group-hover:-translate-x-0.5"
-                      />
-
-                      <span>Logout</span>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="flex flex-col">
-                  {/* Guest heading */}
-                  <div
-                    className="
-                      border-b
-                      border-neutral-100
-                      bg-neutral-50/70
-                      px-4
-                      py-3.5
-                    "
-                  >
-                    <p
-                      className="
-                        text-[10px]
-                        font-bold
-                        uppercase
-                        tracking-[0.14em]
-                        text-neutral-400
-                      "
-                    >
-                      Welcome
-                    </p>
-                  </div>
-
-                  {/* Guest links */}
-                  <div className="space-y-0.5 p-1.5">
-                    {guestMenuItems.map((item) => (
-                      <Item
-                        key={item.to}
-                        to={item.to}
-                        icon={item.icon}
-                        label={item.label}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          </>
+          <UserMenuDropdown
+            toggleOpen={toggleOpen}
+            isLoggedIn={isLoggedIn}
+            user={user}
+            onLogout={onLogout}
+            accountMenuItems={accountMenuItems}
+            guestMenuItems={guestMenuItems}
+            shouldReduceMotion={shouldReduceMotion}
+          />
         )}
       </AnimatePresence>
     </div>
