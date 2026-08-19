@@ -662,7 +662,7 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
   if (loading) {
     return (
       <section
-        className="relative m-1 flex h-[235px] items-center justify-center overflow-hidden rounded-xl bg-slate-900 animate-pulse sm:h-[340px] md:h-[500px]"
+        className="relative m-1 flex h-[235px] items-center justify-center overflow-hidden  bg-slate-900 animate-pulse sm:h-[340px] md:h-[520px]"
         aria-label="Loading hero banners"
       >
         <div className="h-6 w-6 rounded-full border-2 border-slate-700 border-t-indigo-500 animate-spin sm:h-8 sm:w-8" />
