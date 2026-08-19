@@ -151,7 +151,7 @@ export default function BottomNavigationItem({
         flex h-4 min-w-4 items-center justify-center
         rounded-full bg-red-500 px-1
         text-[10px] font-bold leading-none text-white
-        ring-2 ring-white
+        
       "
                 >
                   {badge > 99 ? "99+" : badge}
