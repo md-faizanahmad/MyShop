@@ -52,7 +52,7 @@ export default function Header() {
 
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-0 hover:bg-sky-50 rounded-full"
+              className="p-0 hover:bg-sky-50 rounded-full hidden"
               aria-label="Search"
             >
               <Search className="text-gray-700" />

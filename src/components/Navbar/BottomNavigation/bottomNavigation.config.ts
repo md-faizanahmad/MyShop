@@ -1,11 +1,4 @@
-import {
-  Compass,
-  Heart,
-  House,
-  Search,
-  ShoppingBag,
-  UserRound,
-} from "lucide-react";
+import { Heart, House, Search, ShoppingBag, UserRound } from "lucide-react";
 
 export const bottomNavigationItems = [
   {
