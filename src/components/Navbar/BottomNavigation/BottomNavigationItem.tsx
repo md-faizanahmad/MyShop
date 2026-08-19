@@ -58,6 +58,7 @@ interface BottomNavigationItemProps {
   icon: LucideIcon;
   type: "link" | "account";
   badge?: number;
+  badgeLoading?: boolean;
 }
 
 export default function BottomNavigationItem({
@@ -66,6 +67,7 @@ export default function BottomNavigationItem({
   icon: Icon,
   type,
   badge,
+  badgeLoading,
 }: BottomNavigationItemProps) {
   const isExplore = to === "/explore";
 
@@ -128,18 +130,33 @@ export default function BottomNavigationItem({
             />
 
             {/* Wishlist badge */}
-            {badge !== undefined && badge > 0 && (
+            {badgeLoading ? (
               <span
+                aria-hidden="true"
                 className="
-                  absolute -right-1 -top-1
-                  flex h-4 min-w-4 items-center justify-center
-                  rounded-full bg-red-500 px-1
-                  text-[10px] font-bold leading-none text-white
-                  ring-2 ring-white
-                "
-              >
-                {badge > 99 ? "99+" : badge}
-              </span>
+      absolute -right-1 -top-1
+      h-4 min-w-4
+      animate-pulse
+      rounded-full
+      bg-neutral-200
+      ring-2 ring-white
+    "
+              />
+            ) : (
+              badge !== undefined &&
+              badge > 0 && (
+                <span
+                  className="
+        absolute -right-1 -top-1
+        flex h-4 min-w-4 items-center justify-center
+        rounded-full bg-red-500 px-1
+        text-[10px] font-bold leading-none text-white
+        ring-2 ring-white
+      "
+                >
+                  {badge > 99 ? "99+" : badge}
+                </span>
+              )
             )}
           </div>
 

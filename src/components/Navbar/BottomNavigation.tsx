@@ -4,6 +4,7 @@ import { bottomNavigationItems } from "./BottomNavigation/bottomNavigation.confi
 
 export default function BottomNavigation() {
   const wishlistCount = useWishlistStore((state) => state.items.length);
+  const wishlistLoading = useWishlistStore((state) => state.loading);
 
   return (
     <nav
@@ -22,6 +23,7 @@ bg-white/75 backdrop-blur-xl backdrop-saturate-150
             key={item.to}
             {...item}
             badge={item.to === "/wishlist" ? wishlistCount : undefined}
+            badgeLoading={item.to === "/wishlist" ? wishlistLoading : false}
           />
         ))}
       </div>
