@@ -494,8 +494,8 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
 
         <div className="mt-5 sm:mt-6">
           {reviews.length === 0 ? (
-            <div className="flex items-center gap-3 rounded-xl border border-dashed border-slate-300 bg-white px-4 py-8">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-slate-400">
+            <div className="flex items-center gap-3  px-4 py-8">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center  text-slate-400">
                 <Quote className="h-4 w-4" />
               </div>
 
@@ -521,7 +521,7 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
               {reviews.map((review) => (
                 <article
                   key={review.id}
-                  className="flex w-[calc(100vw-42px)] shrink-0 snap-start flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:w-[360px] sm:p-5 lg:w-[380px]"
+                  className="flex w-[calc(100vw-42px)] shrink-0 snap-start flex-col justify-between border border-slate-200 bg-white p-4 shadow-sm sm:w-[360px] sm:p-5 lg:w-[380px]"
                 >
                   <div>
                     {/* User */}
