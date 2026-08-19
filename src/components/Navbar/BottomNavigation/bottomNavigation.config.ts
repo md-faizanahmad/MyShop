@@ -8,17 +8,18 @@ export const bottomNavigationItems = [
     type: "link",
   },
   {
-    label: "Explore",
-    to: "/explore",
-    icon: Compass,
-    type: "link",
-  },
-  {
     label: "Products",
     to: "/products",
     icon: ShoppingBag,
     type: "link",
   },
+  {
+    label: "Explore",
+    to: "/explore",
+    icon: Compass,
+    type: "link",
+  },
+
   {
     label: "Wishlist",
     to: "/wishlist",

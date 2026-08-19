@@ -29,40 +29,71 @@ export default function BottomNavigationItem({
     <NavLink
       to={to}
       end={to === "/"}
-      className={({ isActive }) =>
-        [
-          "flex min-w-0 flex-1 flex-col items-center justify-center gap-1",
-          "py-2 text-[11px] font-medium transition-colors",
-          isActive ? "text-red-600" : "text-neutral-500 active:text-red-900",
-        ].join(" ")
-      }
+      className="relative flex min-w-0 flex-1 flex-col items-center justify-center"
       aria-label={label}
     >
       {({ isActive }) => (
         <>
-          {/* <Icon size={21} strokeWidth={isActive ? 2 : 1.7} aria-hidden="true" /> */}
-          <div className="relative">
+          {/* Active circular notch */}
+          {isActive && (
+            <span
+              className="
+                pointer-events-none
+                absolute left-1/2 top-0
+                h-14 w-14
+                -translate-x-1/2 -translate-y-1/2
+                rounded-full
+
+              "
+            />
+          )}
+
+          {/* Icon */}
+          <div
+            className={`
+              relative z-10
+              flex items-center justify-center
+              transition-all duration-300 ease-out
+              ${
+                isActive
+                  ? "h-11 w-11 -translate-y-4 rounded-full bg-red-600 text-white shadow-lg shadow-red-600/30"
+                  : "h-9 w-9 translate-y-0 text-neutral-500"
+              }
+            `}
+          >
             <Icon
-              size={21}
-              strokeWidth={isActive ? 2 : 1.7}
+              size={isActive ? 22 : 21}
+              strokeWidth={isActive ? 2.2 : 1.7}
               aria-hidden="true"
             />
 
+            {/* Wishlist badge */}
             {badge !== undefined && badge > 0 && (
               <span
                 className="
-        absolute -right-2.5 -top-2
-        flex h-4 min-w-4 items-center justify-center
-        rounded-full bg-red-500 px-1
-        text-[10px] font-bold leading-none text-white
-        ring-2 ring-white
-      "
+                  absolute -right-1 -top-1
+                  flex h-4 min-w-4 items-center justify-center
+                  rounded-full bg-red-500 px-1
+                  text-[10px] font-bold leading-none text-white
+                  ring-2 ring-white
+                "
               >
                 {badge > 99 ? "99+" : badge}
               </span>
             )}
           </div>
-          <span>{label}</span>
+
+          {/* Label */}
+          <span
+            className={`
+              relative z-10
+              text-[11px] font-medium
+              transition-colors duration-300
+              ${isActive ? "-mt-2 text-red-600" : "mt-0 text-neutral-500"}
+            `}
+          >
+            {label}
+          </span>
         </>
       )}
     </NavLink>
