@@ -5,12 +5,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { DesktopNavbarProps } from "@/types/nav";
 import NavbarLinkSkeleton from "@/skeleton/NavbarLinkSkeleton";
 
-const desktopLinkClass = "text-gray-500 hover:text-blue-600";
+const desktopLinkClass = "text-gray-500 hover:text-sky-600";
 
 const desktopActiveClass = "text-sky-600 font-semibold";
 
 const desktopDropdownLinkClass =
-  "block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-blue-600";
+  "block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-sky-600";
 
 export default function DesktopNavbar({
   categories,
@@ -76,7 +76,7 @@ export default function DesktopNavbar({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute left-0 mt-3 w-52 bg-white shadow-lg rounded-md py-2 z-50"
+                  className="absolute left-0 mt-3 w-40 bg-white shadow-lg   z-50"
                 >
                   {cat.subcategories!.map((sub) => (
                     <Link
