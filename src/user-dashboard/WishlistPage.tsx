@@ -63,12 +63,12 @@ export default function WishlistPage() {
      Render
   ----------------------------- */
   return (
-    <main className="min-h-dvh bg-slate-50 px-3 py-5 sm:px-5 sm:py-7 lg:px-8 lg:py-8">
+    <main className="min-h-dvh  px-2.5 py-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8">
       <section className="mx-auto w-full max-w-7xl">
         {/* Header */}
-        <header className="mb-5 flex items-center justify-between gap-3 sm:mb-6">
+        <header className="mb-4 flex items-center justify-between gap-3 sm:mb-6">
           <div className="min-w-0">
-            <h1 className="text-lg font-semibold tracking-tight text-slate-900 sm:text-xl lg:text-2xl">
+            <h1 className="text-base font-semibold tracking-tight text-slate-900 sm:text-lg lg:text-xl">
               My Wishlist
               <span className="ml-1.5 text-sm font-normal text-slate-400">
                 ({items.length})
@@ -83,9 +83,10 @@ export default function WishlistPage() {
                 void clear();
                 toast.success("Wishlist cleared");
               }}
-              className="shrink-0 rounded-lg px-2 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:px-3 sm:py-2 sm:text-sm"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 sm:px-2.5 sm:text-sm"
             >
-              Clear all <Trash2 />
+              <span>Clear all</span>
+              <Trash2 size={14} aria-hidden="true" />
             </button>
           )}
         </header>
@@ -93,7 +94,7 @@ export default function WishlistPage() {
         {/* Grid */}
         <div
           aria-label="Wishlist products"
-          className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+          className="grid grid-cols-2 gap-2.5 xs:gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
         >
           {items.map((item) => {
             const p = item.product;
@@ -101,7 +102,7 @@ export default function WishlistPage() {
             return (
               <article
                 key={item.productId}
-                className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+                className="group min-w-0 overflow-hidden rounded-md border border-slate-200 bg-white transition-shadow duration-200 hover:shadow-sm"
               >
                 <Link
                   to={`/category/${p.category.slug}/product/${p.slug}`}
@@ -116,16 +117,16 @@ export default function WishlistPage() {
                   />
                 </Link>
 
-                <div className="flex flex-col p-3 sm:p-3.5">
-                  <h2 className="line-clamp-2 min-h-10 text-sm font-medium leading-5 text-slate-900">
+                <div className="flex min-w-0 flex-col p-2.5 sm:p-3">
+                  <h2 className="line-clamp-2 min-h-10 text-[13px] font-medium leading-5 text-slate-900 sm:text-sm">
                     {p.name}
                   </h2>
 
-                  <p className="mt-2 text-base font-semibold text-sky-600">
+                  <p className="mt-1.5 text-sm font-semibold text-sky-600 sm:text-base">
                     ₹{p.price.toLocaleString("en-IN")}
                   </p>
 
-                  <div className="mt-3 flex items-center gap-2">
+                  <div className="mt-2.5 flex items-center gap-1.5 sm:gap-2">
                     <button
                       type="button"
                       onClick={() => {
@@ -134,14 +135,21 @@ export default function WishlistPage() {
                           toast.success("Added to cart");
                         }
                       }}
-                      className={`flex h-9 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-lg px-2 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1 ${
+                      className={`flex h-9 min-w-0 flex-1 items-center justify-center gap-1 rounded-md px-1.5 text-[11px] font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1 sm:gap-1.5 sm:px-2 sm:text-xs ${
                         isInCart(p._id)
                           ? "bg-emerald-50 text-emerald-700"
                           : "bg-sky-600 text-white hover:bg-sky-700"
                       }`}
                     >
-                      <ShoppingCart size={14} aria-hidden="true" />
-                      {isInCart(p._id) ? "Added" : "Add to Cart"}
+                      <ShoppingCart
+                        size={13}
+                        className="shrink-0 sm:h-3.5 sm:w-3.5"
+                        aria-hidden="true"
+                      />
+
+                      <span className="truncate">
+                        {isInCart(p._id) ? "Added" : "Add to Cart"}
+                      </span>
                     </button>
 
                     <button
@@ -152,9 +160,9 @@ export default function WishlistPage() {
                       }}
                       aria-label={`Remove ${p.name} from wishlist`}
                       title="Remove from wishlist"
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-slate-200 text-slate-500 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1"
                     >
-                      <X size={15} aria-hidden="true" />
+                      <X size={14} aria-hidden="true" />
                     </button>
                   </div>
                 </div>
