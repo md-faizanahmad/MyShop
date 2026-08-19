@@ -128,8 +128,9 @@ export default function NewArrivals() {
                 "
               >
                 {/* Product image */}
+                {/* /category/${product.category.slug}/product/${product.slug */}
                 <Link
-                  to={`/product/${product.slug}`}
+                  to={`/category/${product.category.slug}/product/${product.slug}`}
                   aria-label={`View ${product.name}`}
                   className="
                     relative block
