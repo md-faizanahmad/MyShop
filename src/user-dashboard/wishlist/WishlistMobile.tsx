@@ -1,25 +1,17 @@
 import { Link } from "react-router-dom";
 import { ShoppingCart, X } from "lucide-react";
+import type { PublicProduct } from "@/types/product";
 
 type WishlistItem = {
   productId: string;
-  product: {
-    _id: string;
-    name: string;
-    slug: string;
-    imageUrl: string;
-    price: number;
-    category: {
-      slug: string;
-    };
-  };
+  product: PublicProduct;
 };
 
 interface WishlistMobileProps {
   items: WishlistItem[];
   isInCart: (productId: string) => boolean;
   onRemove: (productId: string) => void;
-  onAddToCart: (product: WishlistItem["product"]) => void;
+  onAddToCart: (product: PublicProduct) => void;
 }
 
 export default function WishlistMobile({
