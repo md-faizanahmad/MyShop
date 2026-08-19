@@ -1,183 +1,3 @@
-// // src/components/home/CustomerReviews.tsx
-// import { Star } from "lucide-react";
-// import type { FC } from "react";
-
-// export interface Review {
-//   id: string; // unique id for UI
-//   name: string;
-//   rating: number;
-//   comment: string;
-//   date: string; // human readable
-//   dateISO: string; // exact ISO for <time>
-//   verified: boolean;
-//   city?: string; // optional, component handles missing
-// }
-
-// interface CustomerReviewsProps {
-//   reviews: Review[]; // REQUIRED dynamic reviews
-//   totalReviewsLabel?: string; // optional summary text
-//   title?: string; // customizable title
-//   subtitle?: string; // customizable subtitle
-// }
-
-// const CustomerReviews: FC<CustomerReviewsProps> = ({
-//   reviews,
-//   totalReviewsLabel = "Customer Reviews",
-//   title = "What Customers Say",
-//   subtitle = "Authentic feedback from recent buyers",
-// }) => {
-//   const avgRating =
-//     reviews.length > 0
-//       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
-//       : 0;
-
-//   return (
-//     <section className="py-12">
-//       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-//         {/* Header */}
-//         <div className="text-center mb-8">
-//           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-//             {title}
-//           </h2>
-
-//           {subtitle && (
-//             <p className="mt-2 text-sm md:text-base text-gray-600">
-//               {subtitle}
-//             </p>
-//           )}
-
-//           {/* Rating summary */}
-//           {reviews.length > 0 && (
-//             <div className="flex items-center justify-center gap-2 mt-4">
-//               <div aria-hidden="true" className="flex gap-0.5">
-//                 {Array.from({ length: 5 }, (_, i) => (
-//                   <Star
-//                     key={i}
-//                     className={`w-5 h-5 md:w-6 md:h-6 ${
-//                       i < Math.round(avgRating)
-//                         ? "fill-yellow-400 text-yellow-400"
-//                         : "text-gray-300"
-//                     }`}
-//                   />
-//                 ))}
-//               </div>
-
-//               <span className="text-base md:text-lg font-semibold ml-1">
-//                 {avgRating.toFixed(1)}/5
-//               </span>
-
-//               <span className="text-xs md:text-sm text-gray-500">
-//                 · {totalReviewsLabel}
-//               </span>
-//             </div>
-//           )}
-//         </div>
-
-//         {/* No reviews fallback */}
-//         {reviews.length === 0 && (
-//           <p className="text-center text-gray-600 text-sm">
-//             No reviews yet. Be the first to write one!
-//           </p>
-//         )}
-
-//         {/* Reviews Grid */}
-//         <ul
-//           role="list"
-//           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-//         >
-//           {reviews.map((review) => (
-//             <li key={review.id}>
-//               <article
-//                 aria-label={`Review by ${review.name}`}
-//                 className="bg-white rounded-2xl shadow-sm p-5 border border-purple-100 hover:shadow-md hover:-translate-y-1 transition"
-//               >
-//                 {/* User header */}
-//                 <div className="flex items-center gap-3 mb-3">
-//                   <div
-//                     aria-hidden="true"
-//                     className="w-10 h-10 md:w-11 md:h-11 bg-linear-to-br from-blue-300 to-sky-300 rounded-full flex items-center justify-center text-white font-semibold text-sm md:text-base"
-//                   >
-//                     {review.name.charAt(0)}
-//                   </div>
-
-//                   <div className="flex-1 min-w-0">
-//                     <h4 className="font-semibold text-sm md:text-base text-gray-900">
-//                       {review.name}
-//                     </h4>
-
-//                     <div className="flex items-center gap-2">
-//                       {review.city && (
-//                         <>
-//                           <p className="text-[11px] md:text-xs text-gray-500 truncate">
-//                             {review.city}
-//                           </p>
-//                           <span className="text-[11px] md:text-xs text-gray-400">
-//                             •
-//                           </span>
-//                         </>
-//                       )}
-
-//                       <time
-//                         dateTime={review.dateISO}
-//                         className="text-[11px] md:text-xs text-gray-500"
-//                       >
-//                         {review.date}
-//                       </time>
-//                     </div>
-
-//                     {review.verified && (
-//                       <div className="mt-0.5">
-//                         <span className="inline-block text-[10px] md:text-[11px] text-green-600 font-medium">
-//                           Verified Buyer
-//                         </span>
-//                       </div>
-//                     )}
-//                   </div>
-//                 </div>
-
-//                 {/* Rating */}
-//                 <div className="flex items-center gap-2 mb-2">
-//                   <div aria-hidden="true" className="flex gap-1">
-//                     {Array.from({ length: 5 }, (_, i) => (
-//                       <Star
-//                         key={i}
-//                         className={`w-4 h-4 ${
-//                           i < review.rating
-//                             ? "fill-yellow-400 text-yellow-400"
-//                             : "text-gray-300"
-//                         }`}
-//                       />
-//                     ))}
-//                   </div>
-//                 </div>
-
-//                 {/* Comment */}
-//                 <p className="text-sm text-gray-700 leading-relaxed line-clamp-3">
-//                   “{review.comment}”
-//                 </p>
-//               </article>
-//             </li>
-//           ))}
-//         </ul>
-
-//         {/* CTA */}
-//         {reviews.length > 6 && (
-//           <div className="text-center mt-8">
-//             <button
-//               type="button"
-//               className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-sky-600 text-white px-6 py-2.5 text-sm font-semibold hover:shadow-lg hover:scale-[1.02] transition"
-//             >
-//               Read More Reviews
-//             </button>
-//           </div>
-//         )}
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default CustomerReviews;
-
 ////////////////////////////////// UPDATE 16-02-2026
 
 // import { Star, CheckCircle2, Quote, ArrowRight } from "lucide-react";
@@ -357,6 +177,198 @@
 
 // export default CustomerReviews;
 ////////////////////////////////////////////////////////////////////////// update design 11-07-2026
+// import { Star, CheckCircle2, Quote, ArrowLeft, ArrowRight } from "lucide-react";
+// import { useRef } from "react";
+// import type { FC } from "react";
+
+// export interface Review {
+//   id: string;
+//   name: string;
+//   rating: number;
+//   comment: string;
+//   date: string;
+//   dateISO: string;
+//   verified: boolean;
+//   city?: string;
+// }
+
+// interface CustomerReviewsProps {
+//   reviews: Review[];
+//   totalReviewsLabel?: string;
+//   title?: string;
+//   subtitle?: string;
+// }
+
+// const CustomerReviews: FC<CustomerReviewsProps> = ({
+//   reviews,
+//   totalReviewsLabel = "Verified Reviews",
+//   title = "Customer Feedback",
+//   subtitle = "What buyers are saying about our tech and setup essentials.",
+// }) => {
+//   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+//   const avgRating =
+//     reviews.length > 0
+//       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+//       : 0;
+
+//   const scroll = (direction: "left" | "right") => {
+//     if (scrollContainerRef.current) {
+//       const scrollAmount = 360;
+//       scrollContainerRef.current.scrollBy({
+//         left: direction === "left" ? -scrollAmount : scrollAmount,
+//         behavior: "smooth",
+//       });
+//     }
+//   };
+
+//   return (
+//     <section className="py-16   overflow-hidden antialiased">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         {/* --- HEADER --- */}
+//         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-200  pb-5 mb-8 gap-6">
+//           <div className="flex flex-col gap-1">
+//             <span className="text-xs font-mono uppercase tracking-widest text-amber-600  font-semibold">
+//               Live Customer Feedback
+//             </span>
+//             <h2 className="text-2xl font-bold tracking-tight text-gray-950 ">
+//               {title}
+//             </h2>
+//             <p className="text-sm text-gray-600  max-w-md">{subtitle}</p>
+//           </div>
+
+//           {/* Rating Summary Card & Navigation Controls */}
+//           <div className="flex items-center gap-4 self-start md:self-auto">
+//             <div className="flex items-center gap-4 px-4 py-2.5 bg-white  border border-gray-200  rounded-md shadow-xs">
+//               <span className="text-2xl font-black tracking-tight text-gray-950 ">
+//                 {avgRating.toFixed(1)}
+//               </span>
+//               <div className="flex flex-col border-l border-gray-200  pl-4">
+//                 <div className="flex gap-0.5">
+//                   {[...Array(5)].map((_, i) => (
+//                     <Star
+//                       key={i}
+//                       size={12}
+//                       className={
+//                         i < Math.round(avgRating)
+//                           ? "fill-amber-400 text-amber-400"
+//                           : "fill-gray-100 text-gray-300  "
+//                       }
+//                     />
+//                   ))}
+//                 </div>
+//                 <p className="text-xs font-mono text-gray-500  mt-0.5">
+//                   {reviews.length} {totalReviewsLabel}
+//                 </p>
+//               </div>
+//             </div>
+
+//             {/* Carousel Arrow Controls */}
+//             {reviews.length > 0 && (
+//               <div className="flex items-center gap-1.5">
+//                 <button
+//                   onClick={() => scroll("left")}
+//                   className="p-2.5 rounded-md border border-gray-200  bg-white  text-gray-700  hover:bg-gray-100  transition-colors"
+//                   aria-label="Previous reviews"
+//                 >
+//                   <ArrowLeft size={16} />
+//                 </button>
+//                 <button
+//                   onClick={() => scroll("right")}
+//                   className="p-2.5 rounded-md border border-gray-200  bg-white text-gray-700  hover:bg-gray-100  transition-colors"
+//                   aria-label="Next reviews"
+//                 >
+//                   <ArrowRight size={16} />
+//                 </button>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+
+//         {/* --- CAROUSEL CONTAINER (ONLY ORIGINAL ITEMS) --- */}
+//         {reviews.length === 0 ? (
+//           <div className="py-8 px-4 border border-dashed border-gray-300  bg-white  flex items-center gap-3">
+//             <Quote className="text-gray-400 shrink-0" size={16} />
+//             <p className="text-xs font-mono text-gray-500 uppercase tracking-wider">
+//               No customer logs registered.
+//             </p>
+//           </div>
+//         ) : (
+//           <div
+//             ref={scrollContainerRef}
+//             className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+//             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+//           >
+//             {reviews.map((review) => (
+//               <article
+//                 key={review.id}
+//                 className="w-80 sm:w-96 shrink-0 snap-start flex flex-col justify-between border border-gray-200  bg-white  p-5 rounded-lg shadow-xs hover:border-gray-300  transition-colors"
+//               >
+//                 <div>
+//                   {/* User Header */}
+//                   <div className="flex items-start justify-between border-b border-gray-100  pb-3 mb-3">
+//                     <div className="flex items-center gap-2.5">
+//                       <div className="w-7 h-7 bg-gray-900  text-white  flex items-center justify-center font-mono text-xs font-bold rounded">
+//                         {review.name.charAt(0)}
+//                       </div>
+//                       <div className="flex flex-col">
+//                         <h4 className="text-xs font-bold tracking-tight text-gray-900  flex items-center gap-1">
+//                           <span>{review.name}</span>
+//                           {review.verified && (
+//                             <CheckCircle2
+//                               size={12}
+//                               className="text-emerald-600 fill-emerald-50 "
+//                             />
+//                           )}
+//                         </h4>
+//                         {review.city && (
+//                           <span className="text-[10px] font-mono text-gray-400 uppercase">
+//                             {review.city}
+//                           </span>
+//                         )}
+//                       </div>
+//                     </div>
+
+//                     <time
+//                       className="text-[10px] font-mono text-gray-400"
+//                       dateTime={review.dateISO}
+//                     >
+//                       {review.date}
+//                     </time>
+//                   </div>
+
+//                   {/* Rating Stars */}
+//                   <div className="flex gap-0.5 mb-2.5">
+//                     {[...Array(5)].map((_, i) => (
+//                       <Star
+//                         key={i}
+//                         size={11}
+//                         className={
+//                           i < review.rating
+//                             ? "fill-amber-400 text-amber-400"
+//                             : "fill-gray-100 text-gray-200 "
+//                         }
+//                       />
+//                     ))}
+//                   </div>
+
+//                   {/* Comment Body */}
+//                   <blockquote className="text-xs text-gray-700  leading-relaxed font-normal">
+//                     &ldquo;{review.comment}&rdquo;
+//                   </blockquote>
+//                 </div>
+//               </article>
+//             ))}
+//           </div>
+//         )}
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default CustomerReviews;
+
+////////////////////// Update 20-08
 import { Star, CheckCircle2, Quote, ArrowLeft, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import type { FC } from "react";
@@ -383,164 +395,204 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
   reviews,
   totalReviewsLabel = "Verified Reviews",
   title = "Customer Feedback",
-  subtitle = "What buyers are saying about our tech and setup essentials.",
+  subtitle = "See what customers are saying about their MyAZStore experience.",
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const avgRating =
     reviews.length > 0
-      ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+      ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
       : 0;
 
   const scroll = (direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 360;
-      scrollContainerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
+    if (!scrollContainerRef.current) return;
+
+    scrollContainerRef.current.scrollBy({
+      left: direction === "left" ? -320 : 320,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <section className="py-16   overflow-hidden antialiased">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* --- HEADER --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-200  pb-5 mb-8 gap-6">
-          <div className="flex flex-col gap-1">
-            <span className="text-xs font-mono uppercase tracking-widest text-amber-600  font-semibold">
-              Live Customer Feedback
+    <section className="w-full overflow-hidden py-8 sm:py-10 lg:py-12">
+      <div className="mx-auto w-full max-w-7xl px-3 sm:px-5 lg:px-8">
+        {/* -----------------------------------------------------------------
+            Header
+        ----------------------------------------------------------------- */}
+
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-sky-600 sm:text-xs">
+              Customer Reviews
             </span>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-950 ">
+
+            <h2 className="mt-1.5 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
               {title}
             </h2>
-            <p className="text-sm text-gray-600  max-w-md">{subtitle}</p>
-          </div>
 
-          {/* Rating Summary Card & Navigation Controls */}
-          <div className="flex items-center gap-4 self-start md:self-auto">
-            <div className="flex items-center gap-4 px-4 py-2.5 bg-white  border border-gray-200  rounded-md shadow-xs">
-              <span className="text-2xl font-black tracking-tight text-gray-950 ">
-                {avgRating.toFixed(1)}
-              </span>
-              <div className="flex flex-col border-l border-gray-200  pl-4">
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={12}
-                      className={
-                        i < Math.round(avgRating)
-                          ? "fill-amber-400 text-amber-400"
-                          : "fill-gray-100 text-gray-300  "
-                      }
-                    />
-                  ))}
-                </div>
-                <p className="text-xs font-mono text-gray-500  mt-0.5">
-                  {reviews.length} {totalReviewsLabel}
-                </p>
-              </div>
-            </div>
-
-            {/* Carousel Arrow Controls */}
-            {reviews.length > 0 && (
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={() => scroll("left")}
-                  className="p-2.5 rounded-md border border-gray-200  bg-white  text-gray-700  hover:bg-gray-100  transition-colors"
-                  aria-label="Previous reviews"
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  onClick={() => scroll("right")}
-                  className="p-2.5 rounded-md border border-gray-200  bg-white text-gray-700  hover:bg-gray-100  transition-colors"
-                  aria-label="Next reviews"
-                >
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* --- CAROUSEL CONTAINER (ONLY ORIGINAL ITEMS) --- */}
-        {reviews.length === 0 ? (
-          <div className="py-8 px-4 border border-dashed border-gray-300  bg-white  flex items-center gap-3">
-            <Quote className="text-gray-400 shrink-0" size={16} />
-            <p className="text-xs font-mono text-gray-500 uppercase tracking-wider">
-              No customer logs registered.
+            <p className="mt-1.5 max-w-xl text-xs leading-5 text-slate-500 sm:text-sm sm:leading-6">
+              {subtitle}
             </p>
           </div>
-        ) : (
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {reviews.map((review) => (
-              <article
-                key={review.id}
-                className="w-80 sm:w-96 shrink-0 snap-start flex flex-col justify-between border border-gray-200  bg-white  p-5 rounded-lg shadow-xs hover:border-gray-300  transition-colors"
-              >
-                <div>
-                  {/* User Header */}
-                  <div className="flex items-start justify-between border-b border-gray-100  pb-3 mb-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 bg-gray-900  text-white  flex items-center justify-center font-mono text-xs font-bold rounded">
-                        {review.name.charAt(0)}
-                      </div>
-                      <div className="flex flex-col">
-                        <h4 className="text-xs font-bold tracking-tight text-gray-900  flex items-center gap-1">
-                          <span>{review.name}</span>
-                          {review.verified && (
-                            <CheckCircle2
-                              size={12}
-                              className="text-emerald-600 fill-emerald-50 "
-                            />
-                          )}
-                        </h4>
-                        {review.city && (
-                          <span className="text-[10px] font-mono text-gray-400 uppercase">
-                            {review.city}
-                          </span>
-                        )}
-                      </div>
-                    </div>
 
-                    <time
-                      className="text-[10px] font-mono text-gray-400"
-                      dateTime={review.dateISO}
-                    >
-                      {review.date}
-                    </time>
-                  </div>
+          {/* Rating + Navigation */}
+          {reviews.length > 0 && (
+            <div className="flex items-center justify-between gap-3 sm:justify-end">
+              {/* Rating Summary */}
+              <div className="flex items-center gap-3  px-3 py-2.5 ">
+                <div className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                  {avgRating.toFixed(1)}
+                </div>
 
-                  {/* Rating Stars */}
-                  <div className="flex gap-0.5 mb-2.5">
-                    {[...Array(5)].map((_, i) => (
+                <div className="border-l border-slate-200 pl-3">
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, index) => (
                       <Star
-                        key={i}
-                        size={11}
-                        className={
-                          i < review.rating
+                        key={index}
+                        className={`h-3 w-3 ${
+                          index < Math.round(avgRating)
                             ? "fill-amber-400 text-amber-400"
-                            : "fill-gray-100 text-gray-200 "
-                        }
+                            : "text-slate-200"
+                        }`}
                       />
                     ))}
                   </div>
 
-                  {/* Comment Body */}
-                  <blockquote className="text-xs text-gray-700  leading-relaxed font-normal">
-                    &ldquo;{review.comment}&rdquo;
-                  </blockquote>
+                  <p className="mt-0.5 text-[10px] font-medium text-slate-500 sm:text-xs">
+                    {reviews.length} {totalReviewsLabel}
+                  </p>
                 </div>
-              </article>
-            ))}
-          </div>
-        )}
+              </div>
+
+              {/* Desktop / Tablet arrows */}
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => scroll("left")}
+                  aria-label="Previous reviews"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 active:scale-95"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => scroll("right")}
+                  aria-label="Next reviews"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 active:scale-95"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* -----------------------------------------------------------------
+            Reviews
+        ----------------------------------------------------------------- */}
+
+        <div className="mt-5 sm:mt-6">
+          {reviews.length === 0 ? (
+            <div className="flex items-center gap-3 rounded-xl border border-dashed border-slate-300 bg-white px-4 py-8">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-slate-400">
+                <Quote className="h-4 w-4" />
+              </div>
+
+              <div>
+                <p className="text-sm font-semibold text-slate-800">
+                  No reviews yet
+                </p>
+
+                <p className="mt-0.5 text-xs text-slate-500">
+                  Customer feedback will appear here after purchases.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div
+              ref={scrollContainerRef}
+              className="-mx-3 flex snap-x snap-mandatory gap-3 overflow-x-auto px-3 pb-2 scrollbar-none sm:mx-0 sm:px-0 sm:gap-4"
+              style={{
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+              }}
+            >
+              {reviews.map((review) => (
+                <article
+                  key={review.id}
+                  className="flex w-[calc(100vw-42px)] shrink-0 snap-start flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:w-[360px] sm:p-5 lg:w-[380px]"
+                >
+                  <div>
+                    {/* User */}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex min-w-0 items-center gap-2.5">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
+                          {review.name.charAt(0).toUpperCase()}
+                        </div>
+
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-1">
+                            <h3 className="truncate text-xs font-semibold text-slate-900 sm:text-sm">
+                              {review.name}
+                            </h3>
+
+                            {review.verified && (
+                              <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-500" />
+                            )}
+                          </div>
+
+                          {review.city && (
+                            <p className="mt-0.5 truncate text-[10px] text-slate-400 sm:text-xs">
+                              {review.city}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <time
+                        dateTime={review.dateISO}
+                        className="shrink-0 text-[10px] text-slate-400"
+                      >
+                        {review.date}
+                      </time>
+                    </div>
+
+                    {/* Rating */}
+                    <div className="mt-4 flex items-center gap-0.5">
+                      {[...Array(5)].map((_, index) => (
+                        <Star
+                          key={index}
+                          className={`h-3.5 w-3.5 ${
+                            index < review.rating
+                              ? "fill-amber-400 text-amber-400"
+                              : "text-slate-200"
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Review */}
+                    <blockquote className="mt-3 text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">
+                      “{review.comment}”
+                    </blockquote>
+                  </div>
+
+                  {/* Verified footer */}
+                  {review.verified && (
+                    <div className="mt-5 flex items-center gap-1.5 border-t border-slate-100 pt-3">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+
+                      <span className="text-[10px] font-medium text-slate-500 sm:text-xs">
+                        Verified purchase
+                      </span>
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

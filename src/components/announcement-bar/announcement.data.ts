@@ -1,4 +1,4 @@
-import { BadgePercent, CreditCard, Gift, Truck, Zap } from "lucide-react";
+import { BadgePercent, CreditCard, Truck, Zap } from "lucide-react";
 
 import type { Announcement } from "./announcement.types";
 
@@ -17,13 +17,13 @@ export const ANNOUNCEMENTS: Announcement[] = [
     cta: "View Deals",
     href: "/deals",
   },
-  {
-    id: 3,
-    icon: Gift,
-    message: "Independence Day Sale is now live",
-    cta: "Explore",
-    href: "/sale",
-  },
+  // {
+  //   id: 3,
+  //   icon: Gift,
+  //   message: "Independence Day Sale is now live",
+  //   cta: "Explore",
+  //   href: "/sale",
+  // },
   {
     id: 4,
     icon: CreditCard,

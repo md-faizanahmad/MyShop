@@ -57,6 +57,8 @@ import BottomNavigation from "@/components/Navbar/BottomNavigation";
 import ExplorePage from "@/pages/Explore/ExplorePage";
 import TopAnnouncementBar from "@/components/announcement-bar/TopAnnouncementBar";
 import ConnectionError from "@/error/ConnectionError";
+import FlashSalePage from "./pages/flash-sale/flashSale";
+import OffersPage from "./pages/offers/Offers";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
@@ -82,6 +84,8 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/deals" element={<DealsAndOffersPage />} />
             <Route path="/new-arrivals" element={<NewArrivalsPage />} />
+            <Route path="/flash-sale" element={<FlashSalePage />} />
+            <Route path="/offers" element={<OffersPage />} />
             {/* <Route path="/loading" element={<AZLoader />} /> */}
             <Route path="/products" element={<AllProductsPage />} />
 
