@@ -34,6 +34,8 @@ export interface OrderItemPopulated {
   qty: number;
   price: number; // price at purchase time
   product: OrderProduct;
+  productSlug: string;
+  categorySlug: string;
 }
 
 /* ---------- PRODUCT (USER SAFE) ---------- */

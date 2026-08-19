@@ -58,7 +58,7 @@ export default function AZLoader({
   }
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/70 backdrop-blur-md dark:bg-black/60">
+    <div className="fixed inset-0 z-9999 flex items-center justify-center bg-white/70 backdrop-blur-md dark:bg-black/60">
       {loader}
     </div>
   );
