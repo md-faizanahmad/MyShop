@@ -248,9 +248,9 @@ export default function WishlistPage() {
         {/* Header */}
         <header className="sticky top-0 z-20 mb-3 flex items-center justify-between border-b border-slate-200 bg-slate-50/95 py-3 backdrop-blur-sm md:static md:mb-6 md:border-0 md:bg-transparent md:py-0 md:backdrop-blur-none">
           <div className="min-w-0">
-            <h1 className="text-lg font-semibold tracking-tight text-slate-900 sm:text-xl">
+            <h1 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
               My Wishlist
-              <span className="ml-1.5 text-sm font-normal text-slate-500">
+              <span className="ml-1.5 text-sm font-normal text-slate-500 sm:text-base">
                 ({items.length})
               </span>
             </h1>
