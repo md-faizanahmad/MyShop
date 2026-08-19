@@ -100,7 +100,6 @@ interface Props {
 export default function OrderItemsList({ items }: Props) {
   return (
     <section className="w-full" aria-labelledby="order-items-title">
-      {/* Header */}
       <header className="border-b border-slate-200 px-4 py-3 sm:px-5">
         <h2
           id="order-items-title"
@@ -113,7 +112,6 @@ export default function OrderItemsList({ items }: Props) {
         </h2>
       </header>
 
-      {/* Items */}
       <div className="divide-y divide-slate-200">
         {items.map((item) => {
           const itemTotal = item.price * item.qty;
@@ -123,7 +121,7 @@ export default function OrderItemsList({ items }: Props) {
               key={item.product._id}
               className="flex gap-3 px-4 py-4 sm:gap-4 sm:px-5"
             >
-              {/* Product Image */}
+              {/* Product */}
               <Link
                 to={`/category/${item.categorySlug}/product/${item.productSlug}`}
                 className="block h-20 w-20 shrink-0 overflow-hidden border border-slate-200 bg-slate-50 sm:h-24 sm:w-24"
@@ -137,50 +135,41 @@ export default function OrderItemsList({ items }: Props) {
                 />
               </Link>
 
-              {/* Product Info */}
+              {/* Product Details */}
               <div className="min-w-0 flex-1">
                 <h3 className="line-clamp-2 text-sm font-medium leading-5 text-slate-900 sm:text-base">
                   {item.product.name}
                 </h3>
 
-                {/* Highlights */}
-                {item.product.highlights?.length > 0 && (
-                  <ul className="mt-1.5 hidden space-y-0.5 text-xs text-slate-500 sm:block">
-                    {item.product.highlights
-                      .slice(0, 3)
-                      .map((highlight, index) => (
-                        <li
-                          key={`${item.product._id}-highlight-${index}`}
-                          className="line-clamp-1"
-                        >
-                          {highlight}
-                        </li>
-                      ))}
-                  </ul>
-                )}
+                <dl className="mt-2 space-y-1 text-xs text-slate-500 sm:text-sm">
+                  <div className="flex items-center gap-1.5">
+                    <dt>Price:</dt>
+                    <dd className="font-medium text-slate-700">
+                      ₹{item.price.toLocaleString("en-IN")}
+                    </dd>
+                  </div>
 
-                {/* Quantity */}
-                <p className="mt-2 text-xs text-slate-500 sm:text-sm">
-                  Qty:{" "}
-                  <span className="font-medium text-slate-700">{item.qty}</span>
-                </p>
+                  <div className="flex items-center gap-1.5">
+                    <dt>Quantity:</dt>
+                    <dd className="font-medium text-slate-700">{item.qty}</dd>
+                  </div>
+                </dl>
 
-                {/* Product Link */}
                 <Link
                   to={`/category/${item.categorySlug}/product/${item.productSlug}`}
-                  className="mt-2 inline-block text-xs font-medium text-sky-600 hover:text-sky-700 hover:underline sm:text-sm"
+                  className="mt-2 inline-block text-xs font-medium text-sky-600 transition-colors hover:text-sky-700 hover:underline sm:text-sm"
                 >
                   View product
                 </Link>
               </div>
 
-              {/* Price */}
+              {/* Item Total */}
               <div className="shrink-0 text-right">
-                <p className="text-xs text-slate-500 sm:text-sm">
-                  ₹{item.price.toLocaleString("en-IN")} × {item.qty}
-                </p>
+                <span className="text-[11px] text-slate-400 sm:text-xs">
+                  Item total
+                </span>
 
-                <p className="mt-1 text-sm font-semibold text-slate-900 sm:text-base">
+                <p className="mt-0.5 text-sm font-semibold text-slate-900 sm:text-base">
                   ₹{itemTotal.toLocaleString("en-IN")}
                 </p>
               </div>
