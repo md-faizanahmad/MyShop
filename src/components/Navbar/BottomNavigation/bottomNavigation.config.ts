@@ -1,4 +1,11 @@
-import { Compass, Heart, House, ShoppingBag, UserRound } from "lucide-react";
+import {
+  Compass,
+  Heart,
+  House,
+  Search,
+  ShoppingBag,
+  UserRound,
+} from "lucide-react";
 
 export const bottomNavigationItems = [
   {
@@ -16,7 +23,7 @@ export const bottomNavigationItems = [
   {
     label: "Explore",
     to: "/explore",
-    icon: Compass,
+    icon: Search,
     type: "link",
   },
 
