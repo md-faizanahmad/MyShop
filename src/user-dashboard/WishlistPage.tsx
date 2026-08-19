@@ -243,17 +243,17 @@ export default function WishlistPage() {
   };
 
   return (
-    <main className="min-h-dvh bg-slate-50 px-3 py-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8">
+    <main className="min-h-dvh  px-3 py-2 sm:px-5 sm:py-3 lg:px-8 lg:py-4">
       <section className="mx-auto w-full max-w-7xl">
         {/* Header */}
-        <header className="sticky top-0 z-20 mb-3 flex items-center justify-between border-b border-slate-200 bg-slate-50/95 py-3 backdrop-blur-sm md:static md:mb-6 md:border-0 md:bg-transparent md:py-0 md:backdrop-blur-none">
+        <header className="sticky top-0 z-20 mb-3 flex items-center justify-between border-b border-slate-200  py-3 backdrop-blur-sm md:static md:mb-6 md:border-0 md:bg-transparent md:py-0 md:backdrop-blur-none">
           <div className="min-w-0">
-            <h1 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
+            <h4 className="flex items-center gap-2 text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
               My Wishlist
-              <span className="ml-1.5 text-sm font-normal text-slate-500 sm:text-base">
-                ({items.length})
+              <span className="inline-flex min-w-6 items-center justify-center border border-slate-200 bg-white px-1.5 py-0.5 text-xs font-semibold leading-5 text-slate-500 sm:text-sm">
+                {items.length}
               </span>
-            </h1>
+            </h4>
           </div>
 
           <button
