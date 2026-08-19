@@ -127,10 +127,7 @@ export default function OrderStatusTracker({ status, createdAt }: Props) {
   const isDelivered = expectedDelivery === "Delivered";
 
   return (
-    <section
-      className="rounded-xl border border-slate-200 bg-white shadow-sm"
-      aria-labelledby="order-status-title"
-    >
+    <section aria-labelledby="order-status-title">
       <header className="border-b border-slate-100 px-4 py-3 sm:px-5">
         <h2
           id="order-status-title"
@@ -209,7 +206,7 @@ export default function OrderStatusTracker({ status, createdAt }: Props) {
           })}
         </ol>
 
-        <div className="mt-5 rounded-lg bg-slate-50 px-3.5 py-3">
+        <div className="mt-5   bg-sky-200 px-3.5 py-3">
           {isDelivered ? (
             <div className="flex items-center justify-between gap-3">
               <span className="text-sm text-slate-600">Delivery status</span>

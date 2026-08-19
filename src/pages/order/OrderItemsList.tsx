@@ -13,7 +13,7 @@ export default function OrderItemsList({ items }: Props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className="w-full bg-white border border-gray-200"
+      className="w-full"
     >
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200">

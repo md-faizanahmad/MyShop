@@ -9,7 +9,7 @@ export default function OrderTotal({ itemsTotal, totalAmount }: Props) {
   const discount = Math.max(itemsTotal - totalAmount, 0);
 
   return (
-    <div className="w-full bg-white border border-gray-200">
+    <div className="w-full ">
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200">
         <h3 className="text-sm sm:text-base font-medium text-gray-900">
