@@ -66,11 +66,13 @@ export default function WishlistPage() {
     <main className="min-h-dvh  px-2.5 py-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8">
       <section className="mx-auto w-full max-w-7xl">
         {/* Header */}
-        <header className="mb-4 flex items-center justify-between gap-3 sm:mb-6">
-          <div className="min-w-0">
-            <h1 className="text-base font-semibold tracking-tight text-slate-900 sm:text-lg lg:text-xl">
-              My Wishlist
-              <span className="ml-1.5 text-sm font-normal text-slate-400">
+        <header className="sticky top-0 z-20 mb-4 flex w-full items-center justify-between gap-3 border-b border-slate-100 bg-white/80 py-3 backdrop-blur-md sm:static sm:mb-6 sm:border-none sm:bg-transparent sm:py-0 sm:backdrop-blur-none">
+          {/* Added flex-1 to take up available space, min-w-0 prevents overflow */}
+          <div className="min-w-0 flex-1">
+            {/* truncate ensures long text becomes "My Wishli..." on tiny screens instead of wrapping */}
+            <h1 className="flex items-center truncate text-[clamp(1.125rem,4vw,1.5rem)] font-bold tracking-tight text-slate-900">
+              <span className="truncate">My Wishlist</span>
+              <span className="ml-1.5 shrink-0 text-[clamp(0.875rem,3vw,1rem)] font-medium text-slate-500">
                 ({items.length})
               </span>
             </h1>
@@ -83,10 +85,15 @@ export default function WishlistPage() {
                 void clear();
                 toast.success("Wishlist cleared");
               }}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 sm:px-2.5 sm:text-sm"
+              aria-label="Clear wishlist"
+              className="group inline-flex min-h-10 min-w-10 shrink-0 items-center justify-center gap-1.5 rounded-full bg-red-50 px-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-100 active:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:min-h-0 sm:min-w-0 sm:rounded-md sm:bg-transparent sm:px-2.5 sm:py-1.5 sm:hover:bg-red-50 sm:active:bg-red-100"
             >
-              <span>Clear all</span>
-              <Trash2 size={14} aria-hidden="true" />
+              <span className="hidden sm:block">Clear all</span>
+              <Trash2
+                size={18}
+                aria-hidden="true"
+                className="transition-transform group-hover:scale-110 sm:h-4 sm:w-4"
+              />
             </button>
           )}
         </header>
