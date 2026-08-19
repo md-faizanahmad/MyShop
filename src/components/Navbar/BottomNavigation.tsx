@@ -1,7 +1,10 @@
+import { useWishlistStore } from "@/store/useWishlistStore";
 import BottomNavigationItem from "./BottomNavigation/BottomNavigationItem";
 import { bottomNavigationItems } from "./BottomNavigation/bottomNavigation.config";
 
 export default function BottomNavigation() {
+  const wishlistCount = useWishlistStore((state) => state.items.length);
+
   return (
     <nav
       aria-label="Primary navigation"
@@ -15,7 +18,11 @@ export default function BottomNavigation() {
     >
       <div className="flex h-16 items-stretch">
         {bottomNavigationItems.map((item) => (
-          <BottomNavigationItem key={item.to} {...item} />
+          <BottomNavigationItem
+            key={item.to}
+            {...item}
+            badge={item.to === "/wishlist" ? wishlistCount : undefined}
+          />
         ))}
       </div>
     </nav>

@@ -7,6 +7,7 @@ interface BottomNavigationItemProps {
   to: string;
   icon: LucideIcon;
   type: "link" | "account";
+  badge?: number;
 }
 
 export default function BottomNavigationItem({
@@ -14,6 +15,7 @@ export default function BottomNavigationItem({
   to,
   icon: Icon,
   type,
+  badge,
 }: BottomNavigationItemProps) {
   if (type === "account") {
     return (
@@ -38,8 +40,28 @@ export default function BottomNavigationItem({
     >
       {({ isActive }) => (
         <>
-          <Icon size={21} strokeWidth={isActive ? 2 : 1.7} aria-hidden="true" />
+          {/* <Icon size={21} strokeWidth={isActive ? 2 : 1.7} aria-hidden="true" /> */}
+          <div className="relative">
+            <Icon
+              size={21}
+              strokeWidth={isActive ? 2 : 1.7}
+              aria-hidden="true"
+            />
 
+            {badge !== undefined && badge > 0 && (
+              <span
+                className="
+        absolute -right-2.5 -top-2
+        flex h-4 min-w-4 items-center justify-center
+        rounded-full bg-red-500 px-1
+        text-[10px] font-bold leading-none text-white
+        ring-2 ring-white
+      "
+              >
+                {badge > 99 ? "99+" : badge}
+              </span>
+            )}
+          </div>
           <span>{label}</span>
         </>
       )}
