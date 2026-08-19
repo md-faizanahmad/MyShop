@@ -11,7 +11,7 @@ export default function BottomNavigation() {
       className="
         fixed inset-x-0 bottom-0 z-40
         border-t border-neutral-200/80
-        bg-white
+bg-white/75 backdrop-blur-xl backdrop-saturate-150
         pb-[env(safe-area-inset-bottom)]
         md:hidden
       "
