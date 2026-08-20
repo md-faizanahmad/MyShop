@@ -1,37 +1,20 @@
 {
   "version": 2,
-
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
-
   "routes": [
     {
-      "src": "^/assets/(.*)$",
-      "dest": "/assets/$1"
+      "handle": "filesystem"
     },
     {
-      "src": "^/(.*\\.js)$",
-      "dest": "/$1"
-    },
-    {
-      "src": "^/(.*\\.css)$",
-      "dest": "/$1"
-    },
-    {
-      "src": "^/manifest\\.webmanifest$",
-      "dest": "/manifest.webmanifest"
-    },
-    {
-      "src": "^/registerSW\\.js$",
-      "dest": "/registerSW.js"
-    },
-    {
-      "src": "^(.*)$",
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]

@@ -76,7 +76,9 @@ export default function BottomNavigationItem({
   if (type === "account") {
     return (
       <div className="flex min-w-0  flex-1 items-center justify-center">
-        <UserMenu />
+        <span className="mt-2">
+          <UserMenu />
+        </span>
       </div>
     );
   }
