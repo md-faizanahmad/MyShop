@@ -73,18 +73,18 @@ export default function WishlistMobile({
                 ₹{p.price.toLocaleString("en-IN")}
               </p>
 
-              <div className="mt-auto pt-2.5">
+              <div className="mt-auto flex justify-end pt-2">
                 <button
                   type="button"
                   onClick={() => onAddToCart(p)}
                   disabled={added}
-                  className={`inline-flex h-9 w-full items-center justify-center gap-1.5 px-3 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1 ${
+                  className={`inline-flex h-8 items-center justify-center gap-1.5 px-2.5 text-[11px] font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1 ${
                     added
                       ? "bg-emerald-50 text-emerald-700"
                       : "bg-sky-600 text-white hover:bg-sky-700"
                   }`}
                 >
-                  <ShoppingCart size={14} aria-hidden="true" />
+                  <ShoppingCart size={13} aria-hidden="true" />
                   {added ? "Added" : "Add to Cart"}
                 </button>
               </div>
