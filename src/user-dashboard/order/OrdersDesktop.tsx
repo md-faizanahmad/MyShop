@@ -39,7 +39,7 @@ export default function OrdersDesktop({
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <header className="mb-7 flex items-center justify-between">
-          <h1 className="flex min-w-0 items-center gap-2.5 text-2xl font-semibold tracking-tight text-gray-900">
+          <h4 className="flex min-w-0 items-center gap-2.5 text-2xl font-semibold leading-7 tracking-tight text-gray-900">
             <Package
               size={26}
               className="shrink-0 text-sky-500"
@@ -49,11 +49,11 @@ export default function OrdersDesktop({
             <span>My Orders</span>
 
             {totalCount > 0 && (
-              <span className="text-base font-normal text-gray-500">
+              <span className="inline-flex h-7 items-center text-base font-normal leading-7 text-gray-500">
                 ({totalCount})
               </span>
             )}
-          </h1>
+          </h4>
 
           {isFetching && !isLoading && (
             <span className="flex items-center gap-2 text-xs text-gray-500">

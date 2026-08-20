@@ -38,17 +38,21 @@ export default function OrdersMobile({
     <section className="min-h-screen px-3 py-5">
       {/* Header */}
       <header className="mb-5 flex items-center justify-between">
-        <h1 className="flex min-w-0 items-center gap-2 text-lg font-semibold tracking-tight text-gray-900">
-          <Package size={21} className="shrink-0 text-sky-500" />
+        <h4 className="flex min-w-0 items-center gap-2 text-lg font-semibold leading-6 tracking-tight text-gray-900">
+          <Package
+            size={21}
+            className="shrink-0 text-sky-500"
+            aria-hidden="true"
+          />
 
-          <span className="truncate">My Orders</span>
+          <span>My Orders</span>
 
           {totalCount > 0 && (
-            <span className="shrink-0 text-sm font-normal text-gray-500">
+            <span className="inline-flex h-6 items-center text-sm font-normal leading-6 text-gray-500">
               ({totalCount})
             </span>
           )}
-        </h1>
+        </h4>
 
         {isFetching && !isLoading && (
           <span
