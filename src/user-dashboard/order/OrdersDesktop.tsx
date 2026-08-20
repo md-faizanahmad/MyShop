@@ -1,0 +1,199 @@
+import {
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  Package,
+  RefreshCw,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import type { Order } from "@/types/order";
+import OrderCard from "../OrderCard";
+
+interface OrdersDesktopProps {
+  orders: Order[];
+  totalCount: number;
+  page: number;
+
+  isLoading: boolean;
+  isError: boolean;
+  isFetching: boolean;
+
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+
+  onPreviousPage: () => void;
+  onNextPage: () => void;
+  onRetry: () => void;
+}
+
+export default function OrdersDesktop({
+  orders,
+  totalCount,
+  page,
+  isLoading,
+  isError,
+  isFetching,
+  hasNextPage,
+  hasPrevPage,
+  onPreviousPage,
+  onNextPage,
+  onRetry,
+}: OrdersDesktopProps) {
+  return (
+    <section className="min-h-screen px-6 py-8 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <header className="mb-7 flex items-center justify-between">
+          <h1 className="flex min-w-0 items-center gap-2.5 text-2xl font-semibold tracking-tight text-gray-900">
+            <Package
+              size={26}
+              className="shrink-0 text-sky-500"
+              aria-hidden="true"
+            />
+
+            <span>My Orders</span>
+
+            {totalCount > 0 && (
+              <span className="text-base font-normal text-gray-500">
+                ({totalCount})
+              </span>
+            )}
+          </h1>
+
+          {isFetching && !isLoading && (
+            <span className="flex items-center gap-2 text-xs text-gray-500">
+              <RefreshCw
+                size={14}
+                className="animate-spin"
+                aria-hidden="true"
+              />
+              Updating…
+            </span>
+          )}
+        </header>
+
+        {/* Loading */}
+        {isLoading && (
+          <div className="flex min-h-[55vh] flex-col items-center justify-center text-center">
+            <Loader2
+              size={38}
+              className="animate-spin text-sky-500"
+              aria-hidden="true"
+            />
+
+            <p className="mt-4 text-sm text-gray-600">Loading your orders…</p>
+          </div>
+        )}
+
+        {/* Error */}
+        {isError && !isLoading && (
+          <div className="flex min-h-[55vh] flex-col items-center justify-center text-center">
+            <Package
+              size={56}
+              className="mb-5 text-gray-300"
+              aria-hidden="true"
+            />
+
+            <p className="text-base font-medium text-gray-700">
+              Failed to load orders
+            </p>
+
+            <p className="mt-1 text-sm text-gray-500">
+              Something went wrong while loading your orders.
+            </p>
+
+            <button
+              type="button"
+              onClick={onRetry}
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sky-600"
+            >
+              <RefreshCw size={16} />
+              Try Again
+            </button>
+          </div>
+        )}
+
+        {/* Empty */}
+        {!isLoading && !isError && orders.length === 0 && (
+          <div className="flex min-h-[55vh] flex-col items-center justify-center text-center">
+            <Package
+              size={80}
+              className="mb-6 text-gray-300"
+              aria-hidden="true"
+            />
+
+            <h2 className="text-lg font-semibold text-gray-800">
+              No orders yet
+            </h2>
+
+            <p className="mt-1 text-sm text-gray-500">
+              You haven’t placed any orders yet.
+            </p>
+
+            <a
+              href="/"
+              className="mt-6 inline-flex items-center rounded-lg bg-sky-500 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-600"
+            >
+              Start Shopping
+            </a>
+          </div>
+        )}
+
+        {/* Orders */}
+        {!isLoading && !isError && orders.length > 0 && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="grid grid-cols-2 gap-5 xl:grid-cols-3"
+            >
+              <AnimatePresence mode="popLayout">
+                {orders.map((order) => (
+                  <motion.div
+                    key={order._id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <OrderCard order={order} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Pagination */}
+            <nav
+              aria-label="Orders pagination"
+              className="mt-10 flex items-center justify-between gap-4"
+            >
+              <button
+                type="button"
+                disabled={!hasPrevPage}
+                onClick={onPreviousPage}
+                className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <ChevronLeft size={18} />
+                Previous
+              </button>
+
+              <span className="text-sm font-medium text-gray-500">
+                Page {page}
+              </span>
+
+              <button
+                type="button"
+                disabled={!hasNextPage}
+                onClick={onNextPage}
+                className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-sky-500 px-5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Next
+                <ChevronRight size={18} />
+              </button>
+            </nav>
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
