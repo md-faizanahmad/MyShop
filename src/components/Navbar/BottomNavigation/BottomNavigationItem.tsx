@@ -118,7 +118,7 @@ export default function BottomNavigationItem({
     transition-all duration-300 ease-out
     ${
       isExplore
-        ? "h-11 w-11 -translate-y-5 rounded-full bg-red-700 text-white shadow-lg shadow-red-600/30 ring-1 ring-white"
+        ? "h-12 w-12 -translate-y-6 rounded-full bg-linear-to-br from-sky-500 via-sky-600 to-red-600 text-white shadow-lg shadow-red-600/30 ring-4 ring-white"
         : "h-9 w-9 text-neutral-500"
     }
   `}
