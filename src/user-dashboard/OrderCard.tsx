@@ -109,7 +109,7 @@ export default function OrderCard({ order }: { order: Order }) {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col justify-between items-start sm:items-end gap-3">
+        <div className="flex flex-col items-end justify-between gap-3">
           <p className="text-sm font-semibold">
             {formatCurrency(order.totalAmount)}
           </p>
