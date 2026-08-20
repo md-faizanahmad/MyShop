@@ -4,6 +4,7 @@ import type { Order } from "@/types/order";
 import OrderCard from "../OrderCard";
 import OrdersPagination from "./OrdersPagination";
 import type { OrderDateFilterValue } from "./OrdersDateFilter";
+import OrdersDateFilter from "./OrdersDateFilter";
 
 interface OrdersMobileProps {
   orders: Order[];
@@ -38,6 +39,10 @@ export default function OrdersMobile({
   onPreviousPage,
   onNextPage,
   onRetry,
+
+  dateFilter,
+  onDateFilterChange,
+  onClearDateFilter,
 }: OrdersMobileProps) {
   return (
     <section className="min-h-screen px-3 py-5">
@@ -68,7 +73,11 @@ export default function OrdersMobile({
           </span>
         )}
       </header>
-
+      <OrdersDateFilter
+        value={dateFilter}
+        onChange={onDateFilterChange}
+        onClear={onClearDateFilter}
+      />
       {/* Loading */}
       {isLoading && (
         <div className="flex min-h-[55vh] flex-col items-center justify-center text-center">
