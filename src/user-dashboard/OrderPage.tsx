@@ -158,16 +158,33 @@ import { apiClient as api } from "../lib/axios";
 import type { PaginatedOrdersResponse } from "../types/order";
 import OrdersMobile from "./order/OrdersMobile";
 import OrdersDesktop from "./order/OrdersDesktop";
+import type { OrderDateFilterValue } from "./order/OrdersDateFilter";
 
 const PAGE_LIMIT = 6;
 
 export default function OrdersPage() {
   const [page, setPage] = useState(1);
-
+  const [dateFilter, setDateFilter] = useState<OrderDateFilterValue>({
+    startDate: "",
+    endDate: "",
+  });
   const { data, isLoading, isError, isFetching, refetch } =
     useQuery<PaginatedOrdersResponse>({
-      queryKey: ["my-orders", page],
+      queryKey: ["my-orders", page, dateFilter.startDate, dateFilter.endDate],
       queryFn: async () => {
+        const params = new URLSearchParams({
+          page: String(page),
+          limit: String(PAGE_LIMIT),
+        });
+
+        if (dateFilter.startDate) {
+          params.set("startDate", dateFilter.startDate);
+        }
+
+        if (dateFilter.endDate) {
+          params.set("endDate", dateFilter.endDate);
+        }
+
         const { data } = await api.get<PaginatedOrdersResponse>(
           `/v1/orders/my-orders?page=${page}&limit=${PAGE_LIMIT}`,
         );
@@ -198,6 +215,19 @@ export default function OrdersPage() {
     void refetch();
   };
 
+  const handleDateFilterChange = (value: OrderDateFilterValue) => {
+    setDateFilter(value);
+    setPage(1);
+  };
+
+  const handleClearDateFilter = () => {
+    setDateFilter({
+      startDate: "",
+      endDate: "",
+    });
+
+    setPage(1);
+  };
   const commonProps = {
     orders,
     totalCount,
@@ -210,6 +240,9 @@ export default function OrdersPage() {
     onPreviousPage: handlePreviousPage,
     onNextPage: handleNextPage,
     onRetry: handleRetry,
+    dateFilter,
+    onDateFilterChange: handleDateFilterChange,
+    onClearDateFilter: handleClearDateFilter,
   };
 
   return (

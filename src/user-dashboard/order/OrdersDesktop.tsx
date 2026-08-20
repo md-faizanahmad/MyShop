@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Order } from "@/types/order";
 import OrderCard from "../OrderCard";
 import OrdersPagination from "./OrdersPagination";
+import OrdersDateFilter, {
+  type OrderDateFilterValue,
+} from "./OrdersDateFilter";
 
 interface OrdersDesktopProps {
   orders: Order[];
@@ -19,6 +22,10 @@ interface OrdersDesktopProps {
   onPreviousPage: () => void;
   onNextPage: () => void;
   onRetry: () => void;
+
+  dateFilter: OrderDateFilterValue;
+  onDateFilterChange: (value: OrderDateFilterValue) => void;
+  onClearDateFilter: () => void;
 }
 
 export default function OrdersDesktop({
@@ -33,6 +40,9 @@ export default function OrdersDesktop({
   onPreviousPage,
   onNextPage,
   onRetry,
+  dateFilter,
+  onDateFilterChange,
+  onClearDateFilter,
 }: OrdersDesktopProps) {
   return (
     <section className="min-h-screen px-6 py-8 lg:px-8">
@@ -66,6 +76,13 @@ export default function OrdersDesktop({
             </span>
           )}
         </header>
+
+        {/* Date Filter */}
+        <OrdersDateFilter
+          value={dateFilter}
+          onChange={onDateFilterChange}
+          onClear={onClearDateFilter}
+        />
 
         {/* Loading */}
         {isLoading && (
@@ -118,11 +135,11 @@ export default function OrdersDesktop({
             />
 
             <h2 className="text-lg font-semibold text-gray-800">
-              No orders yet
+              No orders found
             </h2>
 
             <p className="mt-1 text-sm text-gray-500">
-              You haven’t placed any orders yet.
+              You haven’t placed any orders for the selected period.
             </p>
 
             <a

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Order } from "@/types/order";
 import OrderCard from "../OrderCard";
 import OrdersPagination from "./OrdersPagination";
+import type { OrderDateFilterValue } from "./OrdersDateFilter";
 
 interface OrdersMobileProps {
   orders: Order[];
@@ -19,6 +20,10 @@ interface OrdersMobileProps {
   onPreviousPage: () => void;
   onNextPage: () => void;
   onRetry: () => void;
+
+  dateFilter: OrderDateFilterValue;
+  onDateFilterChange: (value: OrderDateFilterValue) => void;
+  onClearDateFilter: () => void;
 }
 
 export default function OrdersMobile({
