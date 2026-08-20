@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ShoppingCart, X } from "lucide-react";
 import type { PublicProduct } from "@/types/product";
 
 type WishlistItem = {
@@ -14,84 +15,160 @@ interface WishlistMobileProps {
   onAddToCart: (product: PublicProduct) => void;
 }
 
+const ITEMS_PER_PAGE = 6;
+
 export default function WishlistMobile({
   items,
   isInCart,
   onRemove,
   onAddToCart,
 }: WishlistMobileProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const visibleItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const goToPreviousPage = () => {
+    setCurrentPage((page) => Math.max(1, page - 1));
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((page) => Math.min(totalPages, page + 1));
+  };
+
   return (
-    <div
-      aria-label="Wishlist products"
-      className="flex flex-col divide-y divide-slate-200 border-y border-slate-200 bg-white"
-    >
-      {items.map((item) => {
-        const p = item.product;
-        const added = isInCart(p._id);
+    <div>
+      <div aria-label="Wishlist products" className="flex flex-col gap-3">
+        {visibleItems.map((item) => {
+          const p = item.product;
+          const added = isInCart(p._id);
 
-        return (
-          <article
-            key={item.productId}
-            className="flex min-w-0 gap-3 px-1 py-3"
-          >
-            <Link
-              to={`/category/${p.category.slug}/product/${p.slug}`}
-              aria-label={`View ${p.name}`}
-              className="block h-24 w-24 shrink-0 overflow-hidden bg-slate-100"
+          return (
+            <article
+              key={item.productId}
+              className="flex min-w-0 gap-3 bg-white p-3 shadow-sm"
             >
-              <img
-                src={p.imageUrl}
-                alt={p.name}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            </Link>
+              {/* Product Image */}
+              <Link
+                to={`/category/${p.category.slug}/product/${p.slug}`}
+                aria-label={`View ${p.name}`}
+                className="block h-24 w-24 shrink-0 overflow-hidden bg-slate-100"
+              >
+                <img
+                  src={p.imageUrl}
+                  alt={p.name}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </Link>
 
-            <div className="flex min-w-0 flex-1 flex-col">
-              <div className="flex min-w-0 items-start gap-2">
-                <Link
-                  to={`/category/${p.category.slug}/product/${p.slug}`}
-                  className="min-w-0 flex-1"
-                >
-                  <h2 className="line-clamp-2 text-sm font-medium leading-5 text-slate-900">
-                    {p.name}
-                  </h2>
-                </Link>
+              {/* Product Content */}
+              <div className="flex min-w-0 flex-1 flex-col">
+                <div className="flex min-w-0 items-start gap-2">
+                  <Link
+                    to={`/category/${p.category.slug}/product/${p.slug}`}
+                    className="min-w-0 flex-1"
+                  >
+                    <h2 className="line-clamp-2 text-sm font-medium leading-5 text-slate-900">
+                      {p.name}
+                    </h2>
+                  </Link>
 
-                <button
-                  type="button"
-                  onClick={() => onRemove(item.productId)}
-                  aria-label={`Remove ${p.name} from wishlist`}
-                  title="Remove from wishlist"
-                  className="flex h-8 w-8 shrink-0 items-center justify-center text-slate-400 transition-colors hover:bg-red-50 hover:text-red-600"
-                >
-                  <X size={17} aria-hidden="true" />
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => onRemove(item.productId)}
+                    aria-label={`Remove ${p.name} from wishlist`}
+                    title="Remove from wishlist"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center text-slate-400 transition-colors hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1"
+                  >
+                    <X size={17} aria-hidden="true" />
+                  </button>
+                </div>
+
+                <p className="mt-1.5 text-sm font-semibold text-slate-900">
+                  ₹{p.price.toLocaleString("en-IN")}
+                </p>
+
+                <div className="mt-auto flex justify-end pt-2">
+                  <button
+                    type="button"
+                    onClick={() => onAddToCart(p)}
+                    disabled={added}
+                    className={`inline-flex h-8 items-center justify-center gap-1.5 px-2.5 text-[11px] font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1 ${
+                      added
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "bg-sky-600 text-white hover:bg-sky-700"
+                    }`}
+                  >
+                    <ShoppingCart size={13} aria-hidden="true" />
+                    {added ? "Added" : "Add to Cart"}
+                  </button>
+                </div>
               </div>
+            </article>
+          );
+        })}
+      </div>
 
-              <p className="mt-1.5 text-sm font-semibold text-slate-900">
-                ₹{p.price.toLocaleString("en-IN")}
-              </p>
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <nav
+          aria-label="Wishlist pagination"
+          className="mt-5 flex items-center justify-center gap-2"
+        >
+          <button
+            type="button"
+            onClick={goToPreviousPage}
+            disabled={currentPage === 1}
+            aria-label="Previous page"
+            className="flex h-9 w-9 items-center justify-center bg-white text-slate-600 shadow-sm transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <ChevronLeft size={17} aria-hidden="true" />
+          </button>
 
-              <div className="mt-auto flex justify-end pt-2">
+          <div className="flex items-center gap-1">
+            {Array.from({ length: totalPages }, (_, index) => {
+              const page = index + 1;
+              const active = page === currentPage;
+
+              return (
                 <button
+                  key={page}
                   type="button"
-                  onClick={() => onAddToCart(p)}
-                  disabled={added}
-                  className={`inline-flex h-8 items-center justify-center gap-1.5 px-2.5 text-[11px] font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1 ${
-                    added
-                      ? "bg-emerald-50 text-emerald-700"
-                      : "bg-sky-600 text-white hover:bg-sky-700"
+                  onClick={() => setCurrentPage(page)}
+                  aria-label={`Go to page ${page}`}
+                  aria-current={active ? "page" : undefined}
+                  className={`flex h-9 min-w-9 items-center justify-center px-2 text-xs font-semibold transition-colors ${
+                    active
+                      ? "bg-slate-900 text-white"
+                      : "bg-white text-slate-600 shadow-sm hover:bg-slate-100"
                   }`}
                 >
-                  <ShoppingCart size={13} aria-hidden="true" />
-                  {added ? "Added" : "Add to Cart"}
+                  {page}
                 </button>
-              </div>
-            </div>
-          </article>
-        );
-      })}
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages}
+            aria-label="Next page"
+            className="flex h-9 w-9 items-center justify-center bg-white text-slate-600 shadow-sm transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <ChevronRight size={17} aria-hidden="true" />
+          </button>
+        </nav>
+      )}
     </div>
   );
 }
