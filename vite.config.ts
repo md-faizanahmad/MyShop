@@ -18,13 +18,14 @@ export default defineConfig({
       manifest: {
         name: "AZ-Store",
         short_name: "AZStore",
-        description: "AZ-Store shopping app",
-        theme_color: "#ffffff",
+        description: "Your fast and modern shopping app",
+        theme_color: "#0ea5a4",
         background_color: "#ffffff",
         display: "standalone",
+        orientation: "portrait",
         scope: "/",
-        // start_url: "/?source=pwa",
         start_url: "/",
+
         icons: [
           {
             src: "/pwa-192x192.png",

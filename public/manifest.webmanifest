@@ -1,7 +1,7 @@
 {
   "name": "AZ-Store",
   "short_name": "AZStore",
-  "start_url": "/?source=pwa",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
