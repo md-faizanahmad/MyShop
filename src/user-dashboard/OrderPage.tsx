@@ -157,8 +157,8 @@ import { useQuery } from "@tanstack/react-query";
 import { apiClient as api } from "../lib/axios";
 import type { PaginatedOrdersResponse } from "../types/order";
 
-import OrdersMobile from "./OrdersMobile";
 import OrdersDesktop from "./OrdersDesktop";
+import OrdersMobile from "./order/OrdersMobile";
 
 const PAGE_LIMIT = 6;
 
