@@ -1,13 +1,8 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  Loader2,
-  Package,
-  RefreshCw,
-} from "lucide-react";
+import { Loader2, Package, RefreshCw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Order } from "@/types/order";
 import OrderCard from "../OrderCard";
+import OrdersPagination from "./OrdersPagination";
 
 interface OrdersDesktopProps {
   orders: Order[];
@@ -163,34 +158,13 @@ export default function OrdersDesktop({
             </motion.div>
 
             {/* Pagination */}
-            <nav
-              aria-label="Orders pagination"
-              className="mt-10 flex items-center justify-between gap-4"
-            >
-              <button
-                type="button"
-                disabled={!hasPrevPage}
-                onClick={onPreviousPage}
-                className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <ChevronLeft size={18} />
-                Previous
-              </button>
-
-              <span className="text-sm font-medium text-gray-500">
-                Page {page}
-              </span>
-
-              <button
-                type="button"
-                disabled={!hasNextPage}
-                onClick={onNextPage}
-                className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-sky-500 px-5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Next
-                <ChevronRight size={18} />
-              </button>
-            </nav>
+            <OrdersPagination
+              page={page}
+              hasNextPage={hasNextPage}
+              hasPrevPage={hasPrevPage}
+              onPreviousPage={onPreviousPage}
+              onNextPage={onNextPage}
+            />
           </>
         )}
       </div>
