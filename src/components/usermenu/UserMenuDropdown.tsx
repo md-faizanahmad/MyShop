@@ -74,7 +74,7 @@ export default function UserMenuDropdown({
           z-40
           cursor-default
           border-0
-          bg-black/15
+          bg-white/15
           backdrop-blur-[1px]
           md:hidden
         "
@@ -134,7 +134,7 @@ export default function UserMenuDropdown({
   rounded-[5px]
   border
   border-neutral-200/80
-  bg-white/80
+  bg-white
 backdrop-blur-md
   text-[12px]
   shadow-[0_10px_30px_rgba(0,0,0,0.12)]

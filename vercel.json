@@ -1,21 +1,8 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/((?!assets/|favicon.ico$|manifest.webmanifest$|registerSW.js$|sw.js$|workbox-.*\\.js$|pwa-192x192.png$|pwa-512x512.png$|pwa-512x512-maskable.png$|robots.txt$).*)",
+      "destination": "/index.html"
     }
   ]
 }
