@@ -1,11 +1,12 @@
 import { useWishlistStore } from "@/store/useWishlistStore";
 import BottomNavigationItem from "./BottomNavigation/BottomNavigationItem";
 import { bottomNavigationItems } from "./BottomNavigation/bottomNavigation.config";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function BottomNavigation() {
   const wishlistCount = useWishlistStore((state) => state.items.length);
   const wishlistLoading = useWishlistStore((state) => state.loading);
-
+  const authLoading = useAuthStore((state) => state.initializing);
   return (
     <nav
       aria-label="Primary navigation"
@@ -21,6 +22,7 @@ bg-white/75 backdrop-blur-xl backdrop-saturate-150
         {bottomNavigationItems.map((item) => (
           <BottomNavigationItem
             key={item.to}
+            loading={authLoading}
             {...item}
             badge={item.to === "/wishlist" ? wishlistCount : undefined}
             badgeLoading={item.to === "/wishlist" ? wishlistLoading : false}

@@ -1,4 +1,4 @@
-import { Heart, House, Search, ShoppingBag, UserRound } from "lucide-react";
+import { Heart, House, Search, ShoppingBag, User } from "lucide-react";
 
 export const bottomNavigationItems = [
   {
@@ -29,7 +29,7 @@ export const bottomNavigationItems = [
   {
     label: "Account",
     to: "/login",
-    icon: UserRound,
+    icon: User,
     type: "account",
   },
 ] as const;

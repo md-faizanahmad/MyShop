@@ -59,6 +59,7 @@ interface BottomNavigationItemProps {
   type: "link" | "account";
   badge?: number;
   badgeLoading?: boolean;
+  loading?: boolean;
 }
 
 export default function BottomNavigationItem({
@@ -68,17 +69,24 @@ export default function BottomNavigationItem({
   type,
   badge,
   badgeLoading,
+  loading,
 }: BottomNavigationItemProps) {
   const isExplore = to === "/explore";
 
   if (type === "account") {
     return (
-      <div className="flex min-w-0 flex-1 items-center justify-center">
+      <div className="flex min-w-0  flex-1 items-center justify-center">
         <UserMenu />
       </div>
     );
   }
-
+  if (loading) {
+    return (
+      <div className="flex min-w-0 flex-1  flex-col items-center justify-center gap-1">
+        <div className="w-8 h-8 me-4 flex items-center bg-gray-100 justify-center font-bold  rounded-full animate-pulse" />
+      </div>
+    );
+  }
   return (
     <NavLink
       to={to}
@@ -167,7 +175,7 @@ export default function BottomNavigationItem({
               transition-colors duration-200
               ${
                 isExplore
-                  ? "-mt-2 text-red-600"
+                  ? "-mt-3 text-red-600"
                   : isActive
                     ? "text-red-600"
                     : "text-neutral-500"
