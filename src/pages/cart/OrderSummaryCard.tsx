@@ -90,7 +90,7 @@ export default function OrderSummaryCard() {
   };
 
   return (
-    <section className="border-t border-slate-200 pt-5">
+    <section className=" pt-5">
       <h3 className="text-base font-semibold tracking-tight text-slate-900">
         Order Summary
       </h3>
