@@ -25,15 +25,15 @@ export default function CartMobile({
   removeWish,
 }: CartMobileProps): JSX.Element {
   return (
-    <section className="min-h-screen bg-sky-50 px-3 py-5 lg:hidden">
+    <section className="min-h-screen  px-3 py-5 lg:hidden">
       <div className="mx-auto w-full max-w-xl">
         <header className="mb-4 px-1">
-          <h1 className="text-lg font-semibold tracking-tight text-slate-900">
+          <h4 className="flex items-center text-base font-semibold tracking-tight text-slate-900">
             Your Cart
-            <span className="ml-1.5 text-xs font-normal text-slate-400">
+            <span className="ml-1.5 text-[11px] font-normal leading-none text-slate-400">
               ({totalItems} {totalItems === 1 ? "item" : "items"})
             </span>
-          </h1>
+          </h4>
         </header>
 
         <div className="space-y-3">
