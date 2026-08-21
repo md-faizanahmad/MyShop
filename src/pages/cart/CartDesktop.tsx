@@ -25,15 +25,15 @@ export default function CartDesktop({
   removeWish,
 }: CartDesktopProps): JSX.Element {
   return (
-    <section className="hidden min-h-screen bg-sky-50 px-4 py-8 lg:block">
+    <section className="hidden min-h-screen  px-4 py-8 lg:block">
       <div className="mx-auto max-w-6xl">
         <header className="mb-6">
-          <h1 className="flex items-center text-xl font-semibold tracking-tight text-slate-900">
+          <h4 className="flex items-center text-xl font-semibold tracking-tight text-slate-900">
             Your Cart
             <span className="ml-2 text-xs font-normal leading-none text-slate-400">
               ({totalItems} {totalItems === 1 ? "item" : "items"})
             </span>
-          </h1>
+          </h4>
         </header>
 
         <div className="grid items-start gap-7 lg:grid-cols-3">
@@ -55,8 +55,8 @@ export default function CartDesktop({
                     transition={{ duration: 0.2 }}
                     className="
                       overflow-hidden
-                      rounded-xl
-                      bg-white
+
+                     
                       p-4
                       shadow-[0_2px_12px_rgba(15,23,42,0.06)]
                     "
@@ -94,7 +94,7 @@ export default function CartDesktop({
                         </div>
 
                         <div className="mt-5 flex items-center justify-between">
-                          <div className="flex items-center overflow-hidden rounded-lg bg-slate-50 shadow-sm">
+                          <div className="flex items-center overflow-hidden rounded-sm bg-sky-100 shadow-sm">
                             <button
                               type="button"
                               onClick={() =>
