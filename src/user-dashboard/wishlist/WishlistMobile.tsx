@@ -58,6 +58,8 @@ export default function WishlistMobile({
             >
               {/* Product Image */}
               <Link
+                // to={`/category/${p.category.slug}/product/${p.slug}`}
+                // to={`/category/${p.category.slug}/product/${p.slug}`}
                 to={`/category/${p.category.slug}/product/${p.slug}`}
                 aria-label={`View ${p.name}`}
                 className="block h-24 w-24 shrink-0 overflow-hidden bg-slate-100"
