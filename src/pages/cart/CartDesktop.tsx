@@ -28,9 +28,9 @@ export default function CartDesktop({
     <section className="hidden min-h-screen bg-sky-50 px-4 py-8 lg:block">
       <div className="mx-auto max-w-6xl">
         <header className="mb-6">
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="flex items-center text-xl font-semibold tracking-tight text-slate-900">
             Your Cart
-            <span className="ml-2 text-sm font-normal text-slate-400">
+            <span className="ml-2 text-xs font-normal leading-none text-slate-400">
               ({totalItems} {totalItems === 1 ? "item" : "items"})
             </span>
           </h1>
