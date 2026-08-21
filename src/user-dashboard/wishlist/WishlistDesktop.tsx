@@ -35,6 +35,7 @@ export default function WishlistDesktop({
             className="group min-w-0 overflow-hidden border border-slate-200 bg-white transition-shadow duration-200 hover:shadow-sm"
           >
             <Link
+              // to={`/category/${p.category.slug}/product/${p.slug}`}
               to={`/category/${p.category.slug}/product/${p.slug}`}
               className="block overflow-hidden bg-slate-100"
               aria-label={`View ${p.name}`}
