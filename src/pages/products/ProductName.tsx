@@ -10,12 +10,12 @@ export default function ProductName({
   if (!name || name.trim().length === 0) return null;
 
   return (
-    <div className="w-full py-1">
-      <div className="mb-1.5 text-xs font-medium text-gray-500">
+    <div className="w-full">
+      <div className="mb-1 text-xs font-medium text-gray-500">
         {categoryName}
       </div>
 
-      <h1 className="max-w-2xl text-xl font-semibold leading-tight tracking-tight text-gray-900 sm:text-2xl">
+      <h1 className="max-w-2xl text-base font-semibold leading-snug text-gray-900">
         {name}
       </h1>
     </div>

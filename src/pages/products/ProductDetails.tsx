@@ -106,12 +106,12 @@ export default function ProductDetails() {
     product.reviews?.some((review) => review.user?._id === user._id),
   );
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen">
       <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6">
         <ProductBreadcrumb categorySlug={categorySlug} product={product} />
 
         {/* Product */}
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
           {/* Gallery */}
           <div className="min-w-0">
             <ImageGallery
@@ -126,7 +126,7 @@ export default function ProductDetails() {
           </div>
 
           {/* Product Info */}
-          <div className="min-w-0 flex flex-col gap-4 sm:gap-6">
+          <div className="min-w-0 flex flex-col gap-4">
             <ProductName name={product.name} />
 
             <PriceCard
@@ -143,19 +143,20 @@ export default function ProductDetails() {
               onBuyNow={() => navigate(`/checkout?quickbuy=${product._id}`)}
             />
 
+            <ProductDescription description={product.description ?? ""} />
+
             <ProductSpecifications
               specifications={product.specifications ?? {}}
             />
-
-            <ProductDescription description={product.description ?? ""} />
           </div>
         </div>
 
         {/* Reviews */}
         <section className="mt-10 border-t pt-8 sm:mt-14 sm:pt-10">
-          <h2 className="mb-5 text-center text-xl font-semibold sm:mb-6 sm:text-2xl">
+          <h2 className="mb-5 text-center text-lg font-semibold sm:mb-6 sm:text-xl">
             Customer Reviews
           </h2>
+
           <ReviewList
             productId={product._id}
             reviews={product.reviews ?? []}
@@ -169,7 +170,7 @@ export default function ProductDetails() {
 
         {/* Suggested */}
         <section className="mt-10 sm:mt-14">
-          <h2 className="mb-5 text-center text-xl font-semibold sm:mb-6 sm:text-2xl">
+          <h2 className="mb-5 text-center text-lg font-semibold sm:mb-6 sm:text-xl">
             You Might Also Like
           </h2>
 
