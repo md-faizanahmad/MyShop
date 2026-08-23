@@ -12,30 +12,28 @@ export default function ProductSpecifications({
 
   if (!entries.length) return null;
 
-  // Show only the first 5 specs initially on mobile to save vertical space
   const displayedEntries = isExpanded ? entries : entries.slice(0, 5);
 
   return (
-    <div className="mt-8 px-4 sm:px-0">
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">
+    <section className="mt-6 sm:mt-8">
+      <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:text-xl">
         Product Specifications
       </h2>
 
-      <div className="border border-gray-200 rounded-lg overflow-hidden">
+      <div className="overflow-hidden rounded-lg border border-gray-200">
         <dl>
           {displayedEntries.map(([key, value], index) => (
             <div
               key={key}
-              className={`flex flex-col sm:flex-row py-3 px-4 ${
-                index % 2 === 0 ? "bg-white" : "bg-gray-50"
-              } ${index !== 0 ? "border-top border-gray-100" : ""}`}
+              className={`grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4 ${
+                index > 0 ? "border-t border-gray-100" : ""
+              } ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}`}
             >
-              {/* Label: Full width on mobile, 1/3 width on tablet+ */}
-              <dt className="text-sm font-medium text-gray-500 sm:w-1/3 mb-1 sm:mb-0 uppercase tracking-wide text-[11px]">
+              <dt className="text-xs font-medium text-gray-500 sm:text-sm">
                 {key}
               </dt>
-              {/* Value: High contrast for readability */}
-              <dd className="text-sm text-gray-900 sm:w-2/3 font-medium">
+
+              <dd className="text-sm font-medium text-gray-900 sm:col-span-2">
                 {value}
               </dd>
             </div>
@@ -45,14 +43,15 @@ export default function ProductSpecifications({
 
       {entries.length > 5 && (
         <button
+          type="button"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mt-4 w-full py-2 text-sm font-semibold text-blue-600 border border-blue-600 rounded-md hover:bg-blue-50 transition-colors"
+          className="mt-3 w-full rounded-lg border border-gray-300 py-2.5 text-sm font-medium text-blue-600 transition hover:bg-gray-50"
         >
           {isExpanded
             ? "Show Less"
             : `Show All Specifications (${entries.length})`}
         </button>
       )}
-    </div>
+    </section>
   );
 }
