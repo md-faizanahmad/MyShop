@@ -101,6 +101,10 @@ export default function ProductDetails() {
     ),
   ].filter(Boolean) as string[];
 
+  const hasUserReviewed = Boolean(
+    user?._id &&
+    product.reviews?.some((review) => review.user?._id === user._id),
+  );
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6">
@@ -152,14 +156,15 @@ export default function ProductDetails() {
           <h2 className="mb-5 text-center text-xl font-semibold sm:mb-6 sm:text-2xl">
             Customer Reviews
           </h2>
-
           <ReviewList
             productId={product._id}
             reviews={product.reviews ?? []}
             currentUserId={user?._id}
           />
 
-          <ReviewForm productId={product._id} slug={product.slug} />
+          {!hasUserReviewed && (
+            <ReviewForm productId={product._id} slug={product.slug} />
+          )}
         </section>
 
         {/* Suggested */}

@@ -13,6 +13,7 @@ export interface Review {
   rating: number;
   comment: string;
   createdAt: string;
+  verified: boolean;
 }
 
 export interface ProductImage {
