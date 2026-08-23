@@ -6,7 +6,6 @@ import type { JSX } from "react";
 import OrderSummaryCard from "./OrderSummaryCard";
 import { getMaxQtyByPrice } from "../../utils/cartLimits";
 import type { CartItem } from "@/types/cartItem";
-import { Link } from "react-router-dom";
 
 interface CartMobileProps {
   items: CartItem[];
@@ -62,15 +61,10 @@ export default function CartMobile({
                   "
                 >
                   <div className="flex gap-3">
-                    <Link
-                      to={`/category/${product.category.slug}/product/${product.slug}`}
-                      className="block shrink-0"
-                      aria-label={`View ${product.name}`}
-                    >
-                      <img
-                        src={product.imageUrl}
-                        alt={product.name}
-                        className="
+                    <img
+                      src={product.imageUrl}
+                      alt={product.name}
+                      className="
                         h-20
                         w-20
                         shrink-0
@@ -78,8 +72,8 @@ export default function CartMobile({
                         bg-slate-100
                         object-cover
                       "
-                      />
-                    </Link>
+                    />
+
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
