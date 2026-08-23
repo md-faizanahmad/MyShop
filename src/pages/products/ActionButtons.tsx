@@ -89,49 +89,43 @@ export default function ActionButtons({
   const outOfStock = stock <= 0;
 
   return (
-    <div className="flex flex-col gap-2.5 mt-4 w-full antialiased">
-      {/* Primary Action Grid — High-Conversion Retail Matrix */}
-      <div className="grid grid-cols-2 gap-2">
-        {/* Add to Cart Trigger */}
+    <div className="mt-3 w-full sm:mt-4">
+      <div className="grid grid-cols-2 gap-2.5">
         <button
+          type="button"
           onClick={onCartToggle}
           disabled={outOfStock}
-          className={`flex items-center justify-center gap-2 h-11 px-4 text-xs font-bold uppercase tracking-wider transition-colors border select-none
-            ${
-              outOfStock
-                ? "bg-zinc-100 text-zinc-400 border-zinc-200 cursor-not-allowed"
-                : isInCart
-                  ? "bg-zinc-900 text-white border-zinc-900 hover:bg-zinc-800"
-                  : "bg-white text-zinc-900 border-zinc-300 hover:bg-zinc-50"
-            }`}
+          className={`flex h-11 items-center justify-center gap-2 rounded-lg border px-3 text-sm font-semibold transition sm:h-12 ${
+            outOfStock
+              ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
+              : isInCart
+                ? "border-gray-900 bg-gray-900 text-white hover:bg-gray-800"
+                : "border-gray-300 bg-white text-gray-900 hover:bg-gray-50"
+          }`}
         >
-          <ShoppingCart size={13} strokeWidth={2.5} />
-          <span>{isInCart ? "Remove Item" : "Add to Cart"}</span>
+          <ShoppingCart size={17} />
+          <span>{isInCart ? "Remove from Cart" : "Add to Cart"}</span>
         </button>
 
-        {/* Buy Now Instant Checkout — Premium Sky Anchor */}
         <button
+          type="button"
           onClick={onBuyNow}
           disabled={outOfStock}
-          className={`flex items-center justify-center gap-2 h-11 px-4 text-xs font-bold uppercase tracking-wider transition-colors select-none
-            ${
-              outOfStock
-                ? "bg-zinc-100 text-zinc-400 cursor-not-allowed"
-                : "bg-sky-500 text-white hover:bg-sky-600 shadow-xs"
-            }`}
+          className={`flex h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold transition sm:h-12 ${
+            outOfStock
+              ? "cursor-not-allowed bg-gray-100 text-gray-400"
+              : "bg-blue-600 text-white hover:bg-blue-700"
+          }`}
         >
-          <Zap size={13} strokeWidth={2.5} className="fill-current" />
+          <Zap size={17} />
           <span>Buy Now</span>
         </button>
       </div>
 
-      {/* Structured Out of Stock Warning System */}
       {outOfStock && (
-        <div className="mt-1 border border-red-100 bg-red-50/50 px-3 py-2 text-center">
-          <p className="text-[11px] font-mono uppercase tracking-widest font-bold text-red-700">
-            Come IN-STOCK Soon
-          </p>
-        </div>
+        <p className="mt-2 text-center text-xs font-medium text-red-600">
+          Currently out of stock
+        </p>
       )}
     </div>
   );
