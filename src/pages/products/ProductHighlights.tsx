@@ -10,17 +10,22 @@ export default function ProductHighlights({
   if (!highlights.length) return null;
 
   return (
-    <div className="mt-8">
-      <h2 className="text-lg font-semibold mb-3">Key Highlights</h2>
+    <section className="mt-6 sm:mt-8">
+      <h2 className="mb-3 text-base font-semibold text-gray-900 sm:text-lg">
+        Key Highlights
+      </h2>
 
       <div className="space-y-2">
-        {highlights.map((h, i) => (
-          <div key={i} className="flex items-center gap-3">
-            <Check className="text-green-600 w-5 h-5" />
-            <span className="text-gray-800 text-sm">{h}</span>
+        {highlights.map((highlight, index) => (
+          <div
+            key={index}
+            className="flex items-start gap-2.5 text-sm text-gray-700"
+          >
+            <Check size={17} className="mt-0.5 shrink-0 text-green-600" />
+            <span>{highlight}</span>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
