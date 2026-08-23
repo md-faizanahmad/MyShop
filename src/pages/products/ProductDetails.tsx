@@ -3,8 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { motion } from "framer-motion";
-import { ChevronLeft } from "lucide-react";
 
 import type { PublicProduct } from "../../types/product";
 import { useCartStore } from "../../store/useCartStore";
@@ -22,6 +20,7 @@ import SuggestedProducts from "../../shared/SuggestedProducts";
 import ProductDescription from "./ProductDescription";
 import ProductName from "./ProductName";
 import { useAuthStore } from "../../store/useAuthStore";
+import ProductBreadcrumb from "./ProductBreadcrumb";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -33,9 +32,8 @@ export default function ProductDetails() {
 
   const navigate = useNavigate();
 
-  /* -----------------------------
-     Stores
-  ----------------------------- */
+  // Stores;
+
   const cartItems = useCartStore((s) => s.items);
   const addToCart = useCartStore((s) => s.addItem);
   const removeFromCart = useCartStore((s) => s.removeItem);
@@ -44,9 +42,9 @@ export default function ProductDetails() {
   const addWish = useWishlistStore((s) => s.add);
   const removeWish = useWishlistStore((s) => s.remove);
   const user = useAuthStore((state) => state.user);
-  /* -----------------------------
-     Data fetch
-  ----------------------------- */
+
+  // Data fetch
+
   const {
     data: product,
     isLoading,
@@ -70,16 +68,12 @@ export default function ProductDetails() {
     );
   }
 
-  /* -----------------------------
-     Derived state
-  ----------------------------- */
+  // Derived state
   const isWishlisted = wishlistItems.some((w) => w.productId === product._id);
-
   const isInCart = cartItems.some((i) => i.product._id === product._id);
 
-  /* -----------------------------
-     Handlers
-  ----------------------------- */
+  // Handlers
+
   const toggleWishlist = () => {
     if (isWishlisted) {
       removeWish(product._id);
@@ -111,29 +105,7 @@ export default function ProductDetails() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Breadcrumb */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 text-sm text-gray-600 mb-6"
-        >
-          <ChevronLeft size={18} />
-          <a href="/" className="hover:text-blue-600">
-            Home
-          </a>
-          <span>/</span>
-          {categorySlug && (
-            <>
-              <a
-                href={`/category/${categorySlug}`}
-                className="hover:text-blue-600"
-              >
-                {product.category?.name ?? categorySlug}
-              </a>
-              <span>/</span>
-            </>
-          )}
-          <span className="text-gray-900 font-medium">{product.name}</span>
-        </motion.div>
+        <ProductBreadcrumb categorySlug={categorySlug} product={product} />
 
         {/* GRID */}
         <div className="grid lg:grid-cols-2 gap-10">
