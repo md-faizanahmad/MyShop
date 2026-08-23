@@ -116,125 +116,82 @@
 // }
 ////////////////////////////////////////////////////////////////// NEw design 11072026
 // src/components/product/PriceCard.tsx
-import { motion } from "framer-motion";
-import { CheckCircle2, Zap, AlertCircle } from "lucide-react";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
 
 interface PriceCardProps {
-  price: number; // Original MRP
-  discountedPrice?: number; // Optional: final price after discount
+  price: number;
+  discountedPrice?: number;
   stock: number;
-  savings?: number; // Optional: total savings
-  offerText?: string; // e.g., "Diwali Sale", "Bank Offer"
+  offers?: string[];
 }
 
 export default function PriceCard({
   price,
   discountedPrice,
   stock,
-  savings,
-  offerText = "Limited Time Deal",
+  offers = [],
 }: PriceCardProps) {
-  // Auto-calculate if not provided
-  const finalPrice =
-    discountedPrice || Math.max(price - (savings || 5000), 999);
-  const totalSavings = savings || price - finalPrice;
+  const finalPrice = discountedPrice ?? price;
+  const savings = Math.max(price - finalPrice, 0);
+
+  const discountPercent = price > 0 ? Math.round((savings / price) * 100) : 0;
 
   const isLowStock = stock > 0 && stock <= 10;
   const isOutOfStock = stock === 0;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="w-full bg-transparent antialiased py-2"
-    >
-      {/* Structural Minimalist Tag instead of loud banners */}
-      <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-emerald-700 font-bold mb-3">
-        <Zap size={11} strokeWidth={2.5} />
-        <span>{offerText}</span>
-        <span className="text-zinc-300">/</span>
-        <span>Save ₹{totalSavings.toLocaleString()}</span>
+    <div className="w-full py-1">
+      {/* Price */}
+      <div className="flex flex-wrap items-baseline gap-2">
+        <span className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          ₹{finalPrice.toLocaleString()}
+        </span>
+
+        {savings > 0 && (
+          <>
+            <span className="text-sm text-gray-400 line-through">
+              ₹{price.toLocaleString()}
+            </span>
+
+            <span className="text-sm font-semibold text-emerald-700">
+              {discountPercent}% off
+            </span>
+          </>
+        )}
       </div>
 
-      <div className="space-y-4">
-        {/* Core Pricing Info Block */}
-        <div className="flex flex-col gap-1">
-          <div className="flex items-baseline gap-2.5">
-            <span className="text-3xl font-black tracking-tight text-zinc-900">
-              ₹{finalPrice.toLocaleString()}
-            </span>
-            {totalSavings > 3000 && (
-              <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-emerald-700">
-                [ Best Offer ]
-              </span>
-            )}
-          </div>
-          <span className="text-[11px] text-zinc-400 font-medium">
-            Inclusive of all local taxes
-          </span>
-        </div>
+      <p className="mt-1 text-xs text-gray-500">Inclusive of all taxes</p>
 
-        {/* MRP Breakdown */}
-        <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
-          <span className="text-zinc-400 line-through">
-            MRP ₹{price.toLocaleString()}
-          </span>
-          <span>•</span>
-          <span>
-            Reduced by −₹{totalSavings.toLocaleString()}{" "}
-            <span className="text-emerald-700 font-bold">
-              ({Math.round((totalSavings / price) * 100)}% off)
-            </span>
-          </span>
-        </div>
-
-        {/* Clean E-commerce Offer Rows */}
-        <div className="space-y-2 pt-2 border-t border-zinc-100">
-          <div className="flex items-start gap-2 text-xs text-zinc-600">
-            <CheckCircle2
-              size={13}
-              className="text-emerald-700 mt-0.5 shrink-0"
-            />
-            <span>Extra ₹500 instant bank discount applicable at checkout</span>
-          </div>
-          <div className="flex items-start gap-2 text-xs text-zinc-600">
-            <CheckCircle2
-              size={13}
-              className="text-emerald-700 mt-0.5 shrink-0"
-            />
-            <span>No Cost EMI options available for this selection</span>
-          </div>
-        </div>
-
-        {/* Inventory Context */}
-        <div className="pt-2">
-          {isOutOfStock ? (
-            <div className="flex items-center gap-1.5 text-red-700 font-mono text-xs uppercase tracking-wider font-bold">
-              <AlertCircle size={13} strokeWidth={2.5} />
-              <span>Out of Stock</span>
+      {/* Offers */}
+      {offers.length > 0 && (
+        <div className="mt-4 space-y-2 border-t border-gray-100 pt-3">
+          {offers.map((offer, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-2 text-sm text-gray-600"
+            >
+              <CheckCircle2 size={15} className="shrink-0 text-emerald-600" />
+              <span>{offer}</span>
             </div>
-          ) : isLowStock ? (
-            <div className="inline-flex items-center gap-1.5 text-xs font-medium text-red-700 font-mono uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse" />
-              <span>Hurry, only {stock} items left in stock</span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-1.5 text-emerald-700 text-xs font-semibold font-mono uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-              <span>In Stock &bull; Free Delivery</span>
-            </div>
-          )}
+          ))}
         </div>
+      )}
 
-        {/* Trust Specification Rows */}
-        <div className="flex items-center gap-4 text-[10px] font-mono text-zinc-400 uppercase tracking-widest pt-2 border-t border-zinc-100">
-          <span>7-Day Replacement</span>
-          <span>&middot;</span>
-          <span>Genuine Stock</span>
-          <span>&middot;</span>
-          <span>COD Eligible</span>
-        </div>
+      {/* Stock */}
+      <div className="mt-4">
+        {isOutOfStock ? (
+          <div className="flex items-center gap-1.5 text-sm font-semibold text-red-600">
+            <AlertCircle size={16} />
+            <span>Out of Stock</span>
+          </div>
+        ) : isLowStock ? (
+          <div className="text-sm font-medium text-red-600">
+            Only {stock} left in stock
+          </div>
+        ) : (
+          <div className="text-sm font-medium text-emerald-700">In Stock</div>
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 }

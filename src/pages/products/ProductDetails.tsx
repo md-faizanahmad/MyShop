@@ -129,6 +129,7 @@ export default function ProductDetails() {
               price={product.price}
               discountedPrice={product.discountPrice}
               stock={product.stock}
+              offers={product.offers}
             />
 
             <ActionButtons
