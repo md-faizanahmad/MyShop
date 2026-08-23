@@ -106,7 +106,7 @@ export default function ProductDetails() {
     product.reviews?.some((review) => review.user?._id === user._id),
   );
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6">
         <ProductBreadcrumb categorySlug={categorySlug} product={product} />
 

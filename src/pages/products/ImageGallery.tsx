@@ -169,13 +169,7 @@
 /////////////////////////////23-08-2026 update with away from AI cheap
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ZoomIn,
-  Package,
-  AlertCircle,
-  CheckCircle2,
-  Heart,
-} from "lucide-react";
+import { ZoomIn, AlertCircle, Heart } from "lucide-react";
 
 interface ImageGalleryProps {
   images: string[];
@@ -210,12 +204,12 @@ export default function ImageGallery({
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4 }}
-      className="space-y-3 sm:space-y-4"
+      className="space-y-2.5 sm:space-y-3"
     >
       {/* Main Image */}
-      <div className="relative overflow-hidden rounded-xl bg-white sm:rounded-2xl">
+      <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
         <div
-          className="relative aspect-square cursor-zoom-in overflow-hidden"
+          className="relative aspect-[1/0.85] max-h-[420px] cursor-zoom-in overflow-hidden sm:aspect-square sm:max-h-[520px]"
           onClick={() => setIsZoomed(!isZoomed)}
         >
           <AnimatePresence mode="wait">
@@ -236,15 +230,15 @@ export default function ImageGallery({
           </AnimatePresence>
 
           {/* Badges */}
-          <div className="absolute left-3 top-3 flex flex-col gap-1.5 sm:left-4 sm:top-4">
+          <div className="absolute left-2.5 top-2.5 flex flex-col gap-1 sm:left-3 sm:top-3">
             {isNew && (
-              <span className="rounded-md bg-emerald-500 px-2 py-1 text-[10px] font-bold text-white sm:px-2.5 sm:text-xs">
+              <span className="rounded bg-emerald-500 px-1.5 py-0.5 text-[9px] font-semibold text-white sm:px-2 sm:text-[10px]">
                 NEW
               </span>
             )}
 
             {has360View && (
-              <span className="rounded-md bg-purple-600 px-2 py-1 text-[10px] font-bold text-white sm:px-2.5 sm:text-xs">
+              <span className="rounded bg-purple-600 px-1.5 py-0.5 text-[9px] font-semibold text-white sm:px-2 sm:text-[10px]">
                 360° VIEW
               </span>
             )}
@@ -257,13 +251,13 @@ export default function ImageGallery({
               e.stopPropagation();
               onWishlistToggle();
             }}
-            className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-sm transition hover:scale-105 sm:right-4 sm:top-4 sm:h-10 sm:w-10"
+            className="absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm transition hover:scale-105 sm:right-3 sm:top-3 sm:h-9 sm:w-9"
             aria-label={
               isWishlisted ? "Remove from wishlist" : "Add to wishlist"
             }
           >
             <Heart
-              size={20}
+              size={18}
               className={
                 isWishlisted ? "fill-red-500 text-red-500" : "text-gray-700"
               }
@@ -272,8 +266,8 @@ export default function ImageGallery({
 
           {/* Zoom */}
           {isZoomed && (
-            <div className="absolute left-1/2 top-3 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-black/70 px-3 py-1.5 text-[11px] font-medium text-white sm:top-4 sm:text-xs">
-              <ZoomIn size={14} />
+            <div className="absolute left-1/2 top-2.5 flex -translate-x-1/2 items-center gap-1 rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-white sm:top-3 sm:px-3 sm:text-xs">
+              <ZoomIn size={13} />
               Tap to zoom out
             </div>
           )}
@@ -283,10 +277,10 @@ export default function ImageGallery({
             <div className="absolute inset-0 flex items-center justify-center bg-black/60">
               <div className="text-center">
                 <AlertCircle
-                  size={40}
-                  className="mx-auto mb-2 text-red-400 sm:size-12"
+                  size={36}
+                  className="mx-auto mb-1.5 text-red-400 sm:size-11"
                 />
-                <p className="text-xl font-bold text-white sm:text-2xl">
+                <p className="text-lg font-bold text-white sm:text-xl">
                   Out of Stock
                 </p>
               </div>
@@ -295,7 +289,7 @@ export default function ImageGallery({
 
           {/* Low Stock */}
           {isLowStock && (
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-red-600 px-3 py-1.5 text-xs font-semibold text-white sm:bottom-4 sm:px-4">
+            <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-semibold text-white sm:bottom-3 sm:px-3 sm:text-xs">
               Only {stock} left
             </div>
           )}
@@ -304,13 +298,13 @@ export default function ImageGallery({
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-1 sm:grid sm:grid-cols-5 sm:gap-3 sm:overflow-visible">
+        <div className="flex gap-1.5 overflow-x-auto pb-0.5 sm:gap-2">
           {images.map((img, idx) => (
             <button
               key={idx}
               type="button"
               onClick={() => setSelectedIndex(idx)}
-              className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2 bg-white transition sm:h-auto sm:w-auto ${
+              className={`h-14 w-14 shrink-0 overflow-hidden rounded-md border-2 bg-white transition sm:h-16 sm:w-16 ${
                 selectedIndex === idx
                   ? "border-blue-600"
                   : "border-gray-200 hover:border-gray-400"
@@ -319,25 +313,12 @@ export default function ImageGallery({
               <img
                 src={img}
                 alt={`${name} view ${idx + 1}`}
-                className="aspect-square h-full w-full object-contain"
+                className="h-full w-full object-contain"
               />
             </button>
           ))}
         </div>
       )}
-
-      {/* Trust */}
-      <div className="flex gap-4 text-xs text-gray-600 sm:text-sm">
-        <div className="flex items-center gap-1.5">
-          <CheckCircle2 size={16} className="text-green-600" />
-          <span>100% Original</span>
-        </div>
-
-        <div className="flex items-center gap-1.5">
-          <Package size={16} className="text-blue-600" />
-          <span>Free Delivery</span>
-        </div>
-      </div>
     </motion.div>
   );
 }
