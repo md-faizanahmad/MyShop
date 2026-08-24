@@ -161,7 +161,7 @@ export default function ProductDetails() {
         </div>
 
         {/* Reviews */}
-        <section className="mt-10 border-t pt-8 sm:mt-14 sm:pt-10">
+        <section className="mt-10  pt-8 sm:mt-14 sm:pt-10">
           <ReviewSummary
             average={product.rating?.average ?? 0}
             count={product.rating?.count ?? 0}

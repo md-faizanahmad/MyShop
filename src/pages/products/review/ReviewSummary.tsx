@@ -33,19 +33,19 @@ export default function ReviewSummary({ average, count }: Props) {
   return (
     <section
       aria-labelledby="customer-feedback-heading"
-      className="border-b border-gray-200 py-6"
+      className=" py-6 mb-10"
     >
-      <div className="text-center">
-        <h3
+      <div>
+        <h2
           id="customer-feedback-heading"
-          className="text-base font-semibold text-gray-900"
+          className=" text-2xl font-semibold text-gray-900"
         >
           Customer Feedback
-        </h3>
+        </h2>
 
         {count > 0 ? (
           <>
-            <div className="mt-3 flex items-center justify-center gap-2">
+            <div className="mt-3 flex items-center gap-2">
               <span className="text-2xl font-semibold text-gray-900">
                 {average.toFixed(1)}
               </span>
@@ -61,7 +61,7 @@ export default function ReviewSummary({ average, count }: Props) {
                     aria-hidden="true"
                     className={
                       index < roundedRating
-                        ? "fill-sky-500 text-sky-500"
+                        ? "fill-yellow-500 text-yellow-500"
                         : "fill-gray-100 text-gray-300"
                     }
                   />
@@ -73,7 +73,7 @@ export default function ReviewSummary({ average, count }: Props) {
               Based on {count} {count === 1 ? "review" : "reviews"}
             </p>
 
-            <p className="mx-auto mt-3 max-w-md text-sm text-gray-600">
+            <p className="mt-3 max-w-md text-sm text-gray-600">
               {getConclusion()}
             </p>
           </>
