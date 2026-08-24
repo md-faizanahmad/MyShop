@@ -307,7 +307,7 @@ export default function ImageGallery({
 
               {/* Low Stock */}
               {isLowStock && (
-                <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-red-600 px-3 py-1.5 text-[11px] font-bold text-white sm:bottom-4 sm:px-5 sm:py-2 sm:text-sm">
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-semibold text-white sm:bottom-3 sm:px-3 sm:py-1.5 sm:text-xs">
                   Only {stock} left!
                 </div>
               )}
