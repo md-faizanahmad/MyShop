@@ -1,90 +1,126 @@
 export default function ProductDetailsSkeleton() {
   return (
-    <div className="min-h-screen bg-gray-50 animate-pulse">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    <div className="min-h-screen animate-pulse">
+      <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-4 h-4 bg-gray-300 rounded-full" />
-          <div className="w-24 h-4 bg-gray-300 rounded" />
-          <div className="w-4 h-4 bg-gray-300 rounded-full" />
-          <div className="w-32 h-4 bg-gray-300 rounded" />
+        <div className="mb-5 flex items-center gap-2 sm:mb-6 sm:gap-3">
+          <div className="h-4 w-4 rounded-full bg-gray-300" />
+          <div className="h-4 w-20 rounded bg-gray-300" />
+          <div className="h-4 w-4 rounded-full bg-gray-300" />
+          <div className="h-4 w-28 rounded bg-gray-300" />
         </div>
 
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* LEFT: Image Gallery */}
-          <div>
-            <div className="w-full aspect-square bg-gray-200 rounded-2xl" />
+        {/* Product */}
+        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr] lg:gap-5">
+          {/* Gallery */}
+          <div className="min-w-0">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:gap-4">
+              {/* Thumbnails */}
+              <div className="order-2 grid grid-cols-4 gap-2 lg:order-1 lg:flex lg:w-16 lg:shrink-0 lg:flex-col lg:gap-2">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="aspect-square w-full rounded-lg bg-gray-200"
+                  />
+                ))}
+              </div>
 
-            <div className="mt-4 grid grid-cols-4 gap-3">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="w-full aspect-square bg-gray-200 rounded-xl"
-                />
-              ))}
+              {/* Main Image */}
+              <div className="order-1 min-w-0 flex-1 lg:order-2">
+                <div className="aspect-[1/0.9] max-h-[360px] rounded-lg bg-gray-200 sm:aspect-square sm:max-h-[480px] lg:max-h-none" />
+              </div>
             </div>
 
-            <div className="mt-6">
-              <div className="w-40 h-5 bg-gray-300 rounded mb-2" />
-              <div className="space-y-2">
-                <div className="h-3 bg-gray-200 rounded w-3/4" />
-                <div className="h-3 bg-gray-200 rounded w-2/3" />
-                <div className="h-3 bg-gray-200 rounded w-1/2" />
+            {/* Highlights */}
+            <div className="mt-6 sm:mt-8">
+              <div className="mb-3 h-5 w-32 rounded bg-gray-300" />
+
+              <div className="space-y-2.5">
+                <div className="h-4 w-3/4 rounded bg-gray-200" />
+                <div className="h-4 w-2/3 rounded bg-gray-200" />
+                <div className="h-4 w-1/2 rounded bg-gray-200" />
               </div>
             </div>
           </div>
 
-          {/* RIGHT: Info */}
-          <div className="space-y-5">
-            <div className="w-3/4 h-7 bg-gray-300 rounded" />
-
-            <div className="space-y-2 mt-4">
-              <div className="h-3 bg-gray-200 rounded w-full" />
-              <div className="h-3 bg-gray-200 rounded w-5/6" />
-              <div className="h-3 bg-gray-200 rounded w-4/6" />
+          {/* Product Info */}
+          <div className="min-w-0 space-y-4">
+            {/* Product Name */}
+            <div>
+              <div className="mb-1 h-3 w-28 rounded bg-gray-200" />
+              <div className="h-5 w-3/4 rounded bg-gray-300" />
             </div>
 
             {/* Price */}
-            <div className="w-32 h-8 bg-gray-300 rounded mt-6" />
+            <div>
+              <div className="h-7 w-32 rounded bg-gray-300" />
+              <div className="mt-2 h-3 w-28 rounded bg-gray-200" />
 
-            {/* Action Buttons */}
-            <div className="flex gap-4 mt-6">
-              <div className="flex-1 h-12 bg-gray-300 rounded-xl" />
-              <div className="w-24 h-12 bg-gray-300 rounded-xl" />
+              <div className="mt-4 space-y-2 border-t border-gray-100 pt-3">
+                <div className="h-4 w-32 rounded bg-gray-200" />
+                <div className="h-4 w-36 rounded bg-gray-200" />
+                <div className="h-4 w-20 rounded bg-gray-200" />
+              </div>
+
+              <div className="mt-4 h-4 w-32 rounded bg-gray-200" />
             </div>
 
-            <div className="w-full h-20 bg-gray-200 rounded-xl mt-4" />
-          </div>
-        </div>
+            {/* Actions */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="h-11 rounded-lg bg-gray-300 sm:h-12" />
+              <div className="h-11 rounded-lg bg-gray-300 sm:h-12" />
+            </div>
 
-        {/* Specifications */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="h-40 bg-gray-200 rounded-xl" />
-          <div className="h-40 bg-gray-200 rounded-xl" />
+            {/* Description */}
+            <div className="py-4 sm:py-6">
+              <div className="mb-3 h-5 w-24 rounded bg-gray-300" />
+              <div className="space-y-2">
+                <div className="h-4 w-full rounded bg-gray-200" />
+                <div className="h-4 w-11/12 rounded bg-gray-200" />
+                <div className="h-4 w-4/5 rounded bg-gray-200" />
+              </div>
+            </div>
+
+            {/* Specifications */}
+            <div>
+              <div className="mb-3 h-5 w-44 rounded bg-gray-300" />
+
+              <div className="overflow-hidden rounded-lg border border-gray-200">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-3 sm:gap-4"
+                  >
+                    <div className="h-3 w-20 rounded bg-gray-200" />
+                    <div className="h-4 w-32 rounded bg-gray-200 sm:col-span-2" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Reviews */}
-        <div className="mt-16 border-t pt-10">
-          <div className="w-56 h-6 bg-gray-300 rounded mx-auto mb-10" />
+        <section className="mt-10 border-t pt-8 sm:mt-14 sm:pt-10">
+          <div className="mx-auto mb-5 h-5 w-40 rounded bg-gray-300 sm:mb-6" />
 
-          <div className="space-y-4 max-w-3xl mx-auto">
+          <div className="space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="w-full h-20 bg-gray-200 rounded-xl" />
+              <div key={i} className="h-24 w-full rounded-lg bg-gray-200" />
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Suggested Products */}
-        <div className="mt-16">
-          <div className="w-64 h-6 bg-gray-300 rounded mx-auto mb-10" />
+        <section className="mt-10 sm:mt-14">
+          <div className="mx-auto mb-5 h-5 w-48 rounded bg-gray-300 sm:mb-6" />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-56 bg-gray-200 rounded-xl" />
+              <div key={i} className="h-52 rounded-lg bg-gray-200 sm:h-56" />
             ))}
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
