@@ -244,19 +244,22 @@ export default function ReviewList({
         return (
           <li
             key={review._id}
-            className={`group relative rounded-lg border p-4 transition ${
+            className={`group relative w-full rounded-lg border p-4 transition lg:max-w-2xl ${
               isEditing
                 ? "border-blue-500 bg-blue-50/20"
                 : "border-gray-200 bg-white"
             }`}
           >
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex items-center gap-3">
+            {/* Header */}
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-3">
+                {/* Avatar */}
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-700">
-                  {review.user.name?.charAt(0).toUpperCase() || "U"}
+                  {review.user.name}
                 </div>
 
-                <div>
+                {/* User */}
+                <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-sm font-semibold text-gray-900">
                       {review.user.name}
@@ -270,18 +273,29 @@ export default function ReviewList({
                     )}
                   </div>
 
-                  <p className="mt-0.5 text-xs text-gray-500">
-                    {new Date(review.createdAt).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </p>
+                  {/* Rating beside user */}
+                  <div className="mt-1 flex items-center gap-0.5">
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <Star
+                        key={index}
+                        size={14}
+                        onClick={
+                          isEditing ? () => setEditRating(index + 1) : undefined
+                        }
+                        className={`${isEditing ? "cursor-pointer" : ""} ${
+                          index < (isEditing ? editRating : review.rating)
+                            ? "fill-amber-400 text-amber-400"
+                            : "fill-gray-100 text-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
 
+              {/* Owner Actions */}
               {isOwner && !isEditing && (
-                <div className="flex items-center gap-1">
+                <div className="flex shrink-0 items-center gap-1">
                   <button
                     type="button"
                     onClick={() => {
@@ -289,7 +303,7 @@ export default function ReviewList({
                       setEditRating(review.rating);
                       setEditComment(review.comment);
                     }}
-                    className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+                    className="rounded p-1.5 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
                     aria-label="Edit review"
                   >
                     <Pencil size={15} />
@@ -298,7 +312,7 @@ export default function ReviewList({
                   <button
                     type="button"
                     onClick={() => deleteReview()}
-                    className="rounded p-1.5 text-gray-500 hover:bg-red-50 hover:text-red-600"
+                    className="rounded p-1.5 text-gray-500 transition hover:bg-red-50 hover:text-red-600"
                     aria-label="Delete review"
                   >
                     <Trash2 size={15} />
@@ -307,27 +321,22 @@ export default function ReviewList({
               )}
             </div>
 
-            <div className="mt-3 flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <Star
-                  key={index}
-                  size={16}
-                  onClick={
-                    isEditing ? () => setEditRating(index + 1) : undefined
-                  }
-                  className={`${isEditing ? "cursor-pointer" : ""} ${
-                    index < (isEditing ? editRating : review.rating)
-                      ? "fill-amber-400 text-amber-400"
-                      : "fill-gray-100 text-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
-
+            {/* Review */}
             {!isEditing ? (
-              <p className="mt-2.5 text-sm leading-relaxed text-gray-800">
-                {review.comment}
-              </p>
+              <>
+                <p className="mt-3 text-sm leading-relaxed text-gray-800">
+                  {review.comment}
+                </p>
+
+                {/* Date below review */}
+                <p className="mt-2 text-xs text-gray-400">
+                  {new Date(review.createdAt).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
+              </>
             ) : (
               <div className="mt-3 space-y-3">
                 <textarea

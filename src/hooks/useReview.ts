@@ -13,7 +13,7 @@ export function useReview(productId: string) {
 
   const updateMutation = useMutation({
     mutationFn: async ({ rating, comment }: UpdateReviewParams) => {
-      await apiClient.put(`/v1/products/${productId}/review`, {
+      await apiClient.put(`/v1/products/${productId}/reviews`, {
         rating,
         comment,
       });
@@ -29,7 +29,7 @@ export function useReview(productId: string) {
 
   const deleteMutation = useMutation({
     mutationFn: async () => {
-      await apiClient.delete(`/v1/products/${productId}/review`);
+      await apiClient.delete(`/v1/products/${productId}/reviews`);
     },
     onSuccess: () => {
       toast.success("Review deleted");
