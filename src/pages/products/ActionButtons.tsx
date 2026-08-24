@@ -111,10 +111,10 @@ export default function ActionButtons({
           type="button"
           onClick={onBuyNow}
           disabled={outOfStock}
-          className={`flex h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold transition sm:h-12 ${
+          className={`flex h-11 cursor-pointer items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold transition sm:h-12 ${
             outOfStock
               ? "cursor-not-allowed bg-gray-100 text-gray-400"
-              : "bg-blue-600 text-white hover:bg-blue-700"
+              : "bg-sky-600 text-white hover:bg-sky-700"
           }`}
         >
           <Zap size={17} />
