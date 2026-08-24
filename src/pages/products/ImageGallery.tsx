@@ -194,7 +194,7 @@ export default function ImageGallery({
       <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:gap-4">
         {/* Thumbnails */}
         {images.length > 1 && (
-          <div className="order-2 grid grid-cols-4 gap-2 lg:order-1 lg:flex lg:w-16 lg:shrink-0 lg:flex-col lg:gap-2">
+          <div className="order-2 flex gap-2 overflow-x-auto lg:order-1 lg:flex-col lg:w-16 lg:shrink-0">
             {images.map((img, idx) => (
               <button
                 key={idx}
@@ -203,7 +203,7 @@ export default function ImageGallery({
                   setSelectedIndex(idx);
                   setIsZoomed(false);
                 }}
-                className={`relative aspect-square w-full overflow-hidden rounded-lg border-2 transition sm:rounded-xl ${
+                className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border-2 transition lg:h-16 lg:w-16 ${
                   selectedIndex === idx
                     ? "border-blue-600"
                     : "border-gray-200 hover:border-gray-400"
