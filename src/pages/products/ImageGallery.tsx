@@ -277,7 +277,7 @@ export default function ImageGallery({
                   e.stopPropagation();
                   onWishlistToggle();
                 }}
-                className="absolute cursor-pointer rounded-sm right-4 top-0 flex h-9 w-9 items-center justify-center  bg-white/90 shadow-md backdrop-blur-sm transition hover:scale-105 sm:right-1 sm:top-1 sm:h-11 sm:w-11"
+                className="absolute cursor-pointer rounded-sm right-7 top-2 flex h-9 w-9 items-center justify-center  bg-white/90 shadow-md backdrop-blur-sm transition hover:scale-105 sm:right-8 sm:top-1 sm:h-10 sm:w-10"
                 aria-label={
                   isWishlisted ? "Remove from wishlist" : "Add to wishlist"
                 }
