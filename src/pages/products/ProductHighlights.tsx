@@ -15,13 +15,16 @@ export default function ProductHighlights({
         Key Highlights
       </h2>
 
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {highlights.map((highlight, index) => (
           <div
             key={index}
-            className="flex items-start gap-2.5 text-sm text-gray-700"
+            className="flex items-start gap-2.5 text-sm text-gray-700 sm:gap-3 sm:text-[15px]"
           >
-            <Check size={17} className="mt-0.5 shrink-0 text-green-600" />
+            <Check
+              size={17}
+              className="mt-0.5 shrink-0 text-green-600 sm:size-[18px]"
+            />
             <span>{highlight}</span>
           </div>
         ))}

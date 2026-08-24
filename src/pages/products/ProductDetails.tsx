@@ -111,7 +111,8 @@ export default function ProductDetails() {
         <ProductBreadcrumb categorySlug={categorySlug} product={product} />
 
         {/* Product */}
-        <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
+        {/* <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6"> */}
+        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr] lg:gap-5">
           {/* Gallery */}
           <div className="min-w-0">
             <ImageGallery

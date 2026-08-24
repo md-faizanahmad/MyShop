@@ -227,7 +227,7 @@ export default function ImageGallery({
         <div className="order-1 min-w-0 flex-1 lg:order-2">
           <div className="relative overflow-hidden">
             <div
-              className="relative aspect-[1/0.85] max-h-[360px] cursor-zoom-in overflow-hidden sm:aspect-square sm:max-h-[480px] lg:max-h-[450px]"
+              className="relative aspect-[1/0.9] max-h-[360px] cursor-zoom-in overflow-hidden sm:aspect-square sm:max-h-[480px] lg:aspect-[1/0.9] lg:max-h-none"
               onClick={() => setIsZoomed(!isZoomed)}
             >
               <AnimatePresence mode="wait">
@@ -277,7 +277,7 @@ export default function ImageGallery({
                   e.stopPropagation();
                   onWishlistToggle();
                 }}
-                className="absolute cursor-pointer rounded-sm right-8 top-0 flex h-9 w-9 items-center justify-center  bg-white/90 shadow-md backdrop-blur-sm transition hover:scale-105 sm:right-1 sm:top-1 sm:h-11 sm:w-11"
+                className="absolute cursor-pointer rounded-sm right-4 top-0 flex h-9 w-9 items-center justify-center  bg-white/90 shadow-md backdrop-blur-sm transition hover:scale-105 sm:right-1 sm:top-1 sm:h-11 sm:w-11"
                 aria-label={
                   isWishlisted ? "Remove from wishlist" : "Add to wishlist"
                 }
