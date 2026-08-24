@@ -10,7 +10,7 @@ export default function ProductHighlights({
   if (!highlights.length) return null;
 
   return (
-    <section className="mt-6 sm:mt-8">
+    <section className="mt-6 sm:mt-8 lg:pl-25">
       <h2 className="mb-3 text-base font-semibold text-gray-900 sm:text-lg">
         Key Highlights
       </h2>

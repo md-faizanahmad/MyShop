@@ -111,7 +111,6 @@ export default function ProductDetails() {
         <ProductBreadcrumb categorySlug={categorySlug} product={product} />
 
         {/* Product */}
-        {/* <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6"> */}
         <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr] lg:gap-5">
           {/* Gallery */}
           <div className="min-w-0">
@@ -123,7 +122,10 @@ export default function ProductDetails() {
               onWishlistToggle={toggleWishlist}
             />
 
-            <ProductHighlights highlights={product.highlights ?? []} />
+            {/* Desktop highlights */}
+            <div className="hidden lg:block">
+              <ProductHighlights highlights={product.highlights ?? []} />
+            </div>
           </div>
 
           {/* Product Info */}
@@ -143,6 +145,11 @@ export default function ProductDetails() {
               onCartToggle={toggleCart}
               onBuyNow={() => navigate(`/checkout?quickbuy=${product._id}`)}
             />
+
+            {/* Mobile highlights */}
+            <div className="lg:hidden">
+              <ProductHighlights highlights={product.highlights ?? []} />
+            </div>
 
             <ProductDescription description={product.description ?? ""} />
 
