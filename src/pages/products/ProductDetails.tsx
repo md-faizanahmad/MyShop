@@ -14,8 +14,8 @@ import ProductHighlights from "./ProductHighlights";
 import PriceCard from "./PriceCard";
 import ActionButtons from "./ActionButtons";
 import ProductSpecifications from "./ProductSpecifications";
-import ReviewForm from "../../shared/ReviewForm";
-import ReviewList from "../../shared/ReviewList";
+import ReviewForm from "./review/ReviewForm";
+import ReviewList from "./review/ReviewList";
 import SuggestedProducts from "../../shared/SuggestedProducts";
 import ProductDescription from "./ProductDescription";
 import ProductName from "./ProductName";
@@ -161,10 +161,6 @@ export default function ProductDetails() {
 
         {/* Reviews */}
         <section className="mt-10 border-t pt-8 sm:mt-14 sm:pt-10">
-          <h2 className="mb-5 text-center text-lg font-semibold sm:mb-6 sm:text-xl">
-            Customer Reviews
-          </h2>
-
           <ReviewList
             productId={product._id}
             reviews={product.reviews ?? []}

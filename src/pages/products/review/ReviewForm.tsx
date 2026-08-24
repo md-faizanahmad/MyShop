@@ -1,175 +1,324 @@
-import { useState } from "react";
-import { Loader2, Star, X } from "lucide-react";
+// import { useState, type FormEvent } from "react";
+// import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import { Star } from "lucide-react";
+// import { toast } from "react-toastify";
+// import { AxiosError } from "axios";
 
-import { useReview } from "@/hooks/useReview";
+// import type { Review } from "../../../types/product";
+// import apiClient from "../../../lib/axios";
+// import { useAuthStore } from "../../../store/useAuthStore";
+// import { Link } from "react-router-dom";
+
+// interface Props {
+//   productId: string;
+//   slug?: string;
+//   hasReviews?: boolean;
+// }
+
+// interface ApiError {
+//   message: string;
+// }
+
+// export default function ReviewForm({ productId, slug }: Props) {
+//   const [rating, setRating] = useState<number>(5);
+//   const [comment, setComment] = useState<string>("");
+//   const { status } = useAuthStore();
+//   const qc = useQueryClient();
+
+//   const mutation = useMutation<Review, AxiosError<ApiError>, void>({
+//     mutationFn: async () => {
+//       const res = await apiClient.post(`/v1/products/${productId}/review`, {
+//         rating,
+//         comment,
+//       });
+//       return res.data.review;
+//     },
+//     onSuccess: () => {
+//       toast.success("Review submitted successfully");
+//       qc.invalidateQueries({ queryKey: ["product", slug] });
+//       setComment("");
+//       setRating(5);
+//     },
+//     onError: (error) => {
+//       const msg =
+//         error.response?.data?.message ??
+//         "Unable to submit review. Please try again.";
+//       toast.error(msg);
+//     },
+//   });
+
+//   const handleSubmit = (e: FormEvent) => {
+//     e.preventDefault();
+
+//     if (comment.trim().length < 5) {
+//       toast.warn("Review must be at least 5 characters");
+//       return;
+//     }
+
+//     mutation.mutate();
+//   };
+//   /* =========================
+//      GUEST VIEW
+//   ========================= */
+//   if (status !== "authenticated") {
+//     return (
+//       <div className="w-full m-auto max-w-lg rounded-xl  p-4 sm:p-5 text-center">
+//         <p className="text-sm text-gray-700">
+//           Please log in to write a review.
+//         </p>
+
+//         <Link
+//           to="/login"
+//           className="mt-3 inline-block rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white"
+//         >
+//           Login to review
+//         </Link>
+//       </div>
+//     );
+//   }
+//   return (
+//     <form
+//       onSubmit={handleSubmit}
+//       className="w-full max-w-lg space-y-4 rounded-xl border border-gray-200 bg-white p-4 sm:p-5"
+//     >
+//       {/* Rating */}
+//       <div className="flex items-center gap-2">
+//         {Array.from({ length: 5 }).map((_, i) => {
+//           const value = i + 1;
+//           return (
+//             <button
+//               key={value}
+//               type="button"
+//               onClick={() => setRating(value)}
+//               aria-label={`Rate ${value}`}
+//               className="focus:outline-none"
+//             >
+//               <Star
+//                 size={22}
+//                 className={
+//                   value <= rating
+//                     ? "fill-amber-400 text-amber-400"
+//                     : "text-gray-300"
+//                 }
+//               />
+//             </button>
+//           );
+//         })}
+//       </div>
+
+//       {/* Comment */}
+//       <textarea
+//         rows={3}
+//         className="w-full resize-none rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+//         placeholder="Share your experience with this product"
+//         value={comment}
+//         onChange={(e) => setComment(e.target.value)}
+//       />
+
+//       {/* Submit */}
+//       <button
+//         type="submit"
+//         disabled={mutation.isPending}
+//         className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition disabled:cursor-not-allowed disabled:opacity-50"
+//       >
+//         {mutation.isPending ? "Posting review..." : "Post Review"}
+//       </button>
+//     </form>
+//   );
+// }
+/////////////////////////////////////// 25-08-2026
+import { useState, type FormEvent } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Star, X } from "lucide-react";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+
+import type { Review } from "../../../types/product";
+import apiClient from "../../../lib/axios";
+import { useAuthStore } from "../../../store/useAuthStore";
+import { Link } from "react-router-dom";
 
 interface Props {
   productId: string;
+  slug?: string;
   hasReviews?: boolean;
 }
 
-export default function ReviewForm({ productId, hasReviews = false }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState("");
+interface ApiError {
+  message: string;
+}
 
-  const { addReview, isAdding } = useReview(productId);
+export default function ReviewForm({ productId, slug }: Props) {
+  const [rating, setRating] = useState<number>(5);
+  const [comment, setComment] = useState<string>("");
+  const { status } = useAuthStore();
+  const qc = useQueryClient();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    addReview(
-      {
-        productId,
+  const mutation = useMutation<Review, AxiosError<ApiError>, void>({
+    mutationFn: async () => {
+      const res = await apiClient.post(`/v1/products/${productId}/review`, {
         rating,
-        comment: comment.trim(),
-      },
-      {
-        onSuccess: () => {
-          setRating(5);
-          setComment("");
-          setIsOpen(false);
-        },
-      },
-    );
+        comment,
+      });
+      return res.data.review;
+    },
+    onSuccess: () => {
+      toast.success("Review submitted successfully");
+      qc.invalidateQueries({ queryKey: ["product", slug] });
+      setComment("");
+      setRating(5);
+    },
+    onError: (error) => {
+      const msg =
+        error.response?.data?.message ??
+        "Unable to submit review. Please try again.";
+      toast.error(msg);
+    },
+  });
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (comment.trim().length < 5) {
+      toast.warn("Review must be at least 5 characters");
+      return;
+    }
+
+    mutation.mutate();
   };
 
-  if (!isOpen) {
+  const handleCancel = () => {
+    setComment("");
+    setRating(5);
+  };
+
+  /* =========================
+     GUEST VIEW
+  ========================= */
+  if (status !== "authenticated") {
     return (
-      <section className="border-b border-gray-200 pb-5">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h3 className="text-base font-semibold text-gray-900">
-              {hasReviews ? "Share your experience" : "Be the first to review"}
-            </h3>
+      <section className="w-full border-b border-gray-200 pb-6 text-center">
+        <h3 className="text-base font-semibold text-gray-900">
+          Have you used this product?
+        </h3>
 
-            {!hasReviews && (
-              <p className="mt-1 text-sm text-gray-500">
-                Your feedback helps other customers make better decisions.
-              </p>
-            )}
-          </div>
+        <p className="mx-auto mt-1 max-w-md text-sm text-gray-500">
+          Log in to share your experience with other shoppers.
+        </p>
 
-          <button
-            type="button"
-            onClick={() => setIsOpen(true)}
-            className="inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-gray-800 sm:w-auto"
-          >
-            Write a Review
-          </button>
-        </div>
+        <Link
+          to="/login"
+          className="mt-4 inline-flex items-center justify-center rounded-md bg-sky-500 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-sky-600"
+        >
+          Login to review
+        </Link>
       </section>
     );
   }
 
   return (
-    <section className="border-b border-gray-200 pb-6">
-      <div className="mb-4 flex items-start justify-between gap-4">
-        <div>
-          <h3 className="text-base font-semibold text-gray-900">
-            Write a Review
-          </h3>
+    <section className="w-full border-b border-gray-200 pb-7 text-center">
+      <div className="mb-5">
+        <h3 className="text-base font-semibold text-gray-900">
+          Write a review
+        </h3>
 
-          <p className="mt-1 text-sm text-gray-500">
-            Share your experience with this product.
-          </p>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setIsOpen(false)}
-          className="shrink-0 rounded-md p-1.5 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
-          aria-label="Close review form"
-        >
-          <X size={18} />
-        </button>
+        <p className="mt-1 text-sm text-gray-500">
+          Share your experience with this product.
+        </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="max-w-2xl">
-        <fieldset disabled={isAdding} className="space-y-5">
-          <legend className="sr-only">Product review</legend>
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto w-full max-w-2xl space-y-5"
+      >
+        {/* Rating */}
+        <fieldset>
+          <legend className="text-sm font-medium text-gray-900">
+            Your rating
+          </legend>
 
-          <div>
-            <span className="block text-sm font-medium text-gray-900">
-              Your rating
-            </span>
+          <div
+            className="mt-2 flex items-center justify-center gap-1"
+            role="radiogroup"
+            aria-label="Product rating"
+          >
+            {Array.from({ length: 5 }).map((_, i) => {
+              const value = i + 1;
 
-            <div
-              className="mt-2 flex items-center gap-1"
-              role="radiogroup"
-              aria-label="Product rating"
-            >
-              {Array.from({ length: 5 }).map((_, index) => {
-                const value = index + 1;
-                const selected = value <= rating;
+              return (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setRating(value)}
+                  aria-label={`Rate ${value}`}
+                  aria-pressed={value === rating}
+                  disabled={mutation.isPending}
+                  className="rounded-md p-1 transition hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <Star
+                    size={24}
+                    strokeWidth={1.8}
+                    className={
+                      value <= rating
+                        ? "fill-sky-500 text-sky-500"
+                        : "text-gray-300"
+                    }
+                  />
+                </button>
+              );
+            })}
 
-                return (
-                  <button
-                    key={value}
-                    type="button"
-                    role="radio"
-                    aria-checked={rating === value}
-                    aria-label={`${value} star${value > 1 ? "s" : ""}`}
-                    onClick={() => setRating(value)}
-                    className="rounded p-1 transition hover:bg-amber-50"
-                  >
-                    <Star
-                      size={22}
-                      className={
-                        selected
-                          ? "fill-amber-400 text-amber-400"
-                          : "fill-gray-100 text-gray-300"
-                      }
-                    />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div>
-            <label
-              htmlFor="review-comment"
-              className="block text-sm font-medium text-gray-900"
-            >
-              Your review
-            </label>
-
-            <textarea
-              id="review-comment"
-              value={comment}
-              onChange={(event) => setComment(event.target.value)}
-              rows={4}
-              required
-              maxLength={1000}
-              placeholder="What did you like or dislike about this product?"
-              className="mt-2 block w-full resize-y rounded-md border border-gray-300 px-3 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
-            />
-
-            <p className="mt-1 text-right text-xs text-gray-400">
-              {comment.length}/1000
-            </p>
-          </div>
-
-          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="inline-flex items-center justify-center rounded-md border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              disabled={isAdding || !comment.trim()}
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {isAdding && <Loader2 size={16} className="animate-spin" />}
-              {isAdding ? "Submitting..." : "Submit Review"}
-            </button>
+            <span className="ml-2 text-sm text-gray-500">{rating}/5</span>
           </div>
         </fieldset>
+
+        {/* Comment */}
+        <div className="text-left">
+          <label
+            htmlFor="product-review"
+            className="text-sm font-medium text-gray-900"
+          >
+            Your review
+          </label>
+
+          <textarea
+            id="product-review"
+            rows={4}
+            maxLength={1000}
+            required
+            className="mt-2 block w-full resize-y rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:bg-gray-50"
+            placeholder="What did you like or dislike about this product?"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            disabled={mutation.isPending}
+          />
+
+          <div className="mt-1 text-right">
+            <span className="text-xs text-gray-400">{comment.length}/1000</span>
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="flex flex-col items-center justify-center gap-2 sm:flex-row">
+          <button
+            type="button"
+            onClick={handleCancel}
+            disabled={mutation.isPending || !comment}
+            className="inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:border-gray-400 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          >
+            <X size={15} />
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            disabled={mutation.isPending || !comment.trim()}
+            className="inline-flex w-full items-center justify-center rounded-md bg-sky-500 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          >
+            {mutation.isPending ? "Posting review..." : "Post Review"}
+          </button>
+        </div>
       </form>
     </section>
   );
