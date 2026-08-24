@@ -191,10 +191,10 @@ export default function ImageGallery({
       className="space-y-3 sm:space-y-4"
     >
       {/* Gallery */}
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:gap-4">
+      <div className="flex flex-col  gap-3 lg:flex-row lg:items-start lg:gap-4">
         {/* Thumbnails */}
         {images.length > 1 && (
-          <div className="order-2 flex gap-2 overflow-x-auto lg:order-1 lg:flex-col lg:w-16 lg:shrink-0">
+          <div className="order-2 flex pl-4 gap-2 overflow-x-auto lg:order-1 lg:flex-col lg:w-16 lg:shrink-0">
             {images.map((img, idx) => (
               <button
                 key={idx}
