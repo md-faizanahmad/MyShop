@@ -8,17 +8,11 @@ interface UpdateReviewParams {
   comment: string;
 }
 
-interface AddReviewParams {
-  productId: string;
-  rating: number;
-  comment: string;
-}
-
 export function useReview(productId: string) {
   const qc = useQueryClient();
 
   const addMutation = useMutation({
-    mutationFn: async ({ productId, rating, comment }: AddReviewParams) => {
+    mutationFn: async ({ productId, rating, comment }: UpdateReviewParams) => {
       await apiClient.post(`/v1/products/${productId}/review`, {
         rating,
         comment,

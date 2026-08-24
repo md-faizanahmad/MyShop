@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Loader2, Star, X } from "lucide-react";
+
 import { useReview } from "@/hooks/useReview";
 
 interface Props {
@@ -14,18 +15,23 @@ export default function ReviewForm({ productId, hasReviews = false }: Props) {
 
   const { addReview, isAdding } = useReview(productId);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await addReview({
-      productId,
-      rating,
-      comment,
-    });
-
-    setRating(5);
-    setComment("");
-    setIsOpen(false);
+    addReview(
+      {
+        productId,
+        rating,
+        comment: comment.trim(),
+      },
+      {
+        onSuccess: () => {
+          setRating(5);
+          setComment("");
+          setIsOpen(false);
+        },
+      },
+    );
   };
 
   if (!isOpen) {
