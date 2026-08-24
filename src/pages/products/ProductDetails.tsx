@@ -161,15 +161,15 @@ export default function ProductDetails() {
 
         {/* Reviews */}
         <section className="mt-10 border-t pt-8 sm:mt-14 sm:pt-10">
+          {!hasUserReviewed && (
+            <ReviewForm productId={product._id} slug={product.slug} />
+          )}
+
           <ReviewList
             productId={product._id}
             reviews={product.reviews ?? []}
             currentUserId={user?._id}
           />
-
-          {!hasUserReviewed && (
-            <ReviewForm productId={product._id} slug={product.slug} />
-          )}
         </section>
 
         {/* Suggested */}

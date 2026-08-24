@@ -194,6 +194,194 @@
 // }
 
 ////////////////23-08-206
+// import { useState } from "react";
+// import { Star, Trash2, Pencil, CheckCircle, X, Save } from "lucide-react";
+
+// import type { Review } from "../../../types/product";
+// import { ReviewSkeleton } from "../../../skeleton/ReviewSkeleton";
+// import { useReview } from "@/hooks/useReview";
+
+// interface Props {
+//   productId: string;
+//   reviews: Review[];
+//   currentUserId?: string;
+//   isLoading?: boolean;
+// }
+
+// export default function ReviewList({
+//   productId,
+//   reviews = [],
+//   currentUserId,
+//   isLoading,
+// }: Props) {
+//   const [editingId, setEditingId] = useState<string | null>(null);
+//   const [editRating, setEditRating] = useState(5);
+//   const [editComment, setEditComment] = useState("");
+
+//   const { updateReview, isUpdating, deleteReview } = useReview(productId);
+
+//   if (isLoading) return <ReviewSkeleton />;
+
+//   if (!reviews.length) {
+//     return (
+//       <div className="border border-dashed border-gray-200 bg-gray-50/50 py-10 text-center">
+//         <p className="font-medium text-gray-500">No reviews yet</p>
+//         <p className="mt-1 text-xs text-gray-400">
+//           Be the first to share your thoughts!
+//         </p>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <ul className="grid gap-4">
+//       {reviews.map((review) => {
+//         const isOwner =
+//           Boolean(currentUserId) && review.user?._id === currentUserId;
+
+//         const isEditing = editingId === review._id;
+
+//         return (
+//           <li
+//             key={review._id}
+//             className={`group relative w-full rounded-lg border p-4 transition lg:max-w-2xl ${
+//               isEditing
+//                 ? "border-blue-500 bg-blue-50/20"
+//                 : "border-gray-200 bg-white"
+//             }`}
+//           >
+//             {/* Header */}
+//             <div className="flex items-start justify-between gap-3">
+//               <div className="flex min-w-0 items-center gap-3">
+//                 {/* Avatar */}
+//                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-700">
+//                   {review.user.name}
+//                 </div>
+
+//                 {/* User */}
+//                 <div className="min-w-0">
+//                   <div className="flex flex-wrap items-center gap-2">
+//                     <span className="text-sm font-semibold text-gray-900">
+//                       {review.user.name}
+//                     </span>
+
+//                     {review.verified && (
+//                       <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+//                         <CheckCircle size={12} />
+//                         Verified Purchase
+//                       </span>
+//                     )}
+//                   </div>
+
+//                   {/* Rating beside user */}
+//                   <div className="mt-1 flex items-center gap-0.5">
+//                     {Array.from({ length: 5 }).map((_, index) => (
+//                       <Star
+//                         key={index}
+//                         size={14}
+//                         onClick={
+//                           isEditing ? () => setEditRating(index + 1) : undefined
+//                         }
+//                         className={`${isEditing ? "cursor-pointer" : ""} ${
+//                           index < (isEditing ? editRating : review.rating)
+//                             ? "fill-amber-400 text-amber-400"
+//                             : "fill-gray-100 text-gray-300"
+//                         }`}
+//                       />
+//                     ))}
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* Owner Actions */}
+//               {isOwner && !isEditing && (
+//                 <div className="flex shrink-0 items-center gap-1">
+//                   <button
+//                     type="button"
+//                     onClick={() => {
+//                       setEditingId(review._id);
+//                       setEditRating(review.rating);
+//                       setEditComment(review.comment);
+//                     }}
+//                     className="rounded p-1.5 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
+//                     aria-label="Edit review"
+//                   >
+//                     <Pencil size={15} />
+//                   </button>
+
+//                   <button
+//                     type="button"
+//                     onClick={() => deleteReview()}
+//                     className="rounded p-1.5 text-gray-500 transition hover:bg-red-50 hover:text-red-600"
+//                     aria-label="Delete review"
+//                   >
+//                     <Trash2 size={15} />
+//                   </button>
+//                 </div>
+//               )}
+//             </div>
+
+//             {/* Review */}
+//             {!isEditing ? (
+//               <>
+//                 <p className="mt-3 text-sm leading-relaxed text-gray-800">
+//                   {review.comment}
+//                 </p>
+
+//                 {/* Date below review */}
+//                 <p className="mt-2 text-xs text-gray-400">
+//                   {new Date(review.createdAt).toLocaleDateString(undefined, {
+//                     year: "numeric",
+//                     month: "short",
+//                     day: "numeric",
+//                   })}
+//                 </p>
+//               </>
+//             ) : (
+//               <div className="mt-3 space-y-3">
+//                 <textarea
+//                   value={editComment}
+//                   onChange={(e) => setEditComment(e.target.value)}
+//                   rows={3}
+//                   className="w-full rounded-md border border-gray-300 p-2.5 text-sm focus:border-blue-500 focus:outline-none"
+//                   placeholder="Update your review..."
+//                 />
+
+//                 <div className="flex items-center gap-2">
+//                   <button
+//                     type="button"
+//                     disabled={isUpdating}
+//                     onClick={() =>
+//                       updateReview({
+//                         productId,
+//                         rating: editRating,
+//                         comment: editComment,
+//                       })
+//                     }
+//                     className="inline-flex items-center gap-1.5 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white disabled:opacity-50"
+//                   >
+//                     <Save size={13} />
+//                     {isUpdating ? "Saving..." : "Save"}
+//                   </button>
+
+//                   <button
+//                     type="button"
+//                     onClick={() => setEditingId(null)}
+//                     className="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700"
+//                   >
+//                     <X size={13} />
+//                     Cancel
+//                   </button>
+//                 </div>
+//               </div>
+//             )}
+//           </li>
+//         );
+//       })}
+//     </ul>
+//   );
+// }
+////////////////////////////////////////25-08-2026
 import { useState } from "react";
 import { Star, Trash2, Pencil, CheckCircle, X, Save } from "lucide-react";
 
@@ -222,162 +410,185 @@ export default function ReviewList({
 
   if (isLoading) return <ReviewSkeleton />;
 
-  if (!reviews.length) {
-    return (
-      <div className="border border-dashed border-gray-200 bg-gray-50/50 py-10 text-center">
-        <p className="font-medium text-gray-500">No reviews yet</p>
-        <p className="mt-1 text-xs text-gray-400">
-          Be the first to share your thoughts!
-        </p>
-      </div>
-    );
-  }
+  // ReviewForm already handles the empty state.
+  if (!reviews.length) return null;
 
   return (
-    <ul className="grid gap-4">
-      {reviews.map((review) => {
-        const isOwner =
-          Boolean(currentUserId) && review.user?._id === currentUserId;
+    <section className="w-full">
+      <ul className="divide-y divide-gray-200">
+        {reviews.map((review) => {
+          const isOwner =
+            Boolean(currentUserId) && review.user?._id === currentUserId;
 
-        const isEditing = editingId === review._id;
+          const isEditing = editingId === review._id;
 
-        return (
-          <li
-            key={review._id}
-            className={`group relative w-full rounded-lg border p-4 transition lg:max-w-2xl ${
-              isEditing
-                ? "border-blue-500 bg-blue-50/20"
-                : "border-gray-200 bg-white"
-            }`}
-          >
-            {/* Header */}
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex min-w-0 items-center gap-3">
-                {/* Avatar */}
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-700">
-                  {review.user.name}
-                </div>
+          return (
+            <li
+              key={review._id}
+              className={`py-5 first:pt-0 last:pb-0 ${
+                isEditing ? "bg-sky-50/40" : ""
+              }`}
+            >
+              {/* Header */}
+              <header className="flex items-start justify-between gap-4">
+                <div className="flex min-w-0 items-start gap-3">
+                  {/* Avatar */}
+                  <div
+                    aria-hidden="true"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-50 text-xs font-semibold text-sky-700"
+                  >
+                    {review.user.name
+                      .trim()
+                      .split(/\s+/)
+                      .map((part) => part[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase()}
+                  </div>
 
-                {/* User */}
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-sm font-semibold text-gray-900">
-                      {review.user.name}
-                    </span>
-
-                    {review.verified && (
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
-                        <CheckCircle size={12} />
-                        Verified Purchase
+                  {/* Reviewer */}
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <span className="text-sm font-semibold text-gray-900">
+                        {review.user.name}
                       </span>
-                    )}
-                  </div>
 
-                  {/* Rating beside user */}
-                  <div className="mt-1 flex items-center gap-0.5">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <Star
-                        key={index}
-                        size={14}
-                        onClick={
-                          isEditing ? () => setEditRating(index + 1) : undefined
-                        }
-                        className={`${isEditing ? "cursor-pointer" : ""} ${
-                          index < (isEditing ? editRating : review.rating)
-                            ? "fill-amber-400 text-amber-400"
-                            : "fill-gray-100 text-gray-300"
-                        }`}
-                      />
-                    ))}
+                      {review.verified && (
+                        <span className="inline-flex items-center gap-1 text-xs font-medium text-sky-600">
+                          <CheckCircle size={13} aria-hidden="true" />
+                          Verified Purchase
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Rating */}
+                    <div
+                      className="mt-1.5 flex items-center gap-0.5"
+                      aria-label={`${review.rating} out of 5 stars`}
+                    >
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          disabled={!isEditing || isUpdating}
+                          onClick={() => isEditing && setEditRating(index + 1)}
+                          className={
+                            isEditing
+                              ? "cursor-pointer rounded-sm hover:bg-sky-50"
+                              : "cursor-default"
+                          }
+                          aria-label={
+                            isEditing ? `Rate ${index + 1}` : undefined
+                          }
+                        >
+                          <Star
+                            size={15}
+                            aria-hidden="true"
+                            className={
+                              index < (isEditing ? editRating : review.rating)
+                                ? "fill-sky-500 text-sky-500"
+                                : "fill-gray-100 text-gray-300"
+                            }
+                          />
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Owner Actions */}
-              {isOwner && !isEditing && (
-                <div className="flex shrink-0 items-center gap-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setEditingId(review._id);
-                      setEditRating(review.rating);
-                      setEditComment(review.comment);
-                    }}
-                    className="rounded p-1.5 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
-                    aria-label="Edit review"
-                  >
-                    <Pencil size={15} />
-                  </button>
+                {/* Owner actions */}
+                {isOwner && !isEditing && (
+                  <div className="flex shrink-0 items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditingId(review._id);
+                        setEditRating(review.rating);
+                        setEditComment(review.comment);
+                      }}
+                      className="rounded-md p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+                      aria-label="Edit review"
+                    >
+                      <Pencil size={15} />
+                    </button>
 
-                  <button
-                    type="button"
-                    onClick={() => deleteReview()}
-                    className="rounded p-1.5 text-gray-500 transition hover:bg-red-50 hover:text-red-600"
-                    aria-label="Delete review"
+                    <button
+                      type="button"
+                      onClick={() => deleteReview()}
+                      className="rounded-md p-1.5 text-gray-400 transition hover:bg-red-50 hover:text-red-600"
+                      aria-label="Delete review"
+                    >
+                      <Trash2 size={15} />
+                    </button>
+                  </div>
+                )}
+              </header>
+
+              {/* Review content */}
+              {!isEditing ? (
+                <article className="ml-12 mt-3">
+                  <p className="text-sm leading-6 text-gray-700">
+                    {review.comment}
+                  </p>
+
+                  <time
+                    dateTime={review.createdAt}
+                    className="mt-2 block text-xs text-gray-400"
                   >
-                    <Trash2 size={15} />
-                  </button>
+                    {new Date(review.createdAt).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </time>
+                </article>
+              ) : (
+                <div className="ml-0 mt-4 space-y-3 sm:ml-12">
+                  <label htmlFor={`review-${review._id}`} className="sr-only">
+                    Update your review
+                  </label>
+
+                  <textarea
+                    id={`review-${review._id}`}
+                    value={editComment}
+                    onChange={(e) => setEditComment(e.target.value)}
+                    rows={3}
+                    className="w-full resize-y rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                    placeholder="Update your review..."
+                  />
+
+                  <div className="flex flex-col-reverse gap-2 sm:flex-row">
+                    <button
+                      type="button"
+                      onClick={() => setEditingId(null)}
+                      className="inline-flex items-center justify-center gap-1.5 rounded-md border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 transition hover:bg-gray-50"
+                    >
+                      <X size={13} />
+                      Cancel
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled={isUpdating}
+                      onClick={() =>
+                        updateReview({
+                          productId,
+                          rating: editRating,
+                          comment: editComment,
+                        })
+                      }
+                      className="inline-flex items-center justify-center gap-1.5 rounded-md bg-sky-500 px-3 py-2 text-xs font-medium text-white transition hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      <Save size={13} />
+                      {isUpdating ? "Saving..." : "Save"}
+                    </button>
+                  </div>
                 </div>
               )}
-            </div>
-
-            {/* Review */}
-            {!isEditing ? (
-              <>
-                <p className="mt-3 text-sm leading-relaxed text-gray-800">
-                  {review.comment}
-                </p>
-
-                {/* Date below review */}
-                <p className="mt-2 text-xs text-gray-400">
-                  {new Date(review.createdAt).toLocaleDateString(undefined, {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </p>
-              </>
-            ) : (
-              <div className="mt-3 space-y-3">
-                <textarea
-                  value={editComment}
-                  onChange={(e) => setEditComment(e.target.value)}
-                  rows={3}
-                  className="w-full rounded-md border border-gray-300 p-2.5 text-sm focus:border-blue-500 focus:outline-none"
-                  placeholder="Update your review..."
-                />
-
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    disabled={isUpdating}
-                    onClick={() =>
-                      updateReview({
-                        productId,
-                        rating: editRating,
-                        comment: editComment,
-                      })
-                    }
-                    className="inline-flex items-center gap-1.5 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white disabled:opacity-50"
-                  >
-                    <Save size={13} />
-                    {isUpdating ? "Saving..." : "Save"}
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setEditingId(null)}
-                    className="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700"
-                  >
-                    <X size={13} />
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            )}
-          </li>
-        );
-      })}
-    </ul>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }
