@@ -15,7 +15,7 @@ export default function ProductName({
         {categoryName}
       </div>
 
-      <h1 className="max-w-2xl text-base font-semibold leading-snug text-gray-900">
+      <h1 className="max-w-2xl text-3xl font-semibold leading-snug text-gray-900">
         {name}
       </h1>
     </div>

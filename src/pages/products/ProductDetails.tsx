@@ -129,7 +129,7 @@ export default function ProductDetails() {
           </div>
 
           {/* Product Info */}
-          <div className="min-w-0 flex flex-col gap-4">
+          <div className="min-w-0 pl-2 flex flex-col gap-4">
             <ProductName name={product.name} />
 
             <PriceCard
