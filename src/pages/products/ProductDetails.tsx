@@ -21,6 +21,7 @@ import ProductDescription from "./ProductDescription";
 import ProductName from "./ProductName";
 import { useAuthStore } from "../../store/useAuthStore";
 import ProductBreadcrumb from "./ProductBreadcrumb";
+import ReviewSummary from "./review/ReviewSummary";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -161,6 +162,10 @@ export default function ProductDetails() {
 
         {/* Reviews */}
         <section className="mt-10 border-t pt-8 sm:mt-14 sm:pt-10">
+          <ReviewSummary
+            average={product.rating?.average ?? 0}
+            count={product.rating?.count ?? 0}
+          />
           {!hasUserReviewed && (
             <ReviewForm productId={product._id} slug={product.slug} />
           )}
