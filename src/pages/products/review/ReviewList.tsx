@@ -417,8 +417,11 @@ export default function ReviewList({
     <section className="w-full mt-4">
       <ul className="divide-y divide-gray-200">
         {reviews.map((review) => {
+          // const isOwner =
+          // Boolean(currentUserId) && review.user?._id === currentUserId;
+
           const isOwner =
-            Boolean(currentUserId) && review.user?._id === currentUserId;
+            Boolean(currentUserId) && review.user === currentUserId;
 
           const isEditing = editingId === review._id;
 
@@ -437,20 +440,14 @@ export default function ReviewList({
                     aria-hidden="true"
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-50 text-xs font-semibold text-sky-700"
                   >
-                    {review.user.name
-                      .trim()
-                      .split(/\s+/)
-                      .map((part) => part[0])
-                      .join("")
-                      .slice(0, 2)
-                      .toUpperCase()}
+                    {review.name?.charAt(0).toUpperCase() || "U"}
                   </div>
 
                   {/* Reviewer */}
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                       <span className="text-sm font-semibold text-gray-900">
-                        {review.user.name}
+                        {review.name}
                       </span>
 
                       {review.verified && (

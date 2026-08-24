@@ -103,8 +103,7 @@ export default function ProductDetails() {
   ].filter(Boolean) as string[];
 
   const hasUserReviewed = Boolean(
-    user?._id &&
-    product.reviews?.some((review) => review.user?._id === user._id),
+    user?._id && product.reviews?.some((review) => review.user === user._id),
   );
   return (
     <div className="min-h-screen">

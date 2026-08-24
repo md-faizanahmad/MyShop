@@ -9,7 +9,9 @@ export interface ReviewUser {
 }
 export interface Review {
   _id: string;
-  user: ReviewUser;
+  // user: ReviewUser;
+  user: string;
+  name: string;
   rating: number;
   comment: string;
   createdAt: string;
