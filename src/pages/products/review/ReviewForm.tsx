@@ -197,7 +197,7 @@ export default function ReviewForm({ productId, slug }: Props) {
   ========================= */
   if (status !== "authenticated") {
     return (
-      <section className="w-full border-b border-gray-200 pb-6 text-center">
+      <section className="w-full  pb-8 text-center">
         <h3 className="text-base font-semibold text-gray-900">
           Have you used this product?
         </h3>

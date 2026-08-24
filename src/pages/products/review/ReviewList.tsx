@@ -414,7 +414,7 @@ export default function ReviewList({
   if (!reviews.length) return null;
 
   return (
-    <section className="w-full">
+    <section className="w-full mt-4">
       <ul className="divide-y divide-gray-200">
         {reviews.map((review) => {
           const isOwner =
