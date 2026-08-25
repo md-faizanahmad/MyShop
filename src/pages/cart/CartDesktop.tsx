@@ -6,6 +6,7 @@ import type { JSX } from "react";
 import OrderSummaryCard from "./OrderSummaryCard";
 import { getMaxQtyByPrice } from "../../utils/cartLimits";
 import type { CartItem } from "@/types/cartItem";
+import { Link } from "react-router-dom";
 
 interface CartDesktopProps {
   items: CartItem[];
@@ -62,7 +63,7 @@ export default function CartDesktop({
                     "
                   >
                     <div className="flex gap-4">
-                      <img
+                      {/* <img
                         src={product.imageUrl}
                         alt={product.name}
                         className="
@@ -73,8 +74,24 @@ export default function CartDesktop({
                           object-cover
                           bg-slate-100
                    img "
-                      />
-
+                      /> */}
+                      // with link
+                      <Link
+                        to={`/category/${product.category.slug}/product/${product.slug}`}
+                      >
+                        <img
+                          src={product.imageUrl}
+                          alt={product.name}
+                          className="
+      h-24
+      w-24
+      shrink-0
+      rounded-lg
+      object-cover
+      bg-slate-100
+    "
+                        />
+                      </Link>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-start justify-between gap-4">
                           <div className="min-w-0">
