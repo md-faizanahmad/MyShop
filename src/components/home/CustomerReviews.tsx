@@ -418,6 +418,7 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
                   {/* Card Content */}
                   <div className="min-w-0">
                     {/* User */}
+                    {/* User */}
                     <div className="flex items-start gap-2.5">
                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
                         {review.name.charAt(0).toUpperCase()}
@@ -434,6 +435,13 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
                           )}
                         </div>
 
+                        <time
+                          dateTime={review.dateISO}
+                          className="mt-0.5 block text-[10px] font-medium text-slate-400 sm:text-xs"
+                        >
+                          {formatRelativeDate(review.dateISO)}
+                        </time>
+
                         {review.city && (
                           <p className="mt-0.5 truncate text-[10px] text-slate-400 sm:text-xs">
                             {review.city}
@@ -441,7 +449,6 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
                         )}
                       </div>
                     </div>
-
                     {/* Rating */}
                     <div className="mt-3 flex items-center gap-0.5">
                       {[...Array(5)].map((_, index) => (
@@ -463,18 +470,6 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
                   </div>
 
                   {/* Card Footer */}
-                  <footer className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
-                    <span className="text-[10px] font-medium text-slate-400 sm:text-xs">
-                      Customer review
-                    </span>
-
-                    <time
-                      dateTime={review.dateISO}
-                      className="shrink-0 text-[10px] font-medium text-slate-400 sm:text-xs"
-                    >
-                      {formatRelativeDate(review.dateISO)}
-                    </time>
-                  </footer>
                 </article>
               ))}
             </div>
