@@ -55,4 +55,6 @@ export interface PublicProduct {
   };
 
   reviews?: Review[];
+
+  createdAt: string;
 }
