@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Skeleton from "./Skeleton";
 
 const PRODUCTS_API = "https://api.myazstore.shop/v1/products";
-const NEW_ARRIVAL_DAYS = 30;
+const NEW_ARRIVAL_DAYS = 60;
 
 export default function NewArrivals() {
   const [products, setProducts] = useState<PublicProduct[]>([]);
