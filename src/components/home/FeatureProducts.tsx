@@ -12,7 +12,7 @@ function FeatureProducts() {
     <section className="py-12 sm:py-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* --- HEADER SECTION --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-4">
           <div className="space-y-2">
             <span className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-400">
               Curated Selection
