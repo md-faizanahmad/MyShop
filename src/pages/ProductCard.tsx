@@ -190,13 +190,36 @@ export default function ProductCard({ product }: Props) {
   /* -----------------------------
       Cart toggle (ADD ↔ REMOVE)
   ----------------------------- */
+  // const toggleCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   if (isStock) {
+  //     toast.error("This product is out of stock");
+  //     return;
+  //   }
+  //   if (isInCart) {
+  //     removeFromCart(product._id);
+  //     toast.success("Removed from cart");
+  //   } else {
+  //     addToCart(product, 1);
+  //     toast.success("Added to cart");
+  //   }
+  // };
+
   const toggleCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
+
+    if (status !== "authenticated") {
+      toast.error("Please login first");
+      return;
+    }
+
     if (isStock) {
       toast.error("This product is out of stock");
       return;
     }
+
     if (isInCart) {
       removeFromCart(product._id);
       toast.success("Removed from cart");
@@ -205,7 +228,6 @@ export default function ProductCard({ product }: Props) {
       toast.success("Added to cart");
     }
   };
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -217,7 +239,7 @@ export default function ProductCard({ product }: Props) {
         className="block"
       >
         {/* IMAGE FRAME - Flat containment architecture */}
-        <div className="relative aspect-square w-full overflow-hidden bg-neutral-50 flex items-center justify-center border border-neutral-100">
+        <div className="relative aspect-square w-full overflow-hidden  flex items-center justify-center ">
           <img
             src={product.imageUrl}
             alt={product.name}
@@ -232,7 +254,7 @@ export default function ProductCard({ product }: Props) {
               <div className="flex items-center gap-1.5 text-red-950">
                 <AlertCircle size={12} strokeWidth={2.5} />
                 <span className="text-[15px] font-mono uppercase tracking-wider font-semibold">
-                  Sold Out
+                  Out of Stock
                 </span>
               </div>
             </div>
@@ -249,14 +271,14 @@ export default function ProductCard({ product }: Props) {
           {status === "authenticated" && (
             <button
               onClick={toggleWishlist}
-              className="absolute top-2 right-2 bg-white border border-neutral-200 p-1.5 transition-colors hover:bg-neutral-50"
+              className="absolute top-2 right-2 cursor-pointer bg-white border border-neutral-200 p-1.5 transition-colors hover:bg-neutral-50"
             >
               <Heart
                 size={18}
                 strokeWidth={1}
                 className={
                   isWishlisted
-                    ? "fill-red-900 text-red-900"
+                    ? "fill-red-700 text-red-700"
                     : "text-neutral-400"
                 }
               />
@@ -266,7 +288,7 @@ export default function ProductCard({ product }: Props) {
 
         {/* METADATA CONTENT PANEL */}
         <div className="pt-3 flex flex-col gap-1">
-          <h3 className="text-xs font-medium tracking-tight text-neutral-900 line-clamp-1">
+          <h3 className="text-sm font-medium leading-snug text-neutral-900 line-clamp-1">
             {product.name}
           </h3>
 
@@ -325,7 +347,8 @@ export default function ProductCard({ product }: Props) {
       </Link>
 
       {/* COMPACT ACTION LAYOUT BUTTON */}
-      <button
+
+      {/* <button
         onClick={toggleCart}
         disabled={isStock}
         className={`mt-4 w-full flex items-center justify-center gap-2 text-xs font-medium h-8 transition-colors ${
@@ -339,7 +362,36 @@ export default function ProductCard({ product }: Props) {
         {isInCart ? (
           <>
             <Trash2 size={12} strokeWidth={2.5} />
-            <span>Remove Item</span>
+            <span>In Cart</span>
+          </>
+        ) : (
+          <>
+            <ShoppingCart size={14} strokeWidth={2.5} />
+            <span>{isStock ? "Unavailable" : "Add to Cart"}</span>
+          </>
+        )}
+      </button> */}
+
+      <button
+        onClick={toggleCart}
+        disabled={isStock}
+        className={`mt-4 w-full cursor-pointer flex items-center justify-center gap-2 text-xs font-medium h-8 transition-colors ${
+          isStock
+            ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200/50"
+            : isInCart
+              ? "bg-neutral-50 text-neutral-900 border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300"
+              : "bg-sky-500 text-white hover:bg-sky-700"
+        }`}
+      >
+        {status !== "authenticated" ? (
+          <>
+            <ShoppingCart size={14} strokeWidth={2.5} />
+            <span>Login First</span>
+          </>
+        ) : isInCart ? (
+          <>
+            <Trash2 size={12} strokeWidth={2.5} />
+            <span>In Cart</span>
           </>
         ) : (
           <>
