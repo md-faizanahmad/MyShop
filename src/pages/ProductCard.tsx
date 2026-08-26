@@ -261,11 +261,11 @@ export default function ProductCard({ product }: Props) {
           )}
 
           {/* COMPACT METRIC DISCOUNT LABEL */}
-          {hasDiscount && !isStock && (
+          {/* {hasDiscount && !isStock && (
             <span className="absolute top-2 left-2 bg-sky-700 text-white text-[9px] font-mono tracking-wider px-1.5 py-0.5 uppercase">
               -{discountPercent}%
             </span>
-          )}
+          )} */}
 
           {/* MINIMALIST WISHLIST TOGGLE */}
           {status === "authenticated" && (
@@ -326,9 +326,15 @@ export default function ProductCard({ product }: Props) {
               </span>
 
               {hasDiscount && (
-                <span className="text-[11px] text-neutral-400 line-through">
-                  ₹{product.price.toLocaleString("en-IN")}
-                </span>
+                <>
+                  <span className="text-[12px] text-neutral-400 line-through">
+                    ₹{product.price.toLocaleString("en-IN")}
+                  </span>
+
+                  <span className="text-[11px] font-semibold text-red-700">
+                    -{discountPercent}%
+                  </span>
+                </>
               )}
             </div>
 
@@ -385,7 +391,6 @@ export default function ProductCard({ product }: Props) {
       >
         {status !== "authenticated" ? (
           <>
-            <ShoppingCart size={14} strokeWidth={2.5} />
             <span>Login First</span>
           </>
         ) : isInCart ? (
