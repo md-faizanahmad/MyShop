@@ -194,7 +194,7 @@ export default function ImageGallery({
       <div className="flex flex-col  gap-3 lg:flex-row lg:items-start lg:gap-4">
         {/* Thumbnails */}
         {images.length > 1 && (
-          <div className="order-2 flex pl-4 gap-2 overflow-x-auto lg:order-1 lg:flex-col lg:w-16 lg:shrink-0">
+          <div className="order-2  flex pl-4 gap-2 overflow-x-auto overflow-y-hidden lg:order-1 lg:flex-col lg:w-16 lg:shrink-0 lg:overflow-x-hidden lg:overflow-y-auto">
             {images.map((img, idx) => (
               <button
                 key={idx}
