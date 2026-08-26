@@ -43,10 +43,10 @@ export default function NewArrivals() {
             <div className="mb-1 flex items-center gap-1.5">
               <Sparkles
                 aria-hidden="true"
-                className="size-3.5 text-red-500 sm:size-4"
+                className="size-3.5 text-sky-500 sm:size-4"
               />
 
-              <span className="text-[11px] font-semibold text-red-600 sm:text-xs">
+              <span className="text-[11px] font-semibold text-sky-600 sm:text-xs">
                 Fresh picks
               </span>
             </div>

@@ -43,8 +43,8 @@ export default function Home() {
         <TrustBenefitsBar />
         <FlashSale />
         <FeatureProducts />
-        <SimpleUGCGallery />
         <NewArrivals />
+        <SimpleUGCGallery />
         {/* Map backend reviews into your component format */}
         <CustomerReviews
           reviews={latestReviews.map((r) => ({

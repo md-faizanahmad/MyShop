@@ -404,12 +404,9 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
                     snap-start
                     flex-col
                     overflow-hidden
-                    rounded-xl
                     border
                     border-slate-200
-                    bg-white
                     p-4
-                    shadow-sm
                     sm:w-[310px]
                     sm:p-4.5
                     lg:w-[320px]
@@ -420,7 +417,7 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
                     {/* User */}
                     {/* User */}
                     <div className="flex items-start gap-2.5">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-900 text-xs font-bold text-white">
                         {review.name.charAt(0).toUpperCase()}
                       </div>
 
@@ -437,7 +434,7 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
 
                         <time
                           dateTime={review.dateISO}
-                          className="mt-0.5 block text-[10px] font-medium text-slate-400 sm:text-xs"
+                          className="mt-0.5 block text-[10px] font-medium text-slate-400 sm:text-[10px]"
                         >
                           {formatRelativeDate(review.dateISO)}
                         </time>
@@ -465,7 +462,7 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
 
                     {/* Review */}
                     <blockquote className="mt-3 line-clamp-4 text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">
-                      “{review.comment}”
+                      {review.comment}
                     </blockquote>
                   </div>
 
