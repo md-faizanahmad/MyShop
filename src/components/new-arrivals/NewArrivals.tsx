@@ -136,7 +136,7 @@ export default function NewArrivals() {
                     relative block
                     aspect-square
                     overflow-hidden
-                    bg-zinc-50
+border-b border-gray-100
                   "
                 >
                   <img
