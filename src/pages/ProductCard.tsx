@@ -131,188 +131,6 @@
 //   );
 // }
 
-///// on above working - we jsut redesign
-// src/components/ProductCard.tsx
-// import { Link } from "react-router-dom";
-// import { Heart, ShoppingCart, Trash2, Star, AlertCircle } from "lucide-react";
-// import toast from "react-hot-toast";
-// import { motion } from "framer-motion";
-
-// import type { PublicProduct } from "../types/product";
-// import { useCartStore } from "../store/useCartStore";
-// import { useWishlistStore } from "../store/useWishlistStore";
-
-// interface Props {
-//   product: PublicProduct;
-// }
-
-// export default function ProductCard({ product }: Props) {
-//   const cartItems = useCartStore((s) => s.items);
-//   const addToCart = useCartStore((s) => s.addItem);
-//   const removeFromCart = useCartStore((s) => s.removeItem);
-
-//   const wishlistItems = useWishlistStore((s) => s.items);
-//   const addWish = useWishlistStore((s) => s.add);
-//   const removeWish = useWishlistStore((s) => s.remove);
-
-//   const isInCart = cartItems.some((i) => i.product._id === product._id);
-//   const isWishlisted = wishlistItems.some((w) => w.productId === product._id);
-//   const isStock = product.stock <= 0;
-//   const price = product.discountPrice ?? product.price;
-//   const hasDiscount =
-//     typeof product.discountPrice === "number" &&
-//     product.discountPrice < product.price;
-
-//   const discountPercent = hasDiscount
-//     ? Math.round(
-//         ((product.price - product.discountPrice!) / product.price) * 100,
-//       )
-//     : 0;
-
-//   /* -----------------------------
-//      Wishlist toggle
-//   ----------------------------- */
-//   const toggleWishlist = (e: React.MouseEvent<HTMLButtonElement>) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-
-//     if (isWishlisted) {
-//       removeWish(product._id);
-//       toast.success("Removed from wishlist");
-//     } else {
-//       addWish(product);
-//       toast.success("Added to wishlist");
-//     }
-//   };
-
-//   /* -----------------------------
-//      Cart toggle (ADD ↔ REMOVE)
-//   ----------------------------- */
-//   const toggleCart = (e: React.MouseEvent<HTMLButtonElement>) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-//     if (isStock) {
-//       toast.error("This product is out of stock");
-//       return;
-//     }
-//     if (isInCart) {
-//       removeFromCart(product._id);
-//       toast.success("Removed from cart");
-//     } else {
-//       addToCart(product, 1);
-//       toast.success("Added to cart");
-//     }
-//   };
-
-//   return (
-//     <motion.div whileHover={{ y: -2 }} className="group">
-//       <Link
-//         to={`/category/${product.category.slug}/product/${product.slug}`}
-//         className="block"
-//       >
-//         {/* IMAGE */}
-//         <div className="relative bg-gray-50 rounded-xl overflow-hidden">
-//           <img
-//             src={product.imageUrl}
-//             alt={product.name}
-//             className={`w-full aspect-square object-cover group-hover:scale-105 transition ${
-//               isStock ? "opacity-60" : "group-hover:scale-105"
-//             }`}
-//           />
-//           {/* OUT OF STOCK OVERLAY */}
-//           {isStock && (
-//             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-//               <div className="text-center">
-//                 <AlertCircle size={40} className="mx-auto text-white mb-2" />
-//                 <p className="text-white font-bold text-lg">Out of Stock</p>
-//               </div>
-//             </div>
-//           )}
-//           {/* DISCOUNT BADGE */}
-//           {hasDiscount && (
-//             <span className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md">
-//               {discountPercent}% OFF
-//             </span>
-//           )}
-
-//           {/* WISHLIST */}
-//           <button
-//             onClick={toggleWishlist}
-//             className="absolute top-2 right-2 bg-white/90 backdrop-blur rounded-full p-2 shadow"
-//           >
-//             <Heart
-//               size={16}
-//               className={
-//                 isWishlisted ? "fill-red-500 text-red-500" : "text-gray-600"
-//               }
-//             />
-//           </button>
-//         </div>
-
-//         {/* CONTENT */}
-//         <div className="pt-3 space-y-1">
-//           <h3 className="text-sm font-medium line-clamp-2">{product.name}</h3>
-
-//           {/* RATING */}
-//           <div className="flex items-center gap-1 text-xs text-gray-600">
-//             <Star size={14} className="fill-yellow-400 text-yellow-400" />
-//             <span>{product.rating?.average?.toFixed(1) ?? "0.0"}</span>
-//             <span className="text-gray-400">
-//               ({product.rating?.count ?? 0})
-//             </span>
-//           </div>
-
-//           {/* PRICE */}
-//           <div className="flex items-center gap-2">
-//             <span
-//               className={`font-bold text-base ${
-//                 isStock ? "text-gray-500" : ""
-//               }`}
-//             >
-//               ₹{price.toLocaleString("en-IN")}
-//             </span>
-
-//             {hasDiscount && (
-//               <span className="text-sm text-gray-400 line-through">
-//                 ₹{product.price.toLocaleString("en-IN")}
-//               </span>
-//             )}
-//           </div>
-//         </div>
-//       </Link>
-
-//       {/* ADD / REMOVE CART */}
-//       <button
-//         onClick={toggleCart}
-//         className={`mt-3 w-full flex items-center justify-center gap-2
-//     rounded-xl text-sm font-bold transition-all
-//     py-3 sm:py-2.5
-//     ${
-//       isStock
-//         ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-//         : isInCart
-//           ? "bg-red-100 text-red-700 hover:bg-red-200"
-//           : "bg-sky-600 text-white hover:bg-sky-700"
-//     }`}
-//       >
-//         {isInCart ? (
-//           <>
-//             <Trash2 size={18} />
-//             <span className="hidden sm:inline">Remove from Cart</span>
-//           </>
-//         ) : (
-//           <>
-//             <ShoppingCart size={18} />
-//             <span className="hidden sm:inline">
-//               {isStock ? "Out of Stock" : "Add to Cart"}
-//             </span>
-//           </>
-//         )}
-//       </button>
-//     </motion.div>
-//   );
-// }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////// DESIGN UPGRADE
 import { Link } from "react-router-dom";
 import { Heart, ShoppingCart, Trash2, Star, AlertCircle } from "lucide-react";
@@ -453,17 +271,17 @@ export default function ProductCard({ product }: Props) {
           </h3>
 
           {/* RATING COMPONENT */}
-          <div className="flex items-center gap-1 text-[10px] font-mono text-neutral-400">
-            <Star size={10} className="fill-neutral-900 text-neutral-900" />
+          {/* <div className="flex items-center gap-1 text-[10px] font-mono text-neutral-400">
+            <Star size={10} className="fill-amber-400 text-amber-400" />
             <span className="text-neutral-900 font-medium">
               {product.rating?.average?.toFixed(1) ?? "0.0"}
             </span>
             <span>/</span>
-            <span>{product.rating?.count ?? 0} units</span>
-          </div>
+            <span>{product.rating?.count ?? 0} </span>
+          </div> */}
 
           {/* PRICE SPECIFICATIONS */}
-          <div className="flex items-baseline gap-2 mt-0.5">
+          {/* <div className="flex items-baseline gap-2 mt-0.5">
             <span
               className={`text-sm font-semibold tracking-tight ${isStock ? "text-neutral-400" : "text-neutral-900"}`}
             >
@@ -474,6 +292,34 @@ export default function ProductCard({ product }: Props) {
                 ₹{product.price.toLocaleString("en-IN")}
               </span>
             )}
+          </div> */}
+          <div className="mt-0.5 flex items-center justify-between gap-2">
+            <div className="flex items-baseline gap-2">
+              <span
+                className={`text-sm font-semibold tracking-tight ${
+                  isStock ? "text-neutral-400" : "text-neutral-900"
+                }`}
+              >
+                ₹{price.toLocaleString("en-IN")}
+              </span>
+
+              {hasDiscount && (
+                <span className="text-[11px] text-neutral-400 line-through">
+                  ₹{product.price.toLocaleString("en-IN")}
+                </span>
+              )}
+            </div>
+
+            {(product.rating?.average ?? 0) > 0 &&
+              (product.rating?.count ?? 0) > 0 && (
+                <div className="flex shrink-0 items-center gap-1 text-[10px] text-neutral-500">
+                  <Star size={10} className="fill-amber-400 text-amber-400" />
+                  <span className="font-medium text-neutral-900">
+                    {product.rating?.average.toFixed(1)}
+                  </span>
+                  <span>({product.rating?.count})</span>
+                </div>
+              )}
           </div>
         </div>
       </Link>
