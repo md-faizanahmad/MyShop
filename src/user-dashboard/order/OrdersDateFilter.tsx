@@ -37,20 +37,20 @@ export default function OrdersDateFilter({
   };
 
   return (
-    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end">
-      {/* Start Date */}
-      <div className="min-w-0 flex-1">
+    <div className="mb-5 flex flex-wrap items-end gap-2.5">
+      {/* From */}
+      <div className="w-full sm:w-auto">
         <label
           htmlFor="orders-start-date"
-          className="mb-1.5 block text-xs font-medium text-gray-600"
+          className="mb-1 block text-[11px] font-medium text-gray-500"
         >
           From
         </label>
 
         <div className="relative">
           <CalendarDays
-            size={16}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            size={14}
+            className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400"
             aria-hidden="true"
           />
 
@@ -60,24 +60,24 @@ export default function OrdersDateFilter({
             value={value.startDate}
             max={value.endDate || undefined}
             onChange={handleStartDateChange}
-            className="h-10 w-full rounded-lg border border-gray-200 bg-white pl-9 pr-3 text-sm text-gray-700 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            className="h-9 w-full rounded-md border border-gray-200 bg-white pl-8 pr-2 text-xs text-gray-700 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 sm:w-[145px]"
           />
         </div>
       </div>
 
-      {/* End Date */}
-      <div className="min-w-0 flex-1">
+      {/* To */}
+      <div className="w-full sm:w-auto">
         <label
           htmlFor="orders-end-date"
-          className="mb-1.5 block text-xs font-medium text-gray-600"
+          className="mb-1 block text-[11px] font-medium text-gray-500"
         >
           To
         </label>
 
         <div className="relative">
           <CalendarDays
-            size={16}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            size={14}
+            className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400"
             aria-hidden="true"
           />
 
@@ -87,7 +87,7 @@ export default function OrdersDateFilter({
             value={value.endDate}
             min={value.startDate || undefined}
             onChange={handleEndDateChange}
-            className="h-10 w-full rounded-lg border border-gray-200 bg-white pl-9 pr-3 text-sm text-gray-700 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            className="h-9 w-full rounded-md border border-gray-200 bg-white pl-8 pr-2 text-xs text-gray-700 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 sm:w-[145px]"
           />
         </div>
       </div>
@@ -97,10 +97,10 @@ export default function OrdersDateFilter({
         <button
           type="button"
           onClick={onClear}
-          className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+          className="inline-flex h-9 items-center justify-center gap-1 rounded-md border border-gray-200 bg-white px-3 text-xs font-medium text-gray-500 transition hover:bg-gray-50 hover:text-gray-800"
           aria-label="Clear date filter"
         >
-          <X size={15} />
+          <X size={13} />
           Clear
         </button>
       )}
