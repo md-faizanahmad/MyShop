@@ -48,14 +48,15 @@ export default function CartIcon() {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 500, damping: 25 }}
-          className="absolute -top-1.5 -right-2
-        bg-red-500 text-white font-bold
-        text-[10px] sm:text-xs
-        min-w-4 h-4 sm:min-w-5 sm:h-5
-        px-1 sm:px-2
-        rounded-full
-        flex items-center justify-center
-        shadow-lg leading-none"
+          className="absolute -top-1 -right-1
+    bg-red-500 text-white font-bold
+    text-[9px] sm:text-[10px]
+    min-w-4 h-4
+    px-1
+    rounded-full
+    flex items-center justify-center
+    shadow-md leading-none
+    whitespace-nowrap"
         >
           {totalItems > 99 ? "99+" : totalItems}
         </motion.span>
