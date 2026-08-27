@@ -104,7 +104,7 @@ export default function OtpVerifyModal({ open, onVerify, onClose }: Props) {
       {/* Overlay */}
       <div className="fixed inset-0 z-50 bg-black/45" onClick={onClose} />
 
-      <div className="pointer-events-none fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto p-3 sm:p-5">
+      <div className="pointer-events-none fixed inset-0 z-60 flex items-center justify-center overflow-y-auto p-3 sm:p-5">
         <motion.div
           initial={{ scale: 0.96, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
