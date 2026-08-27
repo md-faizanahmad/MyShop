@@ -198,7 +198,7 @@ export default function AddAddressModal({ open, onClose, onAdded }: Props) {
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-60 flex items-center gap-2"
+              className="px-4 py-2 rounded bg-sky-600 text-white hover:bg-sky-700 disabled:opacity-60 flex items-center gap-2"
             >
               {loading ? (
                 <>

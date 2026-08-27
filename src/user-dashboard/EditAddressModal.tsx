@@ -165,7 +165,7 @@ export default function EditAddressModal({
             <button
               type="submit"
               disabled={saving}
-              className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="px-4 py-2 rounded bg-sky-600 text-white hover:bg-sky-700 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {saving ? "Saving changes..." : "Save Changes"}
             </button>
