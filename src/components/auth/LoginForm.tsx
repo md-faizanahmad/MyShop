@@ -52,8 +52,10 @@ export default function LoginForm({
   const isGlobalDisabled = loading;
 
   return (
-    <main className="min-h-dvh flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-      <section className="bg-white w-full max-w-md sm:max-w-lg rounded-2xl shadow-xl border border-sky-50 px-5 sm:px-8 py-6 sm:py-8">
+    // <main className="min-h-dvh flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <main className="min-h-dvh flex justify-center px-4 pt-8 pb-6 sm:items-center sm:px-6 sm:py-8 lg:px-8">
+      {/* <section className="bg-white w-full max-w-md sm:max-w-lg rounded-2xl shadow-xl border border-sky-50 px-5 sm:px-8 py-6 sm:py-8"> */}
+      <section className="w-full max-w-md rounded-2xl border border-sky-50 bg-white px-5 py-6 shadow-xl sm:max-w-lg sm:px-8 sm:py-8">
         <div className="mb-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
             Welcome back
