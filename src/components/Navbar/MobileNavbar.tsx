@@ -169,13 +169,10 @@ const bottomNavigation: BottomNavigationItem[] = [
     label: "Track Orders & Returns",
     to: "/orders",
   },
-  {
-    label: "Find a Store",
-    to: "/stores",
-  },
+
   {
     label: "Help & Customer Support",
-    to: "/support",
+    to: "/contact",
   },
 ];
 
