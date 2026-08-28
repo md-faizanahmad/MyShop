@@ -391,7 +391,8 @@ export default function ProductCard({ product }: Props) {
       >
         {status !== "authenticated" ? (
           <>
-            <span>Login First</span>
+            <Link to="/login">Login First</Link>
+            <span></span>
           </>
         ) : isInCart ? (
           <>
