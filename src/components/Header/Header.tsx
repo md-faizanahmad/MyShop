@@ -44,7 +44,7 @@ export default function Header() {
           <div className="flex items-center gap-1 lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className=" px-4  rounded-full"
+              className=" px-4 cursor-pointer rounded-full"
               aria-label="Open menu"
             >
               <Menu size={24} />
@@ -52,7 +52,7 @@ export default function Header() {
 
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-0  rounded-full hidden"
+              className="p-0 cursor-pointer rounded-full hidden"
               aria-label="Search"
             >
               <Search className="text-gray-700" />
@@ -74,7 +74,7 @@ export default function Header() {
             {/* Desktop Search */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="hidden lg:flex   rounded-full"
+              className="hidden lg:flex cursor-pointer  rounded-full"
             >
               <Search className="text-gray-700" />
             </button>
@@ -114,7 +114,7 @@ export default function Header() {
                 <Brand />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2  rounded-full"
+                  className="p-2 cursor-pointer rounded-full"
                 >
                   <X size={24} />
                 </button>
