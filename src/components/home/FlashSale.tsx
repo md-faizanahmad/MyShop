@@ -44,10 +44,7 @@ export default function FlashSale() {
         <div
           className="
             overflow-hidden
-            bg-gradient-to-r
-            from-sky-50
-            via-white
-            to-red-50
+            
           "
         >
           <div className="lg:grid lg:grid-cols-2">
@@ -78,7 +75,7 @@ export default function FlashSale() {
                   -translate-x-1/2
                   -translate-y-1/2
                   rounded-full
-                  bg-sky-200/40
+
                   blur-3xl
                   sm:h-56
                   sm:w-56
