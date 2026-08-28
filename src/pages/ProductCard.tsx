@@ -341,7 +341,7 @@ export default function ProductCard({ product }: Props) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="group flex flex-col border border-sky-100/80 bg-gray-50/80 p-3 shadow-[0_2px_10px_rgba(14,165,233,0.06)] backdrop-blur-2xl transition-all duration-300 hover:border-sky-200 hover:bg-gray-50/90 hover:shadow-[0_6px_18px_rgba(14,165,233,0.09)] antialiased"
+      className="group flex h-full w-full flex-col border border-sky-100/80 bg-gray-50/80 p-2.5 shadow-[0_2px_10px_rgba(14,165,233,0.06)] backdrop-blur-2xl transition-all duration-300 hover:border-sky-200 hover:bg-gray-50/90 hover:shadow-[0_6px_18px_rgba(14,165,233,0.09)] antialiased"
     >
       {/* IMAGE */}
       <div className="relative">
@@ -354,7 +354,7 @@ export default function ProductCard({ product }: Props) {
               className={`relative flex h-full w-full items-center justify-center transition-transform duration-500 ease-out ${
                 isStock
                   ? "opacity-40"
-                  : "group-hover:transform-[perspective(900px)_rotateX(2deg)_rotateY(-2deg)_translateY(-2px)]"
+                  : "group-hover:[transform:perspective(900px)_rotateX(2deg)_rotateY(-2deg)_translateY(-2px)]"
               }`}
             >
               <img
@@ -372,7 +372,7 @@ export default function ProductCard({ product }: Props) {
                 <div className="flex items-center gap-1.5 text-red-950">
                   <AlertCircle size={12} strokeWidth={2.5} />
 
-                  <span className="text-[13px] font-mono font-semibold uppercase tracking-wider">
+                  <span className="text-[12px] font-mono font-semibold uppercase tracking-wider">
                     Out of Stock
                   </span>
                 </div>
@@ -387,10 +387,10 @@ export default function ProductCard({ product }: Props) {
             type="button"
             onClick={toggleWishlist}
             title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-            className="absolute right-1.5 top-1.5 flex h-8 w-8 cursor-pointer items-center justify-center border border-neutral-200 bg-white shadow-sm transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-50"
+            className="absolute right-1.5 top-1.5 flex h-7 w-7 cursor-pointer items-center justify-center border border-neutral-200 bg-white shadow-sm transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-50"
           >
             <Heart
-              size={17}
+              size={15}
               strokeWidth={1.5}
               className={
                 isWishlisted ? "fill-red-700 text-red-700" : "text-neutral-500"
@@ -401,22 +401,22 @@ export default function ProductCard({ product }: Props) {
       </div>
 
       {/* PRODUCT INFO */}
-      <div className="pt-3 ">
+      <div className="flex flex-1 flex-col pt-2.5">
         {/* NAME + RATING */}
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-between gap-2">
           <Link
             to={`/category/${product.category.slug}/product/${product.slug}`}
             className="min-w-0 flex-1"
           >
-            <h3 className="line-clamp-1 text-[15px] font-medium leading-snug tracking-[-0.015em] text-neutral-950">
+            <h3 className="line-clamp-1 text-[14px] font-medium leading-snug tracking-[-0.01em] text-neutral-950">
               {product.name}
             </h3>
           </Link>
 
           {(product.rating?.average ?? 0) > 0 &&
             (product.rating?.count ?? 0) > 0 && (
-              <div className="flex shrink-0 items-center gap-1 text-[10px] text-neutral-500">
-                <Star size={10} className="fill-amber-400 text-amber-400" />
+              <div className="flex shrink-0 items-center gap-1 text-[9px] text-neutral-500">
+                <Star size={9} className="fill-amber-400 text-amber-400" />
 
                 <span className="font-medium text-neutral-900">
                   {product.rating?.average.toFixed(1)}
@@ -428,11 +428,11 @@ export default function ProductCard({ product }: Props) {
         </div>
 
         {/* PRICE + LOGGED-OUT BUY */}
-        <div className="mt-2 flex items-center justify-between gap-3">
-          <div className="flex min-w-0 items-baseline gap-2">
+        <div className="mt-1.5 flex items-center justify-between gap-2">
+          <div className="flex min-w-0 items-baseline gap-1.5">
             {/* CURRENT PRICE */}
             <span
-              className={`text-base font-semibold tracking-tight ${
+              className={`text-[15px] font-semibold tracking-tight ${
                 isStock ? "text-neutral-400" : "text-neutral-950"
               }`}
             >
@@ -441,14 +441,14 @@ export default function ProductCard({ product }: Props) {
 
             {/* ORIGINAL PRICE */}
             {hasDiscount && (
-              <span className="text-xs font-normal text-neutral-400 line-through">
+              <span className="text-[10px] font-normal text-neutral-400 line-through">
                 ₹{product.price.toLocaleString("en-IN")}
               </span>
             )}
 
             {/* DISCOUNT */}
             {hasDiscount && (
-              <span className="text-[11px] font-bold tracking-tight text-red-600">
+              <span className="text-[10px] font-bold tracking-tight text-red-900">
                 -{discountPercent}%
               </span>
             )}
@@ -459,7 +459,7 @@ export default function ProductCard({ product }: Props) {
             <Link
               to={`/category/${product.category.slug}/product/${product.slug}`}
               title="View product"
-              className={`flex h-8 shrink-0 items-center justify-center border px-6 text-[11px] font-semibold transition-colors ${
+              className={`flex h-7 shrink-0 items-center justify-center border px-4 text-[10px] font-semibold transition-colors ${
                 isStock
                   ? "pointer-events-none cursor-not-allowed border-neutral-200 bg-neutral-100 text-neutral-400"
                   : "border-sky-500 bg-sky-500 text-white hover:border-sky-600 hover:bg-sky-600"
@@ -472,7 +472,7 @@ export default function ProductCard({ product }: Props) {
 
         {/* AUTHENTICATED ACTIONS */}
         {status === "authenticated" && (
-          <div className="mt-3 flex items-center justify-end gap-2">
+          <div className="mt-2.5 flex items-center justify-end gap-1.5">
             {/* CART */}
             <button
               type="button"
@@ -492,7 +492,7 @@ export default function ProductCard({ product }: Props) {
                     ? "Remove from cart"
                     : "Add to cart"
               }
-              className={`flex h-8 w-8 shrink-0 items-center justify-center border shadow-sm transition-colors ${
+              className={`flex h-7 w-7 shrink-0 items-center justify-center border shadow-sm transition-colors ${
                 isStock
                   ? "cursor-not-allowed border-neutral-200 bg-neutral-100 text-neutral-400"
                   : isInCart
@@ -501,9 +501,9 @@ export default function ProductCard({ product }: Props) {
               }`}
             >
               {isInCart ? (
-                <Trash2 size={14} strokeWidth={2} />
+                <Trash2 size={13} strokeWidth={2} />
               ) : (
-                <ShoppingCart size={15} strokeWidth={1.9} />
+                <ShoppingCart size={14} strokeWidth={1.9} />
               )}
             </button>
 
@@ -511,7 +511,7 @@ export default function ProductCard({ product }: Props) {
             <Link
               to={`/category/${product.category.slug}/product/${product.slug}`}
               title="View product"
-              className={`flex h-8 items-center justify-center border px-4 text-[11px] font-semibold transition-colors ${
+              className={`flex h-7 items-center justify-center border px-4 text-[10px] font-semibold transition-colors ${
                 isStock
                   ? "pointer-events-none cursor-not-allowed border-neutral-200 bg-neutral-100 text-neutral-400"
                   : "border-sky-500 bg-sky-500 text-white hover:border-sky-600 hover:bg-sky-600"
