@@ -74,7 +74,7 @@ export default function Header() {
             {/* Desktop Search */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="hidden lg:flex  hover:bg-sky-50 rounded-full"
+              className="hidden lg:flex   rounded-full"
             >
               <Search className="text-gray-700" />
             </button>
@@ -114,7 +114,7 @@ export default function Header() {
                 <Brand />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 hover:bg-gray-100 rounded-full"
+                  className="p-2  rounded-full"
                 >
                   <X size={24} />
                 </button>
