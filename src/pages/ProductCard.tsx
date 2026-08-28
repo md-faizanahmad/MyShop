@@ -187,24 +187,7 @@ export default function ProductCard({ product }: Props) {
     }
   };
 
-  /* -----------------------------
-      Cart toggle (ADD ↔ REMOVE)
-  ----------------------------- */
-  // const toggleCart = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   if (isStock) {
-  //     toast.error("This product is out of stock");
-  //     return;
-  //   }
-  //   if (isInCart) {
-  //     removeFromCart(product._id);
-  //     toast.success("Removed from cart");
-  //   } else {
-  //     addToCart(product, 1);
-  //     toast.success("Added to cart");
-  //   }
-  // };
+  // Cart toggle (ADD ↔ REMOVE)
 
   const toggleCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -228,184 +211,317 @@ export default function ProductCard({ product }: Props) {
       toast.success("Added to cart");
     }
   };
+  // return (
+  //   <motion.div
+  //     initial={{ opacity: 0 }}
+  //     animate={{ opacity: 1 }}
+  //     className="group flex flex-col justify-between  p-3 transition-colors  antialiased"
+  //   >
+  //     <Link
+  //       to={`/category/${product.category.slug}/product/${product.slug}`}
+  //       className="block"
+  //     >
+  //       {/* IMAGE FRAME - Flat containment architecture */}
+  //       <div className="relative aspect-square w-full overflow-hidden  flex items-center justify-center ">
+  //         <img
+  //           src={product.imageUrl}
+  //           alt={product.name}
+  //           className={`max-h-full max-w-full object-contain filter contrast-[1.01] transition-transform duration-500 ${
+  //             isStock ? "opacity-40" : "group-hover:scale-102"
+  //           }`}
+  //         />
+
+  //         {/* OUT OF STOCK STICKER */}
+  //         {isStock && (
+  //           <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px] flex items-center justify-center p-2">
+  //             <div className="flex items-center gap-1.5 text-red-950">
+  //               <AlertCircle size={12} strokeWidth={2.5} />
+  //               <span className="text-[15px] font-mono uppercase tracking-wider font-semibold">
+  //                 Out of Stock
+  //               </span>
+  //             </div>
+  //           </div>
+  //         )}
+
+  //         {/* MINIMALIST WISHLIST TOGGLE */}
+  //         {status === "authenticated" && (
+  //           <button
+  //             onClick={toggleWishlist}
+  //             className="absolute top-2 right-1 cursor-pointer bg-white border border-neutral-200 p-1.5 transition-colors hover:bg-neutral-50"
+  //           >
+  //             <Heart
+  //               size={18}
+  //               strokeWidth={1}
+  //               className={
+  //                 isWishlisted
+  //                   ? "fill-red-700 text-red-700"
+  //                   : "text-neutral-400"
+  //               }
+  //             />
+  //           </button>
+  //         )}
+  //       </div>
+
+  //       {/* METADATA CONTENT PANEL */}
+  //       <div className="pt-3 flex flex-col gap-1">
+  //         <h3 className="text-sm font-medium leading-snug text-neutral-900 line-clamp-1">
+  //           {product.name}
+  //         </h3>
+
+  //         <div className="mt-0.5 flex items-center justify-between gap-2">
+  //           <div className="flex items-baseline gap-2">
+  //             <span
+  //               className={`text-sm font-semibold tracking-tight ${
+  //                 isStock ? "text-neutral-400" : "text-neutral-900"
+  //               }`}
+  //             >
+  //               ₹{price.toLocaleString("en-IN")}
+  //             </span>
+
+  //             {hasDiscount && (
+  //               <>
+  //                 <span className="text-[12px] text-neutral-400 line-through">
+  //                   ₹{product.price.toLocaleString("en-IN")}
+  //                 </span>
+
+  //                 <span className="text-[11px] font-semibold text-red-700">
+  //                   -{discountPercent}%
+  //                 </span>
+  //               </>
+  //             )}
+  //           </div>
+
+  //           {(product.rating?.average ?? 0) > 0 &&
+  //             (product.rating?.count ?? 0) > 0 && (
+  //               <div className="flex shrink-0 items-center gap-1 text-[10px] text-neutral-500">
+  //                 <Star size={10} className="fill-amber-400 text-amber-400" />
+  //                 <span className="font-medium text-neutral-900">
+  //                   {product.rating?.average.toFixed(1)}
+  //                 </span>
+  //                 <span>({product.rating?.count})</span>
+  //               </div>
+  //             )}
+  //         </div>
+  //       </div>
+  //     </Link>
+
+  //     <button
+  //       onClick={toggleCart}
+  //       disabled={isStock}
+  //       className={`mt-4 w-full cursor-pointer flex items-center justify-center gap-2 text-xs font-medium h-8 transition-colors ${
+  //         isStock
+  //           ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200/50"
+  //           : isInCart
+  //             ? "bg-neutral-50 text-neutral-900 border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300"
+  //             : "bg-sky-500 text-white hover:bg-sky-700"
+  //       }`}
+  //     >
+  //       {status !== "authenticated" ? (
+  //         <>
+  //           <Link to="/login">Login First</Link>
+  //           <span></span>
+  //         </>
+  //       ) : isInCart ? (
+  //         <>
+  //           <Trash2 size={12} strokeWidth={2.5} />
+  //           <span>In Cart</span>
+  //         </>
+  //       ) : (
+  //         <>
+  //           <ShoppingCart size={14} strokeWidth={2.5} />
+  //           <span>{isStock ? "Unavailable" : "Add to Cart"}</span>
+  //         </>
+  //       )}
+  //     </button>
+  //   </motion.div>
+  // );
+
+  //////////////////////////// Update design 28-08
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="group flex flex-col justify-between  p-3 transition-colors  antialiased"
+      className="group flex flex-col border border-sky-100/80 bg-gray-50/80 p-3 shadow-[0_2px_10px_rgba(14,165,233,0.06)] backdrop-blur-2xl transition-all duration-300 hover:border-sky-200 hover:bg-gray-50/90 hover:shadow-[0_6px_18px_rgba(14,165,233,0.09)] antialiased"
     >
-      <Link
-        to={`/category/${product.category.slug}/product/${product.slug}`}
-        className="block"
-      >
-        {/* IMAGE FRAME - Flat containment architecture */}
-        <div className="relative aspect-square w-full overflow-hidden  flex items-center justify-center ">
-          <img
-            src={product.imageUrl}
-            alt={product.name}
-            className={`max-h-full max-w-full object-contain filter contrast-[1.01] transition-transform duration-500 ${
-              isStock ? "opacity-40" : "group-hover:scale-102"
-            }`}
-          />
-
-          {/* OUT OF STOCK STICKER */}
-          {isStock && (
-            <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px] flex items-center justify-center p-2">
-              <div className="flex items-center gap-1.5 text-red-950">
-                <AlertCircle size={12} strokeWidth={2.5} />
-                <span className="text-[15px] font-mono uppercase tracking-wider font-semibold">
-                  Out of Stock
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* COMPACT METRIC DISCOUNT LABEL */}
-          {/* {hasDiscount && !isStock && (
-            <span className="absolute top-2 left-2 bg-sky-700 text-white text-[9px] font-mono tracking-wider px-1.5 py-0.5 uppercase">
-              -{discountPercent}%
-            </span>
-          )} */}
-
-          {/* MINIMALIST WISHLIST TOGGLE */}
-          {status === "authenticated" && (
-            <button
-              onClick={toggleWishlist}
-              className="absolute top-2 right-2 cursor-pointer bg-white border border-neutral-200 p-1.5 transition-colors hover:bg-neutral-50"
+      {/* IMAGE */}
+      <div className="relative">
+        <Link
+          to={`/category/${product.category.slug}/product/${product.slug}`}
+          className="block"
+        >
+          <div className="relative aspect-square w-full overflow-hidden border-b border-neutral-100 pb-2">
+            <div
+              className={`relative flex h-full w-full items-center justify-center transition-transform duration-500 ease-out ${
+                isStock
+                  ? "opacity-40"
+                  : "group-hover:transform-[perspective(900px)_rotateX(2deg)_rotateY(-2deg)_translateY(-2px)]"
+              }`}
             >
-              <Heart
-                size={18}
-                strokeWidth={1}
-                className={
-                  isWishlisted
-                    ? "fill-red-700 text-red-700"
-                    : "text-neutral-400"
-                }
+              <img
+                src={product.imageUrl}
+                alt={product.name}
+                className={`max-h-full max-w-full object-contain filter contrast-[1.01] transition-transform duration-500 ease-out ${
+                  isStock ? "" : "group-hover:scale-[1.025]"
+                }`}
               />
-            </button>
-          )}
+            </div>
+
+            {/* OUT OF STOCK */}
+            {isStock && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white/10 p-2 backdrop-blur-[1px]">
+                <div className="flex items-center gap-1.5 text-red-950">
+                  <AlertCircle size={12} strokeWidth={2.5} />
+
+                  <span className="text-[13px] font-mono font-semibold uppercase tracking-wider">
+                    Out of Stock
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+        </Link>
+
+        {/* WISHLIST */}
+        {status === "authenticated" && (
+          <button
+            type="button"
+            onClick={toggleWishlist}
+            title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+            className="absolute right-1.5 top-1.5 flex h-8 w-8 cursor-pointer items-center justify-center border border-neutral-200 bg-white shadow-sm transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-50"
+          >
+            <Heart
+              size={17}
+              strokeWidth={1.5}
+              className={
+                isWishlisted ? "fill-red-700 text-red-700" : "text-neutral-500"
+              }
+            />
+          </button>
+        )}
+      </div>
+
+      {/* PRODUCT INFO */}
+      <div className="pt-3 ">
+        {/* NAME + RATING */}
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            to={`/category/${product.category.slug}/product/${product.slug}`}
+            className="min-w-0 flex-1"
+          >
+            <h3 className="line-clamp-1 text-[15px] font-medium leading-snug tracking-[-0.015em] text-neutral-950">
+              {product.name}
+            </h3>
+          </Link>
+
+          {(product.rating?.average ?? 0) > 0 &&
+            (product.rating?.count ?? 0) > 0 && (
+              <div className="flex shrink-0 items-center gap-1 text-[10px] text-neutral-500">
+                <Star size={10} className="fill-amber-400 text-amber-400" />
+
+                <span className="font-medium text-neutral-900">
+                  {product.rating?.average.toFixed(1)}
+                </span>
+
+                <span>({product.rating?.count})</span>
+              </div>
+            )}
         </div>
 
-        {/* METADATA CONTENT PANEL */}
-        <div className="pt-3 flex flex-col gap-1">
-          <h3 className="text-sm font-medium leading-snug text-neutral-900 line-clamp-1">
-            {product.name}
-          </h3>
-
-          {/* RATING COMPONENT */}
-          {/* <div className="flex items-center gap-1 text-[10px] font-mono text-neutral-400">
-            <Star size={10} className="fill-amber-400 text-amber-400" />
-            <span className="text-neutral-900 font-medium">
-              {product.rating?.average?.toFixed(1) ?? "0.0"}
-            </span>
-            <span>/</span>
-            <span>{product.rating?.count ?? 0} </span>
-          </div> */}
-
-          {/* PRICE SPECIFICATIONS */}
-          {/* <div className="flex items-baseline gap-2 mt-0.5">
+        {/* PRICE + LOGGED-OUT BUY */}
+        <div className="mt-2 flex items-center justify-between gap-3">
+          <div className="flex min-w-0 items-baseline gap-2">
+            {/* CURRENT PRICE */}
             <span
-              className={`text-sm font-semibold tracking-tight ${isStock ? "text-neutral-400" : "text-neutral-900"}`}
+              className={`text-base font-semibold tracking-tight ${
+                isStock ? "text-neutral-400" : "text-neutral-950"
+              }`}
             >
               ₹{price.toLocaleString("en-IN")}
             </span>
+
+            {/* ORIGINAL PRICE */}
             {hasDiscount && (
-              <span className="text-[11px] font-mono text-neutral-400 line-through">
+              <span className="text-xs font-normal text-neutral-400 line-through">
                 ₹{product.price.toLocaleString("en-IN")}
               </span>
             )}
-          </div> */}
-          <div className="mt-0.5 flex items-center justify-between gap-2">
-            <div className="flex items-baseline gap-2">
-              <span
-                className={`text-sm font-semibold tracking-tight ${
-                  isStock ? "text-neutral-400" : "text-neutral-900"
-                }`}
-              >
-                ₹{price.toLocaleString("en-IN")}
+
+            {/* DISCOUNT */}
+            {hasDiscount && (
+              <span className="text-[11px] font-bold tracking-tight text-red-600">
+                -{discountPercent}%
               </span>
-
-              {hasDiscount && (
-                <>
-                  <span className="text-[12px] text-neutral-400 line-through">
-                    ₹{product.price.toLocaleString("en-IN")}
-                  </span>
-
-                  <span className="text-[11px] font-semibold text-red-700">
-                    -{discountPercent}%
-                  </span>
-                </>
-              )}
-            </div>
-
-            {(product.rating?.average ?? 0) > 0 &&
-              (product.rating?.count ?? 0) > 0 && (
-                <div className="flex shrink-0 items-center gap-1 text-[10px] text-neutral-500">
-                  <Star size={10} className="fill-amber-400 text-amber-400" />
-                  <span className="font-medium text-neutral-900">
-                    {product.rating?.average.toFixed(1)}
-                  </span>
-                  <span>({product.rating?.count})</span>
-                </div>
-              )}
+            )}
           </div>
+
+          {/* BUY — UNAUTHENTICATED */}
+          {status !== "authenticated" && (
+            <Link
+              to={`/category/${product.category.slug}/product/${product.slug}`}
+              title="View product"
+              className={`flex h-8 shrink-0 items-center justify-center border px-6 text-[11px] font-semibold transition-colors ${
+                isStock
+                  ? "pointer-events-none cursor-not-allowed border-neutral-200 bg-neutral-100 text-neutral-400"
+                  : "border-sky-500 bg-sky-500 text-white hover:border-sky-600 hover:bg-sky-600"
+              }`}
+            >
+              Buy
+            </Link>
+          )}
         </div>
-      </Link>
 
-      {/* COMPACT ACTION LAYOUT BUTTON */}
+        {/* AUTHENTICATED ACTIONS */}
+        {status === "authenticated" && (
+          <div className="mt-3 flex items-center justify-end gap-2">
+            {/* CART */}
+            <button
+              type="button"
+              onClick={toggleCart}
+              disabled={isStock}
+              title={
+                isStock
+                  ? "Unavailable"
+                  : isInCart
+                    ? "Remove from cart"
+                    : "Add to cart"
+              }
+              aria-label={
+                isStock
+                  ? "Unavailable"
+                  : isInCart
+                    ? "Remove from cart"
+                    : "Add to cart"
+              }
+              className={`flex h-8 w-8 shrink-0 items-center justify-center border shadow-sm transition-colors ${
+                isStock
+                  ? "cursor-not-allowed border-neutral-200 bg-neutral-100 text-neutral-400"
+                  : isInCart
+                    ? "cursor-pointer border-neutral-300 bg-neutral-50 text-neutral-800 hover:bg-neutral-100"
+                    : "cursor-pointer border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-900"
+              }`}
+            >
+              {isInCart ? (
+                <Trash2 size={14} strokeWidth={2} />
+              ) : (
+                <ShoppingCart size={15} strokeWidth={1.9} />
+              )}
+            </button>
 
-      {/* <button
-        onClick={toggleCart}
-        disabled={isStock}
-        className={`mt-4 w-full flex items-center justify-center gap-2 text-xs font-medium h-8 transition-colors ${
-          isStock
-            ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200/50"
-            : isInCart
-              ? "bg-neutral-50 text-neutral-900 border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300"
-              : "bg-sky-500 text-white hover:bg-sky-700"
-        }`}
-      >
-        {isInCart ? (
-          <>
-            <Trash2 size={12} strokeWidth={2.5} />
-            <span>In Cart</span>
-          </>
-        ) : (
-          <>
-            <ShoppingCart size={14} strokeWidth={2.5} />
-            <span>{isStock ? "Unavailable" : "Add to Cart"}</span>
-          </>
+            {/* BUY */}
+            <Link
+              to={`/category/${product.category.slug}/product/${product.slug}`}
+              title="View product"
+              className={`flex h-8 items-center justify-center border px-4 text-[11px] font-semibold transition-colors ${
+                isStock
+                  ? "pointer-events-none cursor-not-allowed border-neutral-200 bg-neutral-100 text-neutral-400"
+                  : "border-sky-500 bg-sky-500 text-white hover:border-sky-600 hover:bg-sky-600"
+              }`}
+            >
+              Buy
+            </Link>
+          </div>
         )}
-      </button> */}
-
-      <button
-        onClick={toggleCart}
-        disabled={isStock}
-        className={`mt-4 w-full cursor-pointer flex items-center justify-center gap-2 text-xs font-medium h-8 transition-colors ${
-          isStock
-            ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200/50"
-            : isInCart
-              ? "bg-neutral-50 text-neutral-900 border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300"
-              : "bg-sky-500 text-white hover:bg-sky-700"
-        }`}
-      >
-        {status !== "authenticated" ? (
-          <>
-            <Link to="/login">Login First</Link>
-            <span></span>
-          </>
-        ) : isInCart ? (
-          <>
-            <Trash2 size={12} strokeWidth={2.5} />
-            <span>In Cart</span>
-          </>
-        ) : (
-          <>
-            <ShoppingCart size={14} strokeWidth={2.5} />
-            <span>{isStock ? "Unavailable" : "Add to Cart"}</span>
-          </>
-        )}
-      </button>
+      </div>
     </motion.div>
   );
 }
