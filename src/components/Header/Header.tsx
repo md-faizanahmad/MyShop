@@ -76,13 +76,13 @@ export default function Header() {
               onClick={() => setSearchOpen(true)}
               className="hidden lg:flex cursor-pointer  rounded-full"
             >
-              <Search className="text-gray-700" />
+              <Search className="text-gray-700 hover:text-gray-900 " />
             </button>
 
             <div className="mr-4 md:mr-0">
               <CartIcon />
             </div>
-            <div className="hidden md:block">
+            <div className="hidden md:block cursor-pointer">
               <UserMenu />
             </div>
           </div>
