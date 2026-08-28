@@ -44,7 +44,7 @@ export default function Header() {
           <div className="flex items-center gap-1 lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className=" px-4 hover:bg-sky-50 rounded-full"
+              className=" px-4  rounded-full"
               aria-label="Open menu"
             >
               <Menu size={24} />
@@ -52,7 +52,7 @@ export default function Header() {
 
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-0 hover:bg-sky-50 rounded-full hidden"
+              className="p-0  rounded-full hidden"
               aria-label="Search"
             >
               <Search className="text-gray-700" />
