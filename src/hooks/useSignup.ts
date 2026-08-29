@@ -39,11 +39,19 @@ export function useSignup() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const [otp, setOtp] = useState("");
+
   const [otpSent, setOtpSent] = useState(false);
+
   const [verified, setVerified] = useState(false);
+
   const [resendTimer, setResendTimer] = useState(0);
+
   const [sendingOtp, setSendingOtp] = useState(false);
+
   const [verifyingOtp, setVerifyingOtp] = useState(false);
+
   const [otpToken, setOtpToken] = useState<string | null>(null);
 
   const form = useForm<SignupInput>({
@@ -58,18 +66,24 @@ export function useSignup() {
 
   const passwordValue = form.watch("password");
 
-  // Resend OTP timer
+  // --------------------------------
+  // OTP RESEND TIMER
+  // --------------------------------
+
   useEffect(() => {
     if (resendTimer <= 0) return;
 
-    const timer = setInterval(() => {
-      setResendTimer((current) => current - 1);
+    const timer = window.setInterval(() => {
+      setResendTimer((current) => Math.max(current - 1, 0));
     }, 1000);
 
-    return () => clearInterval(timer);
+    return () => window.clearInterval(timer);
   }, [resendTimer]);
 
-  // Send OTP
+  // --------------------------------
+  // SEND OTP
+  // --------------------------------
+
   const handleSendOtp = async () => {
     const email = form.getValues("email").trim();
 
@@ -87,7 +101,10 @@ export function useSignup() {
       });
 
       if (res.data.success) {
+        setOtp("");
         setOtpSent(true);
+        setVerified(false);
+        setOtpToken(null);
         setResendTimer(45);
 
         toast.success("OTP sent!");
@@ -99,15 +116,16 @@ export function useSignup() {
     }
   };
 
-  // Verify OTP
+  // --------------------------------
+  // VERIFY OTP
+  // --------------------------------
+
   const handleVerifyOtp = async () => {
-    const email = form.getValues("email");
+    const email = form.getValues("email").trim();
 
-    const otp = (
-      document.getElementById("otp") as HTMLInputElement | null
-    )?.value.trim();
+    const cleanOtp = otp.trim();
 
-    if (!otp || otp.length < 4) {
+    if (!cleanOtp || cleanOtp.length < 4) {
       toast.error("Enter valid OTP");
       return;
     }
@@ -117,7 +135,7 @@ export function useSignup() {
     try {
       const res = await axios.post(`${API}/v1/users/verify-otp`, {
         email,
-        otp,
+        otp: cleanOtp,
         purpose: "signup",
       });
 
@@ -137,7 +155,10 @@ export function useSignup() {
     }
   };
 
-  // Signup mutation
+  // --------------------------------
+  // SIGNUP MUTATION
+  // --------------------------------
+
   const mutation = useMutation({
     mutationFn: async (data: SignupInput) => {
       const res = await axios.post(`${API}/v1/users/signup`, {
@@ -158,6 +179,10 @@ export function useSignup() {
     },
   });
 
+  // --------------------------------
+  // SUBMIT
+  // --------------------------------
+
   const handleSubmit = (data: SignupInput) => {
     mutation.mutate(data);
   };
@@ -169,12 +194,16 @@ export function useSignup() {
     showPassword,
     toggleShowPassword: () => setShowPassword((prev) => !prev),
 
+    otp,
+    setOtp,
+
     otpSent,
     verified,
     resendTimer,
 
     sendingOtp,
     verifyingOtp,
+
     isMutationPending: mutation.isPending,
 
     onSendOtp: handleSendOtp,

@@ -165,17 +165,12 @@
 //   );
 // }
 ////////////////////// Refactor with design
+
 import { useSignup } from "../../hooks/useSignup";
-import DesktopSignup from "./create-user/DesktopSignup";
-import MobileSignup from "./create-user/MobileSignup";
+import SignupForm from "./SignupForm";
 
 export default function SignUp() {
   const signup = useSignup();
 
-  return (
-    <>
-      <DesktopSignup {...signup} />
-      <MobileSignup {...signup} />
-    </>
-  );
+  return <SignupForm {...signup} />;
 }
