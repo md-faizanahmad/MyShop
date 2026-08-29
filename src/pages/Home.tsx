@@ -4,8 +4,6 @@ import { useHome } from "../hooks/useHome";
 // import ProductCard from "./ProductCard";
 import HeroSection from "../components/home/HeroSection";
 import CategorySection from "../components/home/CategoryQuickLinks";
-// import CustomerReviews from "../components/home/CustomerReviews";
-// import SimpleUGCGallery from "../components/home/SimpleUGCGallery";
 import TrustBenefitsBar from "../components/home/TrustBenefitsBar";
 import BrandStorySection from "../components/home/BrandStorySection";
 import FeatureProducts from "../components/home/FeatureProducts";
