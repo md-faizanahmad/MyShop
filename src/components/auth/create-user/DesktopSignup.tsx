@@ -10,8 +10,8 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
-import type { SignupFormType, SignupInput } from "../SignUp";
 import PasswordStrengthMeter from "@/components/PasswordStrengthMeter";
+import type { SignupFormType, SignupInput } from "@/hooks/useSignup";
 
 interface DesktopSignupProps {
   form: SignupFormType;
