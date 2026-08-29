@@ -33,7 +33,7 @@ const benefits: Benefit[] = [
     icon: RotateCcw,
     title: "Easy Returns",
     subtitle: "7-day doorstep pickup",
-    colorClass: "text-red-600",
+    colorClass: "text-black-600",
     bgClass: "bg-red-50",
   },
   {
@@ -41,8 +41,8 @@ const benefits: Benefit[] = [
     icon: ShieldCheck,
     title: "Secure Checkout",
     subtitle: "UPI, Cards & COD available",
-    colorClass: "text-sky-600",
-    bgClass: "bg-sky-50",
+    colorClass: "text-green-600",
+    bgClass: "bg-green-100",
   },
   {
     id: "customer-support",
@@ -128,7 +128,7 @@ export default function TrustBenefitsBar() {
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
         >
-          <div className="relative flex min-h-[44px] items-center justify-center">
+          <div className="relative flex min-h-11 items-center justify-center">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={activeSlide}
