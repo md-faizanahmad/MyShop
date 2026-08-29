@@ -53,7 +53,7 @@ export default function MobileSignup({
   } = form;
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4 py-6 sm:px-5 lg:hidden">
+    <div className="flex min-h-screen items-center justify-center px-4 py-2 sm:px-3 lg:hidden">
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}

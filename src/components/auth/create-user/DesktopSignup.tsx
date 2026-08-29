@@ -53,14 +53,14 @@ export default function DesktopSignup({
   } = form;
 
   return (
-    <div className="hidden lg:flex min-h-screen items-center justify-center bg-zinc-50 px-6 py-10">
+    <div className="hidden lg:flex min-h-screen items-center justify-center  px-6 ">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
         className="w-full max-w-4xl"
       >
-        <div className="overflow-hidden border border-zinc-200 bg-white rounded-xl">
+        <div className="overflow-hidden ">
           {/* Header */}
           <div className="border-b border-zinc-200 px-8 py-6">
             <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">
@@ -168,7 +168,6 @@ export default function DesktopSignup({
                         maxLength={6}
                         className="min-w-0 flex-1 border border-zinc-300 px-3 py-2.5 text-center font-mono text-lg tracking-[0.3em] outline-none transition focus:border-red-500"
                         placeholder="••••••"
-                        inputMode="numeric"
                       />
 
                       <button
