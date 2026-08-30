@@ -62,7 +62,7 @@ export default function UserMenuTrigger({
         py-2
         text-[11px]
         font-medium
-        text-neutral-500
+        text-black
         transition-colors
 
         focus:outline-none
@@ -73,9 +73,9 @@ export default function UserMenuTrigger({
         md:flex-none
         md:flex-row
         md:gap-1.5
-        md:rounded-full
+        
         md:p-1
-        md:hover:bg-zinc-100
+        cursor-pointer
       "
     >
       {/* ------------------------------------------------------------------ */}
@@ -116,9 +116,7 @@ export default function UserMenuTrigger({
           strokeWidth={open ? 1.9 : 1.7}
           aria-hidden="true"
           className="
-            text-neutral-500
             transition-colors
-            group-hover:text-neutral-700
             md:hidden
           "
         />
@@ -153,20 +151,16 @@ export default function UserMenuTrigger({
       <div className="relative hidden md:block">
         <div
           className="
+          cursor-pointer
             flex
             h-8
             w-8
             items-center
             justify-center
-            rounded-full
-            bg-zinc-900/10
-            text-zinc-900
             ring-2
             ring-transparent
             transition-all
-            group-hover:bg-zinc-900/15
-            group-hover:ring-zinc-200
-          "
+s          "
         >
           {/*
            * Logged-in:
