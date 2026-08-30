@@ -41,7 +41,7 @@ export default function FlashSale() {
       className="py-6 sm:py-8 lg:py-10"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden border border-zinc-200 bg-white">
+        <div className="overflow-hidden">
           <div className="grid lg:grid-cols-2">
             {/* Product Image */}
             <div
@@ -52,7 +52,7 @@ export default function FlashSale() {
                 min-h-[230px]
                 items-center
                 justify-center
-                bg-zinc-50
+
                 px-6
                 py-8
                 sm:min-h-[300px]
@@ -70,7 +70,7 @@ export default function FlashSale() {
                   w-auto
                   max-w-[88%]
                   object-contain
-                  sm:max-h-[240px]
+                  sm:max-h-60
                   sm:max-w-[82%]
                   lg:max-h-[300px]
                   lg:max-w-[78%]
@@ -104,14 +104,10 @@ export default function FlashSale() {
                 flex
                 flex-col
                 justify-center
-                border-t
-                border-zinc-200
                 px-5
                 py-7
                 sm:px-8
                 sm:py-9
-                lg:border-t-0
-                lg:border-r
                 lg:px-10
                 lg:py-10
               "
