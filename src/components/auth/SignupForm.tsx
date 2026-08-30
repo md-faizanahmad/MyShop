@@ -409,9 +409,8 @@ export default function SignupForm({
                 </p>
               )}
             </div>
-
             {/* EMAIL */}
-            <div>
+            {/* <div>
               <label
                 htmlFor="signup-email"
                 className="mb-1.5 flex items-center gap-2 text-sm font-medium text-zinc-700"
@@ -459,8 +458,93 @@ export default function SignupForm({
                   {errors.email.message}
                 </p>
               )}
-            </div>
+            </div> */}
+            // update with info
+            {/* EMAIL */}
+            <div>
+              <label
+                htmlFor="signup-email"
+                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-zinc-700"
+              >
+                <Mail size={16} className="text-red-600" />
+                Email Address
+              </label>
 
+              <div className="flex gap-2">
+                <div className="relative min-w-0 flex-1">
+                  <input
+                    id="signup-email"
+                    {...register("email")}
+                    type="email"
+                    disabled={otpSent}
+                    placeholder="you@gmail.com"
+                    autoComplete="email"
+                    className={`w-full border bg-white px-3.5 py-2.5 pr-10 text-sm text-zinc-900 outline-none transition ${
+                      errors.email
+                        ? "border-red-400"
+                        : verified
+                          ? "border-green-500"
+                          : "border-zinc-300 focus:border-red-500"
+                    } disabled:bg-zinc-100 disabled:text-zinc-500`}
+                  />
+
+                  {verified && (
+                    <CheckCircle2
+                      size={18}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-green-600"
+                    />
+                  )}
+                </div>
+
+                {!verified && (
+                  <button
+                    type="button"
+                    onClick={onSendOtp}
+                    disabled={sendingOtp || resendTimer > 0 || otpSent}
+                    className="shrink-0 border border-red-600 bg-red-600 px-4 py-2.5 text-xs font-medium text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:border-zinc-200 disabled:bg-zinc-100 disabled:text-zinc-400"
+                  >
+                    {sendingOtp ? (
+                      <span className="flex items-center gap-1.5">
+                        <Loader2 size={14} className="animate-spin" />
+                        Sending
+                      </span>
+                    ) : resendTimer > 0 ? (
+                      `${resendTimer}s`
+                    ) : (
+                      "Send OTP"
+                    )}
+                  </button>
+                )}
+
+                {verified && (
+                  <div className="flex shrink-0 items-center gap-1.5 px-2 text-sm font-medium text-green-600">
+                    <CheckCircle2 size={17} />
+                    <span>Verified</span>
+                  </div>
+                )}
+              </div>
+
+              {errors.email && (
+                <p className="mt-1 text-xs text-red-600">
+                  {errors.email.message}
+                </p>
+              )}
+
+              {/* OTP INFO */}
+              {!otpSent && !verified && (
+                <p className="mt-2 text-xs text-zinc-500">
+                  We’ll send a verification code to your email. Check your spam
+                  folder if you don’t receive it.
+                </p>
+              )}
+            </div>
+            {!verified && (
+              <p className="mt-2 text-xs text-zinc-500">
+                {otpSent
+                  ? "We sent a verification code to your email. Check your spam or junk folder if you don’t see it."
+                  : "We’ll send a verification code to your email."}
+              </p>
+            )}
             {/* OTP */}
             {otpSent && !verified && (
               <div>
@@ -501,7 +585,6 @@ export default function SignupForm({
                 </div>
               </div>
             )}
-
             {/* VERIFIED */}
             {verified && (
               <div className="flex items-center gap-2 border border-green-200 bg-green-50 px-3 py-2.5 text-xs font-medium text-green-700">
