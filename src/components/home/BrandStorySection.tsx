@@ -32,8 +32,7 @@ const CLASSES = {
 
   features: "mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3",
 
-  feature:
-    "flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4",
+  feature: "flex items-start gap-3 ",
 
   icon: "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-700",
 
