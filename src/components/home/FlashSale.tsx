@@ -38,73 +38,42 @@ export default function FlashSale() {
   return (
     <section
       aria-labelledby="flash-sale-heading"
-      className="py-5 sm:py-7 lg:py-10"
+      className="py-6 sm:py-8 lg:py-10"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div
-          className="
-            overflow-hidden
-            
-          "
-        >
-          <div className="lg:grid lg:grid-cols-2">
-            {/* Product image */}
+        <div className="overflow-hidden border border-zinc-200 bg-white">
+          <div className="grid lg:grid-cols-2">
+            {/* Product Image */}
             <div
               className="
                 relative
                 order-first
                 flex
-                min-h-[220px]
+                min-h-[230px]
                 items-center
                 justify-center
-                overflow-hidden
-                sm:min-h-[280px]
+                bg-zinc-50
+                px-6
+                py-8
+                sm:min-h-[300px]
                 lg:order-last
-                lg:min-h-[360px]
+                lg:min-h-[380px]
               "
             >
-              {/* Soft background glow */}
-              <div
-                aria-hidden="true"
-                className="
-                  absolute
-                  left-1/2
-                  top-1/2
-                  h-40
-                  w-40
-                  -translate-x-1/2
-                  -translate-y-1/2
-                  rounded-full
-
-                  blur-3xl
-                  sm:h-56
-                  sm:w-56
-                "
-              />
-
               <img
                 src="https://res.cloudinary.com/daqb5wglu/image/upload/v1765302805/MyStore/products/file_micrrn.jpg"
                 alt="Laptop featured in the flash sale"
                 loading="lazy"
                 decoding="async"
                 className="
-                  relative
-                  z-10
-                  max-h-[180px]
+                  max-h-[190px]
                   w-auto
-                  max-w-[90%]
+                  max-w-[88%]
                   object-contain
-                  mix-blend-multiply
-                  drop-shadow-[0_20px_20px_rgba(0,0,0,0.14)]
-                  transition-transform
-                  duration-500
-                  hover:scale-[1.04]
-                  sm:max-h-[230px]
-                  sm:max-w-[85%]
-                  lg:max-h-[290px]
-                  lg:max-w-[82%]
-                  lg:[transform:rotateY(-8deg)_rotateX(3deg)]
-                  lg:hover:[transform:rotateY(-3deg)_rotateX(1deg)_scale(1.04)]
+                  sm:max-h-[240px]
+                  sm:max-w-[82%]
+                  lg:max-h-[300px]
+                  lg:max-w-[78%]
                 "
               />
 
@@ -112,20 +81,16 @@ export default function FlashSale() {
               <span
                 className="
                   absolute
-                  left-3
-                  top-3
-                  z-20
-                  rounded-md
-                  bg-white/90
+                  left-4
+                  top-4
+                  bg-red-600
                   px-2.5
                   py-1.5
                   text-[11px]
                   font-semibold
-                  text-sky-600
-                  shadow-sm
-                  backdrop-blur-sm
-                  sm:left-4
-                  sm:top-4
+                  text-white
+                  sm:left-5
+                  sm:top-5
                   sm:text-xs
                 "
               >
@@ -139,25 +104,31 @@ export default function FlashSale() {
                 flex
                 flex-col
                 justify-center
+                border-t
+                border-zinc-200
                 px-5
                 py-7
                 sm:px-8
                 sm:py-9
+                lg:border-t-0
+                lg:border-r
                 lg:px-10
                 lg:py-10
               "
             >
-              <div className="mb-2.5 flex items-center gap-1.5">
+              {/* Label */}
+              <div className="mb-3 flex items-center gap-1.5">
                 <Zap
                   aria-hidden="true"
-                  className="size-3.5 fill-sky-500 text-red-500"
+                  className="size-4 fill-red-500 text-red-500"
                 />
 
-                <span className="text-xs font-semibold text-red-600">
-                  Flash sale
+                <span className="text-xs font-semibold uppercase tracking-wide text-red-600">
+                  Flash Sale
                 </span>
               </div>
 
+              {/* Heading */}
               <h2
                 id="flash-sale-heading"
                 className="
@@ -171,42 +142,38 @@ export default function FlashSale() {
                   lg:text-3xl
                 "
               >
-                Save on selected laptops.
+                Save on selected laptops
               </h2>
 
               <p
                 className="
-                  mt-1.5
+                  mt-2
                   max-w-md
                   text-sm
-                  leading-5
+                  leading-6
                   text-zinc-500
-                  sm:mt-2
-                  sm:text-[15px]
-                  sm:leading-6
                 "
               >
                 Limited-time prices while stocks last.
               </p>
 
-              {/* Sale details */}
+              {/* Sale Information */}
               <div
                 className="
-                  mt-5
-                  flex
-                  flex-wrap
-                  items-end
-                  gap-x-6
-                  gap-y-4
-                  sm:mt-6
-                  sm:gap-x-8
+                  mt-6
+                  grid
+                  grid-cols-2
+                  gap-5
+                  sm:flex
+                  sm:items-end
+                  sm:gap-8
                 "
               >
                 {/* Countdown */}
                 <div>
                   <p
                     className="
-                      mb-1
+                      mb-1.5
                       text-[10px]
                       font-medium
                       uppercase
@@ -217,18 +184,18 @@ export default function FlashSale() {
                     Ends in
                   </p>
 
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="min-w-[20px] text-lg font-semibold tabular-nums text-zinc-900">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-lg font-semibold tabular-nums text-zinc-900">
                       {hours}
                     </span>
                     <span className="text-xs text-zinc-400">h</span>
 
-                    <span className="min-w-[20px] text-lg font-semibold tabular-nums text-zinc-900">
+                    <span className="text-lg font-semibold tabular-nums text-zinc-900">
                       {minutes}
                     </span>
                     <span className="text-xs text-zinc-400">m</span>
 
-                    <span className="min-w-[20px] text-lg font-semibold tabular-nums text-red-600">
+                    <span className="text-lg font-semibold tabular-nums text-red-600">
                       {seconds}
                     </span>
                     <span className="text-xs text-zinc-400">s</span>
@@ -236,8 +203,8 @@ export default function FlashSale() {
                 </div>
 
                 {/* Stock */}
-                <div className="min-w-[130px] flex-1 sm:max-w-[180px]">
-                  <div className="mb-1.5 flex items-center justify-between gap-3">
+                <div className="col-span-2 w-full sm:max-w-[190px]">
+                  <div className="mb-1.5 flex items-center justify-between">
                     <span
                       className="
                         text-[10px]
@@ -261,9 +228,9 @@ export default function FlashSale() {
                     aria-valuemin={0}
                     aria-valuemax={100}
                     aria-valuenow={85}
-                    className="h-1.5 overflow-hidden rounded-full bg-zinc-100"
+                    className="h-1.5 overflow-hidden bg-zinc-100"
                   >
-                    <div className="h-full w-[85%] rounded-full bg-red-500" />
+                    <div className="h-full w-[85%] bg-red-500" />
                   </div>
                 </div>
               </div>
@@ -272,28 +239,25 @@ export default function FlashSale() {
               <a
                 href="/products?deal=flash-sale"
                 className="
-                  mt-5
+                  mt-6
                   inline-flex
                   min-h-10
                   w-full
                   items-center
                   justify-center
                   gap-2
-                  rounded-lg
-                  bg-sky-500
+                  bg-sky-600
                   px-4
-                  py-2
+                  py-2.5
                   text-sm
                   font-semibold
                   text-white
                   transition-colors
-                  hover:bg-sky-600
+                  hover:bg-sky-700
                   focus-visible:outline-none
                   focus-visible:ring-2
-                  focus-visible:ring-sky-500
+                  focus-visible:ring-sky-600
                   focus-visible:ring-offset-2
-                  active:bg-sky-700
-                  sm:mt-6
                   sm:w-fit
                 "
               >
