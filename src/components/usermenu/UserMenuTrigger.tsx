@@ -62,7 +62,8 @@ export default function UserMenuTrigger({
         py-2
         text-[11px]
         font-medium
-        text-black
+        text-neutral-500
+lg:text-black
         transition-colors
 
         focus:outline-none

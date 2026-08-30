@@ -70,7 +70,7 @@ export default function Header() {
           </div>
 
           {/* RIGHT: Cart + User */}
-          <div className="ml-auto flex items-center gap-4">
+          <div className="ml-auto flex items-center gap-3">
             {/* Desktop Search */}
             <button
               onClick={() => setSearchOpen(true)}
