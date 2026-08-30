@@ -1,31 +1,21 @@
 // // src/pages/auth/LoginForm.tsx
 import type { FormEvent, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
-// import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 export interface LoginFormProps {
   email: string;
   password: string;
-  // otp: string;
 
   showPassword: boolean;
-  // otpSent: boolean;
-  // resendTimer: number;
 
   loading: boolean;
-  // otpLoading: boolean;
-  // verifyLoading: boolean;
 
   error: string;
-
   onEmailChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onPasswordChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  // onOtpChange: (e: ChangeEvent<HTMLInputElement>) => void;
 
   onSubmitPassword: (e: FormEvent<HTMLFormElement>) => void;
-  // onSendOtp: () => void;
-  // onVerifyOtp: () => void;
 
   toggleShowPassword: () => void;
 }
@@ -33,28 +23,18 @@ export interface LoginFormProps {
 export default function LoginForm({
   email,
   password,
-  // otp,
   showPassword,
-  // otpSent,
-  // resendTimer,
   loading,
-  // otpLoading,
-  // verifyLoading,
   error,
   onEmailChange,
   onPasswordChange,
-  // onOtpChange,
   onSubmitPassword,
-  // onSendOtp,
-  // onVerifyOtp,
   toggleShowPassword,
 }: LoginFormProps) {
   const isGlobalDisabled = loading;
 
   return (
-    // <main className="min-h-dvh flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
     <main className="min-h-dvh flex justify-center px-4 pt-8 pb-6 sm:items-center sm:px-6 sm:py-8 lg:px-8">
-      {/* <section className="bg-white w-full max-w-md sm:max-w-lg rounded-2xl shadow-xl border border-sky-50 px-5 sm:px-8 py-6 sm:py-8"> */}
       <section className="w-full max-w-md rounded-2xl border border-sky-50 bg-white px-5 py-6 shadow-xl sm:max-w-lg sm:px-8 sm:py-8">
         <div className="mb-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -154,68 +134,6 @@ export default function LoginForm({
             Login with OTP
           </Link>
         </div>
-        {/* LOGIN WITH OTP */}
-        {/* {!otpSent ? (
-          <button
-            onClick={onSendOtp}
-            disabled={otpLoading || !email}
-            className="w-full bg-gray-900 text-white font-medium py-3 rounded-lg hover:bg-black disabled:opacity-60 flex items-center justify-center gap-2"
-          >
-            {otpLoading ? (
-              <>
-                <KeyRound size={18} className="animate-pulse" />
-                Sending OTP...
-              </>
-            ) : (
-              <>
-                <KeyRound size={18} />
-                Login with OTP
-              </>
-            )}
-          </button>
-        ) : (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Enter OTP
-              </label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-sky-500 text-center tracking-[0.35em]"
-                placeholder="*******"
-                value={otp}
-                onChange={onOtpChange}
-                maxLength={6}
-              />
-            </div>
-
-            <button
-              onClick={onVerifyOtp}
-              disabled={verifyLoading}
-              className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 disabled:bg-gray-400"
-            >
-              {verifyLoading ? "Verifying..." : "Verify OTP"}
-            </button>
-
-            <div className="text-center text-sm">
-              {resendTimer > 0 ? (
-                <p className="text-gray-500">
-                  Resend OTP in{" "}
-                  <span className="font-semibold text-gray-700">
-                    {resendTimer}s
-                  </span>
-                </p>
-              ) : (
-                <button
-                  onClick={onSendOtp}
-                  className="text-sky-600 font-semibold hover:underline"
-                >
-                  Resend OTP
-                </button>
-              )}
-            </div>
-          </div>
-        )} */}
 
         <div className="text-center text-sm text-gray-600 mt-6">
           Don't have an account?{" "}
