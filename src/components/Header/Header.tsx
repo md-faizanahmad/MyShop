@@ -76,10 +76,7 @@ export default function Header() {
               onClick={() => setSearchOpen(true)}
               className="hidden lg:flex cursor-pointer  rounded-full"
             >
-              <Search
-                className="text-gray-700 hover:text-gray-900 "
-                size={18}
-              />
+              <Search className="size-4 text-gray-700 transition hover:text-gray-900 sm:size-5" />
             </button>
 
             <div className="mr-4 md:mr-0">
