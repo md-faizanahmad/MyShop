@@ -357,7 +357,7 @@ export default function SignupForm({
   } = form;
 
   return (
-    <main className="min-h-screen bg-zinc-50 px-4 py-8 sm:px-6 lg:px-8">
+    <main className="min-h-screen  px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-4xl">
         {/* HEADER */}
         <header className="mb-7">
@@ -459,7 +459,7 @@ export default function SignupForm({
                 </p>
               )}
             </div> */}
-            // update with info
+            {/* // update with info */}
             {/* EMAIL */}
             <div>
               <label
