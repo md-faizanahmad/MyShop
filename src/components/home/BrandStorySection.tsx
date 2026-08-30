@@ -1,116 +1,11 @@
-// import { motion } from "framer-motion";
-
-// interface BrandStorySectionProps {
-//   title?: string;
-//   description?: string;
-//   imageUrl?: string;
-// }
-
-// const DEFAULT_TECH_IMAGE =
-//   "https://res.cloudinary.com/dyefyrszz/image/upload/v1784916097/brand-logo_idun3b.png";
-
-// /* --- TAILWIND CLASS CONSTRAINTS --- */
-// const CLASSES = {
-//   section: "w-full py-16 md:py-24 antialiased",
-//   container: "max-w-7xl mx-auto px-5 sm:px-8 lg:px-12",
-//   grid: "grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center",
-
-//   // Badge & Typography
-//   badge:
-//     "inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-xs uppercase tracking-wider text-amber-700 font-semibold mb-4",
-//   heading:
-//     "text-3xl md:text-4xl font-bold text-gray-900 tracking-tight leading-snug",
-//   bodyText: "text-gray-600 mt-4 leading-relaxed text-sm md:text-base",
-
-//   // Feature Cards List
-//   statsGrid: "mt-8 grid grid-cols-2 gap-4 text-sm",
-//   statCard: "rounded-lg border border-gray-200 bg-white p-4 shadow-xs",
-//   statLabel: "text-xs uppercase tracking-wider text-gray-500 font-medium",
-//   statValue: "mt-1 text-sm font-semibold text-gray-900",
-
-//   // Image Frame & Overlay
-//   imageWrapper: "relative  overflow-hidden aspect-[4/3]",
-//   image:
-//     "w-full h-full object-cover transition-transform duration-700 hover:scale-105",
-//   overlay: "absolute inset-x-0 bottom-0  p-5 pt-12",
-//   overlayTag: "text-xs uppercase tracking-wider text-amber-300 font-semibold",
-//   overlayText: "text-xs sm:text-sm font-medium text-black mt-0.5 ",
-// } as const;
-
-// export default function BrandStorySection({
-//   title = "Why AZStore?",
-//   description = "We’re here to help you find tech and gear that just works. From phone accessories to laptop and audio setup essentials, every item at MyAZStore is picked to give you good quality and daily convenience — without high price tags.",
-//   imageUrl = DEFAULT_TECH_IMAGE,
-// }: BrandStorySectionProps) {
-//   return (
-//     <section className={CLASSES.section}>
-//       <div className={CLASSES.container}>
-//         <div className={CLASSES.grid}>
-//           {/* TEXT SIDE */}
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true, amount: 0.4 }}
-//             transition={{ duration: 0.5, ease: "easeOut" }}
-//           >
-//             <div className={CLASSES.badge}>
-//               <span className="text-red-700">Our</span>{" "}
-//               <span className="text-sky-700">Story</span>
-//             </div>
-
-//             <h2 className={CLASSES.heading}>{title}</h2>
-
-//             <p className={CLASSES.bodyText}>{description}</p>
-
-//             <dl className={CLASSES.statsGrid}>
-//               <div className={CLASSES.statCard}>
-//                 <dt className={CLASSES.statLabel}>Selected Items</dt>
-//                 <dd className={CLASSES.statValue}>Quality first</dd>
-//               </div>
-//               <div className={CLASSES.statCard}>
-//                 <dt className={CLASSES.statLabel}>Shopping</dt>
-//                 <dd className={CLASSES.statValue}>Simple & reliable</dd>
-//               </div>
-//             </dl>
-//           </motion.div>
-
-//           {/* IMAGE SIDE */}
-//           <motion.div
-//             className="relative"
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true, amount: 0.3 }}
-//             transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-//           >
-//             <div className={CLASSES.imageWrapper}>
-//               <img
-//                 src={imageUrl}
-//                 alt="MyAZStore Workspace"
-//                 className={CLASSES.image}
-//                 loading="lazy"
-//                 onError={(e) => {
-//                   const img = e.currentTarget as HTMLImageElement;
-//                   if (img.src !== DEFAULT_TECH_IMAGE) {
-//                     img.src = DEFAULT_TECH_IMAGE;
-//                   }
-//                 }}
-//               />
-
-//               <div className={CLASSES.overlay}>
-//                 <p className={CLASSES.overlayTag}>Made for everyday use</p>
-//                 <p className={CLASSES.overlayText}>
-//                   Great products, fair prices, fast shipping.
-//                 </p>
-//               </div>
-//             </div>
-//           </motion.div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-////////////////////////////////////////////////
 import { motion } from "framer-motion";
+import {
+  BadgeCheck,
+  Headphones,
+  PackageCheck,
+  ShieldCheck,
+} from "lucide-react";
+import brandLogo from "@/assets/brand-logo.png";
 
 interface BrandStorySectionProps {
   title?: string;
@@ -118,93 +13,133 @@ interface BrandStorySectionProps {
   videoUrl?: string;
 }
 
-/* --- TAILWIND CLASS CONSTRAINTS --- */
 const CLASSES = {
-  section: "w-full py-16 md:py-24 antialiased",
+  section: "w-full py-14 md:py-20 antialiased",
+
   container: "max-w-7xl mx-auto px-5 sm:px-8 lg:px-12",
-  grid: "grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center",
 
-  // Badge & Typography
+  grid: "grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-center",
+
   badge:
-    "inline-flex items-center rounded-full border border-gray-200  px-3 py-1 text-xs uppercase tracking-wider text-amber-700 font-semibold mb-4",
+    "inline-flex items-center gap-2 mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-sky-700",
+
+  badgeDot: "w-1.5 h-1.5 rounded-full bg-red-600",
+
   heading:
-    "text-3xl md:text-4xl font-bold text-gray-900 tracking-tight leading-snug",
-  bodyText: "text-gray-600 mt-4 leading-relaxed text-sm md:text-base",
+    "text-3xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight leading-[1.15] text-gray-900",
 
-  // Feature Cards List
-  statsGrid: "mt-8 grid grid-cols-2 gap-4 text-sm",
-  statCard: "rounded-lg border border-gray-200 p-4 shadow-xs",
-  statLabel: "text-xs uppercase tracking-wider text-gray-500 font-medium",
-  statValue: "mt-1 text-sm font-semibold text-gray-900",
+  body: "mt-5 max-w-xl text-sm sm:text-base leading-7 text-gray-600",
 
-  // Video Frame & Overlay
-  mediaWrapper: "relative overflow-hidden aspect-[4/3]",
+  features: "mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3",
+
+  feature:
+    "flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4",
+
+  icon: "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-700",
+
+  featureTitle: "text-sm font-semibold text-gray-900",
+
+  featureText: "mt-1 text-xs leading-5 text-gray-500",
+
   media:
-    "w-full h-full object-cover transition-transform duration-700 hover:scale-105",
-  overlay: "absolute inset-x-0 bottom-0 p-5 pt-12",
-  overlayTag: "text-xs uppercase tracking-wider text-amber-300 font-semibold",
-  overlayText: "text-xs sm:text-sm font-medium text-black mt-0.5 ",
+    "relative overflow-hidden rounded-2xl bg-gray-100 aspect-[4/3] shadow-sm",
+
+  video: "absolute inset-0 h-full w-full object-cover",
+
+  mediaOverlay:
+    "absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 sm:p-7 pt-20",
+
+  overlayLabel:
+    "text-[11px] font-semibold uppercase tracking-[0.15em] text-sky-300",
+
+  overlayText: "mt-1 text-sm sm:text-base font-medium text-white",
 } as const;
 
 export default function BrandStorySection({
   title = "Why AZStore?",
-  description = "We’re here to help you find tech and gear that just works. From phone accessories to laptop and audio setup essentials, every item at MyAZStore is picked to give you good quality and daily convenience — without high price tags.",
+  description = `We focus on practical tech and everyday accessories that are worth buying.
+From phone accessories to audio and laptop essentials, our goal is simple —
+useful products, fair prices, and a straightforward shopping experience.`,
   videoUrl = "/AZ-video.mp4",
 }: BrandStorySectionProps) {
   return (
     <section className={CLASSES.section}>
       <div className={CLASSES.container}>
         <div className={CLASSES.grid}>
-          {/* TEXT SIDE */}
+          {/* CONTENT */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{
+              duration: 0.45,
+              ease: "easeOut",
+            }}
           >
             <div className={CLASSES.badge}>
-              <span className="text-red-700">Our</span>{" "}
-              <span className="text-sky-700 ml-1">Story</span>
+              <span className={CLASSES.badgeDot} />
+              <span>Why AZStore?</span>
             </div>
 
             <h2 className={CLASSES.heading}>{title}</h2>
 
-            <p className={CLASSES.bodyText}>{description}</p>
+            <p className={CLASSES.body}>{description}</p>
 
-            <dl className={CLASSES.statsGrid}>
-              <div className={CLASSES.statCard}>
-                <dt className={CLASSES.statLabel}>Selected Items</dt>
-                <dd className={CLASSES.statValue}>Quality first</dd>
-              </div>
-              <div className={CLASSES.statCard}>
-                <dt className={CLASSES.statLabel}>Shopping</dt>
-                <dd className={CLASSES.statValue}>Simple & reliable</dd>
-              </div>
-            </dl>
+            <div className={CLASSES.features}>
+              <Feature
+                icon={<BadgeCheck size={18} />}
+                title="Curated Products"
+                description="Practical tech and accessories selected for everyday use."
+              />
+
+              <Feature
+                icon={<ShieldCheck size={18} />}
+                title="Quality First"
+                description="We focus on products that offer genuine everyday value."
+              />
+
+              <Feature
+                icon={<PackageCheck size={18} />}
+                title="Reliable Shopping"
+                description="Simple ordering with secure packaging and delivery."
+              />
+
+              <Feature
+                icon={<Headphones size={18} />}
+                title="Everyday Tech"
+                description="Accessories and gear made for work, travel and daily life."
+              />
+            </div>
           </motion.div>
 
-          {/* VIDEO SIDE */}
+          {/* VIDEO */}
           <motion.div
-            className="relative"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+              delay: 0.08,
+            }}
           >
-            <div className={CLASSES.mediaWrapper}>
+            <div className={CLASSES.media}>
               <video
                 src={videoUrl}
+                poster={brandLogo}
                 autoPlay
                 loop
                 muted
                 playsInline
-                className={CLASSES.media}
+                preload="metadata"
+                className={CLASSES.video}
               />
 
-              <div className={CLASSES.overlay}>
-                <p className={CLASSES.overlayTag}>Made for everyday use</p>
+              <div className={CLASSES.mediaOverlay}>
+                <p className={CLASSES.overlayLabel}>Made for everyday use</p>
+
                 <p className={CLASSES.overlayText}>
-                  Great products, fair prices, fast shipping.
+                  Useful products. Fair prices. Simple shopping.
                 </p>
               </div>
             </div>
@@ -212,5 +147,25 @@ export default function BrandStorySection({
         </div>
       </div>
     </section>
+  );
+}
+
+interface FeatureProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+function Feature({ icon, title, description }: FeatureProps) {
+  return (
+    <div className={CLASSES.feature}>
+      <div className={CLASSES.icon}>{icon}</div>
+
+      <div>
+        <h3 className={CLASSES.featureTitle}>{title}</h3>
+
+        <p className={CLASSES.featureText}>{description}</p>
+      </div>
+    </div>
   );
 }
