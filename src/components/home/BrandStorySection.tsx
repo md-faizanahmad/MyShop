@@ -50,7 +50,7 @@ const CLASSES = {
     "absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 sm:p-7 pt-20",
 
   overlayLabel:
-    "text-[11px] font-semibold uppercase tracking-[0.15em] text-sky-300",
+    "text-[11px] font-semibold uppercase tracking-[0.15em] text-sky-800",
 
   overlayText: "mt-1 text-sm sm:text-base font-medium text-white",
 } as const;
