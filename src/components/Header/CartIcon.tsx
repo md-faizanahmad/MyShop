@@ -37,10 +37,7 @@ export default function CartIcon() {
   ----------------------------- */
   return (
     <Link to="/cart" className="relative" aria-label="Cart">
-      <ShoppingCart
-        size={24}
-        className="text-gray-700 hover:text-gray-900 transition"
-      />
+      <ShoppingCart className="size-5 text-gray-700 transition hover:text-gray-900 sm:size-5" />
 
       {totalItems > 0 && (
         <motion.span
