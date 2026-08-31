@@ -4,6 +4,11 @@
 
 body {
   font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+button:hover {
+  cursor: pointer;
 }
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -17,23 +22,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.badge_number {
+/* .badge_number {
   font-size: 10px;
-}
-
-body {
-  margin: 0;
-}
-
-/* button {
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-} */
-/* button:hover {
-  border-color: #0b448f;
 } */
 
 @media (prefers-color-scheme: light) {
