@@ -84,6 +84,8 @@ function AppContent() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
+
+            {/* deals and offer */}
             <Route path="/deals" element={<DealsAndOffersPage />} />
             <Route path="/new-arrivals" element={<NewArrivalsPage />} />
             <Route path="/flash-sale" element={<FlashSalePage />} />
