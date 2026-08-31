@@ -26,23 +26,16 @@ export interface ProductImage {
 export interface PublicProduct {
   _id: string;
   slug: string;
-
   name: string;
   description?: string;
-
   price: number;
   discountPrice?: number;
-
   stock: number;
-
   imageUrl: string;
   images?: ProductImage[]; // ✅ FIXED
-
   offers?: string[];
   highlights?: string[];
-
   specifications?: Record<string, string>;
-
   category: {
     _id: string;
     name: string;
@@ -55,6 +48,5 @@ export interface PublicProduct {
   };
 
   reviews?: Review[];
-
   createdAt: string;
 }

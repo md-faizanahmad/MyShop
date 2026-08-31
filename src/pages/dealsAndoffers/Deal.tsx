@@ -5,6 +5,7 @@ import { Check, Copy, Tag, Zap } from "lucide-react";
 import DealsHero from "./DealsHero";
 import DealsCategories from "./DealsCategories";
 import DealProductCard from "./DealProductCard";
+import type { PublicProduct } from "@/types/product";
 
 // -----------------------------------------------------------------------------
 // API
@@ -68,7 +69,7 @@ const COUPONS: Coupon[] = [
 export default function DealsAndOffersPage() {
   const [categories, setCategories] = useState<Category[]>([]);
 
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<PublicProduct[]>([]);
 
   const [activeCategory, setActiveCategory] = useState("All Deals");
 
@@ -111,12 +112,16 @@ export default function DealsAndOffersPage() {
   // ---------------------------------------------------------------------------
   // Filter Deals
   // ---------------------------------------------------------------------------
-
   const deals = useMemo(() => {
-    let filtered = products.filter(
-      (product) =>
-        product.discountPrice > 0 && product.discountPrice < product.price,
-    );
+    let filtered = products.filter((product) => {
+      const discountPrice = product.discountPrice;
+
+      return (
+        discountPrice !== undefined &&
+        discountPrice > 0 &&
+        discountPrice < product.price
+      );
+    });
 
     if (activeCategory !== "All Deals") {
       filtered = filtered.filter(
@@ -127,12 +132,12 @@ export default function DealsAndOffersPage() {
     return filtered
       .sort((a, b) => {
         const discountA =
-          a.price > a.discountPrice
+          a.discountPrice !== undefined && a.price > a.discountPrice
             ? ((a.price - a.discountPrice) / a.price) * 100
             : 0;
 
         const discountB =
-          b.price > b.discountPrice
+          b.discountPrice !== undefined && b.price > b.discountPrice
             ? ((b.price - b.discountPrice) / b.price) * 100
             : 0;
 
