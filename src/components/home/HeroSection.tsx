@@ -92,8 +92,8 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
                 aria-current={index === currentIndex}
                 className={`h-1 rounded-full transition-all duration-200 ${
                   index === currentIndex
-                    ? "w-4 bg-red-800"
-                    : "w-1.5 bg-sky-500 hover:bg-white/80"
+                    ? "w-4 bg-white"
+                    : "w-1.5 bg-sky-300 hover:bg-white/80"
                 }`}
               />
             ))}
