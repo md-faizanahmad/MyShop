@@ -2,7 +2,7 @@
 import { type FormEvent, type JSX, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-export type LoginWithOTPViewProps = {
+export type LoginWithOTPFormProps = {
   step: "email" | "otp";
   email: string;
   setEmail: (v: string) => void;
@@ -18,7 +18,7 @@ export type LoginWithOTPViewProps = {
   onResetEmail: () => void;
 };
 
-export default function LoginWithOTPView({
+export default function LoginWithOTPForm({
   step,
   email,
   setEmail,
@@ -32,7 +32,7 @@ export default function LoginWithOTPView({
   onVerifyOTP,
   onResendOTP,
   onResetEmail,
-}: LoginWithOTPViewProps): JSX.Element {
+}: LoginWithOTPFormProps): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const otpRef = useRef<HTMLInputElement | null>(null);
 
@@ -205,10 +205,10 @@ export default function LoginWithOTPView({
 
   /// update with design
   return (
-    <main className="min-h-dvh bg-zinc-50 px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+    <main className="min-h-dvh px-4 py-4 sm:px-6 sm:py-10 lg:px-8">
       <section className="mx-auto w-full max-w-md">
         {/* HEADER */}
-        <header className="mb-7">
+        <header className="mb-4">
           <h1
             id="login-otp-title"
             className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl"

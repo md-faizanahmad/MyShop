@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { useAuthStore } from "../../store/useAuthStore";
-import LoginWithOTPView from "./LoginWithOTPView";
+import LoginWithOTPForm from "./LoginWithOTPView";
 
 export default function LoginWithOTPContainer() {
   const navigate = useNavigate();
@@ -94,7 +94,7 @@ export default function LoginWithOTPContainer() {
   };
 
   return (
-    <LoginWithOTPView
+    <LoginWithOTPForm
       step={step}
       email={email}
       setEmail={setEmail}
