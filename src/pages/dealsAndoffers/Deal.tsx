@@ -25,44 +25,6 @@ interface Category {
   isDeleted: boolean;
 }
 
-interface Product {
-  _id: string;
-
-  name: string;
-
-  category: {
-    _id: string;
-    name: string;
-    slug: string;
-  };
-
-  subcategory?: {
-    _id: string;
-    name: string;
-    slug: string;
-  };
-
-  price: number;
-  discountPrice: number;
-  stock: number;
-
-  rating: {
-    average: number;
-    count: number;
-  };
-
-  imageUrl: string;
-
-  images?: {
-    url: string;
-    publicId: string;
-  }[];
-
-  slug: string;
-
-  createdAt: string;
-}
-
 interface Coupon {
   id: number;
   discount: string;

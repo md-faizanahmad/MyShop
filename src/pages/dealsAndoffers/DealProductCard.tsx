@@ -1,45 +1,25 @@
+import type { PublicProduct } from "@/types/product";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
-interface Product {
-  _id: string;
-  name: string;
-
-  category: {
-    _id: string;
-    name: string;
-    slug: string;
-  };
-
-  price: number;
-  discountPrice: number;
-  stock: number;
-
-  rating: {
-    average: number;
-    count: number;
-  };
-
-  imageUrl: string;
-  slug: string;
-}
-
 interface DealProductCardProps {
-  product: Product;
+  product: PublicProduct;
 }
 
 export default function DealProductCard({ product }: DealProductCardProps) {
-  const discount =
-    product.price > product.discountPrice
-      ? Math.round(
-          ((product.price - product.discountPrice) / product.price) * 100,
-        )
-      : 0;
+  // discountPrice is optional in PublicProduct.
+  // If there is no discount price, use the regular price.
+  const sellingPrice = product.discountPrice ?? product.price;
 
-  const saving =
-    product.price > product.discountPrice
-      ? product.price - product.discountPrice
-      : 0;
+  const hasDiscount =
+    product.discountPrice !== undefined &&
+    product.discountPrice < product.price;
+
+  const discount = hasDiscount
+    ? Math.round(((product.price - sellingPrice) / product.price) * 100)
+    : 0;
+
+  const saving = hasDiscount ? product.price - sellingPrice : 0;
 
   const productUrl = `/category/${product.category.slug}/product/${product.slug}`;
 
@@ -74,14 +54,14 @@ export default function DealProductCard({ product }: DealProductCardProps) {
         {/* TITLE */}
         <Link
           to={productUrl}
-          className="line-clamp-2 min-h-[40px] text-sm leading-5 text-zinc-800 transition-colors hover:text-red-600"
+          className="line-clamp-2 min-h-10 text-sm leading-5 text-zinc-800 transition-colors hover:text-red-600"
         >
           {product.name}
         </Link>
 
         {/* RATING */}
-        <div className="mt-2 min-h-[20px]">
-          {product.rating.count > 0 ? (
+        <div className="mt-2 min-h-5">
+          {product.rating && product.rating.count > 0 ? (
             <div className="flex items-center gap-1.5">
               <span className="inline-flex items-center gap-0.5 rounded-sm bg-emerald-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
                 {product.rating.average.toFixed(1)}
@@ -101,10 +81,10 @@ export default function DealProductCard({ product }: DealProductCardProps) {
         <div className="mt-2 min-h-[27px]">
           <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
             <span className="text-lg font-semibold leading-6 text-zinc-950">
-              ₹{product.discountPrice.toLocaleString("en-IN")}
+              ₹{sellingPrice.toLocaleString("en-IN")}
             </span>
 
-            {product.price > product.discountPrice && (
+            {hasDiscount && (
               <span className="text-xs text-zinc-400 line-through">
                 ₹{product.price.toLocaleString("en-IN")}
               </span>
