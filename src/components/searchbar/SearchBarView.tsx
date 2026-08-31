@@ -245,7 +245,7 @@ export default function SearchBarView({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-start justify-center bg-slate-900/60 p-3 pt-14 backdrop-blur-sm sm:p-4 sm:pt-16 md:p-6 md:pt-24 lg:pt-28"
+        className="fixed inset-0 z-100 flex items-start justify-center bg-slate-900/60 p-3 pt-14 backdrop-blur-sm sm:p-4 sm:pt-16 md:p-6 md:pt-24 lg:pt-28"
         onClick={onClose}
       >
         {/* SEARCH CONTAINER */}
@@ -361,7 +361,7 @@ export default function SearchBarView({
                           onClick={() => onSelect(p)}
                           data-id={p._id}
                           role="listitem"
-                          className="flex w-full items-center gap-3 px-3.5 py-2.5 text-left transition-colors hover:bg-slate-50 focus:bg-slate-50 focus:outline-none sm:gap-3.5 sm:px-4 sm:py-3"
+                          className="flex cursor-pointer w-full items-center gap-3 px-3.5 py-2.5 text-left transition-colors hover:bg-slate-50 focus:bg-slate-50 focus:outline-none sm:gap-3.5 sm:px-4 sm:py-3"
                         >
                           <img
                             src={p.imageUrl}
