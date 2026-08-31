@@ -61,13 +61,14 @@ export default function BackToTop() {
         rounded-full
         border
         border-zinc-200
-        bg-white
+        bg-sky-100
         text-zinc-700
         shadow-md
         transition
+        cursor-pointer
         hover:border-red-200
         hover:bg-red-50
-        hover:text-red-600
+        hover:text-red-900
         active:scale-95
         sm:right-6
         sm:bottom-6
