@@ -90,6 +90,7 @@ function AppContent() {
             <Route path="/new-arrivals" element={<NewArrivalsPage />} />
             <Route path="/flash-sale" element={<FlashSalePage />} />
             <Route path="/offers" element={<OffersPage />} />
+
             {/* <Route path="/loading" element={<AZLoader />} /> */}
             <Route path="/products" element={<AllProductsPage />} />
 

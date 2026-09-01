@@ -137,10 +137,10 @@ import { Heart, ShoppingCart, Trash2, Star, AlertCircle } from "lucide-react";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 
-import type { PublicProduct } from "../types/product";
-import { useCartStore } from "../store/useCartStore";
-import { useWishlistStore } from "../store/useWishlistStore";
-import { useAuthStore } from "../store/useAuthStore";
+import type { PublicProduct } from "@/types/product";
+import { useCartStore } from "@/store/useCartStore";
+import { useWishlistStore } from "@/store/useWishlistStore";
+import { useAuthStore } from "@/store/useAuthStore";
 
 interface Props {
   product: PublicProduct;
@@ -354,7 +354,7 @@ export default function ProductCard({ product }: Props) {
               className={`relative flex h-full w-full items-center justify-center transition-transform duration-500 ease-out ${
                 isStock
                   ? "opacity-40"
-                  : "group-hover:[transform:perspective(900px)_rotateX(2deg)_rotateY(-2deg)_translateY(-2px)]"
+                  : "group-hover:transform-[perspective(900px)_rotateX(2deg)_rotateY(-2deg)_translateY(-2px)]"
               }`}
             >
               <img

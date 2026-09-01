@@ -4,11 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-import type { PublicProduct } from "../../types/product";
-import { useCartStore } from "../../store/useCartStore";
-import { useWishlistStore } from "../../store/useWishlistStore";
+import type { PublicProduct } from "@/types/product";
+import { useCartStore } from "@/store/useCartStore";
+import { useWishlistStore } from "@/store/useWishlistStore";
 
-import ProductDetailsSkeleton from "../../skeleton/ProductDetailsSkeleton";
+import ProductDetailsSkeleton from "@/skeleton/ProductDetailsSkeleton";
 import ImageGallery from "./ImageGallery";
 import ProductHighlights from "./ProductHighlights";
 import PriceCard from "./PriceCard";
@@ -16,10 +16,10 @@ import ActionButtons from "./ActionButtons";
 import ProductSpecifications from "./ProductSpecifications";
 import ReviewForm from "./review/ReviewForm";
 import ReviewList from "./review/ReviewList";
-import SuggestedProducts from "../../shared/SuggestedProducts";
+import SuggestedProducts from "@/shared/SuggestedProducts";
 import ProductDescription from "./ProductDescription";
 import ProductName from "./ProductName";
-import { useAuthStore } from "../../store/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import ProductBreadcrumb from "./ProductBreadcrumb";
 import ReviewSummary from "./review/ReviewSummary";
 
