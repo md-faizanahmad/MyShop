@@ -30,7 +30,8 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
 
     return () => window.clearInterval(interval);
   }, [heroes.length]);
-  /* ---------------- LOADING ---------------- */
+
+  // LOADING
 
   if (loading) {
     return (
@@ -43,7 +44,7 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
     );
   }
 
-  /* ---------------- EMPTY ---------------- */
+  //  EMPTY
 
   if (!heroes.length || !hero) {
     return (
@@ -60,23 +61,19 @@ export default function HeroSection({ heroes, loading }: HeroSectionProps) {
 
   return (
     <section className="relative" aria-label="Featured banners">
-      {/* =====================================================
-          DESKTOP / TABLET
-          ===================================================== */}
+      {/* DESKTOP / TABLET */}
       <div className="hidden sm:block">
         <DesktopHero hero={hero} showNavigation={heroes.length > 1} />
       </div>
 
-      {/* =====================================================
-          MOBILE
-          ===================================================== */}
+      {/* MOBILE */}
+
       <div className="block sm:hidden">
         <MobileHero hero={hero} />
       </div>
 
-      {/* =====================================================
-          MOBILE CAROUSEL DOTS
-          ===================================================== */}
+      {/* MOBILE CAROUSEL DOTS */}
+
       {heroes.length > 1 && (
         <div
           className="pointer-events-none absolute inset-x-0 bottom-3 z-40 flex justify-center sm:bottom-4"
