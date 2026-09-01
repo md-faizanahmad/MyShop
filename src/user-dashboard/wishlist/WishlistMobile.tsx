@@ -124,19 +124,23 @@ export default function WishlistMobile({
       {totalPages > 1 && (
         <nav
           aria-label="Wishlist pagination"
-          className="mt-5 flex items-center justify-center gap-2"
+          className="mt-5 flex items-center justify-center gap-1.5 sm:gap-2"
         >
           <button
             type="button"
             onClick={goToPreviousPage}
             disabled={currentPage === 1}
             aria-label="Previous page"
-            className="flex h-9 w-9 items-center justify-center bg-white text-slate-600 shadow-sm transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-8 w-8 items-center justify-center bg-white text-slate-600 shadow-sm transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 sm:h-9 sm:w-9"
           >
-            <ChevronLeft size={17} aria-hidden="true" />
+            <ChevronLeft
+              size={15}
+              className="sm:h-[17px] sm:w-[17px]"
+              aria-hidden="true"
+            />
           </button>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-0.5 sm:gap-1">
             {Array.from({ length: totalPages }, (_, index) => {
               const page = index + 1;
               const active = page === currentPage;
@@ -148,7 +152,7 @@ export default function WishlistMobile({
                   onClick={() => setCurrentPage(page)}
                   aria-label={`Go to page ${page}`}
                   aria-current={active ? "page" : undefined}
-                  className={`flex h-9 min-w-9 items-center justify-center px-2 text-xs font-semibold transition-colors ${
+                  className={`flex h-8 min-w-8 items-center justify-center px-1.5 text-[11px] font-semibold transition-colors sm:h-9 sm:min-w-9 sm:px-2 sm:text-xs ${
                     active
                       ? "bg-slate-900 text-white"
                       : "bg-white text-slate-600 shadow-sm hover:bg-slate-100"
@@ -165,9 +169,13 @@ export default function WishlistMobile({
             onClick={goToNextPage}
             disabled={currentPage === totalPages}
             aria-label="Next page"
-            className="flex h-9 w-9 items-center justify-center bg-white text-slate-600 shadow-sm transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-8 w-8 items-center justify-center bg-white text-slate-600 shadow-sm transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 sm:h-9 sm:w-9"
           >
-            <ChevronRight size={17} aria-hidden="true" />
+            <ChevronRight
+              size={15}
+              className="sm:h-[17px] sm:w-[17px]"
+              aria-hidden="true"
+            />
           </button>
         </nav>
       )}
