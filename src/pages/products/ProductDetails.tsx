@@ -1,5 +1,5 @@
 // src/pages/product/ProductDetails.tsx
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -63,8 +63,23 @@ export default function ProductDetails() {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-2xl text-gray-600">
-        Product Not Found
+      <div className="flex min-h-[50vh] items-center justify-center px-4">
+        <div className="text-center">
+          <h1 className="text-lg font-medium text-zinc-900">
+            Product not found
+          </h1>
+
+          <p className="mt-1 text-sm text-zinc-500">
+            This product may no longer be available.
+          </p>
+
+          <Link
+            to="/"
+            className="mt-4 inline-block text-sm font-medium text-sky-600 hover:text-sky-700"
+          >
+            Continue shopping
+          </Link>
+        </div>
       </div>
     );
   }
