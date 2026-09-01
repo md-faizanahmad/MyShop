@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import ProductCard from "../../pages/ProductCard";
-import { useHome } from "../../hooks/useHome";
+import ProductCard from "@/pages/ProductCard";
+import { useHome } from "@/hooks/useHome";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 

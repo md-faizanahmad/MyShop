@@ -1,7 +1,7 @@
 //////////////////////////////////03082026
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import type { HomeCategory } from "../../types/home";
+import type { HomeCategory } from "@/types/home";
 
 interface Props {
   categories: HomeCategory[];
