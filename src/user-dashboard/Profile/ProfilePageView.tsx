@@ -355,7 +355,7 @@ export default function ProfilePageView({
   const [showEdit, setShowEdit] = useState(false);
 
   return (
-    <div className="min-h-screen bg-zinc-50 pb-24 antialiased lg:pb-12">
+    <div className="min-h-screen  pb-24 antialiased lg:pb-12">
       <div className="mx-auto max-w-7xl px-3 pt-4 sm:px-5 sm:pt-6 lg:px-6">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-6">
           {/* Profile Sidebar / Account Overview */}
