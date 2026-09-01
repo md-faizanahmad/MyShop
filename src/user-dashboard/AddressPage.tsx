@@ -369,7 +369,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, MapPin } from "lucide-react";
+import { Plus, MapPin, Edit, Trash } from "lucide-react";
 import { toast } from "react-toastify";
 import EditAddressModal from "./EditAddressModal";
 import AddAddressModal from "./AddAddressModal";
@@ -615,7 +615,7 @@ export default function AddressesPage() {
                       onClick={() => openEdit(addr)}
                       className="text-xs font-medium text-zinc-700 transition-colors hover:text-sky-600"
                     >
-                      Edit
+                      Edit <Edit />
                     </button>
 
                     <button
@@ -623,7 +623,7 @@ export default function AddressesPage() {
                       onClick={() => deleteAddress(addr._id)}
                       className="text-xs font-medium text-zinc-500 transition-colors hover:text-red-600"
                     >
-                      Delete
+                      Delete <Trash />
                     </button>
 
                     {!addr.isDefault && (
