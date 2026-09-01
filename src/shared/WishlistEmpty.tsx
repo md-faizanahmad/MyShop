@@ -1,32 +1,32 @@
 // components/WishlistEmpty.tsx
 import { Link } from "react-router-dom";
-import { Heart, Sparkles } from "lucide-react";
+import { Heart, ArrowRight } from "lucide-react";
 
 export default function WishlistEmpty() {
   return (
-    <div className="min-h-screen  flex items-center justify-center p-6">
-      <div className="text-center max-w-md">
-        {/* Animated Heart */}
-        <div className="relative w-40 h-40 mx-auto mb-10">
-          <div className="absolute inset-0 bg-linear-to-br from-sky-100 to-blue-100 rounded-full shadow-2xl animate-ping" />
-          <div className="relative w-full h-full bg-linear-to-br from-sky-100 to-blue-100 rounded-full shadow-2xl flex items-center justify-center border-8 border-white">
-            <Heart className="w-24 h-24 text-sky-300" strokeWidth={1.5} />
-          </div>
+    <div className="flex min-h-[60vh] items-center justify-center px-5 py-12 sm:min-h-[65vh]">
+      <div className="w-full max-w-sm text-center">
+        {/* Icon */}
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-sky-50">
+          <Heart className="h-9 w-9 text-sky-500" strokeWidth={1.7} />
         </div>
 
-        <h6 className="text-4xl md:text-2xl font-black bg-linear-to-r from-sky-600 to-blue-700 bg-clip-text text-transparent mb-4">
-          Your Wishlist is Empty
-        </h6>
-        <p className="text-lg text-gray-600 mb-10">
-          Save your favorite items and come back anytime
+        {/* Content */}
+        <h2 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl">
+          Your wishlist is empty
+        </h2>
+
+        <p className="mx-auto mb-7 max-w-xs text-sm leading-6 text-gray-500 sm:text-base">
+          Save products you love and find them here anytime.
         </p>
 
+        {/* CTA */}
         <Link
           to="/"
-          className="inline-flex items-center gap-3 bg-linear-to-r from-sky-500 to-blue-600 text-white  px-12 py-5 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-sky-600 px-5 text-sm font-medium text-white transition-colors hover:bg-sky-700 active:bg-sky-800"
         >
-          <Sparkles className="w-6 h-6" />
-          Continue Shopping
+          Start Shopping
+          <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </div>
