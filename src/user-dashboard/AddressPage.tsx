@@ -369,7 +369,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Edit, Trash2, MapPin, Home } from "lucide-react";
+import { Plus, MapPin } from "lucide-react";
 import { toast } from "react-toastify";
 import EditAddressModal from "./EditAddressModal";
 import AddAddressModal from "./AddAddressModal";
@@ -446,7 +446,7 @@ export default function AddressesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-6 sm:px-6 lg:px-8">
+    <div className="min-h-screen  px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -558,93 +558,79 @@ export default function AddressesPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="grid grid-cols-1 gap-3 text-left antialiased md:grid-cols-2"
+            className="grid grid-cols-1 gap-3 text-left md:grid-cols-2"
           >
             <AnimatePresence mode="popLayout">
               {addresses.map((addr, index) => (
                 <motion.div
                   key={addr._id}
                   layout
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ delay: index * 0.04 }}
-                  className={`relative border bg-white p-4 transition-colors ${
-                    addr.isDefault
-                      ? "border-sky-300"
-                      : "border-zinc-200 hover:border-zinc-300"
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: index * 0.03 }}
+                  className={`border bg-white p-4 ${
+                    addr.isDefault ? "border-sky-300" : "border-zinc-200"
                   }`}
                 >
-                  {/* Header */}
+                  {/* Name + Default */}
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex min-w-0 items-center gap-3">
-                      <div
-                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-md ${
-                          addr.isDefault
-                            ? "bg-sky-50 text-sky-600"
-                            : "bg-zinc-50 text-zinc-500"
-                        }`}
-                      >
-                        <Home size={16} strokeWidth={1.8} />
-                      </div>
-
-                      <div className="min-w-0">
-                        <h3 className="truncate text-sm font-semibold text-zinc-900">
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-sm font-semibold text-zinc-900">
                           {addr.fullName}
                         </h3>
 
-                        <p className="mt-0.5 text-xs text-zinc-500">
-                          {addr.phone}
-                        </p>
+                        {addr.isDefault && (
+                          <span className="rounded-sm bg-sky-50 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-sky-700">
+                            Default
+                          </span>
+                        )}
                       </div>
-                    </div>
 
-                    {addr.isDefault && (
-                      <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-sky-50 px-2 py-1 text-[9px] font-semibold uppercase tracking-wide text-sky-700">
-                        <span className="h-1.5 w-1.5 rounded-full bg-sky-500" />
-                        Default
-                      </span>
-                    )}
+                      <p className="mt-1 text-xs text-zinc-500">{addr.phone}</p>
+                    </div>
                   </div>
 
                   {/* Address */}
-                  <div className="mt-4 rounded-md bg-zinc-50 px-3 py-2.5">
-                    <p className="text-xs leading-relaxed text-zinc-600">
-                      {addr.street}, {addr.city}, {addr.state} —{" "}
-                      <span className="font-medium text-zinc-700">
-                        {addr.pincode}
+                  <div className="mt-3">
+                    <p className="text-sm leading-5 text-zinc-700">
+                      {addr.street}, {addr.city}, {addr.state}{" "}
+                      <span className="font-medium text-zinc-900">
+                        - {addr.pincode}
                       </span>
                     </p>
 
                     {addr.landmark && (
-                      <p className="mt-1 text-[11px] text-zinc-400">
-                        Near {addr.landmark}
+                      <p className="mt-1 text-xs text-zinc-500">
+                        Landmark: {addr.landmark}
                       </p>
                     )}
                   </div>
 
                   {/* Actions */}
-                  <div className="mt-3 flex items-center gap-4 border-t border-zinc-100 pt-3">
+                  <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-zinc-100 pt-3">
                     <button
+                      type="button"
                       onClick={() => openEdit(addr)}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-medium text-zinc-600 transition hover:text-sky-600"
+                      className="text-xs font-medium text-zinc-700 transition-colors hover:text-sky-600"
                     >
-                      <Edit size={13} />
                       Edit
                     </button>
 
                     <button
+                      type="button"
                       onClick={() => deleteAddress(addr._id)}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-medium text-zinc-500 transition hover:text-red-600"
+                      className="text-xs font-medium text-zinc-500 transition-colors hover:text-red-600"
                     >
-                      <Trash2 size={13} />
                       Delete
                     </button>
 
                     {!addr.isDefault && (
                       <button
+                        type="button"
                         onClick={() => setDefault(addr._id)}
-                        className="ml-auto text-[11px] font-semibold text-sky-600 transition hover:text-sky-700"
+                        className="ml-auto text-xs font-medium text-sky-600 transition-colors hover:text-sky-700"
                       >
                         Set as default
                       </button>
