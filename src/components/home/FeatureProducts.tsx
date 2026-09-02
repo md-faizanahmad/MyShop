@@ -9,16 +9,16 @@ function FeatureProducts() {
   const featuredProducts = data?.featuredProducts ?? [];
 
   return (
-    <section className="py-10 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <section className="w-full overflow-hidden py-10 sm:py-16">
+      <div className="mx-auto min-w-0 max-w-7xl px-4 sm:px-6">
         {/* HEADER */}
-        <div className="mb-5 flex items-end justify-between gap-4 sm:mb-8">
-          <div className="space-y-1.5">
-            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400 sm:text-[11px] sm:tracking-[0.3em]">
+        <div className="mb-5 flex min-w-0 items-end justify-between gap-3 sm:mb-8 sm:gap-4">
+          <div className="min-w-0 space-y-1.5">
+            <span className="block truncate text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400 sm:text-[11px] sm:tracking-[0.3em]">
               Curated Selection
             </span>
 
-            <h3 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl md:text-2xl">
+            <h3 className="truncate text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl md:text-2xl">
               Featured Products
             </h3>
 
@@ -46,14 +46,14 @@ function FeatureProducts() {
 
             <ArrowRight
               size={14}
-              className="transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4"
+              className="shrink-0 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4"
             />
           </Link>
         </div>
 
         {/* LOADING */}
         {isLoading ? (
-          <div className="flex gap-3  overflow-hidden sm:gap-5 lg:gap-6">
+          <div className="flex min-w-0 gap-3 overflow-hidden sm:gap-5 lg:gap-6">
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
@@ -74,8 +74,8 @@ function FeatureProducts() {
             ))}
           </div>
         ) : (
-          /* SWIPE / SCROLL RAIL */
-          <div className="-mx-6 overflow-hidden sm:-mx-6">
+          /* PRODUCT RAIL */
+          <div className="relative min-w-0 overflow-hidden">
             <motion.ul
               initial="hidden"
               whileInView="show"
@@ -90,12 +90,14 @@ function FeatureProducts() {
                 },
               }}
               className="
-                flex snap-x snap-mandatory
+                flex min-w-0
+                snap-x snap-mandatory
                 gap-3 overflow-x-auto
-                px-4 pb-3
+                pb-3
                 scrollbar-none
+                overscroll-x-contain
 
-                sm:gap-5 sm:px-6
+                sm:gap-5
                 lg:gap-6
               "
             >
@@ -113,8 +115,7 @@ function FeatureProducts() {
                     },
                   }}
                   className="
-                    w-[72%] shrink-0 snap-start
-
+                    w-[72%] min-w-0 shrink-0 snap-start
                     sm:w-[42%]
                     md:w-[30%]
                     lg:w-[23%]
