@@ -9,71 +9,110 @@ function FeatureProducts() {
   const featuredProducts = data?.featuredProducts ?? [];
 
   return (
-    <section className="py-12 sm:py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* --- HEADER SECTION --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-4">
-          <div className="space-y-2">
-            <span className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-400">
+    <section className="py-10 sm:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        {/* HEADER */}
+        <div className="mb-5 flex items-end justify-between gap-4 sm:mb-8">
+          <div className="space-y-1.5">
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400 sm:text-[11px] sm:tracking-[0.3em]">
               Curated Selection
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight">
+
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
               Featured Products
             </h2>
-            <div className="h-1 w-12 bg-blue-400 rounded-full" />
+
+            <div className="h-0.5 w-9 rounded-full bg-blue-400 sm:h-1 sm:w-12" />
           </div>
 
           <Link
             to="/products"
-            className="group flex items-center gap-2 text-sm font-bold text-zinc-500 hover:text-blue-600 transition-colors"
+            className="group flex shrink-0 items-center gap-1.5 pb-0.5 text-[11px] font-semibold text-zinc-500 transition-colors hover:text-blue-600 sm:gap-2 sm:text-sm"
           >
-            Explore Full Catalog
+            <span className="hidden sm:inline">Explore Full Catalog</span>
+            <span className="sm:hidden">View all</span>
+
             <ArrowRight
-              size={16}
-              className="group-hover:translate-x-1 transition-transform"
+              size={14}
+              className="transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4"
             />
           </Link>
         </div>
 
-        {/* --- CONTENT SECTION --- */}
+        {/* LOADING */}
         {isLoading ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="space-y-5">
-                <div className="bg-zinc-50 border border-zinc-100 rounded-4xl aspect-4/5 animate-pulse" />
-                <div className="space-y-2 px-2">
-                  <div className="h-3 bg-zinc-100 rounded-full w-3/4 animate-pulse" />
-                  <div className="h-3 bg-zinc-100 rounded-full w-1/2 animate-pulse" />
+          <div className="flex gap-3  overflow-hidden sm:gap-5 lg:gap-6">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div
+                key={i}
+                className="
+                  w-[72%] shrink-0
+                  sm:w-[42%]
+                  md:w-[30%]
+                  lg:w-[23%]
+                "
+              >
+                <div className="aspect-square animate-pulse rounded-2xl border border-zinc-100 bg-zinc-50" />
+
+                <div className="mt-3 space-y-2 px-1">
+                  <div className="h-3 w-3/4 animate-pulse rounded-full bg-zinc-100" />
+                  <div className="h-3 w-1/2 animate-pulse rounded-full bg-zinc-100" />
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <motion.ul
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: { opacity: 0 },
-              show: {
-                opacity: 1,
-                transition: { staggerChildren: 0.1 },
-              },
-            }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-16"
-          >
-            {featuredProducts.map((product) => (
-              <motion.li
-                key={product._id}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  show: { opacity: 1, y: 0 },
-                }}
-              >
-                <ProductCard product={product} />
-              </motion.li>
-            ))}
-          </motion.ul>
+          /* SWIPE / SCROLL RAIL */
+          <div className="-mx-6 overflow-hidden sm:-mx-6">
+            <motion.ul
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.08,
+                  },
+                },
+              }}
+              className="
+                flex snap-x snap-mandatory
+                gap-3 overflow-x-auto
+                px-4 pb-3
+                scrollbar-none
+
+                sm:gap-5 sm:px-6
+                lg:gap-6
+              "
+            >
+              {featuredProducts.map((product) => (
+                <motion.li
+                  key={product._id}
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      y: 20,
+                    },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                    },
+                  }}
+                  className="
+                    w-[72%] shrink-0 snap-start
+
+                    sm:w-[42%]
+                    md:w-[30%]
+                    lg:w-[23%]
+                  "
+                >
+                  <ProductCard product={product} />
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
         )}
       </div>
     </section>
