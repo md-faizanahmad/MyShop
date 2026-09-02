@@ -11,6 +11,46 @@ interface OrdersDateFilterProps {
   onClear: () => void;
 }
 
+type DateRange = "today" | "yesterday" | "7days" | "30days";
+
+const getDateString = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
+
+const getDateRange = (range: DateRange): OrderDateFilterValue => {
+  const today = new Date();
+
+  const endDate = new Date(today);
+  const startDate = new Date(today);
+
+  switch (range) {
+    case "today":
+      break;
+
+    case "yesterday":
+      startDate.setDate(today.getDate() - 1);
+      endDate.setDate(today.getDate() - 1);
+      break;
+
+    case "7days":
+      startDate.setDate(today.getDate() - 6);
+      break;
+
+    case "30days":
+      startDate.setDate(today.getDate() - 29);
+      break;
+  }
+
+  return {
+    startDate: getDateString(startDate),
+    endDate: getDateString(endDate),
+  };
+};
+
 export default function OrdersDateFilter({
   value,
   onChange,
@@ -18,34 +58,31 @@ export default function OrdersDateFilter({
 }: OrdersDateFilterProps) {
   const hasFilter = Boolean(value.startDate || value.endDate);
 
-  const handleStartDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const startDate = event.target.value;
+  const filters: { label: string; value: DateRange }[] = [
+    { label: "Today", value: "today" },
+    { label: "Yesterday", value: "yesterday" },
+    { label: "7 Days", value: "7days" },
+    { label: "30 Days", value: "30days" },
+  ];
 
-    onChange({
-      startDate,
-      endDate: value.endDate && startDate > value.endDate ? "" : value.endDate,
-    });
-  };
+  const isActive = (range: DateRange) => {
+    const selected = getDateRange(range);
 
-  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const endDate = event.target.value;
-
-    onChange({
-      ...value,
-      endDate,
-    });
+    return (
+      value.startDate === selected.startDate &&
+      value.endDate === selected.endDate
+    );
   };
 
   return (
-    <div className="mb-5 w-full">
+    <div className="w-full">
       {/* Header */}
-      <div className="mb-2.5 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <CalendarDays size={16} className="text-sky-600" aria-hidden="true" />
-
-          <span className="text-sm font-medium text-gray-800">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-neutral-100 text-neutral-700 ring-1 ring-neutral-200/50">
+            <CalendarDays size={14} strokeWidth={2.5} aria-hidden="true" />
+          </div>
+          <span className="text-sm font-semibold tracking-tight text-neutral-900">
             Filter by date
           </span>
         </div>
@@ -54,70 +91,38 @@ export default function OrdersDateFilter({
           <button
             type="button"
             onClick={onClear}
-            className="inline-flex items-center gap-1 text-xs font-medium text-gray-500 transition-colors hover:text-gray-800"
+            className="group flex items-center gap-1.5 rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-600 transition-all hover:bg-neutral-200 hover:text-neutral-900 active:scale-95"
           >
-            <X size={13} />
+            <X
+              size={12}
+              strokeWidth={3}
+              className="transition-transform group-hover:rotate-90"
+            />
             Clear
           </button>
         )}
       </div>
 
-      {/* Date fields */}
-      <div className="flex items-center gap-2">
-        {/* From */}
-        <div className="relative min-w-0 flex-1">
-          <label
-            htmlFor="orders-start-date"
-            className="absolute left-3 top-1.5 z-10 text-[10px] font-medium uppercase tracking-wide text-gray-400"
-          >
-            From
-          </label>
+      {/* Preset filters - Modern pill/grid layout */}
+      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-2.5">
+        {filters.map((filter) => {
+          const active = isActive(filter.value);
 
-          <CalendarDays
-            size={15}
-            className="pointer-events-none absolute right-3 top-1/2 z-10 -translate-y-1/2 text-gray-400"
-            aria-hidden="true"
-          />
-
-          <input
-            id="orders-start-date"
-            type="date"
-            value={value.startDate}
-            max={value.endDate || undefined}
-            onChange={handleStartDateChange}
-            className="h-14 w-full appearance-none rounded-xl border border-gray-200 bg-white px-3 pb-1 pt-5 text-sm font-medium text-gray-800 outline-none transition-colors focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
-          />
-        </div>
-
-        {/* Separator */}
-        <span className="shrink-0 text-xs text-gray-400" aria-hidden="true">
-          —
-        </span>
-
-        {/* To */}
-        <div className="relative min-w-0 flex-1">
-          <label
-            htmlFor="orders-end-date"
-            className="absolute left-3 top-1.5 z-10 text-[10px] font-medium uppercase tracking-wide text-gray-400"
-          >
-            To
-          </label>
-
-          <CalendarDays
-            size={15}
-            className="pointer-events-none absolute right-3 top-1/2 z-10 -translate-y-1/2 text-gray-400"
-            aria-hidden="true"
-          />
-
-          <input
-            id="orders-end-date"
-            type="date"
-            value={value.endDate}
-            min={value.startDate || undefined}
-            onChange={handleEndDateChange}
-            className="h-14 w-full appearance-none rounded-xl border border-gray-200 bg-white px-3 pb-1 pt-5 text-sm font-medium text-gray-800 outline-none transition-colors focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
-          />
-        </div>
+          return (
+            <button
+              key={filter.value}
+              type="button"
+              onClick={() => onChange(getDateRange(filter.value))}
+              className={`relative flex h-9 items-center justify-center rounded-lg border px-4 text-[13px] font-medium transition-all duration-200 ease-out active:scale-[0.97] sm:h-9 ${
+                active
+                  ? "border-neutral-900 bg-neutral-900 text-white shadow-md shadow-neutral-900/10"
+                  : "border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-900"
+              }`}
+            >
+              {filter.label}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
