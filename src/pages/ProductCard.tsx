@@ -341,7 +341,7 @@ export default function ProductCard({ product }: Props) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="group flex h-full w-full flex-col border border-sky-100/80 bg-gray-50/80 p-2.5 shadow-[0_2px_10px_rgba(14,165,233,0.06)] backdrop-blur-2xl transition-all duration-300 hover:border-sky-200 hover:bg-gray-50/90 hover:shadow-[0_6px_18px_rgba(14,165,233,0.09)] antialiased"
+      className="group flex h-full w-full flex-col border border-sky-100/80 bg-gray-50/80 p-2 shadow-[0_2px_10px_rgba(14,165,233,0.06)] backdrop-blur-2xl transition-all duration-300 hover:border-sky-200 hover:bg-gray-50/90 hover:shadow-[0_6px_18px_rgba(14,165,233,0.09)] antialiased sm:p-2.5"
     >
       {/* IMAGE */}
       <div className="relative">
@@ -349,7 +349,7 @@ export default function ProductCard({ product }: Props) {
           to={`/category/${product.category.slug}/product/${product.slug}`}
           className="block"
         >
-          <div className="relative aspect-square w-full overflow-hidden border-b border-neutral-100 pb-2">
+          <div className="relative aspect-square w-full overflow-hidden border-b border-neutral-100 pb-1.5 sm:pb-2">
             <div
               className={`relative flex h-full w-full items-center justify-center transition-transform duration-500 ease-out ${
                 isStock
@@ -369,10 +369,10 @@ export default function ProductCard({ product }: Props) {
             {/* OUT OF STOCK */}
             {isStock && (
               <div className="absolute inset-0 flex items-center justify-center bg-white/10 p-2 backdrop-blur-[1px]">
-                <div className="flex items-center gap-1.5 text-red-950">
-                  <AlertCircle size={12} strokeWidth={2.5} />
+                <div className="flex items-center gap-1 text-red-950">
+                  <AlertCircle size={11} strokeWidth={2.5} />
 
-                  <span className="text-[12px] font-mono font-semibold uppercase tracking-wider">
+                  <span className="text-[10px] font-mono font-semibold uppercase tracking-wider sm:text-[12px]">
                     Out of Stock
                   </span>
                 </div>
@@ -387,10 +387,10 @@ export default function ProductCard({ product }: Props) {
             type="button"
             onClick={toggleWishlist}
             title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-            className="absolute right-1.5 top-1.5 flex h-7 w-7 cursor-pointer items-center justify-center border border-neutral-200 bg-white shadow-sm transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-50"
+            className="absolute right-1 top-1 flex h-7 w-7 cursor-pointer items-center justify-center border border-neutral-200 bg-white shadow-sm transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-50 sm:right-1.5 sm:top-1.5"
           >
             <Heart
-              size={15}
+              size={14}
               strokeWidth={1.5}
               className={
                 isWishlisted ? "fill-red-700 text-red-700" : "text-neutral-500"
@@ -401,14 +401,14 @@ export default function ProductCard({ product }: Props) {
       </div>
 
       {/* PRODUCT INFO */}
-      <div className="flex flex-1 flex-col pt-2.5">
+      <div className="flex flex-1 flex-col pt-2 sm:pt-2.5">
         {/* NAME + RATING */}
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center justify-between gap-1.5 sm:gap-2">
           <Link
             to={`/category/${product.category.slug}/product/${product.slug}`}
             className="min-w-0 flex-1"
           >
-            <h3 className="line-clamp-1 text-[14px] font-medium leading-snug tracking-[-0.01em] text-neutral-950">
+            <h3 className="line-clamp-1 text-[13px] font-medium leading-snug tracking-[-0.01em] text-neutral-950 sm:text-[14px]">
               {product.name}
             </h3>
           </Link>
@@ -416,23 +416,23 @@ export default function ProductCard({ product }: Props) {
           {(product.rating?.average ?? 0) > 0 &&
             (product.rating?.count ?? 0) > 0 && (
               <div className="flex shrink-0 items-center gap-1 text-[9px] text-neutral-500">
-                <Star size={9} className="fill-amber-400 text-amber-400" />
-
+                {" "}
+                <Star size={9} className="fill-amber-400 text-amber-400" />{" "}
                 <span className="font-medium text-neutral-900">
-                  {product.rating?.average.toFixed(1)}
-                </span>
-
-                <span>({product.rating?.count})</span>
+                  {" "}
+                  {product.rating?.average.toFixed(1)}{" "}
+                </span>{" "}
+                <span>({product.rating?.count})</span>{" "}
               </div>
             )}
         </div>
 
         {/* PRICE + LOGGED-OUT BUY */}
-        <div className="mt-1.5 flex items-center justify-between gap-2">
-          <div className="flex min-w-0 items-baseline gap-1.5">
+        <div className="mt-1.5 flex items-center justify-between gap-1.5 sm:gap-2">
+          <div className="flex min-w-0 flex-wrap items-baseline gap-x-1 gap-y-0.5 sm:gap-x-1.5">
             {/* CURRENT PRICE */}
             <span
-              className={`text-[15px] font-semibold tracking-tight ${
+              className={`text-[14px] font-semibold tracking-tight sm:text-[15px] ${
                 isStock ? "text-neutral-400" : "text-neutral-950"
               }`}
             >
@@ -441,14 +441,14 @@ export default function ProductCard({ product }: Props) {
 
             {/* ORIGINAL PRICE */}
             {hasDiscount && (
-              <span className="text-[10px] font-normal text-neutral-400 line-through">
+              <span className="text-[9px] font-normal text-neutral-400 line-through sm:text-[10px]">
                 ₹{product.price.toLocaleString("en-IN")}
               </span>
             )}
 
             {/* DISCOUNT */}
             {hasDiscount && (
-              <span className="text-[10px] font-bold tracking-tight text-red-900">
+              <span className="text-[9px] font-bold tracking-tight text-red-900 sm:text-[10px]">
                 -{discountPercent}%
               </span>
             )}
@@ -459,7 +459,7 @@ export default function ProductCard({ product }: Props) {
             <Link
               to={`/category/${product.category.slug}/product/${product.slug}`}
               title="View product"
-              className={`flex h-7 shrink-0 items-center justify-center border px-4 text-[10px] font-semibold transition-colors ${
+              className={`flex h-7 shrink-0 items-center justify-center border px-2.5 text-[9px] font-semibold transition-colors sm:px-4 sm:text-[10px] ${
                 isStock
                   ? "pointer-events-none cursor-not-allowed border-neutral-200 bg-neutral-100 text-neutral-400"
                   : "border-sky-500 bg-sky-500 text-white hover:border-sky-600 hover:bg-sky-600"
@@ -511,7 +511,7 @@ export default function ProductCard({ product }: Props) {
             <Link
               to={`/category/${product.category.slug}/product/${product.slug}`}
               title="View product"
-              className={`flex h-7 items-center justify-center border px-4 text-[10px] font-semibold transition-colors ${
+              className={`flex h-7 items-center justify-center border px-3 text-[9px] font-semibold transition-colors sm:px-4 sm:text-[10px] ${
                 isStock
                   ? "pointer-events-none cursor-not-allowed border-neutral-200 bg-neutral-100 text-neutral-400"
                   : "border-sky-500 bg-sky-500 text-white hover:border-sky-600 hover:bg-sky-600"
