@@ -22,12 +22,24 @@ function FeatureProducts() {
               Featured Products
             </h3>
 
-            <div className="h-0.5 w-9 rounded-full bg-blue-400 sm:h-1 sm:w-12" />
+            <div className="relative mt-1.5 h-1 w-14 overflow-hidden rounded-full bg-sky-500">
+              <motion.div
+                className="absolute inset-y-0 left-0 w-1/2 rounded-full bg-black"
+                animate={{
+                  x: ["0%", "200%", "0%"],
+                }}
+                transition={{
+                  duration: 2.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
           </div>
 
           <Link
             to="/products"
-            className="group flex shrink-0 items-center gap-1.5 pb-0.5 text-[11px] font-semibold text-zinc-500 transition-colors hover:text-blue-600 sm:gap-2 sm:text-sm"
+            className="group flex shrink-0 items-center gap-1.5 pb-0.5 text-[11px] font-semibold text-zinc-500 transition-colors hover:text-black sm:gap-2 sm:text-sm"
           >
             <span className="hidden sm:inline">Explore Full Catalog</span>
             <span className="sm:hidden">View all</span>
