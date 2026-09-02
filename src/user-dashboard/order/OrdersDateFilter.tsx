@@ -1,4 +1,4 @@
-import { CalendarDays, X } from "lucide-react";
+import { CalendarDays, X, ChevronDown } from "lucide-react";
 
 export interface OrderDateFilterValue {
   startDate: string;
@@ -74,56 +74,62 @@ export default function OrdersDateFilter({
     );
   };
 
+  // Determine the currently active value to bind to the select dropdown
+  const activeValue =
+    filters.find((f) => isActive(f.value))?.value ||
+    (hasFilter ? "custom" : "");
+
   return (
-    <div className="w-full">
-      {/* Header */}
-      <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-neutral-100 text-neutral-700 ring-1 ring-neutral-200/50">
-            <CalendarDays size={14} strokeWidth={2.5} aria-hidden="true" />
-          </div>
-          <span className="text-sm font-semibold tracking-tight text-neutral-900">
-            Filter by date
-          </span>
+    <div className="flex w-full items-center gap-2 sm:w-auto">
+      <div className="relative flex-1 sm:w-[200px] sm:flex-none">
+        {/* Left Icon */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-neutral-500">
+          <CalendarDays size={15} strokeWidth={2.5} aria-hidden="true" />
         </div>
 
-        {hasFilter && (
-          <button
-            type="button"
-            onClick={onClear}
-            className="group flex items-center gap-1.5 rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-600 transition-all hover:bg-neutral-200 hover:text-neutral-900 active:scale-95"
-          >
-            <X
-              size={12}
-              strokeWidth={3}
-              className="transition-transform group-hover:rotate-90"
-            />
-            Clear
-          </button>
-        )}
-      </div>
+        {/* Compact Select Dropdown (Sorting Design) */}
+        <select
+          value={activeValue}
+          onChange={(e) => {
+            const val = e.target.value;
+            if (!val) onClear();
+            else if (val !== "custom") onChange(getDateRange(val as DateRange));
+          }}
+          className="w-full appearance-none rounded-lg border border-neutral-200 bg-white py-2 pl-9 pr-9 text-[13px] font-medium text-neutral-700 shadow-sm outline-none transition-all focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900"
+        >
+          <option value="">Filter by date...</option>
 
-      {/* Preset filters - Modern pill/grid layout */}
-      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-2.5">
-        {filters.map((filter) => {
-          const active = isActive(filter.value);
+          {/* Fallback if a custom date is applied from outside these presets */}
+          {hasFilter && activeValue === "custom" && (
+            <option value="custom" disabled>
+              Custom Range
+            </option>
+          )}
 
-          return (
-            <button
-              key={filter.value}
-              type="button"
-              onClick={() => onChange(getDateRange(filter.value))}
-              className={`relative flex h-9 items-center justify-center rounded-lg border px-4 text-[13px] font-medium transition-all duration-200 ease-out active:scale-[0.97] sm:h-9 ${
-                active
-                  ? "border-neutral-900 bg-neutral-900 text-white shadow-md shadow-neutral-900/10"
-                  : "border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-900"
-              }`}
-            >
+          {filters.map((filter) => (
+            <option key={filter.value} value={filter.value}>
               {filter.label}
-            </button>
-          );
-        })}
+            </option>
+          ))}
+        </select>
+
+        {/* Right Caret Icon */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-neutral-400">
+          <ChevronDown size={14} strokeWidth={2.5} aria-hidden="true" />
+        </div>
       </div>
+
+      {/* Clear Button (Only shows when filter is active) */}
+      {hasFilter && (
+        <button
+          type="button"
+          onClick={onClear}
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-500 shadow-sm transition-colors hover:bg-neutral-100 hover:text-neutral-900 active:scale-95"
+          aria-label="Clear filter"
+        >
+          <X size={15} strokeWidth={2.5} />
+        </button>
+      )}
     </div>
   );
 }
