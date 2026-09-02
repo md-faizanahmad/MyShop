@@ -39,7 +39,7 @@ export default function CategoryQuickLinks({ categories, loading }: Props) {
   return (
     <section className="w-full py-4 lg:py-4 ">
       <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-18">
-        <div className="mb-8 space-y-1">
+        <div className="mb-4 space-y-1">
           <span className="text-xs font-bold uppercase tracking-widest text-sky-600 block">
             Collections
           </span>
