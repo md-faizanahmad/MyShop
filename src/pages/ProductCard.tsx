@@ -409,17 +409,17 @@ export default function ProductCard({ product }: Props) {
       animate={{ opacity: 1, y: 0 }}
       className="group relative flex h-full w-full flex-col overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-neutral-300 hover:shadow-lg hover:shadow-neutral-200/40 antialiased"
     >
-      {/* IMAGE CONTAINER - Removed heavy padding to make image larger */}
-      <div className="relative aspect-square w-full overflow-hidden bg-neutral-50/50">
+      {/* IMAGE */}
+      <div className="relative aspect-[1/0.82] w-full overflow-hidden  sm:aspect-[1/0.82]">
         <Link
           to={`/category/${product.category.slug}/product/${product.slug}`}
           className="block h-full w-full"
         >
-          <div className="relative flex h-full w-full items-center justify-center ">
+          <div className="relative flex h-full w-full items-center justify-center p-2.5 sm:p-3">
             <img
               src={product.imageUrl}
               alt={product.name}
-              className={`max-h-full max-w-full object-contain transition-transform duration-700 ease-out ${
+              className={`h-full w-[78%] object-contain transition-transform duration-500 ease-out sm:h-full sm:w-full ${
                 isStock ? "opacity-50 grayscale-[0.2]" : "group-hover:scale-105"
               }`}
             />
@@ -428,13 +428,13 @@ export default function ProductCard({ product }: Props) {
           {/* OUT OF STOCK OVERLAY */}
           {isStock && (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/40 backdrop-blur-[2px] transition-all">
-              <div className="flex items-center gap-1 rounded-full bg-white/95 px-2 py-1 shadow-sm ring-1 ring-neutral-200/50">
+              <div className="flex items-center gap-1 rounded-full bg-white/95 px-1.5 py-0.5 shadow-sm ring-1 ring-neutral-200/50 sm:px-2 sm:py-1">
                 <AlertCircle
-                  size={10}
-                  className="text-neutral-700"
+                  size={9}
+                  className="text-neutral-700 sm:h-2.5 sm:w-2.5"
                   strokeWidth={2.5}
                 />
-                <span className="text-[10px] font-semibold tracking-wide text-neutral-800 uppercase">
+                <span className="text-[9px] font-semibold uppercase tracking-wide text-neutral-800 sm:text-[10px]">
                   Out of Stock
                 </span>
               </div>
@@ -442,16 +442,16 @@ export default function ProductCard({ product }: Props) {
           )}
         </Link>
 
-        {/* WISHLIST BUTTON */}
+        {/* WISHLIST */}
         {status === "authenticated" && (
           <button
             type="button"
             onClick={toggleWishlist}
             title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-            className="absolute right-2 top-2 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-neutral-200/50 transition-transform duration-200 hover:scale-110 active:scale-95"
+            className="absolute right-1.5 top-1.5 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-neutral-200/50 transition-transform duration-200 hover:scale-110 active:scale-95 sm:right-2 sm:top-2 sm:h-7 sm:w-7"
           >
             <Heart
-              size={13}
+              size={12}
               strokeWidth={2}
               className={
                 isWishlisted
@@ -464,34 +464,38 @@ export default function ProductCard({ product }: Props) {
       </div>
 
       {/* PRODUCT INFO */}
-      <div className="flex flex-1 flex-col p-3">
+      <div className="flex flex-1 flex-col p-2.5 sm:p-3">
         {/* NAME + RATING */}
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex items-start justify-between gap-1.5 sm:gap-2">
           <Link
             to={`/category/${product.category.slug}/product/${product.slug}`}
             className="min-w-0 flex-1 outline-none"
           >
-            <h3 className="line-clamp-2 text-[13px] font-medium leading-snug text-neutral-900 transition-colors group-hover:text-neutral-700">
+            <h3 className="line-clamp-2 text-[12px] font-medium leading-snug text-neutral-900 transition-colors group-hover:text-neutral-700 sm:text-[13px]">
               {product.name}
             </h3>
           </Link>
 
           {(product.rating?.average ?? 0) > 0 &&
             (product.rating?.count ?? 0) > 0 && (
-              <div className="flex shrink-0 items-center gap-0.5 rounded-full bg-neutral-50 px-1.5 py-0.5 ring-1 ring-neutral-200/60">
-                <Star size={9} className="fill-amber-400 text-amber-400" />
-                <span className="text-[10px] font-medium text-neutral-700 ml-0.5">
+              <div className="flex shrink-0 items-center gap-0.5 rounded-full bg-neutral-50 px-1 py-0.5 ring-1 ring-neutral-200/60 sm:px-1.5">
+                <Star
+                  size={8}
+                  className="fill-amber-400 text-amber-400 sm:h-[9px] sm:w-[9px]"
+                />
+
+                <span className="ml-0.5 text-[9px] font-medium text-neutral-700 sm:text-[10px]">
                   {product.rating?.average.toFixed(1)}
                 </span>
               </div>
             )}
         </div>
 
-        <div className="mt-auto pt-2.5">
+        <div className="mt-auto pt-2 sm:pt-2.5">
           {/* PRICE BLOCK */}
-          <div className="flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+          <div className="flex flex-wrap items-baseline gap-x-1 gap-y-0.5">
             <span
-              className={`text-[15px] font-bold tracking-tight ${
+              className={`text-[14px] font-bold tracking-tight sm:text-[15px] ${
                 isStock ? "text-neutral-400" : "text-neutral-900"
               }`}
             >
@@ -499,26 +503,25 @@ export default function ProductCard({ product }: Props) {
             </span>
 
             {hasDiscount && (
-              <span className="text-[11px] font-medium text-neutral-400 line-through">
+              <span className="text-[10px] font-medium text-neutral-400 line-through sm:text-[11px]">
                 ₹{product.price.toLocaleString("en-IN")}
               </span>
             )}
 
             {hasDiscount && (
-              <span className="rounded bg-emerald-50 px-1 py-0.5 text-[9px] font-bold text-emerald-600">
+              <span className="rounded bg-emerald-50 px-1 py-0.5 text-[8px] font-bold text-emerald-600 sm:text-[9px]">
                 -{discountPercent}%
               </span>
             )}
           </div>
 
           {/* ACTIONS */}
-          <div className="mt-2.5">
+          <div className="mt-2 sm:mt-2.5">
             {status !== "authenticated" ? (
-              /* BUY — UNAUTHENTICATED */
               <Link
                 to={`/category/${product.category.slug}/product/${product.slug}`}
                 title="View product"
-                className={`flex h-8 w-full items-center justify-center rounded-lg text-[11px] font-semibold transition-all active:scale-[0.98] ${
+                className={`flex h-7 w-full items-center justify-center rounded-md text-[10px] font-semibold transition-all active:scale-[0.98] sm:h-8 sm:rounded-lg sm:text-[11px] ${
                   isStock
                     ? "pointer-events-none bg-neutral-100 text-neutral-400"
                     : "bg-neutral-900 text-white hover:bg-neutral-800"
@@ -527,7 +530,6 @@ export default function ProductCard({ product }: Props) {
                 Buy Now
               </Link>
             ) : (
-              /* AUTHENTICATED ACTIONS */
               <div className="flex items-center gap-1.5">
                 <button
                   type="button"
@@ -547,7 +549,7 @@ export default function ProductCard({ product }: Props) {
                         ? "Remove from cart"
                         : "Add to cart"
                   }
-                  className={`flex h-8 w-9 shrink-0 items-center justify-center rounded-lg border transition-all active:scale-[0.95] ${
+                  className={`flex h-7 w-8 shrink-0 items-center justify-center rounded-md border transition-all active:scale-[0.95] sm:h-8 sm:w-9 sm:rounded-lg ${
                     isStock
                       ? "cursor-not-allowed border-transparent bg-neutral-100 text-neutral-400"
                       : isInCart
@@ -556,16 +558,16 @@ export default function ProductCard({ product }: Props) {
                   }`}
                 >
                   {isInCart ? (
-                    <Trash2 size={13} strokeWidth={2} />
+                    <Trash2 size={12} strokeWidth={2} />
                   ) : (
-                    <ShoppingCart size={14} strokeWidth={2} />
+                    <ShoppingCart size={13} strokeWidth={2} />
                   )}
                 </button>
 
                 <Link
                   to={`/category/${product.category.slug}/product/${product.slug}`}
                   title="View product"
-                  className={`flex h-8 flex-1 items-center justify-center rounded-lg text-[11px] font-semibold transition-all active:scale-[0.98] ${
+                  className={`flex h-7 flex-1 items-center justify-center rounded-md text-[10px] font-semibold transition-all active:scale-[0.98] sm:h-8 sm:rounded-lg sm:text-[11px] ${
                     isStock
                       ? "pointer-events-none bg-neutral-100 text-neutral-400"
                       : "bg-neutral-900 text-white hover:bg-neutral-800"
