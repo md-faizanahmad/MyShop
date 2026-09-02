@@ -14,7 +14,7 @@ export default function NewArrivals() {
   return (
     <section
       aria-labelledby="new-arrivals-heading"
-      className="bg-white py-12 sm:py-16 lg:py-20"
+      className="bg-white py-8 sm:py-8 lg:py-7"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
