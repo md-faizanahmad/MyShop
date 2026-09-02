@@ -47,37 +47,52 @@ export default function OrdersMobile({
   return (
     <section className="min-h-screen px-3 py-5">
       {/* Header */}
-      <header className="mb-5 flex items-center justify-between">
-        <h4 className="flex min-w-0 items-center gap-2 text-lg font-semibold leading-6 tracking-tight text-gray-900">
-          <Package
-            size={21}
-            className="shrink-0 text-sky-500"
-            aria-hidden="true"
-          />
+      <header className="mb-5 flex min-w-0 items-center justify-between gap-2">
+        {/* TITLE + REFRESH */}
+        <div className="flex min-w-0 items-center gap-2">
+          <h4 className="flex min-w-0 items-center gap-1.5 text-base font-semibold leading-5 tracking-tight text-gray-900 sm:gap-2 sm:text-lg sm:leading-6">
+            <Package
+              size={19}
+              className="shrink-0 text-sky-500 sm:h-[21px] sm:w-[21px]"
+              aria-hidden="true"
+            />
 
-          <span>My Orders</span>
+            <span className="truncate">My Orders</span>
 
-          {totalCount > 0 && (
-            <span className="inline-flex h-6 items-center text-sm font-normal leading-6 text-gray-500">
-              ({totalCount})
+            {totalCount > 0 && (
+              <span className="shrink-0 text-xs font-normal leading-5 text-gray-500 sm:text-sm sm:leading-6">
+                ({totalCount})
+              </span>
+            )}
+          </h4>
+
+          {isFetching && !isLoading && (
+            <span
+              className="flex shrink-0 items-center text-gray-400"
+              aria-label="Updating orders"
+            >
+              <RefreshCw
+                size={13}
+                className="animate-spin sm:h-[14px] sm:w-[14px]"
+              />
             </span>
           )}
-        </h4>
+        </div>
 
-        {isFetching && !isLoading && (
-          <span
-            className="ml-2 flex shrink-0 items-center text-gray-400"
-            aria-label="Updating orders"
-          >
-            <RefreshCw size={14} className="animate-spin" />
-          </span>
-        )}
+        {/* DATE FILTER */}
+        <div className="shrink-0">
+          <OrdersDateFilter
+            value={dateFilter}
+            onChange={onDateFilterChange}
+            onClear={onClearDateFilter}
+          />
+        </div>
       </header>
-      <OrdersDateFilter
+      {/* <OrdersDateFilter
         value={dateFilter}
         onChange={onDateFilterChange}
         onClear={onClearDateFilter}
-      />
+      /> */}
       {/* Loading */}
       {isLoading && (
         <div className="flex min-h-[55vh] flex-col items-center justify-center text-center">

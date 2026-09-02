@@ -48,7 +48,8 @@ export default function OrdersDesktop({
     <section className="min-h-screen px-6 py-8 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <header className="mb-7 flex items-center justify-between">
+        <header className="mb-7 flex items-center justify-between gap-6">
+          {/* TITLE */}
           <h4 className="flex min-w-0 items-center gap-2.5 text-2xl font-semibold leading-7 tracking-tight text-gray-900">
             <Package
               size={26}
@@ -59,30 +60,37 @@ export default function OrdersDesktop({
             <span>My Orders</span>
 
             {totalCount > 0 && (
-              <span className="inline-flex h-7 items-center text-base font-normal leading-7 text-gray-500">
+              <span className="inline-flex h-7 shrink-0 items-center text-base font-normal leading-7 text-gray-500">
                 ({totalCount})
               </span>
             )}
           </h4>
 
-          {isFetching && !isLoading && (
-            <span className="flex items-center gap-2 text-xs text-gray-500">
-              <RefreshCw
-                size={14}
-                className="animate-spin"
-                aria-hidden="true"
-              />
-              Updating…
-            </span>
-          )}
+          {/* ACTIONS */}
+          <div className="flex shrink-0 items-center gap-5">
+            {isFetching && !isLoading && (
+              <span
+                className="flex shrink-0 items-center gap-2 text-xs text-gray-500"
+                aria-label="Updating orders"
+              >
+                <RefreshCw
+                  size={14}
+                  className="animate-spin"
+                  aria-hidden="true"
+                />
+                Updating…
+              </span>
+            )}
+
+            <OrdersDateFilter
+              value={dateFilter}
+              onChange={onDateFilterChange}
+              onClear={onClearDateFilter}
+            />
+          </div>
         </header>
 
         {/* Date Filter */}
-        <OrdersDateFilter
-          value={dateFilter}
-          onChange={onDateFilterChange}
-          onClear={onClearDateFilter}
-        />
 
         {/* Loading */}
         {isLoading && (
