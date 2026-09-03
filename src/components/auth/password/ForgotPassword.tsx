@@ -3,6 +3,7 @@ import useForgotPassword from "./components/useForgotPassword";
 import ForgotPasswordCard from "./components/ForgotPasswordCard";
 import ForgotPasswordEmail from "./components/ForgotPasswordEmail";
 import ForgotPasswordOtp from "./components/ForgotPasswordOtp";
+import ForgotPasswordReset from "./components/ForgotPasswordReset";
 import ForgotPasswordSuccess from "./components/ForgotPasswordSuccess";
 
 export default function ForgotPasswordPage() {
@@ -11,13 +12,26 @@ export default function ForgotPasswordPage() {
     email,
     otp,
     isLoading,
+    error,
+    successMessage,
+
     setEmail,
     handleEmailSubmit,
+
     handleOtpSubmit,
     handleOtpChange,
+    resendOtp,
+    resendLoading,
+    resendCooldown,
+
+    newPassword,
+    confirmPassword,
+    setNewPassword,
+    setConfirmPassword,
+    handleResetPassword,
 
     goBack,
-    resendOtp,
+    resetForgotPassword,
   } = useForgotPassword();
 
   return (
@@ -27,6 +41,7 @@ export default function ForgotPasswordPage() {
           <ForgotPasswordEmail
             email={email}
             isLoading={isLoading}
+            error={error}
             onEmailChange={setEmail}
             onSubmit={handleEmailSubmit}
           />
@@ -37,6 +52,10 @@ export default function ForgotPasswordPage() {
             email={email}
             otp={otp}
             isLoading={isLoading}
+            error={error}
+            successMessage={successMessage}
+            resendLoading={resendLoading}
+            resendCooldown={resendCooldown}
             onBack={goBack}
             onOtpChange={handleOtpChange}
             onSubmit={handleOtpSubmit}
@@ -44,12 +63,21 @@ export default function ForgotPasswordPage() {
           />
         )}
 
-        {step === "SUCCESS" && (
-          <ForgotPasswordSuccess
-            onContinue={() => {
-              // TODO: navigate("/reset-password");
-            }}
+        {step === "RESET" && (
+          <ForgotPasswordReset
+            isLoading={isLoading}
+            error={error}
+            newPassword={newPassword}
+            confirmPassword={confirmPassword}
+            onNewPasswordChange={setNewPassword}
+            onConfirmPasswordChange={setConfirmPassword}
+            onBack={goBack}
+            onSubmit={handleResetPassword}
           />
+        )}
+
+        {step === "SUCCESS" && (
+          <ForgotPasswordSuccess onContinue={resetForgotPassword} />
         )}
       </AnimatePresence>
     </ForgotPasswordCard>
