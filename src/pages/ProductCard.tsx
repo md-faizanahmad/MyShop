@@ -407,7 +407,11 @@ export default function ProductCard({ product }: Props) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="group relative flex h-full w-full flex-col overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-neutral-300 hover:shadow-lg hover:shadow-neutral-200/40 antialiased"
+      className="group relative flex h-full w-full flex-col overflow-hidden rounded-sm bg-white/30 backdrop-blur-lg
+  shadow-[0_2px_12px_rgba(0,0,0,0.06)]
+  transition-all duration-300 ease-out
+  hover:-translate-y-1
+  hover:shadow-[0_8px_24px_rgba(0,0,0,0.10)] antialiased"
     >
       {/* IMAGE */}
       <div className="relative aspect-[1/0.82] w-full overflow-hidden  sm:aspect-[1/0.82]">
@@ -471,7 +475,7 @@ export default function ProductCard({ product }: Props) {
             to={`/category/${product.category.slug}/product/${product.slug}`}
             className="min-w-0 flex-1 outline-none"
           >
-            <h3 className="line-clamp-2 text-[12px] font-medium leading-snug text-neutral-900 transition-colors group-hover:text-neutral-700 sm:text-[13px]">
+            <h3 className="line-clamp-2 text-[12px] font-medium leading-snug text-neutral-900 transition-colors group-hover:text-red-900 sm:text-[13px]">
               {product.name}
             </h3>
           </Link>
@@ -493,26 +497,28 @@ export default function ProductCard({ product }: Props) {
 
         <div className="mt-auto pt-2 sm:pt-2.5">
           {/* PRICE BLOCK */}
-          <div className="flex flex-wrap items-baseline gap-x-1 gap-y-0.5">
-            <span
+          <div className="block items-baseline gap-x-1 gap-y-0.5">
+            <div
               className={`text-[14px] font-bold tracking-tight sm:text-[15px] ${
                 isStock ? "text-neutral-400" : "text-neutral-900"
               }`}
             >
               ₹{price.toLocaleString("en-IN")}
-            </span>
+            </div>
 
-            {hasDiscount && (
-              <span className="text-[10px] font-medium text-neutral-400 line-through sm:text-[11px]">
-                ₹{product.price.toLocaleString("en-IN")}
-              </span>
-            )}
+            <div className="flex ms-4">
+              {hasDiscount && (
+                <div className="text-[10px] font-medium text-neutral-400 line-through sm:text-[11px]">
+                  ₹{product.price.toLocaleString("en-IN")}
+                </div>
+              )}
 
-            {hasDiscount && (
-              <span className="rounded bg-emerald-50 px-1 py-0.5 text-[8px] font-bold text-emerald-600 sm:text-[9px]">
-                -{discountPercent}%
-              </span>
-            )}
+              {hasDiscount && (
+                <span className="rounded bg-emerald-50 px-1 py-0.5 text-[8px] font-bold text-emerald-600 sm:text-[9px]">
+                  -{discountPercent}%
+                </span>
+              )}
+            </div>
           </div>
 
           {/* ACTIONS */}
