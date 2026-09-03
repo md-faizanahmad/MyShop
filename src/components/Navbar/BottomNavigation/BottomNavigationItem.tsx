@@ -145,7 +145,7 @@ export default function BottomNavigationItem({
                 aria-hidden="true"
                 className="
       absolute -right-1 -top-1
-      h-4 min-w-4
+      h-3.5 min-w-3.5
       animate-pulse
       rounded-full
       bg-neutral-200
@@ -157,11 +157,11 @@ export default function BottomNavigationItem({
               badge > 0 && (
                 <span
                   className="
-        absolute -right-1 top-0
-        flex h-4 min-w-4 items-center justify-center
-        rounded-full bg-red-500 px-1
-        text-[10px] font-bold leading-none text-white
-        
+        absolute -right-1 -top-1
+        flex h-3.5 min-w-3.5 items-center justify-center
+        rounded-full bg-red-500 px-0.5
+        text-[9px] font-bold leading-none text-white
+        ring-2 ring-white
       "
                 >
                   {badge > 99 ? "99+" : badge}
