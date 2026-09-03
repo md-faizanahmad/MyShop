@@ -11,9 +11,7 @@ export default function ForgotPasswordPage() {
     email,
     otp,
     isLoading,
-
     setEmail,
-
     handleEmailSubmit,
     handleOtpSubmit,
     handleOtpChange,

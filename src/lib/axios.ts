@@ -23,27 +23,6 @@ apiClient.interceptors.request.use(
   (error: AxiosError) => Promise.reject(error),
 );
 
-/* -----------------------------
-   RESPONSE INTERCEPTOR
-   ⚠️ DO NOT LOGOUT DURING BOOT
------------------------------ */
-// apiClient.interceptors.response.use(
-//   (response) => response,
-
-//   (error: AxiosError) => {
-//     if (error.response?.status === 401) {
-//       const auth = useAuthStore.getState();
-
-//       // 🚫 Ignore 401 while restoring session
-//       if (!auth.initializing) {
-//         auth._forceLogout();
-//       }
-//     }
-
-//     return Promise.reject(error);
-//   },
-// );
-
 // change for api failure
 apiClient.interceptors.response.use(
   (response) => {
