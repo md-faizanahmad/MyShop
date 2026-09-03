@@ -14,25 +14,23 @@ export default function NewArrivals() {
   return (
     <section
       aria-labelledby="new-arrivals-heading"
-      className="py-8 sm:py-8 lg:py-7"
+      className="py-6 sm:py-8 lg:py-4"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <header className="mb-4 flex items-end justify-between sm:mb-4">
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center gap-1 text-red-600">
-              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              <Sparkles
+                className="h-4 w-4 animate-pulse text-sky-600"
+                aria-hidden="true"
+              />
+
               <span className="text-xs font-bold uppercase tracking-widest">
-                Just Added
+                <span className="text-sky-600">Just</span>{" "}
+                <span className="text-red-600">Added</span>
               </span>
             </div>
-
-            <h2
-              id="new-arrivals-heading"
-              className="text-2xl font-medium tracking-tight text-zinc-900 sm:text-2xl"
-            >
-              New Arrivals
-            </h2>
           </div>
 
           {/* Shop All */}
