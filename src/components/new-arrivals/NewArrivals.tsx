@@ -8,17 +8,17 @@ const NEW_ARRIVAL_DAYS = 60;
 export default function NewArrivals() {
   const { products, loading } = useNewArrivals({
     days: NEW_ARRIVAL_DAYS,
-    limit: 5,
+    limit: 10,
   });
 
   return (
     <section
       aria-labelledby="new-arrivals-heading"
-      className="bg-white py-8 sm:py-8 lg:py-7"
+      className="py-8 sm:py-8 lg:py-7"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="mb-8 flex items-end justify-between sm:mb-10">
+        <header className="mb-6 flex items-end justify-between sm:mb-10">
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center gap-1.5 text-red-600">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
@@ -26,6 +26,7 @@ export default function NewArrivals() {
                 Just Added
               </span>
             </div>
+
             <h2
               id="new-arrivals-heading"
               className="text-2xl font-medium tracking-tight text-zinc-900 sm:text-3xl"
@@ -34,11 +35,14 @@ export default function NewArrivals() {
             </h2>
           </div>
 
+          {/* Shop All */}
           <Link
             to="/new-arrivals"
-            className="group hidden items-center gap-2 text-sm font-medium text-zinc-900 transition-colors hover:text-red-600 sm:flex"
+            className="group flex items-center gap-1.5 text-sm font-medium text-zinc-900 transition-colors hover:text-red-600"
           >
-            Shop all
+            <span className="sm:hidden">View all</span>
+            <span className="hidden sm:inline">Shop all</span>
+
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </header>
@@ -46,14 +50,24 @@ export default function NewArrivals() {
         {/* Loading State */}
         {loading && <Skeleton />}
 
-        {/* Products List (Mobile: Swipeable Carousel, Desktop: Grid) */}
+        {/* Products */}
         {!loading && products.length > 0 && (
-          <div className="-mx-4 flex snap-x snap-mandatory overflow-x-auto px-4 pb-8 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:px-0 sm:pb-0 lg:grid-cols-4 xl:grid-cols-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div
+            className="
+              -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-5
+              sm:mx-0 sm:gap-5 sm:px-0 sm:pb-3
+              [&::-webkit-scrollbar]:hidden
+              [-ms-overflow-style:none]
+              [scrollbar-width:none]
+            "
+          >
             {products.map((product) => {
               const hasDiscount =
                 !!product.discountPrice &&
                 product.discountPrice < product.price;
+
               const currentPrice = product.discountPrice ?? product.price;
+
               const discountPercent = hasDiscount
                 ? Math.round(
                     ((product.price - product.discountPrice!) / product.price) *
@@ -67,7 +81,12 @@ export default function NewArrivals() {
                 <Link
                   key={product._id}
                   to={productUrl}
-                  className="group relative w-[75vw] flex-none snap-start pr-4 sm:w-auto sm:pr-0"
+                  className="
+                    group relative w-[43vw] min-w-[43vw] flex-none snap-start
+                    sm:w-[30vw] sm:min-w-[30vw]
+                    lg:w-[22vw] lg:min-w-[22vw]
+                    xl:w-[18vw] xl:min-w-[18vw]
+                  "
                 >
                   {/* Image Container */}
                   <div className="relative mb-4 aspect-4/5 overflow-hidden rounded-2xl bg-zinc-100 sm:aspect-square">
@@ -84,6 +103,7 @@ export default function NewArrivals() {
                       <span className="block rounded-full bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-zinc-900 shadow-sm">
                         New
                       </span>
+
                       {hasDiscount && (
                         <span className="block rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-bold tracking-widest text-white shadow-sm">
                           -{discountPercent}%
@@ -102,6 +122,7 @@ export default function NewArrivals() {
                       <span className="text-sm font-semibold text-zinc-900">
                         ₹{currentPrice.toLocaleString("en-IN")}
                       </span>
+
                       {hasDiscount && (
                         <span className="text-xs text-zinc-500 line-through">
                           ₹{product.price.toLocaleString("en-IN")}
@@ -121,19 +142,6 @@ export default function NewArrivals() {
                 </Link>
               );
             })}
-          </div>
-        )}
-
-        {/* Mobile "Shop All" Fallback */}
-        {!loading && products.length > 0 && (
-          <div className="mt-4 flex sm:hidden">
-            <Link
-              to="/new-arrivals"
-              className="group flex w-full items-center justify-center gap-2 rounded-xl bg-zinc-100 py-3.5 text-sm font-medium text-zinc-900 transition-colors active:bg-zinc-200"
-            >
-              View all new arrivals
-              <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
         )}
 
