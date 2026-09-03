@@ -530,7 +530,7 @@ export default function ProductCard({ product }: Props) {
                 Buy Now
               </Link>
             ) : (
-              <div className="flex items-center gap-1.5">
+              <div className="flex w-full items-center gap-1.5">
                 <button
                   type="button"
                   onClick={toggleCart}
@@ -549,7 +549,7 @@ export default function ProductCard({ product }: Props) {
                         ? "Remove from cart"
                         : "Add to cart"
                   }
-                  className={`flex h-7 w-8 shrink-0 items-center justify-center rounded-md border transition-all active:scale-[0.95] sm:h-8 sm:w-9 sm:rounded-lg ${
+                  className={`flex h-7 flex-30 shrink-0 items-center justify-center rounded-md border transition-all active:scale-[0.95] sm:h-8 sm:rounded-lg ${
                     isStock
                       ? "cursor-not-allowed border-transparent bg-neutral-100 text-neutral-400"
                       : isInCart
@@ -567,7 +567,7 @@ export default function ProductCard({ product }: Props) {
                 <Link
                   to={`/category/${product.category.slug}/product/${product.slug}`}
                   title="View product"
-                  className={`flex h-7 flex-1 items-center justify-center rounded-md text-[10px] font-semibold transition-all active:scale-[0.98] sm:h-8 sm:rounded-lg sm:text-[11px] ${
+                  className={`flex h-7 flex-70 items-center justify-center rounded-md text-[10px] font-semibold transition-all active:scale-[0.98] sm:h-8 sm:rounded-lg sm:text-[11px] ${
                     isStock
                       ? "pointer-events-none bg-neutral-100 text-neutral-400"
                       : "bg-neutral-900 text-white hover:bg-neutral-800"

@@ -38,7 +38,7 @@ export default function NewArrivals() {
             to="/new-arrivals"
             className="group flex items-center gap-1.5 text-sm font-medium text-zinc-900 transition-colors hover:text-red-600"
           >
-            <span className="sm:hidden">View all</span>
+            <span className="sm:hidden font-bold">View all</span>
             <span className="hidden sm:inline">Shop all</span>
 
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
