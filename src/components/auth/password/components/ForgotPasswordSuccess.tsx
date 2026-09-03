@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, LogIn } from "lucide-react";
 
 interface ForgotPasswordSuccessStepProps {
   onContinue: () => void;
@@ -16,18 +16,18 @@ export default function ForgotPasswordSuccess({
       transition={{ duration: 0.2 }}
       className="space-y-4 py-6 text-center"
     >
-      <div className="flex justify-center text-green-500">
-        <CheckCircle2 className="h-14 w-14 stroke-[1.5]" />
+      <div className="flex justify-center text-emerald-500">
+        <CheckCircle2 aria-hidden="true" className="h-14 w-14 stroke-[1.5]" />
       </div>
 
       <div className="space-y-2">
         <h3 className="text-xl font-semibold text-slate-900">
-          Identity Verified
+          Password Reset Successful
         </h3>
 
-        <p className="mx-auto max-w-xs text-sm text-slate-500">
-          Your account has been verified successfully. You can now reset your
-          password safely.
+        <p className="mx-auto max-w-xs text-sm leading-5 text-slate-500">
+          Your password has been updated successfully. You can now log in with
+          your new password.
         </p>
       </div>
 
@@ -35,9 +35,10 @@ export default function ForgotPasswordSuccess({
         <button
           type="button"
           onClick={onContinue}
-          className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition-all duration-150 hover:bg-slate-950"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-950"
         >
-          Proceed to Reset Password
+          <LogIn className="h-4 w-4" />
+          <span>Continue to Login</span>
         </button>
       </div>
     </motion.div>
