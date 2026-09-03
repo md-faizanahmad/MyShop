@@ -1,9 +1,5 @@
-import { ChevronDown, User, UserRound } from "lucide-react";
+import { User, UserRound } from "lucide-react";
 import { motion } from "framer-motion";
-
-/* -------------------------------------------------------------------------- */
-/*                                   Props                                    */
-/* -------------------------------------------------------------------------- */
 
 interface Props {
   // Controls whether the account menu is currently open.
@@ -24,10 +20,6 @@ interface Props {
   // Used to respect the user's reduced-motion preference.
   shouldReduceMotion: boolean | null;
 }
-
-/* -------------------------------------------------------------------------- */
-/*                                  Component                                 */
-/* -------------------------------------------------------------------------- */
 
 export default function UserMenuTrigger({
   open,
@@ -154,8 +146,6 @@ lg:text-black
           className="
           cursor-pointer
             flex
-            h-8
-            w-8
             items-center
             justify-center
             ring-2
@@ -175,7 +165,7 @@ s          "
               {firstLetter}
             </span>
           ) : (
-            <User size={15} strokeWidth={2.1} aria-hidden="true" />
+            <User size={17} strokeWidth={2.1} aria-hidden="true" />
           )}
         </div>
 
@@ -214,7 +204,7 @@ s          "
        *
        * Its rotation is enough to communicate the open state.
        */}
-      <ChevronDown
+      {/* <ChevronDown
         size={12}
         aria-hidden="true"
         className={`
@@ -225,7 +215,7 @@ s          "
           md:block
           ${open ? "rotate-180 text-zinc-500" : ""}
         `}
-      />
+      /> */}
     </motion.button>
   );
 }

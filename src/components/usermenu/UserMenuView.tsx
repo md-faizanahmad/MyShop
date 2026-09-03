@@ -604,9 +604,7 @@ import type { UserType } from "./usermenu-types";
 import UserMenuTrigger from "./UserMenuTrigger";
 import UserMenuDropdown from "./UserMenuDropdown";
 
-/* -------------------------------------------------------------------------- */
-/*                                   Props                                    */
-/* -------------------------------------------------------------------------- */
+// Props
 
 interface Props {
   // Controls whether the account menu is open.
@@ -631,9 +629,7 @@ interface Props {
   onLogout: () => Promise<void> | void;
 }
 
-/* -------------------------------------------------------------------------- */
-/*                              Menu Configuration                            */
-/* -------------------------------------------------------------------------- */
+// Menu Configuration
 
 /*
  * Shared shape for account menu items.
