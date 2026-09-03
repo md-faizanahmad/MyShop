@@ -3,8 +3,8 @@ import useForgotPassword from "./components/useForgotPassword";
 import ForgotPasswordCard from "./components/ForgotPasswordCard";
 import ForgotPasswordEmail from "./components/ForgotPasswordEmail";
 import ForgotPasswordOtp from "./components/ForgotPasswordOtp";
-import ForgotPasswordSuccess from "./components/ForgotPasswordSuccess";
 import ForgotPasswordReset from "./components/ForgotPasswordReset";
+import ForgotPasswordSuccess from "./components/ForgotPasswordSuccess";
 
 export default function ForgotPasswordPage() {
   const {
@@ -65,10 +65,10 @@ export default function ForgotPasswordPage() {
 
         {step === "RESET" && (
           <ForgotPasswordReset
-            isLoading={isLoading}
-            error={error}
             newPassword={newPassword}
             confirmPassword={confirmPassword}
+            isLoading={isLoading}
+            error={error}
             onNewPasswordChange={setNewPassword}
             onConfirmPasswordChange={setConfirmPassword}
             onBack={goBack}
