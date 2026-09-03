@@ -18,9 +18,9 @@ export default function NewArrivals() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="mb-6 flex items-end justify-between sm:mb-10">
+        <header className="mb-4 flex items-end justify-between sm:mb-4">
           <div className="flex flex-col gap-1.5">
-            <div className="flex items-center gap-1.5 text-red-600">
+            <div className="flex items-center gap-1 text-red-600">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
               <span className="text-xs font-bold uppercase tracking-widest">
                 Just Added
@@ -29,7 +29,7 @@ export default function NewArrivals() {
 
             <h2
               id="new-arrivals-heading"
-              className="text-2xl font-medium tracking-tight text-zinc-900 sm:text-3xl"
+              className="text-2xl font-medium tracking-tight text-zinc-900 sm:text-2xl"
             >
               New Arrivals
             </h2>
@@ -89,7 +89,7 @@ export default function NewArrivals() {
                   "
                 >
                   {/* Image Container */}
-                  <div className="relative mb-4 aspect-4/5 overflow-hidden rounded-2xl bg-zinc-100 sm:aspect-square">
+                  <div className="relative mb-4 aspect-4/5 overflow-hidden rounded-sm bg-zinc-100 sm:aspect-square">
                     <img
                       src={product.imageUrl}
                       alt={product.name}
@@ -99,13 +99,15 @@ export default function NewArrivals() {
                     />
 
                     {/* Badges */}
-                    <div className="absolute left-3 top-3 flex flex-col gap-2">
-                      <span className="block rounded-full bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-zinc-900 shadow-sm">
+                    <div className="absolute inset-1">
+                      {/* New */}
+                      <span className="absolute left-0 top-0 rounded-full bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-zinc-900 shadow-sm">
                         New
                       </span>
 
+                      {/* Discount */}
                       {hasDiscount && (
-                        <span className="block rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-bold tracking-widest text-white shadow-sm">
+                        <span className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-[10px] font-bold tracking-wider text-white shadow-sm">
                           -{discountPercent}%
                         </span>
                       )}
