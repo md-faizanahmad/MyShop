@@ -12,7 +12,8 @@ export default function OtpInput({ value, onChange }: OtpInputProps) {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleChange = (input: string, index: number) => {
-    const character = input.slice(-1).toLowerCase();
+    // const character = input.slice(-1).toLowerCase();
+    const character = input.slice(-1);
 
     if (character && !OTP_PATTERN.test(character)) return;
 
@@ -31,8 +32,7 @@ export default function OtpInput({ value, onChange }: OtpInputProps) {
     const pasted = e.clipboardData
       .getData("text")
       .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, "")
+      .replace(/[^a-zA-Z0-9]/g, "")
       .slice(0, OTP_LENGTH);
 
     if (!pasted) return;

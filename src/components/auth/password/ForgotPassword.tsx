@@ -1,10 +1,10 @@
 import { AnimatePresence } from "framer-motion";
-import useForgotPassword from "./components/useForgotPassword";
 import ForgotPasswordCard from "./components/ForgotPasswordCard";
 import ForgotPasswordEmail from "./components/ForgotPasswordEmail";
 import ForgotPasswordOtp from "./components/ForgotPasswordOtp";
 import ForgotPasswordReset from "./components/ForgotPasswordReset";
 import ForgotPasswordSuccess from "./components/ForgotPasswordSuccess";
+import useForgotPassword from "@/hooks/useForgetPassword";
 
 export default function ForgotPasswordPage() {
   const {

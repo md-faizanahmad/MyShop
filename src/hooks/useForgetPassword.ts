@@ -72,7 +72,7 @@ export default function useForgotPassword() {
     setIsLoading(true);
 
     try {
-      const response = await apiClient.post("/forgot-password", {
+      const response = await apiClient.post("/v1/users/forgot-password", {
         email: normalizedEmail,
       });
 
@@ -112,7 +112,8 @@ export default function useForgotPassword() {
   const handleOtpSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const enteredOtp = otp.join("").trim().toLowerCase();
+    // const enteredOtp = otp.join("").trim().toLowerCase();
+    const enteredOtp = otp.join("").trim();
 
     if (enteredOtp.length !== OTP_LENGTH) {
       setError(`Please enter the ${OTP_LENGTH}-character verification code.`);
@@ -124,7 +125,7 @@ export default function useForgotPassword() {
     setIsLoading(true);
 
     try {
-      const response = await apiClient.post("/verify-otp", {
+      const response = await apiClient.post("v1/users/verify-otp", {
         email: email.trim().toLowerCase(),
         otp: enteredOtp,
         purpose: "password_reset",
@@ -168,7 +169,7 @@ export default function useForgotPassword() {
     setResendLoading(true);
 
     try {
-      const response = await apiClient.post("/resend-otp", {
+      const response = await apiClient.post("/v1/users/resend-otp", {
         email: normalizedEmail,
         purpose: "password_reset",
       });
@@ -226,7 +227,7 @@ export default function useForgotPassword() {
     setIsLoading(true);
 
     try {
-      const response = await apiClient.post("/reset-password", {
+      const response = await apiClient.post("/v1/users/reset-password", {
         email: email.trim().toLowerCase(),
         newPassword,
       });
