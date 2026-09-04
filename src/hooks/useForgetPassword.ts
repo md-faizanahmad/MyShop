@@ -125,7 +125,7 @@ export default function useForgotPassword() {
     setIsLoading(true);
 
     try {
-      const response = await apiClient.post("v1/users/verify-otp", {
+      const response = await apiClient.post("/v1/users/verify-otp", {
         email: email.trim().toLowerCase(),
         otp: enteredOtp,
         purpose: "password_reset",
