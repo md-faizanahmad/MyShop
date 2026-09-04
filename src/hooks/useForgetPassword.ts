@@ -271,19 +271,6 @@ export default function useForgotPassword() {
     }
   };
 
-  const resetForgotPassword = () => {
-    setStep("EMAIL");
-    setEmail("");
-    setOtp(emptyOtp());
-    setNewPassword("");
-    setConfirmPassword("");
-    setIsLoading(false);
-    setResendLoading(false);
-    setResendCooldown(0);
-    setError("");
-    setSuccessMessage("");
-  };
-
   return {
     // Step
     step,
@@ -315,7 +302,6 @@ export default function useForgotPassword() {
 
     // Navigation
     goBack,
-    resetForgotPassword,
 
     setStep,
   };
