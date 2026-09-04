@@ -1,46 +1,52 @@
-import { motion } from "framer-motion";
 import { CheckCircle2, LogIn } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-interface ForgotPasswordSuccessStepProps {
-  onContinue: () => void;
-}
+export default function ForgotPasswordSuccess() {
+  const navigate = useNavigate();
 
-export default function ForgotPasswordSuccess({
-  onContinue,
-}: ForgotPasswordSuccessStepProps) {
   return (
-    <motion.div
-      key="success-step"
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.2 }}
-      className="space-y-4 py-6 text-center"
+    <section
+      aria-labelledby="password-reset-success-title"
+      className="w-full text-center"
     >
-      <div className="flex justify-center text-emerald-500">
-        <CheckCircle2 aria-hidden="true" className="h-14 w-14 stroke-[1.5]" />
+      {/* SUCCESS ICON */}
+      <div className="mb-6 flex justify-center">
+        <div className="flex h-14 w-14 items-center justify-center border border-green-200 bg-green-50 text-green-600">
+          <CheckCircle2 aria-hidden="true" size={30} strokeWidth={1.8} />
+        </div>
       </div>
 
-      <div className="space-y-2">
-        <h3 className="text-xl font-semibold text-slate-900">
-          Password Reset Successful
-        </h3>
+      {/* MESSAGE */}
+      <header>
+        <h1
+          id="password-reset-success-title"
+          className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl"
+        >
+          Password reset successful
+        </h1>
 
-        <p className="mx-auto max-w-xs text-sm leading-5 text-slate-500">
+        <p className="mx-auto mt-2 max-w-sm text-sm leading-5 text-zinc-500">
           Your password has been updated successfully. You can now log in with
           your new password.
         </p>
-      </div>
+      </header>
 
-      <div className="pt-4">
+      {/* LOGIN */}
+      <div className="mt-7">
         <button
           type="button"
-          onClick={onContinue}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-950"
+          onClick={() => navigate("/login")}
+          className="flex w-full items-center justify-center gap-2 bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700 active:bg-red-800"
         >
-          <LogIn className="h-4 w-4" />
-          <span>Continue to Login</span>
+          <LogIn size={16} />
+          Continue to Login
         </button>
       </div>
-    </motion.div>
+
+      {/* SUPPORTING TEXT */}
+      <p className="mt-5 text-xs text-zinc-400">
+        You can use your new password to access your account.
+      </p>
+    </section>
   );
 }

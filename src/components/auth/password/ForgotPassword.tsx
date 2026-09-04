@@ -31,7 +31,6 @@ export default function ForgotPasswordPage() {
     handleResetPassword,
 
     goBack,
-    resetForgotPassword,
   } = useForgotPassword();
 
   return (
@@ -76,9 +75,7 @@ export default function ForgotPasswordPage() {
           />
         )}
 
-        {step === "SUCCESS" && (
-          <ForgotPasswordSuccess onContinue={resetForgotPassword} />
-        )}
+        {step === "SUCCESS" && <ForgotPasswordSuccess />}
       </AnimatePresence>
     </ForgotPasswordCard>
   );
