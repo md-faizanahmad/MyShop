@@ -60,6 +60,7 @@ import ConnectionError from "@/error/ConnectionError";
 import FlashSalePage from "./pages/flash-sale/flashSale";
 import OffersPage from "./pages/offers/Offers";
 import BackToTop from "./shared/BacktoTop";
+import { Toaster } from "react-hot-toast";
 
 // import AZLoader from "./shared/AZLoader";
 // ------------------ MAIN APP CONTENT ------------------
@@ -70,6 +71,7 @@ function AppContent() {
   useConnectionWatcher();
   return (
     <>
+      <Toaster position="top-right" />
       <BackToTop />
       <ScrollToTop />
       <ConnectionError />

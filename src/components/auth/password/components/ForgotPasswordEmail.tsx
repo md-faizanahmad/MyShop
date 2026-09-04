@@ -1,10 +1,10 @@
 import type { FormEvent } from "react";
 import { ArrowRight, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ForgotPasswordEmailStepProps {
   email: string;
   isLoading: boolean;
-  error: string;
   onEmailChange: (value: string) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
@@ -12,7 +12,6 @@ interface ForgotPasswordEmailStepProps {
 export default function ForgotPasswordEmail({
   email,
   isLoading,
-  error,
   onEmailChange,
   onSubmit,
 }: ForgotPasswordEmailStepProps) {
@@ -32,16 +31,6 @@ export default function ForgotPasswordEmail({
         </p>
       </header>
 
-      {/* ERROR */}
-      {error && (
-        <div
-          role="alert"
-          className="mb-5 border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs text-red-600 sm:text-sm"
-        >
-          {error}
-        </div>
-      )}
-
       {/* EMAIL */}
       <form onSubmit={onSubmit} noValidate className="space-y-5">
         <div>
@@ -49,7 +38,7 @@ export default function ForgotPasswordEmail({
             htmlFor="forgot-password-email"
             className="mb-1.5 flex items-center gap-2 text-sm font-medium text-zinc-700"
           >
-            <Mail size={16} className="text-red-600" />
+            <Mail size={16} className="text-red-600" aria-hidden="true" />
             Email Address
           </label>
 
@@ -63,7 +52,6 @@ export default function ForgotPasswordEmail({
             placeholder="you@example.com"
             onChange={(e) => onEmailChange(e.target.value)}
             disabled={isLoading}
-            aria-invalid={Boolean(error)}
             className="w-full border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-red-500 disabled:cursor-not-allowed disabled:bg-zinc-50 disabled:text-zinc-400"
           />
         </div>
@@ -82,7 +70,7 @@ export default function ForgotPasswordEmail({
           ) : (
             <>
               Send Verification Code
-              <ArrowRight size={16} />
+              <ArrowRight size={16} aria-hidden="true" />
             </>
           )}
         </button>
@@ -92,12 +80,12 @@ export default function ForgotPasswordEmail({
       <div className="mt-7 border-t border-zinc-200 pt-6 text-center">
         <p className="text-sm text-zinc-500">
           Remember your password?{" "}
-          <a
-            href="/login"
+          <Link
+            to="/login"
             className="font-semibold text-red-600 hover:text-red-700 hover:underline"
           >
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </section>

@@ -12,8 +12,6 @@ export default function ForgotPasswordPage() {
     email,
     otp,
     isLoading,
-    error,
-    successMessage,
 
     setEmail,
     handleEmailSubmit,
@@ -40,7 +38,6 @@ export default function ForgotPasswordPage() {
           <ForgotPasswordEmail
             email={email}
             isLoading={isLoading}
-            error={error}
             onEmailChange={setEmail}
             onSubmit={handleEmailSubmit}
           />
@@ -51,8 +48,6 @@ export default function ForgotPasswordPage() {
             email={email}
             otp={otp}
             isLoading={isLoading}
-            error={error}
-            successMessage={successMessage}
             resendLoading={resendLoading}
             resendCooldown={resendCooldown}
             onBack={goBack}
@@ -67,7 +62,6 @@ export default function ForgotPasswordPage() {
             newPassword={newPassword}
             confirmPassword={confirmPassword}
             isLoading={isLoading}
-            error={error}
             onNewPasswordChange={setNewPassword}
             onConfirmPasswordChange={setConfirmPassword}
             onBack={goBack}

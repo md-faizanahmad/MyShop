@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { AxiosError } from "axios";
+import toast from "react-hot-toast";
 import apiClient from "@/lib/axios";
 
 export type ForgotPasswordStep = "EMAIL" | "OTP" | "RESET" | "SUCCESS";
@@ -21,9 +22,6 @@ export default function useForgotPassword() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
-
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const [resendCooldown, setResendCooldown] = useState(0);
 
@@ -63,12 +61,10 @@ export default function useForgotPassword() {
     const normalizedEmail = email.trim().toLowerCase();
 
     if (!normalizedEmail) {
-      setError("Please enter your email address.");
+      toast.error("Please enter your email address.");
       return;
     }
 
-    setError("");
-    setSuccessMessage("");
     setIsLoading(true);
 
     try {
@@ -79,14 +75,13 @@ export default function useForgotPassword() {
       setEmail(normalizedEmail);
       setOtp(emptyOtp());
       setResendCooldown(RESEND_COOLDOWN);
+      setStep("OTP");
 
-      setSuccessMessage(
+      toast.success(
         response.data?.message || "Verification code sent to your email.",
       );
-
-      setStep("OTP");
     } catch (error) {
-      setError(
+      toast.error(
         getErrorMessage(
           error,
           "Unable to send verification code. Please try again.",
@@ -103,25 +98,20 @@ export default function useForgotPassword() {
 
   const handleOtpChange = (value: string[]) => {
     setOtp(value);
-
-    if (error) {
-      setError("");
-    }
   };
 
   const handleOtpSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // const enteredOtp = otp.join("").trim().toLowerCase();
     const enteredOtp = otp.join("").trim();
 
     if (enteredOtp.length !== OTP_LENGTH) {
-      setError(`Please enter the ${OTP_LENGTH}-character verification code.`);
+      toast.error(
+        `Please enter the ${OTP_LENGTH}-character verification code.`,
+      );
       return;
     }
 
-    setError("");
-    setSuccessMessage("");
     setIsLoading(true);
 
     try {
@@ -132,19 +122,15 @@ export default function useForgotPassword() {
       });
 
       setOtp(emptyOtp());
-
-      setSuccessMessage(response.data?.message || "OTP verified successfully.");
-
       setStep("RESET");
-    } catch (error) {
-      const message = getErrorMessage(
-        error,
-        "Unable to verify the code. Please try again.",
-      );
 
-      // Wrong / expired OTP → clear entered code
+      toast.success(response.data?.message || "OTP verified successfully.");
+    } catch (error) {
       setOtp(emptyOtp());
-      setError(message);
+
+      toast.error(
+        getErrorMessage(error, "Unable to verify the code. Please try again."),
+      );
     } finally {
       setIsLoading(false);
     }
@@ -160,12 +146,10 @@ export default function useForgotPassword() {
     const normalizedEmail = email.trim().toLowerCase();
 
     if (!normalizedEmail) {
-      setError("Email address is required.");
+      toast.error("Email address is required.");
       return;
     }
 
-    setError("");
-    setSuccessMessage("");
     setResendLoading(true);
 
     try {
@@ -177,11 +161,11 @@ export default function useForgotPassword() {
       setOtp(emptyOtp());
       setResendCooldown(RESEND_COOLDOWN);
 
-      setSuccessMessage(
+      toast.success(
         response.data?.message || "A new verification code has been sent.",
       );
     } catch (error) {
-      setError(
+      toast.error(
         getErrorMessage(error, "Unable to resend the code. Please try again."),
       );
     } finally {
@@ -195,35 +179,25 @@ export default function useForgotPassword() {
 
   const handleNewPasswordChange = (value: string) => {
     setNewPassword(value);
-
-    if (error) {
-      setError("");
-    }
   };
 
   const handleConfirmPasswordChange = (value: string) => {
     setConfirmPassword(value);
-
-    if (error) {
-      setError("");
-    }
   };
 
   const handleResetPassword = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (newPassword.length < 8) {
-      setError("Password must be at least 8 characters.");
+      toast.error("Password must be at least 8 characters.");
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      setError("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
-    setError("");
-    setSuccessMessage("");
     setIsLoading(true);
 
     try {
@@ -234,12 +208,11 @@ export default function useForgotPassword() {
 
       setNewPassword("");
       setConfirmPassword("");
-
-      setSuccessMessage(response.data?.message || "Password reset successful.");
-
       setStep("SUCCESS");
+
+      toast.success(response.data?.message || "Password reset successful.");
     } catch (error) {
-      setError(
+      toast.error(
         getErrorMessage(
           error,
           "Unable to reset your password. Please try again.",
@@ -255,9 +228,6 @@ export default function useForgotPassword() {
   ----------------------------- */
 
   const goBack = () => {
-    setError("");
-    setSuccessMessage("");
-
     if (step === "OTP") {
       setOtp(emptyOtp());
       setStep("EMAIL");
@@ -297,8 +267,6 @@ export default function useForgotPassword() {
 
     // UI state
     isLoading,
-    error,
-    successMessage,
 
     // Navigation
     goBack,
