@@ -1,6 +1,5 @@
 import type { FormEvent } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Mail, AlertCircle } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 interface ForgotPasswordEmailStepProps {
   email: string;
@@ -18,83 +17,89 @@ export default function ForgotPasswordEmail({
   onSubmit,
 }: ForgotPasswordEmailStepProps) {
   return (
-    <motion.div
-      key="email-step"
-      initial={{ opacity: 0, x: -15 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 15 }}
-      transition={{ duration: 0.2 }}
-      className="space-y-6"
-    >
-      <div>
-        <h3 className="text-lg font-semibold text-slate-900">
-          Forgot Password?
-        </h3>
+    <section aria-labelledby="forgot-password-title" className="w-full">
+      {/* HEADER */}
+      <header className="mb-7">
+        <h1
+          id="forgot-password-title"
+          className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl"
+        >
+          Forgot password?
+        </h1>
 
-        <p className="mt-1 text-sm leading-5 text-slate-500">
-          Enter your email address and we'll send you a verification code.
+        <p className="mt-1 text-sm text-zinc-500">
+          Enter your email to receive a verification code.
         </p>
-      </div>
+      </header>
 
-      <form onSubmit={onSubmit} className="space-y-5">
+      {/* ERROR */}
+      {error && (
+        <div
+          role="alert"
+          className="mb-5 border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs text-red-600 sm:text-sm"
+        >
+          {error}
+        </div>
+      )}
+
+      {/* EMAIL */}
+      <form onSubmit={onSubmit} noValidate className="space-y-5">
         <div>
           <label
             htmlFor="forgot-password-email"
-            className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-600"
+            className="mb-1.5 flex items-center gap-2 text-sm font-medium text-zinc-700"
           >
+            <Mail size={16} className="text-red-600" />
             Email Address
           </label>
 
-          <div className="relative">
-            <Mail
-              aria-hidden="true"
-              className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
-            />
-
-            <input
-              id="forgot-password-email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              placeholder="name@example.com"
-              onChange={(e) => onEmailChange(e.target.value)}
-              disabled={isLoading}
-              aria-invalid={!!error}
-              aria-describedby={
-                error ? "forgot-password-email-error" : undefined
-              }
-              className={`block w-full rounded-xl border bg-slate-50/50 py-3 pl-10 pr-4 text-sm text-slate-950 placeholder-slate-400 transition-all focus:outline-none focus:ring-2 ${
-                error
-                  ? "border-red-300 focus:border-red-400 focus:ring-red-100"
-                  : "border-slate-200 focus:border-transparent focus:ring-slate-900"
-              } disabled:cursor-not-allowed disabled:opacity-60`}
-            />
-          </div>
-
-          {error && (
-            <div
-              id="forgot-password-email-error"
-              role="alert"
-              className="mt-2 flex items-start gap-1.5 text-xs text-red-600"
-            >
-              <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-              <span>{error}</span>
-            </div>
-          )}
+          <input
+            id="forgot-password-email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            value={email}
+            placeholder="you@example.com"
+            onChange={(e) => onEmailChange(e.target.value)}
+            disabled={isLoading}
+            aria-invalid={Boolean(error)}
+            className="w-full border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-red-500 disabled:cursor-not-allowed disabled:bg-zinc-50 disabled:text-zinc-400"
+          />
         </div>
 
+        {/* SEND CODE */}
         <button
           type="submit"
           disabled={isLoading}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-70"
+          className="flex w-full items-center justify-center gap-2 bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700 active:bg-red-800 disabled:cursor-not-allowed disabled:bg-zinc-200 disabled:text-zinc-400"
         >
-          <span>{isLoading ? "Sending..." : "Send Verification Code"}</span>
-
-          {!isLoading && <ArrowRight className="h-4 w-4" />}
+          {isLoading ? (
+            <>
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+              Sending...
+            </>
+          ) : (
+            <>
+              Send Verification Code
+              <ArrowRight size={16} />
+            </>
+          )}
         </button>
       </form>
-    </motion.div>
+
+      {/* BACK TO LOGIN */}
+      <div className="mt-7 border-t border-zinc-200 pt-6 text-center">
+        <p className="text-sm text-zinc-500">
+          Remember your password?{" "}
+          <a
+            href="/login"
+            className="font-semibold text-red-600 hover:text-red-700 hover:underline"
+          >
+            Login
+          </a>
+        </p>
+      </div>
+    </section>
   );
 }
