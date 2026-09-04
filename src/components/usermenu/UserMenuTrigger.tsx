@@ -144,52 +144,42 @@ lg:text-black
       <div className="relative hidden md:block">
         <div
           className="
-          cursor-pointer
-            flex
-            items-center
-            justify-center
-            ring-2
-            ring-transparent
-            transition-all
-s          "
+      flex h-8 w-8
+      cursor-pointer
+      items-center justify-center
+      rounded-full
+      transition-colors
+      hover:bg-neutral-100
+    "
         >
-          {/*
-           * Logged-in:
-           * user's first initial.
-           *
-           * Guest:
-           * neutral account icon.
-           */}
           {isLoggedIn ? (
-            <span className="text-[11px] font-bold tracking-tight">
+            <span className="text-xs font-semibold uppercase text-neutral-700">
               {firstLetter}
             </span>
           ) : (
-            <User size={17} strokeWidth={2.1} aria-hidden="true" />
+            <User
+              size={17}
+              strokeWidth={2}
+              className="text-neutral-700"
+              aria-hidden="true"
+            />
           )}
         </div>
 
-        {/* ---------------------------------------------------------------- */}
-        {/* Logged-in Status Indicator                                       */}
-        {/* ---------------------------------------------------------------- */}
-
-        {/*
-         * The green dot is intentionally retained.
-         * It communicates account state without adding another red element.
-         */}
         {isLoggedIn && (
           <span
             className="
-              absolute
-              -bottom-0.5
-              -right-0.5
-              h-2.5
-              w-2.5
-              rounded-full
-              border-2
-              border-white
-              bg-emerald-500
-            "
+        pointer-events-none
+        absolute
+        bottom-0
+        right-0
+        h-2.5
+        w-2.5
+        rounded-full
+        border-2
+        border-white
+        bg-emerald-500
+      "
             aria-hidden="true"
           />
         )}
