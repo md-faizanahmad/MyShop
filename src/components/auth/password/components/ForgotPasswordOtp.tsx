@@ -38,7 +38,7 @@ export default function ForgotPasswordOtp({
       {(error || successMessage) && (
         <div
           role={error ? "alert" : "status"}
-          className={`fixed right-3 top-3 z-50 flex w-[calc(100%-1.5rem)] max-w-sm items-start gap-2.5 rounded-xl border px-3.5 py-3 text-xs shadow-lg transition-all duration-200 sm:right-5 sm:top-5 ${
+          className={`fixed right-3 top-5 z-50 flex w-[calc(100%-1.5rem)] max-w-sm items-start gap-2.5 rounded-xl border px-3.5 py-3 text-xs shadow-lg transition-all duration-200 sm:right-5 sm:top-5 ${
             error
               ? "border-red-200 bg-red-50 text-red-700"
               : "border-emerald-200 bg-emerald-50 text-emerald-700"
