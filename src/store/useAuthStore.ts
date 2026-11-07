@@ -1,10 +1,7 @@
 // src/store/useAuthStore.ts
 import { create } from "zustand";
 
-/* ----------------------------------
-   Types
----------------------------------- */
-
+// Types
 export interface PublicUser {
   _id: string;
   name?: string;
@@ -12,47 +9,41 @@ export interface PublicUser {
   phone?: string;
 }
 
-export interface MeResponse {
+interface MeResponse {
   success: boolean;
   user?: PublicUser;
 }
 
 export type AuthStatus = "idle" | "loading" | "authenticated" | "guest";
 
+interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+interface OtpCredentials {
+  email: string;
+  otp: string;
+}
+
 interface AuthState {
   user: PublicUser | null;
   status: AuthStatus;
   initializing: boolean;
 
-  /* lifecycle */
   restoreSession: () => Promise<void>;
-
-  /* auth actions */
-  loginWithPassword: (input: {
-    email: string;
-    password: string;
-  }) => Promise<void>;
-
+  loginWithPassword: (input: LoginCredentials) => Promise<void>;
   sendOtp: (email: string) => Promise<void>;
-
-  loginWithOtp: (input: { email: string; otp: string }) => Promise<void>;
-
+  loginWithOtp: (input: OtpCredentials) => Promise<void>;
   logout: () => Promise<void>;
 
-  /* internal */
   _forceLogout: () => void;
 }
 
-/* ----------------------------------
-   Config
----------------------------------- */
-
+// Config
 const API_BASE = import.meta.env.VITE_API_URL as string;
 
-/* ----------------------------------
-   Store
----------------------------------- */
-
+// Store
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   status: "idle",
@@ -61,6 +52,49 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   /* ----------------------------------
      RESTORE SESSION
   ---------------------------------- */
+  // restoreSession: async () => {
+  //   set({ status: "loading" });
+
+  //   try {
+  //     const res = await fetch(`${API_BASE}/v1/users/me`, {
+  //       method: "GET",
+  //       credentials: "include",
+  //     });
+
+  //     if (!res.ok) {
+  //       set({
+  //         user: null,
+  //         status: "guest",
+  //         initializing: false,
+  //       });
+  //       return;
+  //     }
+
+  //     const data: MeResponse = await res.json();
+
+  //     if (data.success && data.user) {
+  //       set({
+  //         user: data.user,
+  //         status: "authenticated",
+  //         initializing: false,
+  //       });
+  //     } else {
+  //       set({
+  //         user: null,
+  //         status: "guest",
+  //         initializing: false,
+  //       });
+  //     }
+  //   } catch {
+  //     set({
+  //       user: null,
+  //       status: "guest",
+  //       initializing: false,
+  //     });
+  //   }
+  // },
+
+  // refactor and remove - same guest-state update in three places are removed .
   restoreSession: async () => {
     set({ status: "loading" });
 
@@ -71,29 +105,20 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       });
 
       if (!res.ok) {
-        set({
-          user: null,
-          status: "guest",
-          initializing: false,
-        });
-        return;
+        throw new Error("SESSION_RESTORE_FAILED");
       }
 
       const data: MeResponse = await res.json();
 
-      if (data.success && data.user) {
-        set({
-          user: data.user,
-          status: "authenticated",
-          initializing: false,
-        });
-      } else {
-        set({
-          user: null,
-          status: "guest",
-          initializing: false,
-        });
+      if (!data.success || !data.user) {
+        throw new Error("INVALID_SESSION");
       }
+
+      set({
+        user: data.user,
+        status: "authenticated",
+        initializing: false,
+      });
     } catch {
       set({
         user: null,
