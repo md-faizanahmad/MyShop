@@ -309,17 +309,13 @@ import PasswordStrengthMeter from "../../components/PasswordStrengthMeter";
 interface SignupFormProps {
   form: SignupFormType;
   passwordValue: string;
-
   showPassword: boolean;
   toggleShowPassword: () => void;
-
   otp: string;
   setOtp: (value: string) => void;
-
   otpSent: boolean;
   verified: boolean;
   resendTimer: number;
-
   sendingOtp: boolean;
   verifyingOtp: boolean;
   isMutationPending: boolean;
@@ -410,57 +406,6 @@ export default function SignupForm({
               )}
             </div>
             {/* EMAIL */}
-            {/* <div>
-              <label
-                htmlFor="signup-email"
-                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-zinc-700"
-              >
-                <Mail size={16} className="text-red-600" />
-                Email Address
-              </label>
-
-              <div className="flex gap-2">
-                <input
-                  id="signup-email"
-                  {...register("email")}
-                  type="email"
-                  disabled={otpSent}
-                  placeholder="you@gmail.com"
-                  autoComplete="email"
-                  className={`min-w-0 flex-1 border bg-white px-3.5 py-2.5 text-sm text-zinc-900 outline-none transition ${
-                    errors.email
-                      ? "border-red-400"
-                      : "border-zinc-300 focus:border-red-500"
-                  } disabled:bg-zinc-100 disabled:text-zinc-500`}
-                />
-
-                <button
-                  type="button"
-                  onClick={onSendOtp}
-                  disabled={sendingOtp || resendTimer > 0 || otpSent}
-                  className="shrink-0 border border-red-600 bg-red-600 px-4 py-2.5 text-xs font-medium text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:border-zinc-200 disabled:bg-zinc-100 disabled:text-zinc-400"
-                >
-                  {sendingOtp ? (
-                    <span className="flex items-center gap-1.5">
-                      <Loader2 size={14} className="animate-spin" />
-                      Sending
-                    </span>
-                  ) : resendTimer > 0 ? (
-                    `${resendTimer}s`
-                  ) : (
-                    "Send OTP"
-                  )}
-                </button>
-              </div>
-
-              {errors.email && (
-                <p className="mt-1 text-xs text-red-600">
-                  {errors.email.message}
-                </p>
-              )}
-            </div> */}
-            {/* // update with info */}
-            {/* EMAIL */}
             <div>
               <label
                 htmlFor="signup-email"
@@ -506,7 +451,7 @@ export default function SignupForm({
                     {sendingOtp ? (
                       <span className="flex items-center gap-1.5">
                         <Loader2 size={14} className="animate-spin" />
-                        Sending
+                        Sending Otp
                       </span>
                     ) : resendTimer > 0 ? (
                       `${resendTimer}s`
@@ -558,12 +503,19 @@ export default function SignupForm({
                 <div className="flex gap-2">
                   <input
                     id="signup-otp"
+                    name="otp"
                     type="text"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    maxLength={6}
+                    inputMode="text"
                     autoComplete="one-time-code"
+                    enterKeyHint="done"
+                    required
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value.slice(0, 6))}
+                    maxLength={6}
                     placeholder="Enter OTP"
+                    aria-label="Verification code"
+                    spellCheck={false}
+                    autoCapitalize="characters"
                     className="min-w-0 flex-1 border border-zinc-300 bg-white px-3 py-2.5 text-center font-mono text-lg tracking-[0.2em] text-zinc-900 outline-none focus:border-red-500"
                   />
 
@@ -576,10 +528,10 @@ export default function SignupForm({
                     {verifyingOtp ? (
                       <span className="flex items-center gap-1.5">
                         <Loader2 size={14} className="animate-spin" />
-                        Verifying
+                        Verifying code...
                       </span>
                     ) : (
-                      "Verify"
+                      "Verify & Continue"
                     )}
                   </button>
                 </div>
@@ -587,10 +539,12 @@ export default function SignupForm({
             )}
             {/* VERIFIED */}
             {verified && (
-              <div className="flex items-center gap-2 border border-green-200 bg-green-50 px-3 py-2.5 text-xs font-medium text-green-700">
+              <div
+                role="status"
+                className="flex items-center gap-2 border border-green-200 bg-green-50 px-3 py-2.5 text-xs font-medium text-green-700"
+              >
                 <CheckCircle2 size={16} className="shrink-0" />
-
-                <span>Email successfully verified</span>
+                <span>Email address verified successfully</span>
               </div>
             )}
           </div>
