@@ -162,7 +162,7 @@ export default function LoginForm({
           </h1>
 
           <p className="mt-1 text-sm text-zinc-500">
-            Login to continue to MyAZ Store.
+            Login to continue to AZ Store.
           </p>
         </header>
 

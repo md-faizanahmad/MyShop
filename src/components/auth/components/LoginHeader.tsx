@@ -8,7 +8,7 @@ export default function LoginHeader() {
       </h2>
 
       <p className="mt-1 text-sm text-gray-500">
-        Login to continue to MyAZ Store
+        Login to continue to AZ Store
       </p>
     </div>
   );

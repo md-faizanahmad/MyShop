@@ -89,7 +89,7 @@ const OFFERS: Offer[] = [
     id: 6,
     title: "First Order Special",
     description:
-      "New to MyAZStore? Get a special discount on your first purchase.",
+      "New to AZStore? Get a special discount on your first purchase.",
     discount: "10% OFF",
     code: "WELCOME10",
     validUntil: "For new customers",
@@ -186,7 +186,7 @@ export default function OffersPage() {
 
             <p className="mt-3 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
               Discover exclusive coupons, free shipping, category discounts and
-              special offers available across MyAZStore.
+              special offers available across AZStore.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-2.5">

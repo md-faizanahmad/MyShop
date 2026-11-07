@@ -76,7 +76,7 @@ export interface RazorpayConstructor {
  * Throws on any failure / user cancel / timeout.
  */
 export async function startPayment(
-  timeoutMs = 2 * 60 * 1000
+  timeoutMs = 2 * 60 * 1000,
 ): Promise<VerifyResponse> {
   if (typeof window === "undefined")
     throw new Error("startPayment must run in browser");
@@ -110,7 +110,7 @@ export async function startPayment(
     const res = await axios.post<CreateOrderResp>(
       `${API}/v1/payment/create-order`,
       {},
-      { withCredentials: true }
+      { withCredentials: true },
     );
     createResp = res.data;
   } catch (err) {
@@ -152,7 +152,7 @@ export async function startPayment(
       order_id: order.id,
       amount: order.amount,
       currency: order.currency,
-      name: meta?.name ?? "MyAZ Store",
+      name: meta?.name ?? "AZ Store",
       description: meta?.description ?? "Order Payment",
       image: meta?.image ?? "/pwa-512x512.png",
       prefill: meta?.prefill,
@@ -165,7 +165,7 @@ export async function startPayment(
             payload,
             {
               withCredentials: true,
-            }
+            },
           );
 
           clearTimeout(timeout);

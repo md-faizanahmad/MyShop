@@ -95,7 +95,7 @@ export default function NewArrivalsPage() {
             <div className="mb-2 flex items-center gap-1.5">
               <Sparkles aria-hidden="true" className="size-3.5 text-red-500" />
 
-              <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-red-500 sm:text-[11px]">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-red-500 sm:text-[11px]">
                 Fresh picks
               </span>
             </div>
@@ -120,7 +120,7 @@ export default function NewArrivalsPage() {
                 sm:text-sm sm:leading-6
               "
             >
-              Discover the latest products recently added to MyAZStore.
+              Discover the latest products recently added to AZStore.
             </p>
 
             {!loading && (

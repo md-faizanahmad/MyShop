@@ -19,7 +19,7 @@ export const useFeaturedProducts = () => {
     queryKey: ["featured-products"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "https://api.myazstore.shop/v1/products",
+        "https://api.azstore.mdfaizanahmad.in/v1/products",
       );
 
       return data.products as Product[];

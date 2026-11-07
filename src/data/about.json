@@ -1,7 +1,7 @@
 {
   "title": "About Us",
   "intro": [
-    "MyAZStore is an online shopping platform built with a simple mission — to offer quality products at fair prices with a smooth, transparent, and customer-friendly shopping experience.",
+    "AZStore is an online shopping platform built with a simple mission — to offer quality products at fair prices with a smooth, transparent, and customer-friendly shopping experience.",
     "We combine reliable service, secure checkout, and responsive support to ensure every order feels easy and trustworthy."
   ],
   "sections": [
@@ -42,7 +42,7 @@
       "heading": "Contact Us",
       "content": [
         "Have questions or feedback? We’re here to help.",
-        "Email: support@myazstore.shop",
+        "Email: support@azstore.mdfaizanahmad.in",
         "Phone: +91 7563092029",
         "WhatsApp: +91 7563092029"
       ]

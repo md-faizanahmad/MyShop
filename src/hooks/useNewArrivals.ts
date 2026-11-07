@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { PublicProduct } from "@/types/product";
 
-const PRODUCTS_API = "https://api.myazstore.shop/v1/products";
+const PRODUCTS_API = "https://api.azstore.mdfaizanahmad.in/v1/products";
 
 interface UseNewArrivalsOptions {
   days?: number;

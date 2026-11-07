@@ -15,7 +15,9 @@ export default function MobileCategoryScroll() {
   const { data: categories = [], isLoading } = useQuery<Category[]>({
     queryKey: ["horizontal-categories-images"],
     queryFn: async () => {
-      const res = await axios.get("https://api.myazstore.shop/v1/categories");
+      const res = await axios.get(
+        "https://api.azstore.mdfaizanahmad.in/v1/categories",
+      );
       return res.data.categories ?? [];
     },
   });

@@ -48,7 +48,7 @@ const CustomerReviews: FC<CustomerReviewsProps> = ({
   reviews,
   totalReviewsLabel = "Verified Reviews",
   title = "Customer Feedback",
-  subtitle = "See what customers are saying about their MyAZStore experience.",
+  subtitle = "See what customers are saying about their AZStore experience.",
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 

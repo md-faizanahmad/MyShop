@@ -45,7 +45,7 @@ export default function ForgotPasswordReset({
         </h1>
 
         <p className="mt-1 text-sm text-zinc-500">
-          Choose a new password for your MyAZ Store account.
+          Choose a new password for your AZ Store account.
         </p>
       </header>
 
