@@ -87,7 +87,19 @@ export default function CheckoutPage() {
   );
 
   /* -------------------- PRICE -------------------- */
-  const subtotal = items.reduce((sum, i) => sum + i.product.price * i.qty, 0);
+  // const subtotal = items.reduce((sum, i) => sum + i.product.price * i.qty, 0);
+  // const shipping = subtotal >= 999 ? 0 : 49;
+  // const total = subtotal + shipping;
+
+  /* -------------------- PRICE -------------------- */
+  const getSellingPrice = (product: PublicProduct) =>
+    product.discountPrice ?? product.price;
+
+  const subtotal = items.reduce(
+    (sum, item) => sum + getSellingPrice(item.product) * item.qty,
+    0,
+  );
+
   const shipping = subtotal >= 999 ? 0 : 49;
   const total = subtotal + shipping;
 
@@ -106,7 +118,8 @@ export default function CheckoutPage() {
           items: items.map((i) => ({
             productId: i.product._id,
             qty: i.qty,
-            price: i.product.price,
+            // price: i.product.price,
+            price: getSellingPrice(i.product),
           })),
           totalAmount: total,
         },
