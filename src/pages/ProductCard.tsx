@@ -435,10 +435,10 @@ export default function ProductCard({ product }: Props) {
               <div className="flex items-center gap-1 rounded-full bg-white/95 px-1.5 py-0.5 shadow-sm ring-1 ring-neutral-200/50 sm:px-2 sm:py-1">
                 <AlertCircle
                   size={9}
-                  className="text-neutral-700 sm:h-2.5 sm:w-2.5"
+                  className="text-red-700 sm:h-2.5 sm:w-2.5"
                   strokeWidth={2.5}
                 />
-                <span className="text-[9px] font-semibold uppercase tracking-wide text-neutral-800 sm:text-[10px]">
+                <span className="text-[9px] font-semibold uppercase tracking-wide bg-red-600 text-white sm:text-[10px]">
                   Out of Stock
                 </span>
               </div>
@@ -530,7 +530,7 @@ export default function ProductCard({ product }: Props) {
                 className={`flex h-7 w-full items-center justify-center rounded-md text-[10px] font-semibold transition-all active:scale-[0.98] sm:h-8 sm:rounded-lg sm:text-[11px] ${
                   isStock
                     ? "pointer-events-none bg-neutral-100 text-neutral-400"
-                    : "bg-neutral-900 text-white hover:bg-neutral-800"
+                    : "bg-sky-600 text-white hover:bg-neutral-800"
                 }`}
               >
                 Buy Now
@@ -559,7 +559,7 @@ export default function ProductCard({ product }: Props) {
                     isStock
                       ? "cursor-not-allowed border-transparent bg-neutral-100 text-neutral-400"
                       : isInCart
-                        ? "border-neutral-900 bg-neutral-900 text-white hover:bg-neutral-800"
+                        ? "border-red-200 bg-red-50 text-red-600 hover:border-red-300 hover:bg-red-100"
                         : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300 hover:bg-neutral-50"
                   }`}
                 >
