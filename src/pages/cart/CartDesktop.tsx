@@ -75,20 +75,19 @@ export default function CartDesktop({
                           bg-slate-100
                    img "
                       /> */}
-                      // with link
+
                       <Link
                         to={`/category/${product.category.slug}/product/${product.slug}`}
                       >
                         <img
                           src={product.imageUrl}
                           alt={product.name}
-                          className="
-      h-24
+                          className=" h-24
       w-24
       shrink-0
       rounded-lg
       object-cover
-      bg-slate-100
+       bg-slate-100
     "
                         />
                       </Link>
